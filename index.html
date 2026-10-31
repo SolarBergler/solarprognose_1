@@ -8,10 +8,21 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="apple-mobile-web-app-title" content="Solar Schliersee" />
 <meta name="description" content="Mobile PV-Ertragsprognose für Schliersee mit Bergen und Geländehorizont. Läuft ohne Python und ohne Backend." />
-<title>Solarprognose Schliersee V6 · Bergschatten (v5)</title>
+<title>Solarprognose Schliersee · Bergschatten V9</title>
 <style>
 :root{color-scheme:dark;--bg:#0a111b;--surface:#111d2b;--surface2:#162438;--line:#293b4d;--txt:#e8f0f8;--muted:#95a8bc;--lime:#b9ee69;--sky:#7ba8cb;--orange:#f1ae6a;--red:#f48e8e}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 85% 0, #1e3144 0,transparent 34%),var(--bg);color:var(--txt);font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--lime);outline-offset:2px}input,textarea{border:1px solid var(--line);border-radius:8px;padding:9px 10px;color:var(--txt);background:#0b1725;width:100%}input[type=number]{font-variant-numeric:tabular-nums}input[type=range]{padding:0;accent-color:var(--lime)}.layout{max-width:1320px;margin:0 auto;padding:32px 27px 70px}.top{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;flex-wrap:wrap;margin-bottom:31px}.eyebrow{color:var(--lime);text-transform:uppercase;font-size:11px;letter-spacing:.19em;font-weight:800}.brand{font-size:34px;letter-spacing:-1.5px;line-height:1.1;font-weight:750;margin:11px 0}.sub{color:var(--muted);max-width:710px;margin:0;font-size:14px}.top-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.pill{border:1px solid #345043;background:#172b2b;color:#b8eac2;border-radius:30px;padding:8px 13px;font-size:12px;font-weight:700}.pill.warn{color:#ffcd91;border-color:#76553a;background:#32281f}.btn{border:1px solid #47614f;background:#203d35;color:#cdf3b4;padding:9px 14px;border-radius:10px;font-weight:650;font-size:13px}.btn:hover{background:#2b4b3f}.btn.secondary{border-color:var(--line);background:#152334;color:var(--txt)}.btn.secondary:hover{background:#26394c}.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:22px}.kpi{background:linear-gradient(150deg,#152636,#101c29);border:1px solid #2c4050;border-radius:16px;padding:19px 19px 16px;min-height:135px;overflow:hidden}.kpi span{font-size:12px;color:var(--muted);display:block;margin-bottom:11px}.kpi strong{font-size:34px;font-weight:770;letter-spacing:-1.7px;line-height:1.2;font-variant-numeric:tabular-nums}.kpi .unit{font-size:16px;color:var(--muted);font-weight:500;letter-spacing:0}.kpi em{display:block;color:var(--muted);font-style:normal;margin-top:5px;font-size:12px}.kpi .accent{color:var(--lime)}.kpi .warm{color:var(--orange)}.cols{display:grid;grid-template-columns:minmax(0,1.62fr) minmax(0,1fr);gap:18px}.panel{background:linear-gradient(150deg,#142132,#111b29);border:1px solid #2a394b;border-radius:16px;padding:23px;min-width:0;margin-bottom:18px}.panel h2{font-size:17px;letter-spacing:-.3px;margin:0}.panel-header{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap;margin-bottom:18px}.hint{color:var(--muted);font-size:12px;margin:5px 0 0}.legend{display:flex;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:12px}.legend b{display:inline-block;width:16px;height:3px;border-radius:3px;margin:0 5px 3px 0}.chart{display:block;width:100%;height:auto;overflow:visible;touch-action:pan-y}.axistext{fill:#8299ac;font-size:12px;font-family:inherit}.chart-grid{stroke:#314253;stroke-width:1}.forecast-days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}.day{border:1px solid #344759;background:#152335;min-height:145px;padding:13px 5px 9px;border-radius:11px;color:var(--txt);text-align:center;display:flex;flex-direction:column;gap:5px;align-items:center}.day:hover{background:#21344b}.day.active{border-color:var(--lime);box-shadow:inset 0 0 0 1px var(--lime);background:#21352d}.day .dayname{font-size:11px;color:var(--muted)}.day strong{font-size:17px;font-variant-numeric:tabular-nums}.bars{display:flex;align-items:flex-end;gap:3px;height:70px;width:80%;justify-content:center;margin:4px 0}.bars i{width:15px;display:block;border-radius:3px 3px 0 0;min-height:2px}.bar-base{background:#536d82}.bar-correct{background:var(--lime)}.detail{width:100%;border-collapse:collapse;margin-top:6px;font-size:13px}.detail th,.detail td{text-align:right;padding:12px 6px;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}.detail th:first-child,.detail td:first-child{text-align:left}.detail th{color:var(--muted);font-weight:550;font-size:11px}.detail td:last-child{color:var(--orange)}.detail tr.total td{font-weight:750;color:var(--txt)}.badge{display:inline-flex;gap:7px;align-items:center;font-size:12px;padding:6px 9px;border-radius:6px;background:#1e3136;color:#c5e3de;margin-top:12px}.warning{padding:12px 14px;border-radius:9px;border:1px solid #674b34;background:#332719;color:#ffdaaa;font-size:12px;line-height:1.6;margin-top:12px}.hidden{display:none!important}.horizon-top{display:flex;align-items:center;gap:10px;justify-content:space-between;flex-wrap:wrap}.horizon-meta{color:#a9c0cf;font-size:12px;margin:5px 0 15px}.horizon-wrap{position:relative}.horizon-tooltip{position:absolute;right:0;top:0;border:1px solid #38534d;padding:4px 8px;border-radius:6px;color:var(--lime);font-size:12px;background:#172c28}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}.field .note{font-size:11px;color:var(--muted);margin-top:5px}.settings-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:14px}.setting-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.panels-edit{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:9px}.panels-edit input{padding:8px 6px}.headings{color:var(--muted);font-size:11px;margin-bottom:8px}.panel-edit-row{margin-bottom:8px}details{margin-top:17px;background:#0d1926;border:1px solid #273849;border-radius:12px;padding:12px}summary{font-weight:650;cursor:pointer}textarea{resize:vertical;min-height:84px;margin-top:10px;font-size:12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}.foot{margin-top:13px;color:#8da1b5;font-size:12px;line-height:1.65}.footer{border-top:1px solid #29394b;margin-top:20px;padding-top:19px;color:var(--muted);font-size:12px}.spacer{margin-bottom:14px}.notice{font-size:12px;color:#aac2d4;padding:10px 12px;border-left:3px solid #6086a9;background:#172639;border-radius:3px}.statusbox{border:1px solid var(--line);background:#102130;border-radius:10px;padding:12px;margin-top:10px;font-size:12px;color:var(--muted)}.statusbox strong{color:var(--txt)}
+
+/* V9: Ortsname als unaufdringlicher Auslöser des Einstellungsdialogs. */
+.location-title-button{display:inline;padding:0;margin:0;border:0;border-radius:3px;background:transparent;color:var(--lime);font:inherit;font-weight:inherit;letter-spacing:inherit;line-height:inherit;vertical-align:baseline;cursor:pointer}
+.location-title-button:hover{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px}
+.location-title-button:focus-visible{outline:2px solid var(--lime);outline-offset:5px}
+.location-dialog{width:min(92vw,480px);max-width:480px;max-height:min(90vh,720px);overflow:auto;margin:auto;padding:24px;border:1px solid #456078;border-radius:18px;background:#142234;color:var(--txt);box-shadow:0 24px 72px #000a}
+.location-dialog::backdrop{background:rgba(3,9,18,.77);backdrop-filter:blur(4px)}
+.location-dialog h2{font-size:21px;margin:0 0 8px}.location-dialog p{font-size:13px;color:var(--muted);margin:0 0 17px;line-height:1.5}
+.location-dialog .field{margin-bottom:14px}.location-dialog .setting-actions{justify-content:flex-end;margin-top:23px}
+.location-dialog input{font-size:16px}
+.observed-card{margin-top:13px;border:1px solid var(--line);background:#101d2b;border-radius:10px;padding:13px}.observed-heading{display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap}.observed-card .hint{margin:7px 0}.observed-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.observed-row label{font-size:12px;color:var(--muted)}.observed-row input{width:112px;max-width:100%;font-variant-numeric:tabular-nums}.observed-card .statusbox{margin-top:12px}.observed-discrepancy{color:#ffd19e}
 @media(max-width:1040px){.cols{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:660px){.layout{padding:22px 13px 45px}.brand{font-size:28px}.kpis{gap:8px}.kpi{padding:14px 12px;min-height:120px}.kpi strong{font-size:25px}.panel{padding:16px}.forecast-days{gap:4px}.day{min-height:124px;padding:10px 2px}.bars{height:56px}.bars i{width:11px}.day strong{font-size:13px}.day .dayname{font-size:9px}.panels-edit{grid-template-columns:1.2fr .9fr .9fr .9fr;gap:4px}.panels-edit input{font-size:12px}.panel-header{margin-bottom:12px}.detail td,.detail th{padding:10px 3px;font-size:11px}.top{margin-bottom:18px}}
 </style>
@@ -19,7 +30,7 @@
 <body>
 <main class="layout">
   <header class="top">
-    <div><div class="eyebrow">PV · iPhone / Safari · Geländeabschattung · V7</div><h1 class="brand">Solarprognose <span style="color:var(--lime)">Schliersee.</span></h1><p class="sub">Deine Solarprognose, korrigiert um die Berge am Horizont. Läuft in Safari ohne Python. Der Berghorizont wird einmalig berechnet und gespeichert. Danach aktualisieren sich nur die Wetterdaten.</p></div>
+    <div><div class="eyebrow">PV · iPhone / Safari · Geländeabschattung · V9</div><h1 class="brand">Solarprognose <button type="button" class="location-title-button" id="openLocationDialog" aria-haspopup="dialog" aria-controls="locationDialog" title="Ort und Koordinaten ändern"><span id="locationTitle">Schliersee</span></button><span style="color:var(--lime)">.</span></h1><p class="sub">Deine Solarprognose, korrigiert um die Berge am Horizont. Läuft in Safari ohne Python. Der Berghorizont wird einmalig berechnet und gespeichert. Danach aktualisieren sich nur die Wetterdaten.</p></div>
     <div class="top-right"><span class="pill warn" id="status">Daten werden geladen …</span><button class="btn secondary" id="refresh" type="button">↻ Aktualisieren</button></div>
   </header>
   <div class="kpis">
@@ -38,6 +49,12 @@
         <div class="panel-header"><div><h2 id="hourTitle">PV-Leistung · 5-Minuten-Auflösung</h2><p class="hint" id="resolutionInfo">Sonnenstand und Bergschatten minütlich · Wetterstrahlung möglichst alle 15 Minuten.</p></div><div class="legend"><span><b style="background:#627f98"></b>ohne Berge</span><span><b style="background:var(--lime)"></b>mit Bergen</span></div></div>
         <div id="hourChart"><div class="notice">Für die Prognose ist eine Internetverbindung erforderlich.</div></div>
         <div class="statusbox" id="daySummary">Wetterdaten werden geladen.</div>
+        <div class="observed-card" aria-label="Ist-Ertrag mit Prognose vergleichen">
+          <div class="observed-heading"><strong>Ist-Ertrag vergleichen</strong><span class="hint" id="actualDateLabel">Tag auswählen</span></div>
+          <p class="hint">Trage die tatsächlich erzeugten kWh aus deiner PV-Anlage ein. Der Vergleich wird nur in diesem Browser gespeichert und verändert die Prognose nicht.</p>
+          <div class="observed-row"><label for="actualDayKwh">Erzeugt [kWh]</label><input id="actualDayKwh" type="number" min="0" max="1000" step="0.1" inputmode="decimal" placeholder="z. B. 48,6" /><button id="saveActual" class="btn" type="button">Speichern</button><button id="clearActual" class="btn secondary" type="button">Löschen</button></div>
+          <div id="actualComparison" class="statusbox hidden" aria-live="polite"></div>
+        </div>
       </div>
       <div class="panel"><div class="panel-header"><div><h2 id="tableTitle">Ertrag nach Dachfläche</h2><p class="hint">Gleiche Wetterlage, mit und ohne berechneten Bergschatten.</p></div></div><table class="detail"><thead><tr><th>PV-Fläche</th><th>Ohne [kWh]</th><th>Mit [kWh]</th><th>Verlust</th></tr></thead><tbody id="panelTable"><tr><td colspan="4" style="text-align:left">Wetterdaten werden geladen.</td></tr></tbody></table></div>
     </section>
@@ -46,19 +63,14 @@
         <div class="horizon-top"><h2>Gelände-Horizontprofil</h2><span class="badge" id="horizonBadge">Nicht geladen</span></div>
         <p class="horizon-meta" id="horizonSource">Prüfe, ob ein gespeichertes Geländeprofil vorhanden ist …</p>
         <div class="horizon-wrap"><div id="horizonPlot"></div><div class="horizon-tooltip" id="hoverInfo">Süd: —°</div></div>
-        <p class="foot">Die grüne Fläche zeigt den Berghorizont, die gestrichelte Kurve den Sonnenlauf. <strong>Berühre die Grafik, um Winkel und Horizonthöhe abzulesen.</strong> Das verändert keine Messwerte. Das Diagramm ist dauerhaft schreibgeschützt. Für gezielte Änderungen verwende ausschließlich den CSV-/JSON-Editor unten.</p>
+        <p class="foot">Die grüne Fläche zeigt den Berghorizont, die gestrichelte Kurve den Sonnenlauf. <strong>Berühre die Grafik, um Winkel und Horizonthöhe abzulesen.</strong> Das verändert keine Messwerte. Das Diagramm ist dauerhaft schreibgeschützt.</p>
         <div class="setting-actions"><button id="restorePublishedHorizon" class="btn secondary" type="button">Originalprofil aus GitHub wiederherstellen</button></div>
         <p class="hint">Dauerhafter Schreibschutz: Abtasten verändert niemals das Geländeprofil. Frühere versehentliche Fingerkorrekturen werden in dieser Version ignoriert; das GitHub-Original ist maßgeblich.</p>
         <div class="warning hidden" id="horizonWarning">Das Geländeprofil ist nicht verfügbar: Der angezeigte Ertrag ist deshalb unverschattet. Ein fehlgeschlagener Versuch wird nicht bei jedem Öffnen wiederholt. Über „Gelände abrufen / erneut versuchen“ kannst du es erneut starten. Bei CORS-/Netzwerkproblemen können die Terrain-Kacheln im Browser blockiert werden.</div>
         <div class="setting-actions"><button id="loadHorizon" class="btn secondary" type="button">Gelände abrufen / erneut versuchen</button><button id="exportHorizon" class="btn secondary" type="button">Profil exportieren</button></div>
         <p class="hint">Nach dem ersten erfolgreichen Abruf ist der Berghorizont auf diesem Gerät gespeichert (nicht jedes Mal neu geladen). Wenn du die exportierte Datei <code>horizontprofil.json</code> zusätzlich in dein GitHub-Repository hochlädst, können Mac und iPhone dieselben Daten verwenden – ohne erneuten Gelände-API-Abruf.</p>
-        <div class="setting-actions"><label for="importHorizonFile" class="btn secondary" style="display:inline-block;cursor:pointer">Profildatei importieren</label><input type="file" id="importHorizonFile" accept=".json,application/json" style="display:none" aria-label="Horizontprofil als JSON importieren"></div>
-        <details><summary>Horizontprofil per CSV / JSON bearbeiten</summary><p class="hint">Werte in Grad, gleichmäßig von Nord (0°) im Uhrzeigersinn. Das automatische Profil enthält 720 Richtungen à 0,5°. Alternativ eine zuvor exportierte JSON-Datei einfügen. Für andere Punktzahlen sind mindestens 8 gleichmäßig verteilte Werte erforderlich.</p><textarea id="horizonCsv" placeholder="Beispiel: 0, 0, 4, 8, ... (48 Werte)"></textarea><div class="setting-actions"><button id="applyHorizonCsv" type="button" class="btn">Profil übernehmen</button><button type="button" id="copyHorizon" class="btn secondary">Werte kopieren</button></div></details>
       </div>
-      <div class="panel"><h2>Standort & Berechnung</h2><p class="hint spacer">Für ein genaues Bergpanorama möglichst die tatsächlichen Koordinaten der Anlage verwenden.</p>
-        <div class="form-row"><div class="field"><label for="lat">Breitengrad</label><input id="lat" type="number" min="-90" max="90" step="0.00001" value="47.69784444" /></div><div class="field"><label for="lon">Längengrad</label><input id="lon" type="number" min="-180" max="180" step="0.00001" value="11.88009722" /></div></div>
-        <p class="hint">Standort: 47,69784444° N / 11,88009722° E (deine GPS-Angaben). Der einmalige Geländeabruf prüft alle Terrain-Kachelpixel bis 30 km Entfernung – besonders fein im Umkreis von 12 km.</p>
-        <div class="setting-actions spacer"><button type="button" id="applyLocation" class="btn">Standort übernehmen</button></div>
+      <div class="panel"><h2>Berechnung</h2><p class="hint spacer">Ort und Koordinaten lassen sich über den Ortsnamen in der Titelzeile ändern.</p>
         <div class="settings-grid"><div class="field"><label for="roofHeight">PV-Höhe über Gelände [m]</label><input id="roofHeight" type="number" min="0" max="100" step="0.5" value="5" /></div><div class="field"><label for="losses">Sonstige Systemverluste [%]</label><input id="losses" type="number" min="0" max="50" step="1" value="12" /></div><div class="field"><label for="albedo">Bodenreflexion (Albedo)</label><input id="albedo" type="number" min="0" max="1" step="0.05" value="0.2" /></div></div>
         <p class="hint spacer">Die angenommene Höhe über dem Gelände beträgt 5 m; passe sie an die Dachhöhe an. Sonstige Verluste 12 %, Albedo 0,2. Schnee, Bäume, Gebäude und lokale Modulverschattung werden nicht automatisch erkannt. Bei einer Änderung der Dachhöhe wird für diese Einstellung einmalig ein neues Profil benötigt.</p><button class="btn secondary" id="applyPhysics" type="button">Berechnung aktualisieren</button>
       </div>
@@ -69,18 +81,31 @@
       </div>
     </aside>
   </div>
-  <footer class="footer">Ohne Installation: läuft auf GitHub Pages in Safari/anderen Browsern. Wetter: <a style="color:var(--sky)" href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>. Gelände: <a style="color:var(--sky)" href="https://registry.opendata.aws/terrain-tiles/" target="_blank" rel="noopener">Mapzen Terrain Tiles über AWS Open Data</a> (Quellen u. a. SRTM; meist ca. 30 m echte Geländeauflösung, regional unterschiedlich). Bei jeder Wetteraktualisierung wird dein eingestellter Standort an Open-Meteo übertragen. Geländekacheln werden für jede neue Standort-/Höhenkombination höchstens einmal automatisch abgefragt; danach nur noch auf ausdrücklichen Wunsch. Erfolgreiche Profile werden pro Browser lokal gespeichert. Die Grafik ist immer schreibgeschützt; manuelle Änderungen erfolgen nur über den expliziten CSV-/JSON-Import. Eine exportierte horizontprofil.json kann für alle Geräte auf GitHub Pages hinterlegt werden. Browserdaten können gelöscht werden. Keine Gewähr für tatsächliche Erträge.</footer>
+  <footer class="footer">Ohne Installation: läuft auf GitHub Pages in Safari/anderen Browsern. Wetter: <a style="color:var(--sky)" href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>. Gelände: <a style="color:var(--sky)" href="https://registry.opendata.aws/terrain-tiles/" target="_blank" rel="noopener">Mapzen Terrain Tiles über AWS Open Data</a> (Quellen u. a. SRTM; meist ca. 30 m echte Geländeauflösung, regional unterschiedlich). Bei jeder Wetteraktualisierung wird dein eingestellter Standort an Open-Meteo übertragen. Geländekacheln werden für jede neue Standort-/Höhenkombination höchstens einmal automatisch abgefragt; danach nur noch auf ausdrücklichen Wunsch. Erfolgreiche Profile werden pro Browser lokal gespeichert. Das Horizontdiagramm ist dauerhaft schreibgeschützt. Eine exportierte horizontprofil.json kann für alle Geräte auf GitHub Pages hinterlegt werden. Browserdaten können gelöscht werden. Keine Gewähr für tatsächliche Erträge.</footer>
 </main>
+<dialog id="locationDialog" class="location-dialog" aria-labelledby="locationDialogTitle">
+  <form id="locationForm">
+    <h2 id="locationDialogTitle">Standort bearbeiten</h2>
+    <p>Der Ortsname erscheint in der Titelzeile. Die Koordinaten werden nur hier angezeigt. Eine reine Umbenennung löst keine Berechnung aus. Wenn du die Koordinaten änderst, lädt die App Wetterdaten neu und berechnet ein neues Geländeprofil für bis zu 30 km Umkreis. Das kann dauern.</p>
+    <div class="field"><label for="locationName">Ortsname</label><input id="locationName" type="text" autocomplete="off" maxlength="50" required placeholder="z. B. Schliersee" /></div>
+    <div class="form-row">
+      <div class="field"><label for="lat">Breitengrad (N positiv)</label><input id="lat" type="number" inputmode="decimal" step="any" min="-90" max="90" required /></div>
+      <div class="field"><label for="lon">Längengrad (E positiv)</label><input id="lon" type="number" inputmode="decimal" step="any" min="-180" max="180" required /></div>
+    </div>
+    <div class="setting-actions"><button id="cancelLocation" class="btn secondary" type="button">Abbrechen</button><button id="applyLocation" class="btn" type="submit">Speichern</button></div>
+  </form>
+</dialog>
 <script>
 'use strict';
 const $=id=>document.getElementById(id);
 const rad=Math.PI/180,deg=180/Math.PI;
 const defaultPanels=[{name:'Haus',kwp:14.225,az:165,tilt:37},{name:'Garage',kwp:5.28,az:165,tilt:30},{name:'Carport',kwp:9.9,az:165,tilt:20},{name:'Hütte',kwp:1.9,az:254,tilt:20}];
-const defaults={lat:47.69784444,lon:11.88009722,losses:12,albedo:.2,roofHeight:5,panels:defaultPanels};
+const defaults={locationName:'Schliersee',lat:47.69784444,lon:11.88009722,losses:12,albedo:.2,roofHeight:5,panels:defaultPanels};
 function savedSettings(){try{return JSON.parse(localStorage.getItem('schliersee-settings-v1'))||{}}catch{return {}}}
 let state={...defaults,...savedSettings(),panels:savedSettings().panels||defaultPanels};
 // Correct old rounded sample coordinates without overriding an actual manually set location.
 if(Math.abs(state.lat-47.7)<1e-7&&Math.abs(state.lon-11.88)<1e-7){state.lat=defaults.lat;state.lon=defaults.lon;}
+if(typeof state.locationName!=='string'||!state.locationName.trim())state.locationName=defaults.locationName;
 // V7: Der Horizont ist im Diagramm ausschließlich lesbar; kein Touch-Event darf ihn ändern.
 let weather=null,horizon=null,profileSource='',selectedDay='',calculated=[],errorWeather='',errorHorizon='',working=false;
 const TZ='Europe/Berlin';
@@ -93,10 +118,30 @@ function dayKey(ts){return dateFormatter.format(new Date(ts*1000))}
 function fmtDay(key){return dowFormatter.format(new Date(key+'T12:00:00Z'))}
 function fmtLongDay(key){return dateLong.format(new Date(key+'T12:00:00Z'))}
 function saveState(){try{localStorage.setItem('schliersee-settings-v1',JSON.stringify(state))}catch(e){console.warn('Lokale Speicherung nicht möglich',e)}}
-function profileKey(){return `schliersee-profile-terrarium-v4-${Number(state.lat).toFixed(5)}-${Number(state.lon).toFixed(5)}-${Number(state.roofHeight).toFixed(1)}`}
+const ACTUALS_STORE='schliersee-observed-generation-v1';
+function getActuals(){try{const o=JSON.parse(localStorage.getItem(ACTUALS_STORE));return o&&typeof o==='object'?o:{}}catch{return {}}}
+function actualKey(day){return Number(state.lat).toFixed(8)+'|'+Number(state.lon).toFixed(8)+'|'+day}
+function getActual(day){const value=getActuals()[actualKey(day)];return typeof value==='number'&&Number.isFinite(value)?value:null}
+function updateActual(day,value){const all=getActuals(),key=actualKey(day);if(value===null)delete all[key];else all[key]=value;try{localStorage.setItem(ACTUALS_STORE,JSON.stringify(all))}catch(e){console.warn('Ist-Ertrag nicht speicherbar',e);toast('Speichern im Browser nicht möglich: '+e.message)}
+  renderActualComparison();
+}
+function renderActualComparison(){
+  if(!selectedDay){$('actualDateLabel').textContent='Tag auswählen';return}
+  $('actualDateLabel').textContent=fmtLongDay(selectedDay);
+  const actual=getActual(selectedDay);
+  $('actualDayKwh').value=actual===null?'':String(actual);
+  const day=groupDays().find(d=>d.day===selectedDay);
+  const out=$('actualComparison');
+  if(actual===null||!day){out.classList.add('hidden');out.textContent='';return}
+  const delta=day.power-actual,percent=actual>0?100*delta/actual:null;
+  out.classList.remove('hidden');
+  out.innerHTML=`Ist: <strong>${number(actual,1)} kWh</strong> · aktuell angezeigter Modellwert: <strong>${number(day.power,1)} kWh</strong><br><span class="observed-discrepancy">Abweichung (Prognose minus Ist): ${delta>=0?'+':'−'}${number(Math.abs(delta),1)} kWh${percent===null?'':` (${delta>=0?'+':'−'}${number(Math.abs(percent),1)} % relativ zum Ist)`}</span><br><span class="hint">Das ist ein Vergleich mit der momentan verfügbaren Modellrechnung – keine archivierte ursprüngliche Wettervorhersage. Ein einzelner Tag reicht nicht für eine belastbare Kalibrierung.</span>`;
+}
+// V9: Ausreichend Nachkommastellen, damit auch kleine Ortsverschiebungen einen neuen Profil-Schlüssel erhalten.
+function profileKey(){return `schliersee-profile-terrarium-v9-${Number(state.lat).toFixed(8)}-${Number(state.lon).toFixed(8)}-${Number(state.roofHeight).toFixed(2)}`}
 function loadSavedHorizon(){try{return JSON.parse(localStorage.getItem(profileKey()))}catch{return null}}
-function originalCacheKey(){return 'schliersee-original-github-v7-'+Number(state.lat).toFixed(5)+'-'+Number(state.lon).toFixed(5)+'-'+Number(state.roofHeight).toFixed(1)}
-function explicitOverrideKey(){return 'schliersee-explicit-override-v7-'+Number(state.lat).toFixed(5)+'-'+Number(state.lon).toFixed(5)+'-'+Number(state.roofHeight).toFixed(1)}
+function originalCacheKey(){return 'schliersee-original-github-v9-'+Number(state.lat).toFixed(8)+'-'+Number(state.lon).toFixed(8)+'-'+Number(state.roofHeight).toFixed(2)}
+function explicitOverrideKey(){return 'schliersee-explicit-override-v9-'+Number(state.lat).toFixed(8)+'-'+Number(state.lon).toFixed(8)+'-'+Number(state.roofHeight).toFixed(2)}
 function safeStorageRead(key){try{return JSON.parse(localStorage.getItem(key))}catch{return null}}
 function safeStorageWrite(key, obj){try{localStorage.setItem(key,JSON.stringify(obj));return true}catch(e){console.warn('Lokaler Speicher nicht verfügbar',e);return false}}
 function clearExplicitOverride(){try{localStorage.removeItem(explicitOverrideKey())}catch(e){console.warn(e)}}
@@ -254,7 +299,7 @@ function calculate(){
       }
       result.push({ts:binStart+150,day:key,power:powerSum,base:baseSum,
         loss:Math.max(0,baseSum-powerSum),cloud,byPanel,sunlightMinutes,blockedMinutes,
-        durationHours:OUTPUT_SECONDS/3600});
+        radiationSource:use15?'15-min':'60-min', durationHours:OUTPUT_SECONDS/3600});
     }
   }
   calculated=result;
@@ -294,7 +339,7 @@ function render(){
   }).join('');
   document.querySelectorAll('[data-day]').forEach(el=>el.addEventListener('click',()=>{selectedDay=el.dataset.day;render()}));
   const d=days.find(d=>d.day===selectedDay);
-  renderHourChart(d);renderTable(d);renderHorizon();
+  renderHourChart(d);renderTable(d);renderHorizon();renderActualComparison();
 }
 function renderHourChart(day){
   $('hourTitle').textContent='PV-Leistung · 5 Minuten · '+fmtLongDay(day.day);
@@ -314,7 +359,9 @@ function renderHourChart(day){
   svg+='</svg>';$('hourChart').innerHTML=svg;
   const sunlight=day.rows.reduce((s,r)=>s+r.sunlightMinutes/60,0);
   const blocked=day.rows.reduce((s,r)=>s+r.blockedMinutes/60,0);
-  $('daySummary').innerHTML=`<strong>${number(day.power,1)} kWh</strong> mit Bergen · <strong>${number(day.base,1)} kWh</strong> ohne Berge · Geländeschatten <strong>${horizon?number(day.loss,1)+' kWh':'nicht verfügbar'}</strong><br> Sonne geometrisch über dem Horizont: ca. ${number(sunlight,1)} h; davon hinter Bergen: ${horizon?number(blocked,1)+' h':'nicht ermittelt'}.`;
+  const litRows=day.rows.filter(r=>r.sunlightMinutes>0),quarterRows=litRows.filter(r=>r.radiationSource==='15-min');
+  const quarterShare=litRows.length?quarterRows.length/litRows.length*100:0;
+  $('daySummary').innerHTML=`<strong>${number(day.power,1)} kWh</strong> mit Bergen · <strong>${number(day.base,1)} kWh</strong> ohne Berge · Geländeschatten <strong>${horizon?number(day.loss,1)+' kWh':'nicht verfügbar'}</strong><br> Sonne geometrisch über dem Horizont: ca. ${number(sunlight,1)} h; davon hinter Bergen: ${horizon?number(blocked,1)+' h':'nicht ermittelt'}.<br><span class="hint">Strahlungsdaten bei Tageslicht: ${number(quarterShare,0)} % aus 15-Minuten-Werten, Rest stündlich. Die Wolkenprognose kann trotzdem deutlich abweichen.</span>`;
 }
 function renderTable(day){
   $('tableTitle').textContent='Ertrag pro PV-Fläche · '+fmtLongDay(day.day);
@@ -369,7 +416,13 @@ function dayAfter(s){return new Date(Date.parse(s+'T12:00:00Z')+86400000).toISOS
 function refreshPanelEditor(){
   $('panelsEdit').innerHTML=state.panels.map((p,i)=>`<div class="panels-edit panel-edit-row" data-panel="${i}"><input aria-label="Name Fläche ${i+1}" data-f="name" value="${escapeHtml(p.name)}"><input aria-label="kWp Fläche ${i+1}" data-f="kwp" type="number" min="0" step="0.001" value="${p.kwp}"><input aria-label="Azimut Fläche ${i+1}" data-f="az" type="number" min="0" max="360" step="1" value="${p.az}"><input aria-label="Neigung Fläche ${i+1}" data-f="tilt" type="number" min="0" max="90" step="1" value="${p.tilt}"></div>`).join('');
 }
+function updateLocationHeading(){
+  $('locationTitle').textContent=state.locationName;
+  document.title='Solarprognose '+state.locationName+' · Bergschatten';
+}
 function syncSettings(){
+  updateLocationHeading();
+  $('locationName').value=state.locationName;
   $('lat').value=state.lat;$('lon').value=state.lon;$('losses').value=state.losses;$('albedo').value=state.albedo;$('roofHeight').value=state.roofHeight;refreshPanelEditor();
 }
 function applyHorizon(profile){
@@ -555,13 +608,13 @@ function showHorizonFailure(err){
   }
   updateStatus();
 }
-let horizonFetchPromise=null;
+let horizonFetchPromise=null,horizonFetchKey=null;
 function profileMatchesSettings(doc){
   if(!doc||!doc.location)return false;
   const lat=Number(doc.location.latitude),lon=Number(doc.location.longitude),height=Number(doc.location.roofHeight);
   return Number.isFinite(lat)&&Number.isFinite(lon)&&Number.isFinite(height)
-    && Math.abs(lat-state.lat)<0.000005&&Math.abs(lon-state.lon)<0.000005
-    && Math.abs(height-state.roofHeight)<0.05;
+    && Math.abs(lat-state.lat)<0.00000001&&Math.abs(lon-state.lon)<0.00000001
+    && Math.abs(height-state.roofHeight)<0.005;
 }
 async function loadPublishedHorizon(){
   // Vorrang für das unveränderte, veröffentlichte Profil. Nie alte Touch-Korrekturen laden.
@@ -586,7 +639,14 @@ function loadCachedOriginal(){
   }catch(e){console.warn('Gespeichertes Original ungültig',e);return false}
 }
 async function fetchHorizon(force=false){
-  if(horizonFetchPromise)return horizonFetchPromise;
+  const requestedKey=profileKey();
+  if(horizonFetchPromise){
+    if(horizonFetchKey===requestedKey)return horizonFetchPromise;
+    // Ein laufender Download für einen alten Standort darf einen neuen nicht blockieren.
+    try{await horizonFetchPromise}catch(e){console.warn(e)}
+    return fetchHorizon(force);
+  }
+  horizonFetchKey=requestedKey;
   horizonFetchPromise=(async()=>{
     if(!force){
       // V7 ignoriert absichtlich alle früheren, per Finger beschädigten lokalen Profile.
@@ -616,10 +676,10 @@ async function fetchHorizon(force=false){
     }catch(err){if(profileKey()===key)showHorizonFailure(err)}
     finally{$('loadHorizon').disabled=false}
   })();
-  try{return await horizonFetchPromise}finally{horizonFetchPromise=null}
+  try{return await horizonFetchPromise}finally{horizonFetchPromise=null;horizonFetchKey=null}
 }
 
-async function refreshAll(loadHorizon=true){
+async function refreshAll(loadHorizon=true,forceTerrain=false){
   working=true;errorWeather='';updateStatus();
   const locLat=state.lat,locLon=state.lon;
   if(loadHorizon){horizon=null;profileSource='';errorHorizon='';$('horizonBadge').textContent='Profil wird geprüft';$('horizonWarning').classList.add('hidden');}
@@ -634,7 +694,7 @@ async function refreshAll(loadHorizon=true){
   }).catch(e=>{
     errorWeather=e.message||String(e);$('hourChart').innerHTML=`<div class="warning">Die Wetterdaten konnten nicht geladen werden: ${escapeHtml(errorWeather)}</div>`;
   })];
-  if(loadHorizon)jobs.push(fetchHorizon());
+  if(loadHorizon)jobs.push(fetchHorizon(forceTerrain));
   await Promise.all(jobs);
   working=false;updateStatus();
 }
@@ -671,6 +731,17 @@ $('restorePublishedHorizon').addEventListener('click',async()=>{
   }catch(e){toast('Originalprofil konnte nicht geladen werden: '+e.message)}
   finally{btn.disabled=false;btn.textContent='Originalprofil aus GitHub wiederherstellen'}
 });
+$('saveActual').addEventListener('click',()=>{
+  if(!selectedDay){toast('Bitte zuerst einen Prognosetag auswählen.');return}
+  const field=$('actualDayKwh'),raw=field.value.trim();
+  if(!raw){toast('Bitte die tatsächliche Tagesproduktion in kWh eingeben.');return}
+  const actual=Number(raw.replace(',','.'));
+  if(!Number.isFinite(actual)||actual<0||actual>1000){toast('Bitte einen gültigen Tagesertrag zwischen 0 und 1.000 kWh eingeben.');return}
+  updateActual(selectedDay,actual);
+});
+$('clearActual').addEventListener('click',()=>{
+  if(selectedDay)updateActual(selectedDay,null);
+});
 $('refresh').addEventListener('click',()=>refreshAll(false));
 $('loadHorizon').addEventListener('click',()=>{
   if(horizon&&!confirm('Das aktuelle Horizontprofil durch neue Terrain-Höhendaten ersetzen? Manuelle Änderungen gehen dabei verloren.'))return;
@@ -678,34 +749,45 @@ $('loadHorizon').addEventListener('click',()=>{
   clearExplicitOverride();
   fetchHorizon(true);
 });
-$('importHorizonFile').addEventListener('change',async e=>{
-  const file=e.target.files?.[0];if(!file)return;
-  try{
-    const doc=JSON.parse(await file.text());
-    if(!profileMatchesSettings(doc))throw Error('Die Datei gehört nicht zu den aktuell eingestellten Koordinaten und der Dachhöhe. Bitte die Standortdaten abgleichen.');
-    useExplicitOverride({points:doc.points,source:doc.source||'Ausdrücklich importierte Profil-Datei'});
-    toast('Geländeprofil importiert und lokal gespeichert.');
-  }catch(err){toast('Profil-Import fehlgeschlagen: '+err.message)}
-  finally{e.target.value=''}
-});
 $('exportHorizon').addEventListener('click',exportProfile);
-$('copyHorizon').addEventListener('click',()=>{
-  if(!horizon){toast('Zuerst das Horizontprofil laden.');return}
-  $('horizonCsv').value=horizon.map(p=>p.height.toFixed(1)).join(', ');
-  $('horizonCsv').focus();$('horizonCsv').select();
-  if(navigator.clipboard?.writeText)navigator.clipboard.writeText($('horizonCsv').value).catch(()=>{});
+const locationDialog=$('locationDialog');
+$('openLocationDialog').addEventListener('click',()=>{
+  $('locationName').value=state.locationName;
+  $('lat').value=state.lat;
+  $('lon').value=state.lon;
+  locationDialog.showModal();
+  $('locationName').focus();
 });
-$('applyHorizonCsv').addEventListener('click',()=>{try{importProfile($('horizonCsv').value)}catch(e){toast(e.message)}});
-$('applyLocation').addEventListener('click',()=>{
-  const lat=Number($('lat').value),lon=Number($('lon').value);
-  if(!Number.isFinite(lat)||!Number.isFinite(lon)||Math.abs(lat)>90||Math.abs(lon)>180){toast('Bitte gültige geographische Koordinaten eingeben.');return}
-  const changed=(lat!==state.lat||lon!==state.lon);state.lat=lat;state.lon=lon;saveState();weather=null;calculated=[];selectedDay='';refreshAll(changed);
+$('cancelLocation').addEventListener('click',()=>locationDialog.close());
+locationDialog.addEventListener('click',event=>{if(event.target===locationDialog)locationDialog.close()});
+$('locationForm').addEventListener('submit',event=>{
+  event.preventDefault();
+  const name=$('locationName').value.trim().replace(/\s+/g,' ');
+  const lat=Number($('lat').value.replace(',','.'));
+  const lon=Number($('lon').value.replace(',','.'));
+  if(!name||name.length>50){toast('Bitte einen gültigen Ortsnamen mit maximal 50 Zeichen eingeben.');return}
+  if(!$('lat').value.trim()||!$('lon').value.trim()||!Number.isFinite(lat)||!Number.isFinite(lon)||Math.abs(lat)>90||Math.abs(lon)>180){toast('Bitte gültige geographische Koordinaten eingeben.');return}
+  const changed=(lat!==state.lat||lon!==state.lon);
+  state.locationName=name;state.lat=lat;state.lon=lon;
+  saveState();updateLocationHeading();
+  locationDialog.close();
+  // Nur der Ortsname? Keinerlei Neuberechnung und keine Netzwerkanfrage.
+  // Neue Koordinaten? Wetterdaten UND Gelände zwingend neu berechnen.
+  if(changed){
+    weather=null;calculated=[];selectedDay='';horizon=null;profileSource='';errorHorizon='';
+    $('days').innerHTML='<p class="hint">Neuer Standort: lade Wetterdaten und berechne den Berghorizont …</p>';
+    $('hourChart').innerHTML='<div class="notice">Geländeberechnung und Wetterdaten für die neuen Koordinaten werden geladen …</div>';
+    $('daySummary').textContent='Wetterdaten und Geländeprofil werden aktualisiert.';
+    $('panelTable').innerHTML='<tr><td colspan="4">Standortwechsel: Neuberechnung läuft …</td></tr>';
+    $('actualComparison').classList.add('hidden');
+    refreshAll(true,true);
+  }
 });
 $('applyPhysics').addEventListener('click',()=>{
   const loss=Number($('losses').value),alb=Number($('albedo').value),height=Number($('roofHeight').value);
   if(!Number.isFinite(loss)||loss<0||loss>50||!Number.isFinite(alb)||alb<0||alb>1||!Number.isFinite(height)||height<0||height>100){toast('Verluste 0–50 %, Albedo 0–1 und Dachhöhe 0–100 m einstellen.');return}
   const changedHeight=height!==state.roofHeight;
-  state.losses=loss;state.albedo=alb;state.roofHeight=height;saveState();if(changedHeight){horizon=null;refreshAll(true)}else calculate();
+  state.losses=loss;state.albedo=alb;state.roofHeight=height;saveState();if(changedHeight){horizon=null;refreshAll(true,true)}else calculate();
 });
 $('applyPanels').addEventListener('click',()=>{
   const input=[...document.querySelectorAll('.panel-edit-row')].map(el=>{
@@ -718,6 +800,7 @@ $('applyPanels').addEventListener('click',()=>{
 // Unit tests can replace fetch with mock responses; no backend is required.
 window.SolarApp={solarPosition,interpolateHorizon,diffuseFactor,calculate,groupDays,forecastUrl,
   getWeatherResolution:()=>weatherResolution,getState:()=>state,getHorizon:()=>horizon,getCalculated:()=>calculated,
+  getActuals,getActual,profileKey,
   setTestWeather:w=>{weather=w;calculate()},importProfile,loadPublishedHorizon,restoreOriginalFromCache:loadCachedOriginal};
 syncSettings();refreshAll(true);
 setInterval(()=>{if(!document.hidden)refreshAll(false)},30*60*1000);
