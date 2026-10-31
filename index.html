@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="apple-mobile-web-app-title" content="Solar Schliersee" />
 <meta name="description" content="Mobile PV-Ertragsprognose für Schliersee mit Bergen und Geländehorizont. Läuft ohne Python und ohne Backend." />
-<title>Solarprognose Schliersee · Bergschatten V9</title>
+<title>Solarprognose Schliersee · Bergschatten V10</title>
 <style>
 :root{color-scheme:dark;--bg:#0a111b;--surface:#111d2b;--surface2:#162438;--line:#293b4d;--txt:#e8f0f8;--muted:#95a8bc;--lime:#b9ee69;--sky:#7ba8cb;--orange:#f1ae6a;--red:#f48e8e}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 85% 0, #1e3144 0,transparent 34%),var(--bg);color:var(--txt);font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--lime);outline-offset:2px}input,textarea{border:1px solid var(--line);border-radius:8px;padding:9px 10px;color:var(--txt);background:#0b1725;width:100%}input[type=number]{font-variant-numeric:tabular-nums}input[type=range]{padding:0;accent-color:var(--lime)}.layout{max-width:1320px;margin:0 auto;padding:32px 27px 70px}.top{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;flex-wrap:wrap;margin-bottom:31px}.eyebrow{color:var(--lime);text-transform:uppercase;font-size:11px;letter-spacing:.19em;font-weight:800}.brand{font-size:34px;letter-spacing:-1.5px;line-height:1.1;font-weight:750;margin:11px 0}.sub{color:var(--muted);max-width:710px;margin:0;font-size:14px}.top-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.pill{border:1px solid #345043;background:#172b2b;color:#b8eac2;border-radius:30px;padding:8px 13px;font-size:12px;font-weight:700}.pill.warn{color:#ffcd91;border-color:#76553a;background:#32281f}.btn{border:1px solid #47614f;background:#203d35;color:#cdf3b4;padding:9px 14px;border-radius:10px;font-weight:650;font-size:13px}.btn:hover{background:#2b4b3f}.btn.secondary{border-color:var(--line);background:#152334;color:var(--txt)}.btn.secondary:hover{background:#26394c}.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:22px}.kpi{background:linear-gradient(150deg,#152636,#101c29);border:1px solid #2c4050;border-radius:16px;padding:19px 19px 16px;min-height:135px;overflow:hidden}.kpi span{font-size:12px;color:var(--muted);display:block;margin-bottom:11px}.kpi strong{font-size:34px;font-weight:770;letter-spacing:-1.7px;line-height:1.2;font-variant-numeric:tabular-nums}.kpi .unit{font-size:16px;color:var(--muted);font-weight:500;letter-spacing:0}.kpi em{display:block;color:var(--muted);font-style:normal;margin-top:5px;font-size:12px}.kpi .accent{color:var(--lime)}.kpi .warm{color:var(--orange)}.cols{display:grid;grid-template-columns:minmax(0,1.62fr) minmax(0,1fr);gap:18px}.panel{background:linear-gradient(150deg,#142132,#111b29);border:1px solid #2a394b;border-radius:16px;padding:23px;min-width:0;margin-bottom:18px}.panel h2{font-size:17px;letter-spacing:-.3px;margin:0}.panel-header{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap;margin-bottom:18px}.hint{color:var(--muted);font-size:12px;margin:5px 0 0}.legend{display:flex;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:12px}.legend b{display:inline-block;width:16px;height:3px;border-radius:3px;margin:0 5px 3px 0}.chart{display:block;width:100%;height:auto;overflow:visible;touch-action:pan-y}.axistext{fill:#8299ac;font-size:12px;font-family:inherit}.chart-grid{stroke:#314253;stroke-width:1}.forecast-days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}.day{border:1px solid #344759;background:#152335;min-height:145px;padding:13px 5px 9px;border-radius:11px;color:var(--txt);text-align:center;display:flex;flex-direction:column;gap:5px;align-items:center}.day:hover{background:#21344b}.day.active{border-color:var(--lime);box-shadow:inset 0 0 0 1px var(--lime);background:#21352d}.day .dayname{font-size:11px;color:var(--muted)}.day strong{font-size:17px;font-variant-numeric:tabular-nums}.bars{display:flex;align-items:flex-end;gap:3px;height:70px;width:80%;justify-content:center;margin:4px 0}.bars i{width:15px;display:block;border-radius:3px 3px 0 0;min-height:2px}.bar-base{background:#536d82}.bar-correct{background:var(--lime)}.detail{width:100%;border-collapse:collapse;margin-top:6px;font-size:13px}.detail th,.detail td{text-align:right;padding:12px 6px;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}.detail th:first-child,.detail td:first-child{text-align:left}.detail th{color:var(--muted);font-weight:550;font-size:11px}.detail td:last-child{color:var(--orange)}.detail tr.total td{font-weight:750;color:var(--txt)}.badge{display:inline-flex;gap:7px;align-items:center;font-size:12px;padding:6px 9px;border-radius:6px;background:#1e3136;color:#c5e3de;margin-top:12px}.warning{padding:12px 14px;border-radius:9px;border:1px solid #674b34;background:#332719;color:#ffdaaa;font-size:12px;line-height:1.6;margin-top:12px}.hidden{display:none!important}.horizon-top{display:flex;align-items:center;gap:10px;justify-content:space-between;flex-wrap:wrap}.horizon-meta{color:#a9c0cf;font-size:12px;margin:5px 0 15px}.horizon-wrap{position:relative}.horizon-tooltip{position:absolute;right:0;top:0;border:1px solid #38534d;padding:4px 8px;border-radius:6px;color:var(--lime);font-size:12px;background:#172c28}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}.field .note{font-size:11px;color:var(--muted);margin-top:5px}.settings-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:14px}.setting-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.panels-edit{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:9px}.panels-edit input{padding:8px 6px}.headings{color:var(--muted);font-size:11px;margin-bottom:8px}.panel-edit-row{margin-bottom:8px}details{margin-top:17px;background:#0d1926;border:1px solid #273849;border-radius:12px;padding:12px}summary{font-weight:650;cursor:pointer}textarea{resize:vertical;min-height:84px;margin-top:10px;font-size:12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}.foot{margin-top:13px;color:#8da1b5;font-size:12px;line-height:1.65}.footer{border-top:1px solid #29394b;margin-top:20px;padding-top:19px;color:var(--muted);font-size:12px}.spacer{margin-bottom:14px}.notice{font-size:12px;color:#aac2d4;padding:10px 12px;border-left:3px solid #6086a9;background:#172639;border-radius:3px}.statusbox{border:1px solid var(--line);background:#102130;border-radius:10px;padding:12px;margin-top:10px;font-size:12px;color:var(--muted)}.statusbox strong{color:var(--txt)}
@@ -22,7 +22,15 @@
 .location-dialog h2{font-size:21px;margin:0 0 8px}.location-dialog p{font-size:13px;color:var(--muted);margin:0 0 17px;line-height:1.5}
 .location-dialog .field{margin-bottom:14px}.location-dialog .setting-actions{justify-content:flex-end;margin-top:23px}
 .location-dialog input{font-size:16px}
-.observed-card{margin-top:13px;border:1px solid var(--line);background:#101d2b;border-radius:10px;padding:13px}.observed-heading{display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap}.observed-card .hint{margin:7px 0}.observed-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.observed-row label{font-size:12px;color:var(--muted)}.observed-row input{width:112px;max-width:100%;font-variant-numeric:tabular-nums}.observed-card .statusbox{margin-top:12px}.observed-discrepancy{color:#ffd19e}
+
+
+/* V10: Nur zwei Kurven; Vergangenes wird eingefroren. */
+.forecast-history{border:1px solid #334b5d;background:#101e2d;border-radius:11px;margin:14px 0 12px;padding:13px}
+.history-header{display:flex;gap:8px;justify-content:space-between;align-items:center;flex-wrap:wrap;margin-bottom:6px}
+.history-pill{font-size:11px;color:#decdae;background:#302d25;border:1px solid #625544;border-radius:20px;padding:4px 9px}
+
+.history-footnote{margin-top:10px}
+
 @media(max-width:1040px){.cols{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:660px){.layout{padding:22px 13px 45px}.brand{font-size:28px}.kpis{gap:8px}.kpi{padding:14px 12px;min-height:120px}.kpi strong{font-size:25px}.panel{padding:16px}.forecast-days{gap:4px}.day{min-height:124px;padding:10px 2px}.bars{height:56px}.bars i{width:11px}.day strong{font-size:13px}.day .dayname{font-size:9px}.panels-edit{grid-template-columns:1.2fr .9fr .9fr .9fr;gap:4px}.panels-edit input{font-size:12px}.panel-header{margin-bottom:12px}.detail td,.detail th{padding:10px 3px;font-size:11px}.top{margin-bottom:18px}}
 </style>
@@ -30,7 +38,7 @@
 <body>
 <main class="layout">
   <header class="top">
-    <div><div class="eyebrow">PV · iPhone / Safari · Geländeabschattung · V9</div><h1 class="brand">Solarprognose <button type="button" class="location-title-button" id="openLocationDialog" aria-haspopup="dialog" aria-controls="locationDialog" title="Ort und Koordinaten ändern"><span id="locationTitle">Schliersee</span></button><span style="color:var(--lime)">.</span></h1><p class="sub">Deine Solarprognose, korrigiert um die Berge am Horizont. Läuft in Safari ohne Python. Der Berghorizont wird einmalig berechnet und gespeichert. Danach aktualisieren sich nur die Wetterdaten.</p></div>
+    <div><div class="eyebrow">PV · iPhone / Safari · Geländeabschattung · V10</div><h1 class="brand">Solarprognose <button type="button" class="location-title-button" id="openLocationDialog" aria-haspopup="dialog" aria-controls="locationDialog" title="Ort und Koordinaten ändern"><span id="locationTitle">Schliersee</span></button><span style="color:var(--lime)">.</span></h1><p class="sub">Deine Solarprognose, korrigiert um die Berge am Horizont. Läuft in Safari ohne Python. Der Berghorizont wird einmalig berechnet und gespeichert. Die zeitlich ursprünglichen Prognosekurven werden nun zusätzlich archiviert und mit Aktualisierungen verglichen.</p></div>
     <div class="top-right"><span class="pill warn" id="status">Daten werden geladen …</span><button class="btn secondary" id="refresh" type="button">↻ Aktualisieren</button></div>
   </header>
   <div class="kpis">
@@ -42,19 +50,19 @@
   <div class="cols">
     <section>
       <div class="panel">
-        <div class="panel-header"><div><h2>Ertragsprognose · 7 Tage</h2><p class="hint">Wähle einen Tag für den Verlauf in 5-Minuten-Schritten.</p></div><div class="legend"><span><b style="background:#536d82"></b>ohne Berge</span><span><b style="background:var(--lime)"></b>mit Bergen</span></div></div>
+        <div class="panel-header"><div><h2>Ertragsprognose · 7 Tage</h2><p class="hint">Wähle einen Tag: ursprüngliche Prognose und neuester, für vergangene Stunden eingefrorener Stand.</p></div><div class="legend"><span><b style="background:#536d82"></b>ohne Berge</span><span><b style="background:var(--lime)"></b>mit Bergen</span></div></div>
         <div class="forecast-days" id="days"><p class="hint">Lade Wetterdaten …</p></div>
       </div>
       <div class="panel">
-        <div class="panel-header"><div><h2 id="hourTitle">PV-Leistung · 5-Minuten-Auflösung</h2><p class="hint" id="resolutionInfo">Sonnenstand und Bergschatten minütlich · Wetterstrahlung möglichst alle 15 Minuten.</p></div><div class="legend"><span><b style="background:#627f98"></b>ohne Berge</span><span><b style="background:var(--lime)"></b>mit Bergen</span></div></div>
+        <div class="panel-header"><div><h2 id="hourTitle">PV-Leistung · 5-Minuten-Auflösung</h2><p class="hint" id="resolutionInfo">Sonnenstand und Bergschatten minütlich · Wetterstrahlung möglichst alle 15 Minuten.</p></div><div class="legend"><span><b style="background:var(--lime)"></b>aktuelle Prognose</span><span><b style="background:#eeb873"></b>ursprüngliche Prognose</span></div></div>
         <div id="hourChart"><div class="notice">Für die Prognose ist eine Internetverbindung erforderlich.</div></div>
-        <div class="statusbox" id="daySummary">Wetterdaten werden geladen.</div>
-        <div class="observed-card" aria-label="Ist-Ertrag mit Prognose vergleichen">
-          <div class="observed-heading"><strong>Ist-Ertrag vergleichen</strong><span class="hint" id="actualDateLabel">Tag auswählen</span></div>
-          <p class="hint">Trage die tatsächlich erzeugten kWh aus deiner PV-Anlage ein. Der Vergleich wird nur in diesem Browser gespeichert und verändert die Prognose nicht.</p>
-          <div class="observed-row"><label for="actualDayKwh">Erzeugt [kWh]</label><input id="actualDayKwh" type="number" min="0" max="1000" step="0.1" inputmode="decimal" placeholder="z. B. 48,6" /><button id="saveActual" class="btn" type="button">Speichern</button><button id="clearActual" class="btn secondary" type="button">Löschen</button></div>
-          <div id="actualComparison" class="statusbox hidden" aria-live="polite"></div>
+        <div class="forecast-history" id="historyPanel">
+          <div class="history-header"><strong>Prognoseverlauf</strong><span class="history-pill" id="historyCount">Noch kein Verlauf</span></div>
+          <p class="hint" id="historyInfo" aria-live="polite">Der erste Prognosestand wird beim nächsten erfolgreichen Abruf gespeichert.</p>
+
+          <p class="hint history-footnote" id="historyFootnote">Es werden nur zwei Kurven angezeigt: ursprüngliche Referenz und jeweils aktuelle Prognose. Für heute wird ausschließlich die noch bevorstehende Zeit neu berechnet. Speicherung nur in diesem Browser; kein automatischer Abruf bei geschlossener Seite.</p>
         </div>
+        <div class="statusbox" id="daySummary">Wetterdaten werden geladen.</div>
       </div>
       <div class="panel"><div class="panel-header"><div><h2 id="tableTitle">Ertrag nach Dachfläche</h2><p class="hint">Gleiche Wetterlage, mit und ohne berechneten Bergschatten.</p></div></div><table class="detail"><thead><tr><th>PV-Fläche</th><th>Ohne [kWh]</th><th>Mit [kWh]</th><th>Verlust</th></tr></thead><tbody id="panelTable"><tr><td colspan="4" style="text-align:left">Wetterdaten werden geladen.</td></tr></tbody></table></div>
     </section>
@@ -81,7 +89,7 @@
       </div>
     </aside>
   </div>
-  <footer class="footer">Ohne Installation: läuft auf GitHub Pages in Safari/anderen Browsern. Wetter: <a style="color:var(--sky)" href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>. Gelände: <a style="color:var(--sky)" href="https://registry.opendata.aws/terrain-tiles/" target="_blank" rel="noopener">Mapzen Terrain Tiles über AWS Open Data</a> (Quellen u. a. SRTM; meist ca. 30 m echte Geländeauflösung, regional unterschiedlich). Bei jeder Wetteraktualisierung wird dein eingestellter Standort an Open-Meteo übertragen. Geländekacheln werden für jede neue Standort-/Höhenkombination höchstens einmal automatisch abgefragt; danach nur noch auf ausdrücklichen Wunsch. Erfolgreiche Profile werden pro Browser lokal gespeichert. Das Horizontdiagramm ist dauerhaft schreibgeschützt. Eine exportierte horizontprofil.json kann für alle Geräte auf GitHub Pages hinterlegt werden. Browserdaten können gelöscht werden. Keine Gewähr für tatsächliche Erträge.</footer>
+  <footer class="footer">Ohne Installation: läuft auf GitHub Pages in Safari/anderen Browsern. Wetter: <a style="color:var(--sky)" href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>. Gelände: <a style="color:var(--sky)" href="https://registry.opendata.aws/terrain-tiles/" target="_blank" rel="noopener">Mapzen Terrain Tiles über AWS Open Data</a> (Quellen u. a. SRTM; meist ca. 30 m echte Geländeauflösung, regional unterschiedlich). Bei jeder Wetteraktualisierung wird dein eingestellter Standort an Open-Meteo übertragen. Geländekacheln werden für jede neue Standort-/Höhenkombination höchstens einmal automatisch abgefragt; danach nur noch auf ausdrücklichen Wunsch. Erfolgreiche Profile werden pro Browser lokal gespeichert. Das Horizontdiagramm ist dauerhaft schreibgeschützt. Eine exportierte horizontprofil.json kann für alle Geräte auf GitHub Pages hinterlegt werden. Je Tag werden eine ursprüngliche Vergleichskurve und der fortgeschriebene aktuelle Stand im Browser gespeichert, nicht über GitHub synchronisiert. Safari im privaten Modus kann sie beim Schließen löschen; ohne geöffneten Browser gibt es keine garantierten Vorabend-Aufnahmen. Browserdaten können gelöscht werden. Keine Gewähr für tatsächliche Erträge.</footer>
 </main>
 <dialog id="locationDialog" class="location-dialog" aria-labelledby="locationDialogTitle">
   <form id="locationForm">
@@ -118,25 +126,103 @@ function dayKey(ts){return dateFormatter.format(new Date(ts*1000))}
 function fmtDay(key){return dowFormatter.format(new Date(key+'T12:00:00Z'))}
 function fmtLongDay(key){return dateLong.format(new Date(key+'T12:00:00Z'))}
 function saveState(){try{localStorage.setItem('schliersee-settings-v1',JSON.stringify(state))}catch(e){console.warn('Lokale Speicherung nicht möglich',e)}}
-const ACTUALS_STORE='schliersee-observed-generation-v1';
-function getActuals(){try{const o=JSON.parse(localStorage.getItem(ACTUALS_STORE));return o&&typeof o==='object'?o:{}}catch{return {}}}
-function actualKey(day){return Number(state.lat).toFixed(8)+'|'+Number(state.lon).toFixed(8)+'|'+day}
-function getActual(day){const value=getActuals()[actualKey(day)];return typeof value==='number'&&Number.isFinite(value)?value:null}
-function updateActual(day,value){const all=getActuals(),key=actualKey(day);if(value===null)delete all[key];else all[key]=value;try{localStorage.setItem(ACTUALS_STORE,JSON.stringify(all))}catch(e){console.warn('Ist-Ertrag nicht speicherbar',e);toast('Speichern im Browser nicht möglich: '+e.message)}
-  renderActualComparison();
+// V10: Pro Tag nur ein Originalstand und ein fortgeschriebener Stand.
+// Der Originalstand wird nie durch spätere Wetterprognosen überschrieben.
+// Beim laufenden Tag werden alte 5-Minuten-Intervalle NIE ersetzt.
+const FORECAST_ARCHIVE_KEY='schliersee-forecast-progressive-v10';
+const FORECAST_ARCHIVE_DAYS=12;
+let archiveWriteWarning='';
+function readForecastArchive(){
+  try{
+    const saved=JSON.parse(localStorage.getItem(FORECAST_ARCHIVE_KEY));
+    if(saved?.version===2&&saved.days&&typeof saved.days==='object')return saved;
+  }catch(e){console.warn('Prognosehistorie nicht lesbar',e)}
+  return {version:2,days:{}};
 }
-function renderActualComparison(){
-  if(!selectedDay){$('actualDateLabel').textContent='Tag auswählen';return}
-  $('actualDateLabel').textContent=fmtLongDay(selectedDay);
-  const actual=getActual(selectedDay);
-  $('actualDayKwh').value=actual===null?'':String(actual);
-  const day=groupDays().find(d=>d.day===selectedDay);
-  const out=$('actualComparison');
-  if(actual===null||!day){out.classList.add('hidden');out.textContent='';return}
-  const delta=day.power-actual,percent=actual>0?100*delta/actual:null;
-  out.classList.remove('hidden');
-  out.innerHTML=`Ist: <strong>${number(actual,1)} kWh</strong> · aktuell angezeigter Modellwert: <strong>${number(day.power,1)} kWh</strong><br><span class="observed-discrepancy">Abweichung (Prognose minus Ist): ${delta>=0?'+':'−'}${number(Math.abs(delta),1)} kWh${percent===null?'':` (${delta>=0?'+':'−'}${number(Math.abs(percent),1)} % relativ zum Ist)`}</span><br><span class="hint">Das ist ein Vergleich mit der momentan verfügbaren Modellrechnung – keine archivierte ursprüngliche Wettervorhersage. Ein einzelner Tag reicht nicht für eine belastbare Kalibrierung.</span>`;
+let forecastArchive=readForecastArchive();
+function archiveModelId(){
+  // Ortsname beeinflusst das physikalische Modell nicht.
+  const conf=[Number(state.lat).toFixed(8),Number(state.lon).toFixed(8),state.roofHeight,state.losses,state.albedo,
+    state.panels.map(p=>[p.kwp,p.az,p.tilt]),
+    horizon?.map(p=>[Number(p.az).toFixed(3),Number(p.height).toFixed(3)])||null];
+  const str=JSON.stringify(conf);
+  let hash=2166136261;
+  for(let i=0;i<str.length;i++){hash^=str.charCodeAt(i);hash=Math.imul(hash,16777619)}
+  return (hash>>>0).toString(16).padStart(8,'0');
 }
+const berlinHour=new Intl.DateTimeFormat('en-GB',{timeZone:TZ,hour:'2-digit',hourCycle:'h23'});
+const dateTimeLabel=new Intl.DateTimeFormat('de-DE',{timeZone:TZ,day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
+const timeOnly=new Intl.DateTimeFormat('de-DE',{timeZone:TZ,hour:'2-digit',minute:'2-digit'});
+function hourBerlin(ms){return Number(berlinHour.format(new Date(ms)))}
+function prevLocalDay(day){return new Date(Date.parse(day+'T12:00:00Z')-86400000).toISOString().slice(0,10)}
+function baseKind(at,day){
+  const issuedDay=dayKey(at/1000),hour=hourBerlin(at);
+  if(issuedDay===prevLocalDay(day)&&hour>=18)return 'Vorabend';
+  if(issuedDay===day&&hour>=5&&hour<11)return 'Morgen';
+  return 'Erster gespeicherter Stand';
+}
+function baseRank(kind){return kind==='Vorabend'?3:kind==='Morgen'?2:1}
+const roundPower=x=>Math.round(x*1000)/1000;
+function packRow(r){return [r.ts,roundPower(r.power),roundPower(r.base),...r.byPanel.flatMap(p=>[roundPower(p.power),roundPower(p.base)])];}
+function restoreRow(raw,packed){
+  if(!packed||packed[0]!==raw.ts||packed.length!==3+state.panels.length*2)return raw;
+  const byPanel=raw.byPanel.map((p,j)=>({...p,power:packed[3+j*2],base:packed[4+j*2]}));
+  return {...raw,power:packed[1],base:packed[2],loss:Math.max(0,packed[2]-packed[1]),byPanel};
+}
+function archiveRecord(day){
+  const obj=forecastArchive.days[day];
+  return obj?.model===archiveModelId()&&Array.isArray(obj.current)&&obj.current.length?obj:null;
+}
+function storedReferencePoints(record){return record?.original?.values?.map(v=>({ts:v[0],power:v[1]}))||[]}
+function rawGroupedDays(){return aggregateDays(calculated)}
+function saveForecastSnapshots(at=Date.now()){
+  if(!weather||!horizon||!calculated.length||errorWeather)return;
+  const today=dayKey(at/1000),model=archiveModelId(),nowSec=at/1000;
+  const oldest=new Date(Date.parse(today+'T12:00:00Z')-(FORECAST_ARCHIVE_DAYS-1)*86400000).toISOString().slice(0,10);
+  for(const key of Object.keys(forecastArchive.days))if(key<oldest)delete forecastArchive.days[key];
+  for(const day of rawGroupedDays()){
+    if(day.day<today||day.rows.length<60)continue;
+    const raw=day.rows.map(packRow),kind=baseKind(at,day.day);
+    const old=archiveRecord(day.day);
+    const oldMap=new Map(old?.current?.map(v=>[v[0],v])||[]);
+    const current=raw.map(row=>{
+      // Bereits begonnene 5-Minuten-Intervalle gelten als Vergangenheit;
+      // sie behalten den VORHER gespeicherten Prognosewert.
+      if(day.day===today&&row[0]-150<=nowSec&&oldMap.has(row[0]))return oldMap.get(row[0]);
+      return row;
+    });
+    // Für den Originalstand gilt: erster Vorabendstand hat Vorrang vor
+    // Morgenstand, dieser vor einer früher angelegten Wochen-Vorschau.
+    const promote=!old||baseRank(kind)>baseRank(old.original?.kind);
+    const original=promote?{at,kind,values:raw.map(r=>[r[0],r[1]])}:old.original;
+    forecastArchive.days[day.day]={model,original,current,updatedAt:at};
+  }
+  try{
+    localStorage.setItem(FORECAST_ARCHIVE_KEY,JSON.stringify(forecastArchive));
+    archiveWriteWarning='';
+  }catch(err){
+    archiveWriteWarning='Prognosen können nicht dauerhaft gespeichert werden. Bitte Safari nicht im privaten Modus öffnen und den Website-Speicher prüfen.';
+    console.warn('Prognoseverlauf nicht gespeichert',err);
+  }
+  render();
+}
+function renderHistoryInfo(day){
+  const record=archiveRecord(day.day);
+  const reference=storedReferencePoints(record);
+  if(!record){
+    $('historyCount').textContent='Noch kein Vergleich';
+    $('historyInfo').textContent='Erster Prognosestand wird beim nächsten erfolgreichen Wetterabruf gespeichert.';
+    return reference;
+  }
+  const diff=record.current.reduce((sum,row)=>sum+row[1]/12,0)-record.original.values.reduce((sum,row)=>sum+row[1]/12,0);
+  const orig=record.original;
+  $('historyCount').textContent='2 Kurven maximal';
+  const pastNote=day.day===dayKey(Date.now()/1000)?'Bereits begonnene 5-Minuten-Intervalle bleiben unverändert; nur die Zukunft wird aktualisiert.':'Für zukünftige Tage wird jeweils die gesamte Prognose aktualisiert.';
+  $('historyInfo').innerHTML=`<strong>${escapeHtml(orig.kind)}: ${escapeHtml(dateTimeLabel.format(new Date(orig.at)))} Uhr</strong> · Original ${number(orig.values.reduce((v,row)=>v+row[1]/12,0),1)} kWh · aktuell ${number(day.power,1)} kWh (${diff>=0?'+':'−'}${number(Math.abs(diff),1)} kWh).<br>${escapeHtml(pastNote)}` +
+    (archiveWriteWarning?'<br><strong>'+escapeHtml(archiveWriteWarning)+'</strong>':'');
+  return reference;
+}
+
 // V9: Ausreichend Nachkommastellen, damit auch kleine Ortsverschiebungen einen neuen Profil-Schlüssel erhalten.
 function profileKey(){return `schliersee-profile-terrarium-v9-${Number(state.lat).toFixed(8)}-${Number(state.lon).toFixed(8)}-${Number(state.roofHeight).toFixed(2)}`}
 function loadSavedHorizon(){try{return JSON.parse(localStorage.getItem(profileKey()))}catch{return null}}
@@ -311,8 +397,25 @@ function calculate(){
   render();
 }
 function groupDays(){
-  const days=new Map();
+  const byDate=new Map();
   for(const row of calculated){
+    if(!byDate.has(row.day))byDate.set(row.day,archiveRecord(row.day));
+  }
+  const rows=calculated.map(row=>{
+    const rec=byDate.get(row.day);
+    if(!rec)return row;
+    if(!rec._lookup||rec._lookupVersion!==rec.updatedAt){
+      // Kein Speichern im Repository; Lookup nur im aktuellen JS-Lauf.
+      rec._lookup=new Map(rec.current.map(value=>[value[0],value]));
+      rec._lookupVersion=rec.updatedAt;
+    }
+    return restoreRow(row,rec._lookup.get(row.ts));
+  });
+  return aggregateDays(rows);
+}
+function aggregateDays(rows){
+  const days=new Map();
+  for(const row of rows){
     if(!days.has(row.day))days.set(row.day,{day:row.day,base:0,power:0,loss:0,rows:[],panels:state.panels.map(()=>({base:0,power:0}))});
     const day=days.get(row.day),duration=row.durationHours;
     day.base+=row.base*duration;day.power+=row.power*duration;day.loss+=row.loss*duration;day.rows.push(row);
@@ -339,23 +442,42 @@ function render(){
   }).join('');
   document.querySelectorAll('[data-day]').forEach(el=>el.addEventListener('click',()=>{selectedDay=el.dataset.day;render()}));
   const d=days.find(d=>d.day===selectedDay);
-  renderHourChart(d);renderTable(d);renderHorizon();renderActualComparison();
+  renderHourChart(d);renderTable(d);renderHorizon();
 }
 function renderHourChart(day){
   $('hourTitle').textContent='PV-Leistung · 5 Minuten · '+fmtLongDay(day.day);
   const w=900,h=300,l=49,r=16,t=22,b=42,ww=w-l-r,hh=h-t-b;
-  const xmax=Math.max(...day.rows.map(x=>Math.max(x.base,x.power)),.5);
+  const referencePoints=renderHistoryInfo(day);
+  const minTs=day.rows[0].ts,maxTs=day.rows[day.rows.length-1].ts;
+  const xmax=Math.max(...day.rows.map(x=>x.power),...referencePoints.map(p=>p.power),.5);
   const ymax=Math.ceil(xmax/5)*5 || 5;
   // UTC time axis: correct across 23/25-hour DST days.
   const x=i=>l+(i+.5)/day.rows.length*ww;
+  const xTs=ts=>l+(.5+(ts-minTs)/300)/day.rows.length*ww;
   const y=v=>t+hh-clamp(v,0,ymax)/ymax*hh;
   const area=(field)=>'M '+x(0)+' '+y(0)+' L '+day.rows.map((p,i)=>`${x(i).toFixed(2)} ${y(p[field]).toFixed(2)}`).join(' L ')+' L '+x(day.rows.length-1)+' '+y(0)+' Z';
   const line=(field)=>'M '+day.rows.map((p,i)=>`${x(i).toFixed(2)} ${y(p[field]).toFixed(2)}`).join(' L ');
-  let svg=`<svg class="chart" viewBox="0 0 ${w} ${h}" role="img" aria-label="PV-Leistungsprognose ${day.day}: Mit und ohne Bergschatten">`;
+  let svg=`<svg class="chart" viewBox="0 0 ${w} ${h}" role="img" aria-label="PV-Leistungsprognose ${day.day}: ursprüngliche und aktuelle Prognose">`;
   for(let k=0;k<=4;k++){const v=k*ymax/4,Y=y(v);svg+=`<line class="chart-grid" x1="${l}" y1="${Y}" x2="${w-r}" y2="${Y}"/><text class="axistext" x="${l-9}" y="${Y+4}" text-anchor="end">${number(v,0)}</text>`;}
   for(let k=0;k<day.rows.length;k+=Math.max(1,Math.round(day.rows.length/6))){const X=x(k);svg+=`<text class="axistext" x="${X}" y="${h-14}" text-anchor="middle">${hm.format(new Date((day.rows[k].ts-150)*1000))}</text>`;}
-  svg+=`<path d="${area('base')}" fill="#496b83" fill-opacity=".25"/><path d="${area('power')}" fill="#b9ee69" fill-opacity=".13"/><path d="${line('base')}" stroke="#7c9cb4" stroke-width="2.2" fill="none" stroke-dasharray="7 6"/><path d="${line('power')}" stroke="#b9ee69" stroke-width="3" stroke-linejoin="round" fill="none"/>`;
-  day.rows.forEach((row,i)=>{svg+=`<rect x="${x(i)-ww/day.rows.length/2}" y="${t}" width="${ww/day.rows.length}" height="${hh}" fill="transparent"><title>${hm.format(new Date((row.ts-150)*1000))}–${hm.format(new Date((row.ts+150)*1000))}: ${number(row.power,2)} kW mit / ${number(row.base,2)} kW ohne Berge</title></rect>`});
+  // Vergleichskurve zuerst; die aktualisierte Prognose wird davor gezeichnet.
+  if(referencePoints.length){
+    const clipped=referencePoints.filter(p=>p.ts>=minTs&&p.ts<=maxTs);
+    if(clipped.length>1){
+      const refLine='M '+clipped.map(p=>`${xTs(p.ts).toFixed(2)} ${y(p.power).toFixed(2)}`).join(' L ');
+      svg+=`<path d="${refLine}" stroke="#efbc7d" stroke-width="1.35" fill="none" stroke-opacity=".94" stroke-linecap="round" stroke-linejoin="round"/>`;
+    }
+  }
+  svg+=`<path d="${area('power')}" fill="#b9ee69" fill-opacity=".10"/><path d="${line('power')}" stroke="#b9ee69" stroke-width="3" stroke-linejoin="round" fill="none"/>`;
+  // Senkrechte, dezente Zeitmarkierung nur für den heutigen Tag.
+  if(day.day===dayKey(Date.now()/1000)){
+    const now=Date.now()/1000,first=day.rows[0].ts,last=day.rows[day.rows.length-1].ts;
+    if(now>=first-150&&now<=last+150){
+      const xx=xTs(now);
+      svg+=`<line x1="${xx}" x2="${xx}" y1="${t}" y2="${t+hh}" stroke="#c9d3dc" stroke-opacity=".45" stroke-dasharray="3 5"/><text class="axistext" x="${Math.min(w-r-37,xx+4)}" y="${t+12}">Jetzt</text>`;
+    }
+  }
+  day.rows.forEach((row,i)=>{svg+=`<rect x="${x(i)-ww/day.rows.length/2}" y="${t}" width="${ww/day.rows.length}" height="${hh}" fill="transparent"><title>${hm.format(new Date((row.ts-150)*1000))}–${hm.format(new Date((row.ts+150)*1000))}: ${number(row.power,2)} kW Prognose${day.day===dayKey(Date.now()/1000)&&row.ts-150<=Date.now()/1000?" (eingefrorener früherer Stand)":""}</title></rect>`});
   svg+='</svg>';$('hourChart').innerHTML=svg;
   const sunlight=day.rows.reduce((s,r)=>s+r.sunlightMinutes/60,0);
   const blocked=day.rows.reduce((s,r)=>s+r.blockedMinutes/60,0);
@@ -696,6 +818,7 @@ async function refreshAll(loadHorizon=true,forceTerrain=false){
   })];
   if(loadHorizon)jobs.push(fetchHorizon(forceTerrain));
   await Promise.all(jobs);
+  if(!errorWeather&&weather&&horizon&&state.lat===locLat&&state.lon===locLon)saveForecastSnapshots();
   working=false;updateStatus();
 }
 function exportProfile(){
@@ -730,17 +853,6 @@ $('restorePublishedHorizon').addEventListener('click',async()=>{
     toast('Originalprofil wiederhergestellt. Die versehentlichen Linien sind gelöscht.');
   }catch(e){toast('Originalprofil konnte nicht geladen werden: '+e.message)}
   finally{btn.disabled=false;btn.textContent='Originalprofil aus GitHub wiederherstellen'}
-});
-$('saveActual').addEventListener('click',()=>{
-  if(!selectedDay){toast('Bitte zuerst einen Prognosetag auswählen.');return}
-  const field=$('actualDayKwh'),raw=field.value.trim();
-  if(!raw){toast('Bitte die tatsächliche Tagesproduktion in kWh eingeben.');return}
-  const actual=Number(raw.replace(',','.'));
-  if(!Number.isFinite(actual)||actual<0||actual>1000){toast('Bitte einen gültigen Tagesertrag zwischen 0 und 1.000 kWh eingeben.');return}
-  updateActual(selectedDay,actual);
-});
-$('clearActual').addEventListener('click',()=>{
-  if(selectedDay)updateActual(selectedDay,null);
 });
 $('refresh').addEventListener('click',()=>refreshAll(false));
 $('loadHorizon').addEventListener('click',()=>{
@@ -779,7 +891,6 @@ $('locationForm').addEventListener('submit',event=>{
     $('hourChart').innerHTML='<div class="notice">Geländeberechnung und Wetterdaten für die neuen Koordinaten werden geladen …</div>';
     $('daySummary').textContent='Wetterdaten und Geländeprofil werden aktualisiert.';
     $('panelTable').innerHTML='<tr><td colspan="4">Standortwechsel: Neuberechnung läuft …</td></tr>';
-    $('actualComparison').classList.add('hidden');
     refreshAll(true,true);
   }
 });
@@ -800,7 +911,7 @@ $('applyPanels').addEventListener('click',()=>{
 // Unit tests can replace fetch with mock responses; no backend is required.
 window.SolarApp={solarPosition,interpolateHorizon,diffuseFactor,calculate,groupDays,forecastUrl,
   getWeatherResolution:()=>weatherResolution,getState:()=>state,getHorizon:()=>horizon,getCalculated:()=>calculated,
-  getActuals,getActual,profileKey,
+  profileKey,archiveModelId,archiveRecord,readForecastArchive,getArchive:()=>forecastArchive,saveForecastSnapshots,renderHistoryInfo,
   setTestWeather:w=>{weather=w;calculate()},importProfile,loadPublishedHorizon,restoreOriginalFromCache:loadCachedOriginal};
 syncSettings();refreshAll(true);
 setInterval(()=>{if(!document.hidden)refreshAll(false)},30*60*1000);
