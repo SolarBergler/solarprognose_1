@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="apple-mobile-web-app-title" content="Solar Schliersee" />
 <meta name="description" content="Mobile PV-Ertragsprognose für Schliersee mit Bergen und Geländehorizont. Läuft ohne Python und ohne Backend." />
-<title>Solarprognose Schliersee · Bergschatten</title>
+<title>Solarprognose Schliersee · Bergschatten (v3)</title>
 <style>
 :root{color-scheme:dark;--bg:#0a111b;--surface:#111d2b;--surface2:#162438;--line:#293b4d;--txt:#e8f0f8;--muted:#95a8bc;--lime:#b9ee69;--sky:#7ba8cb;--orange:#f1ae6a;--red:#f48e8e}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 85% 0, #1e3144 0,transparent 34%),var(--bg);color:var(--txt);font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--lime);outline-offset:2px}input,textarea{border:1px solid var(--line);border-radius:8px;padding:9px 10px;color:var(--txt);background:#0b1725;width:100%}input[type=number]{font-variant-numeric:tabular-nums}input[type=range]{padding:0;accent-color:var(--lime)}.layout{max-width:1320px;margin:0 auto;padding:32px 27px 70px}.top{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;flex-wrap:wrap;margin-bottom:31px}.eyebrow{color:var(--lime);text-transform:uppercase;font-size:11px;letter-spacing:.19em;font-weight:800}.brand{font-size:34px;letter-spacing:-1.5px;line-height:1.1;font-weight:750;margin:11px 0}.sub{color:var(--muted);max-width:710px;margin:0;font-size:14px}.top-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.pill{border:1px solid #345043;background:#172b2b;color:#b8eac2;border-radius:30px;padding:8px 13px;font-size:12px;font-weight:700}.pill.warn{color:#ffcd91;border-color:#76553a;background:#32281f}.btn{border:1px solid #47614f;background:#203d35;color:#cdf3b4;padding:9px 14px;border-radius:10px;font-weight:650;font-size:13px}.btn:hover{background:#2b4b3f}.btn.secondary{border-color:var(--line);background:#152334;color:var(--txt)}.btn.secondary:hover{background:#26394c}.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:22px}.kpi{background:linear-gradient(150deg,#152636,#101c29);border:1px solid #2c4050;border-radius:16px;padding:19px 19px 16px;min-height:135px;overflow:hidden}.kpi span{font-size:12px;color:var(--muted);display:block;margin-bottom:11px}.kpi strong{font-size:34px;font-weight:770;letter-spacing:-1.7px;line-height:1.2;font-variant-numeric:tabular-nums}.kpi .unit{font-size:16px;color:var(--muted);font-weight:500;letter-spacing:0}.kpi em{display:block;color:var(--muted);font-style:normal;margin-top:5px;font-size:12px}.kpi .accent{color:var(--lime)}.kpi .warm{color:var(--orange)}.cols{display:grid;grid-template-columns:minmax(0,1.62fr) minmax(0,1fr);gap:18px}.panel{background:linear-gradient(150deg,#142132,#111b29);border:1px solid #2a394b;border-radius:16px;padding:23px;min-width:0;margin-bottom:18px}.panel h2{font-size:17px;letter-spacing:-.3px;margin:0}.panel-header{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap;margin-bottom:18px}.hint{color:var(--muted);font-size:12px;margin:5px 0 0}.legend{display:flex;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:12px}.legend b{display:inline-block;width:16px;height:3px;border-radius:3px;margin:0 5px 3px 0}.chart{display:block;width:100%;height:auto;overflow:visible;touch-action:pan-y}.axistext{fill:#8299ac;font-size:12px;font-family:inherit}.chart-grid{stroke:#314253;stroke-width:1}.forecast-days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}.day{border:1px solid #344759;background:#152335;min-height:145px;padding:13px 5px 9px;border-radius:11px;color:var(--txt);text-align:center;display:flex;flex-direction:column;gap:5px;align-items:center}.day:hover{background:#21344b}.day.active{border-color:var(--lime);box-shadow:inset 0 0 0 1px var(--lime);background:#21352d}.day .dayname{font-size:11px;color:var(--muted)}.day strong{font-size:17px;font-variant-numeric:tabular-nums}.bars{display:flex;align-items:flex-end;gap:3px;height:70px;width:80%;justify-content:center;margin:4px 0}.bars i{width:15px;display:block;border-radius:3px 3px 0 0;min-height:2px}.bar-base{background:#536d82}.bar-correct{background:var(--lime)}.detail{width:100%;border-collapse:collapse;margin-top:6px;font-size:13px}.detail th,.detail td{text-align:right;padding:12px 6px;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}.detail th:first-child,.detail td:first-child{text-align:left}.detail th{color:var(--muted);font-weight:550;font-size:11px}.detail td:last-child{color:var(--orange)}.detail tr.total td{font-weight:750;color:var(--txt)}.badge{display:inline-flex;gap:7px;align-items:center;font-size:12px;padding:6px 9px;border-radius:6px;background:#1e3136;color:#c5e3de;margin-top:12px}.warning{padding:12px 14px;border-radius:9px;border:1px solid #674b34;background:#332719;color:#ffdaaa;font-size:12px;line-height:1.6;margin-top:12px}.hidden{display:none!important}.horizon-top{display:flex;align-items:center;gap:10px;justify-content:space-between;flex-wrap:wrap}.horizon-meta{color:#a9c0cf;font-size:12px;margin:5px 0 15px}.horizon-wrap{position:relative}.horizon-tooltip{position:absolute;right:0;top:0;border:1px solid #38534d;padding:4px 8px;border-radius:6px;color:var(--lime);font-size:12px;background:#172c28}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}.field .note{font-size:11px;color:var(--muted);margin-top:5px}.settings-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:14px}.setting-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.panels-edit{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:9px}.panels-edit input{padding:8px 6px}.headings{color:var(--muted);font-size:11px;margin-bottom:8px}.panel-edit-row{margin-bottom:8px}details{margin-top:17px;background:#0d1926;border:1px solid #273849;border-radius:12px;padding:12px}summary{font-weight:650;cursor:pointer}textarea{resize:vertical;min-height:84px;margin-top:10px;font-size:12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}.foot{margin-top:13px;color:#8da1b5;font-size:12px;line-height:1.65}.footer{border-top:1px solid #29394b;margin-top:20px;padding-top:19px;color:var(--muted);font-size:12px}.spacer{margin-bottom:14px}.notice{font-size:12px;color:#aac2d4;padding:10px 12px;border-left:3px solid #6086a9;background:#172639;border-radius:3px}.statusbox{border:1px solid var(--line);background:#102130;border-radius:10px;padding:12px;margin-top:10px;font-size:12px;color:var(--muted)}.statusbox strong{color:var(--txt)}
@@ -19,7 +19,7 @@
 <body>
 <main class="layout">
   <header class="top">
-    <div><div class="eyebrow">PV · iPhone / Safari · Geländeabschattung</div><h1 class="brand">Solarprognose <span style="color:var(--lime)">Schliersee.</span></h1><p class="sub">Deine Solarprognose, korrigiert um die Berge am Horizont. Läuft in Safari ohne Python. Das Geländeprofil wird einmalig aus Höhendaten berechnet und gespeichert.</p></div>
+    <div><div class="eyebrow">PV · iPhone / Safari · Geländeabschattung</div><h1 class="brand">Solarprognose <span style="color:var(--lime)">Schliersee.</span></h1><p class="sub">Deine Solarprognose, korrigiert um die Berge am Horizont. Läuft in Safari ohne Python. Der Berghorizont wird einmalig berechnet und gespeichert. Danach aktualisieren sich nur die Wetterdaten.</p></div>
     <div class="top-right"><span class="pill warn" id="status">Daten werden geladen …</span><button class="btn secondary" id="refresh" type="button">↻ Aktualisieren</button></div>
   </header>
   <div class="kpis">
@@ -44,19 +44,21 @@
     <aside>
       <div class="panel">
         <div class="horizon-top"><h2>Gelände-Horizontprofil</h2><span class="badge" id="horizonBadge">Nicht geladen</span></div>
-        <p class="horizon-meta" id="horizonSource">Geländemodell wird aus Copernicus-Höhendaten aufgebaut.</p>
+        <p class="horizon-meta" id="horizonSource">Prüfe, ob ein gespeichertes Geländeprofil vorhanden ist …</p>
         <div class="horizon-wrap"><div id="horizonPlot"></div><div class="horizon-tooltip" id="hoverInfo">Süd: —°</div></div>
-        <p class="foot">Die Fläche zeigt die Berge am Horizont. Die gestrichelte Kurve zeigt den Sonnenlauf des ausgewählten Tages. <strong>Ziehe die Horizontlinie mit Maus oder Finger</strong>, um die Höhe im jeweiligen Azimut zu ändern. Änderungen werden lokal gespeichert.</p>
-        <div class="warning hidden" id="horizonWarning">Das Geländeprofil ist nicht verfügbar. Die Zahlen zeigen dann nur den unverschatteten Ertrag. Ein vorhandenes, manuelles Horizontprofil kann weiterhin verwendet werden.</div>
-        <div class="setting-actions"><button id="loadHorizon" class="btn secondary" type="button">Gelände neu berechnen</button><button id="exportHorizon" class="btn secondary" type="button">Profil exportieren</button></div>
-        <details><summary>Horizontprofil per CSV / JSON bearbeiten</summary><p class="hint">48 Höhenwerte in Grad, alle 7,5° von Nord (0°) im Uhrzeigersinn. Alternativ eine zuvor exportierte JSON-Datei einfügen. Für andere Punktzahlen sind mindestens 8 gleichmäßig verteilte Werte erforderlich.</p><textarea id="horizonCsv" placeholder="Beispiel: 0, 0, 4, 8, ... (48 Werte)"></textarea><div class="setting-actions"><button id="applyHorizonCsv" type="button" class="btn">Profil übernehmen</button><button type="button" id="copyHorizon" class="btn secondary">Werte kopieren</button></div></details>
+        <p class="foot">Die Fläche zeigt den Gelände-Horizont (Mapzen Terrain Tiles mit regional typischer Ausgangsauflösung um 30 m; die Kachelpixel sind keine zusätzliche Quellauflösung). Die gestrichelte Kurve zeigt den Sonnenlauf des ausgewählten Tages. <strong>Ziehe die Horizontlinie mit Maus oder Finger</strong>, um die Höhe im jeweiligen Azimut zu ändern. Änderungen werden lokal gespeichert.</p>
+        <div class="warning hidden" id="horizonWarning">Das Geländeprofil ist nicht verfügbar: Der angezeigte Ertrag ist deshalb unverschattet. Ein fehlgeschlagener Versuch wird nicht bei jedem Öffnen wiederholt. Über „Gelände abrufen / erneut versuchen“ kannst du es erneut starten. Bei CORS-/Netzwerkproblemen können die Terrain-Kacheln im Browser blockiert werden.</div>
+        <div class="setting-actions"><button id="loadHorizon" class="btn secondary" type="button">Gelände abrufen / erneut versuchen</button><button id="exportHorizon" class="btn secondary" type="button">Profil exportieren</button></div>
+        <p class="hint">Nach dem ersten erfolgreichen Abruf ist der Berghorizont auf diesem Gerät gespeichert (nicht jedes Mal neu geladen). Wenn du die exportierte Datei <code>horizontprofil.json</code> zusätzlich in dein GitHub-Repository hochlädst, können Mac und iPhone dieselben Daten verwenden – ohne erneuten Gelände-API-Abruf.</p>
+        <div class="setting-actions"><label for="importHorizonFile" class="btn secondary" style="display:inline-block;cursor:pointer">Profildatei importieren</label><input type="file" id="importHorizonFile" accept=".json,application/json" style="display:none" aria-label="Horizontprofil als JSON importieren"></div>
+        <details><summary>Horizontprofil per CSV / JSON bearbeiten</summary><p class="hint">Werte in Grad, gleichmäßig von Nord (0°) im Uhrzeigersinn. Das automatische Profil enthält 720 Richtungen à 0,5°. Alternativ eine zuvor exportierte JSON-Datei einfügen. Für andere Punktzahlen sind mindestens 8 gleichmäßig verteilte Werte erforderlich.</p><textarea id="horizonCsv" placeholder="Beispiel: 0, 0, 4, 8, ... (48 Werte)"></textarea><div class="setting-actions"><button id="applyHorizonCsv" type="button" class="btn">Profil übernehmen</button><button type="button" id="copyHorizon" class="btn secondary">Werte kopieren</button></div></details>
       </div>
       <div class="panel"><h2>Standort & Berechnung</h2><p class="hint spacer">Für ein genaues Bergpanorama möglichst die tatsächlichen Koordinaten der Anlage verwenden.</p>
-        <div class="form-row"><div class="field"><label for="lat">Breitengrad</label><input id="lat" type="number" min="-90" max="90" step="0.00001" value="47.7" /></div><div class="field"><label for="lon">Längengrad</label><input id="lon" type="number" min="-180" max="180" step="0.00001" value="11.88" /></div></div>
-        <p class="hint">Der Link enthält nur 47,70° N / 11,88° E. Die genaue Dachposition ist in einem Tal entscheidend. Die erste Gelände-Berechnung lädt rund 900 Höhenpunkte.</p>
+        <div class="form-row"><div class="field"><label for="lat">Breitengrad</label><input id="lat" type="number" min="-90" max="90" step="0.00001" value="47.69784444" /></div><div class="field"><label for="lon">Längengrad</label><input id="lon" type="number" min="-180" max="180" step="0.00001" value="11.88009722" /></div></div>
+        <p class="hint">Standort: 47,69784444° N / 11,88009722° E (deine GPS-Angaben). Der einmalige Geländeabruf prüft alle Terrain-Kachelpixel bis 30 km Entfernung – besonders fein im Umkreis von 12 km.</p>
         <div class="setting-actions spacer"><button type="button" id="applyLocation" class="btn">Standort übernehmen</button></div>
         <div class="settings-grid"><div class="field"><label for="roofHeight">PV-Höhe über Gelände [m]</label><input id="roofHeight" type="number" min="0" max="100" step="0.5" value="5" /></div><div class="field"><label for="losses">Sonstige Systemverluste [%]</label><input id="losses" type="number" min="0" max="50" step="1" value="12" /></div><div class="field"><label for="albedo">Bodenreflexion (Albedo)</label><input id="albedo" type="number" min="0" max="1" step="0.05" value="0.2" /></div></div>
-        <p class="hint spacer">Die angenommene Höhe über dem Gelände beträgt 5 m; passe sie an die Dachhöhe an. Sonstige Verluste 12 %, Albedo 0,2. Schnee, Bäume, Gebäude und lokale Modulverschattung werden nicht automatisch erkannt. Bei Höhenänderung bitte das Gelände neu berechnen.</p><button class="btn secondary" id="applyPhysics" type="button">Berechnung aktualisieren</button>
+        <p class="hint spacer">Die angenommene Höhe über dem Gelände beträgt 5 m; passe sie an die Dachhöhe an. Sonstige Verluste 12 %, Albedo 0,2. Schnee, Bäume, Gebäude und lokale Modulverschattung werden nicht automatisch erkannt. Bei einer Änderung der Dachhöhe wird für diese Einstellung einmalig ein neues Profil benötigt.</p><button class="btn secondary" id="applyPhysics" type="button">Berechnung aktualisieren</button>
       </div>
       <div class="panel"><h2>PV-Anlagen</h2><p class="hint spacer">Azimut: 0° Nord · 90° Ost · 180° Süd · 270° West.</p>
         <div class="panels-edit headings"><span>Name</span><span>kWp</span><span>Azimut</span><span>Neigung</span></div><div id="panelsEdit"></div>
@@ -65,16 +67,18 @@
       </div>
     </aside>
   </div>
-  <footer class="footer">Web-App ohne Python und ohne eigenen Server · Wetterdaten und Geländehöhen: <a style="color:var(--sky)" href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a> · Höhenmodell: Copernicus DEM GLO-90 (90 m, © Copernicus Programme) · <a style="color:var(--sky)" href="https://open-meteo.com/en/docs/elevation-api" target="_blank" rel="noopener">Technische Dokumentation</a>. Bei jeder Wetteraktualisierung wird dein eingestellter Standort an Open-Meteo übertragen. Geländedaten werden beim ersten Laden oder bei Neuberechnung abgefragt. Geräteeinstellungen werden lokal gespeichert (bei normalem Safari-Aufruf über HTTPS). Keine Gewähr für tatsächliche Erträge.</footer>
+  <footer class="footer">Ohne Installation: läuft auf GitHub Pages in Safari/anderen Browsern. Wetter: <a style="color:var(--sky)" href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>. Gelände: <a style="color:var(--sky)" href="https://registry.opendata.aws/terrain-tiles/" target="_blank" rel="noopener">Mapzen Terrain Tiles über AWS Open Data</a> (Quellen u. a. SRTM; meist ca. 30 m echte Geländeauflösung, regional unterschiedlich). Bei jeder Wetteraktualisierung wird dein eingestellter Standort an Open-Meteo übertragen. Geländekacheln werden für jede neue Standort-/Höhenkombination höchstens einmal automatisch abgefragt; danach nur noch auf ausdrücklichen Wunsch. Erfolgreiche Profile werden pro Browser lokal gespeichert. Eine exportierte horizontprofil.json kann für alle Geräte auf GitHub Pages hinterlegt werden. Browserdaten können gelöscht werden. Keine Gewähr für tatsächliche Erträge.</footer>
 </main>
 <script>
 'use strict';
 const $=id=>document.getElementById(id);
 const rad=Math.PI/180,deg=180/Math.PI;
 const defaultPanels=[{name:'Haus',kwp:14.225,az:165,tilt:37},{name:'Garage',kwp:5.28,az:165,tilt:30},{name:'Carport',kwp:9.9,az:165,tilt:20},{name:'Hütte',kwp:1.9,az:254,tilt:20}];
-const defaults={lat:47.7,lon:11.88,losses:12,albedo:.2,roofHeight:5,panels:defaultPanels};
+const defaults={lat:47.69784444,lon:11.88009722,losses:12,albedo:.2,roofHeight:5,panels:defaultPanels};
 function savedSettings(){try{return JSON.parse(localStorage.getItem('schliersee-settings-v1'))||{}}catch{return {}}}
 let state={...defaults,...savedSettings(),panels:savedSettings().panels||defaultPanels};
+// Correct old rounded sample coordinates without overriding an actual manually set location.
+if(Math.abs(state.lat-47.7)<1e-7&&Math.abs(state.lon-11.88)<1e-7){state.lat=defaults.lat;state.lon=defaults.lon;}
 let weather=null,horizon=null,profileSource='',selectedDay='',calculated=[],errorWeather='',errorHorizon='',working=false;
 const TZ='Europe/Berlin';
 const dateFormatter=new Intl.DateTimeFormat('sv-SE',{timeZone:TZ,year:'numeric',month:'2-digit',day:'2-digit'});
@@ -86,9 +90,16 @@ function dayKey(ts){return dateFormatter.format(new Date(ts*1000))}
 function fmtDay(key){return dowFormatter.format(new Date(key+'T12:00:00Z'))}
 function fmtLongDay(key){return dateLong.format(new Date(key+'T12:00:00Z'))}
 function saveState(){try{localStorage.setItem('schliersee-settings-v1',JSON.stringify(state))}catch(e){console.warn('Lokale Speicherung nicht möglich',e)}}
-function profileKey(){return `schliersee-profile-dem-v1-${Number(state.lat).toFixed(5)}-${Number(state.lon).toFixed(5)}-${Number(state.roofHeight).toFixed(1)}`}
+function profileKey(){return `schliersee-profile-terrarium-v4-${Number(state.lat).toFixed(5)}-${Number(state.lon).toFixed(5)}-${Number(state.roofHeight).toFixed(1)}`}
 function loadSavedHorizon(){try{return JSON.parse(localStorage.getItem(profileKey()))}catch{return null}}
-function storeHorizon(){try{if(horizon)localStorage.setItem(profileKey(),JSON.stringify({points:horizon,source:profileSource}))}catch(e){console.warn('Horizont nicht dauerhaft gespeichert',e)}}
+function attemptKey(){return profileKey()+'-initial-request-attempted'}
+function terrainAttempted(){try{return localStorage.getItem(attemptKey())==='1'}catch{return false}}
+function markTerrainAttempted(){try{localStorage.setItem(attemptKey(),'1');return true}catch(e){console.warn('Versuch kann nicht dauerhaft markiert werden',e);return false}}
+function storeHorizon(){
+  try{if(horizon){localStorage.setItem(profileKey(),JSON.stringify({points:horizon,source:profileSource}));return !!localStorage.getItem(profileKey())}}
+  catch(e){console.warn('Horizont nicht dauerhaft gespeichert',e)}
+  return false;
+}
 function safe(n,def=0){const v=Number(n);return Number.isFinite(v)?v:def}
 function clamp(v,a,b){return Math.min(b,Math.max(a,v))}
 function setStatus(text,warning=false){$('status').textContent=text;$('status').className='pill'+(warning?' warn':'')}
@@ -118,11 +129,16 @@ function solarPosition(epoch){
 function interpolateHorizon(az){
   if(!horizon||!horizon.length)return 0;
   const n=horizon.length,angle=(az%360+360)%360;
-  // Normalized profiles sorted by azimuth, circular interpolation through north.
-  let first=horizon[0],last=horizon[n-1];
-  if(angle<first.az){const t=(angle+360-last.az)/(first.az+360-last.az);return last.height+(first.height-last.height)*t;}
-  for(let i=0;i<n-1;i++)if(angle>=horizon[i].az&&angle<=horizon[i+1].az){const f=(angle-horizon[i].az)/(horizon[i+1].az-horizon[i].az);return horizon[i].height+(horizon[i+1].height-horizon[i].height)*f;}
-  const t=(angle-last.az)/(first.az+360-last.az);return last.height+(first.height-last.height)*t;
+  const first=horizon[0],last=horizon[n-1];
+  if(angle<first.az||angle>=last.az){
+    const a=angle<first.az?angle+360:angle;
+    const t=(a-last.az)/(first.az+360-last.az);
+    return last.height+(first.height-last.height)*t;
+  }
+  let lo=0,hi=n-1;
+  while(hi-lo>1){const m=(lo+hi)>>1;if(horizon[m].az<=angle)lo=m;else hi=m;}
+  const f=(angle-horizon[lo].az)/(horizon[hi].az-horizon[lo].az);
+  return horizon[lo].height+(horizon[hi].height-horizon[lo].height)*f;
 }
 // Visible-sky diffuse incidence: numerical integral of isotropic radiance over unblocked sky.
 // DHI / pi * ∫ max(dot(n,sunSky),0) cos(elev) dElev dAz; without mountains = (1+cos(tilt))/2.
@@ -255,10 +271,10 @@ function renderHorizon(){
   for(let a=0;a<=360;a+=45){svg+=`<line class="chart-grid" x1="${x(a)}" y1="${t}" x2="${x(a)}" y2="${t+hh}"/><text class="axistext" x="${x(a)}" y="${h-18}" text-anchor="middle">${a===0?'N':a===90?'O':a===180?'S':a===270?'W':a===360?'N':a+'°'}</text>`;}
   for(let a=0;a<=lim;a+=10){svg+=`<line class="chart-grid" x1="${l}" y1="${y(a)}" x2="${w-r}" y2="${y(a)}"/><text class="axistext" x="${l-7}" y="${y(a)+4}" text-anchor="end">${a}°</text>`;}
   if(horizon){
-    const coords=Array.from({length:181},(_,i)=>{const a=i*2;return [x(a),y(interpolateHorizon(a))]});
+    const coords=Array.from({length:721},(_,i)=>{const a=i/2;return [x(a),y(interpolateHorizon(a))]});
     const path='M '+x(0)+' '+y(0)+' L '+coords.map(p=>p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' L ')+' L '+x(360)+' '+y(0)+' Z';
     svg+=`<path id="horizonArea" d="${path}" fill="#557b68" fill-opacity=".42" stroke="#a4d8a6" stroke-width="2" />`;
-    horizon.forEach(p=>{svg+=`<circle data-hpoint-index="${horizon.indexOf(p)}" cx="${x(p.az)}" cy="${y(p.height)}" r="3.2" fill="#c5f2b2" opacity=".85"/>`});
+    horizon.forEach((p,i)=>{if(i%Math.ceil(horizon.length/90)===0)svg+=`<circle data-hpoint-index="${i}" cx="${x(p.az)}" cy="${y(p.height)}" r="2.3" fill="#c5f2b2" opacity=".7"/>`});
   }
   if(selectedDay){
     const start=localDayStart(selectedDay),finish=localDayStart(dayAfter(selectedDay));
@@ -279,15 +295,15 @@ function renderHorizon(){
     const p=coord(event),a=p.az;let i=0,min=Infinity;
     horizon.forEach((v,j)=>{const dist=Math.min(Math.abs(v.az-a),360-Math.abs(v.az-a));if(dist<min){min=dist;i=j}});
     horizon[i].height=Math.round(p.height*10)/10;
-    const coords=Array.from({length:181},(_,j)=>[x(j*2),y(interpolateHorizon(j*2))]);
+    const coords=Array.from({length:721},(_,j)=>[x(j/2),y(interpolateHorizon(j/2))]);
     const path='M '+x(0)+' '+y(0)+' L '+coords.map(p=>p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' L ')+' L '+x(360)+' '+y(0)+' Z';
     plot.querySelector('#horizonArea').setAttribute('d',path);
-    plot.querySelector(`[data-hpoint-index="${i}"]`).setAttribute('cy',y(horizon[i].height));
+    const point=plot.querySelector(`[data-hpoint-index="${i}"]`);if(point)point.setAttribute('cy',y(horizon[i].height));
     $('hoverInfo').textContent=`${number(horizon[i].az,1)}° Az · ${number(horizon[i].height,1)}° Höhe`;
   }
   overlay.addEventListener('pointerdown',e=>{if(!horizon)return;down=true;if(overlay.setPointerCapture)overlay.setPointerCapture(e.pointerId);edit(e)});
   overlay.addEventListener('pointermove',e=>{const p=coord(e);if(down&&horizon){edit(e)}else $('hoverInfo').textContent=`${number(p.az,0)}° Az · ${number(interpolateHorizon(p.az),1)}° Horizont`});
-  function finish(){if(!down)return;down=false;profileSource='Manuell angepasst (Basis: '+(profileSource.includes('Copernicus')?'Geländemodell':'eigenes Profil')+')';storeHorizon();$('horizonSource').textContent=profileSource+' · '+horizon.length+' Richtungen';calculate()}
+  function finish(){if(!down)return;down=false;profileSource='Manuell angepasst (Basis: '+(profileSource.includes('Terrain')?'Geländemodell':'eigenes Profil')+')';storeHorizon();$('horizonSource').textContent=profileSource+' · '+horizon.length+' Richtungen';calculate()}
   overlay.addEventListener('pointerup',finish);overlay.addEventListener('pointercancel',finish);
   const heightS=interpolateHorizon(180);
   if(!horizon)$('hoverInfo').textContent='Kein Horizont';
@@ -304,8 +320,8 @@ function applyHorizon(profile){
   if(!Array.isArray(profile?.points)||profile.points.length<8)throw Error('Das Horizontprofil muss mindestens 8 Punkte enthalten.');
   const sorted=profile.points.map(p=>({az:safe(p.az),height:safe(p.height)})).sort((a,b)=>a.az-b.az);
   if(sorted.some(p=>p.az<0||p.az>=360||p.height<0||p.height>89)||sorted.some((p,i)=>i>0&&p.az<=sorted[i-1].az))throw Error('Ungültige oder doppelte Winkel/Höhen im Horizontprofil.');
-  horizon=sorted;profileSource=profile.source||'Benutzerprofil';errorHorizon='';storeHorizon();
-  $('horizonBadge').textContent='Korrektur aktiv';$('horizonSource').textContent=profileSource+' · '+horizon.length+' Richtungen';$('horizonWarning').classList.add('hidden');
+  horizon=sorted;profileSource=profile.source||'Benutzerprofil';errorHorizon='';const stored=storeHorizon();
+  $('horizonBadge').textContent='Korrektur aktiv';$('horizonSource').textContent=profileSource+' · '+horizon.length+' Richtungen'+(stored?' · lokal gespeichert':' · ACHTUNG: Speicherung im Browser nicht möglich! Bitte Profil exportieren.');$('horizonWarning').classList.add('hidden');
   calculate();if(!weather)renderHorizon();updateStatus();
 }
 function updateStatus(){
@@ -315,15 +331,31 @@ function updateStatus(){
   if(!horizon){setStatus('Nur unverschattete Prognose',true);return;}
   setStatus('Live · Bergschatten aktiv');
 }
-async function fetchAPI(url){
-  const ctrl=new AbortController(),timeout=setTimeout(()=>ctrl.abort(),35000);
-  try{
-    const response=await fetch(url,{signal:ctrl.signal,cache:'no-store'});
-    const obj=await response.json();
-    if(!response.ok||obj?.error)throw Error(obj.reason||obj.error||'HTTP '+response.status);
-    return obj;
-  }finally{clearTimeout(timeout)}
+// API responses may be temporarily rate-limited. Only elevation requests are retried.
+const delay=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+async function fetchAPI(url,{retries=0,timeoutMs=35000}={}){
+  for(let attempt=0;;attempt++){
+    const ctrl=new AbortController(),timeout=setTimeout(()=>ctrl.abort(),timeoutMs);
+    try{
+      const response=await fetch(url,{signal:ctrl.signal,cache:'no-store'});
+      const raw=await response.text();
+      let obj;
+      try{obj=JSON.parse(raw)}catch{
+        throw Object.assign(new Error(`HTTP ${response.status}: keine gültige JSON-Antwort`),{status:response.status});
+      }
+      if(!response.ok||obj?.error){
+        const reason=typeof obj.reason==='string'?obj.reason:`HTTP ${response.status}`;
+        throw Object.assign(new Error(`HTTP ${response.status}: ${reason}`),{status:response.status});
+      }
+      return obj;
+    }catch(e){
+      const temporary=e.name==='AbortError'||e instanceof TypeError||[429,500,502,503,504].includes(e.status);
+      if(attempt>=retries||!temporary)throw e;
+      await delay(Math.min(12000,1500*2**attempt));
+    }finally{clearTimeout(timeout)}
+  }
 }
+
 function forecastUrl(lat,lon){
   const u=new URL('https://api.open-meteo.com/v1/forecast');
   for(const [k,v] of Object.entries({latitude:lat,longitude:lon,hourly:'direct_normal_irradiance,diffuse_radiation,shortwave_radiation,temperature_2m,cloud_cover',timezone:'Europe/Berlin',timeformat:'unixtime',forecast_days:7,past_days:0}))u.searchParams.set(k,String(v));
@@ -335,58 +367,126 @@ function destPoint(lat,lon,azimuth,meters){
   const lam2=lam1+Math.atan2(Math.sin(theta)*Math.sin(d)*Math.cos(phi1),Math.cos(d)-Math.sin(phi1)*Math.sin(phi2));
   return {lat:phi2*deg,lon:((lam2*deg+540)%360)-180};
 }
-const TERRAIN_AZ_COUNT=48;
-const TERRAIN_DISTANCES=[120,200,350,500,750,1000,1400,2000,2700,3500,4600,6000,8000,10500,13500,17000,22000,28000];
-// Open-Meteo's Copernicus GLO-90 elevation data allow direct browser requests.
-// About 865 points, in bounded batches (<100 locations per API call).
-async function buildTerrainHorizon(lat,lon,roofHeight,progress){
-  const sites=[{lat,lon,dist:0,az:-1}];
-  for(let j=0;j<TERRAIN_AZ_COUNT;j++){
-    const az=j*360/TERRAIN_AZ_COUNT;
-    for(const dist of TERRAIN_DISTANCES){
-      sites.push({...destPoint(lat,lon,az,dist),dist,az});
-    }
-  }
-  const heights=new Array(sites.length),chunkSize=65;
+// Mapzen's published AWS Terrain Tiles are open terrain data in PNG Terrarium encoding.
+// We inspect every terrain pixel in the 30-km search area. This prevents missing a
+// ridge lying between sparsely placed radial sample points. Inner 12 km uses z13
+// (native 256px grid ~12.8m/pixel at this latitude), rest uses z12 (~25.7m/pixel).
+// Zoom level is not source accuracy: Mapzen sources for southern Germany are commonly
+// approx. 30 m, not the Bavarian official DGM1. 0.5 degree angular horizon bins.
+const TERRAIN_AZ_COUNT=720;
+const TERRAIN_RADIUS_M=30000;
+const INNER_RADIUS_M=12000;
+const TERRARIUM_BASE='https://s3.amazonaws.com/elevation-tiles-prod/terrarium';
+function mercX(lon,z){return (lon+180)/360*(2**z)*256;}
+function mercY(lat,z){return (1-Math.asinh(Math.tan(lat*rad))/Math.PI)/2*(2**z)*256;}
+function mercLat(pixelY,z){const a=Math.PI*(1-2*pixelY/((2**z)*256));return Math.atan(Math.sinh(a))*deg;}
+function elevationFromRgb(arr,index){return arr[index]*256+arr[index+1]+arr[index+2]/256-32768;}
+function tileJobs(lat,lon,z,outer,inner){
+  const latDelta=outer/111190,lonDelta=outer/(111190*Math.cos(lat*rad));
+  const x1=Math.floor(mercX(lon-lonDelta,z)/256),x2=Math.floor(mercX(lon+lonDelta,z)/256);
+  const y1=Math.floor(mercY(lat+latDelta,z)/256),y2=Math.floor(mercY(lat-latDelta,z)/256);
   const jobs=[];
-  for(let i=0;i<sites.length;i+=chunkSize)jobs.push([i,sites.slice(i,i+chunkSize)]);
-  let completed=0,next=0;
-  // Maximum of 3 simultaneous requests avoids overwhelming the free API.
-  async function worker(){
-    while(next<jobs.length){
-      const job=jobs[next++], [offset,locations]=job;
-      const latitudes=locations.map(p=>p.lat.toFixed(6)).join(',');
-      const longitudes=locations.map(p=>p.lon.toFixed(6)).join(',');
-      const url='https://api.open-meteo.com/v1/elevation?latitude='+encodeURIComponent(latitudes)+'&longitude='+encodeURIComponent(longitudes);
-      const result=await fetchAPI(url);
-      if(!Array.isArray(result.elevation)||result.elevation.length!==locations.length)
-        throw Error('Der Höhendienst lieferte unvollständige Werte.');
-      result.elevation.forEach((h,j)=>{heights[offset+j]=h===null?NaN:Number(h)});
-      completed++;progress(completed,jobs.length);
-    }
+  for(let y=y1;y<=y2;y++)for(let x=x1;x<=x2;x++){
+    const latMid=mercLat((y+.5)*256,z),lonMid=((x+.5)/2**z)*360-180;
+    const north=(latMid-lat)*111190,east=(lonMid-lon)*111190*Math.cos(lat*rad);
+    const res=156543.03392*Math.cos(lat*rad)/2**z,tileDiagonal=256*res*Math.SQRT2/2;
+    const d=Math.hypot(east,north);
+    if(d-tileDiagonal>outer||d+tileDiagonal<inner)continue;
+    jobs.push({x,y,z,inner,outer});
   }
-  await Promise.all([worker(),worker(),worker()]);
-  if(!Number.isFinite(heights[0]))throw Error('Höhe am PV-Standort fehlt.');
-  const base=heights[0]+roofHeight,points=[];
-  const effectiveEarthRadius=6371000*7/6;
-  for(let j=0;j<TERRAIN_AZ_COUNT;j++){
-    let angle=0,valid=0;
-    for(let k=0;k<TERRAIN_DISTANCES.length;k++){
-      const i=1+j*TERRAIN_DISTANCES.length+k;
-      if(!Number.isFinite(heights[i]))continue;
-      valid++;
-      const distance=TERRAIN_DISTANCES[k];
-      const earthDrop=distance*distance/(2*effectiveEarthRadius);
-      angle=Math.max(angle,Math.atan2(heights[i]-base-earthDrop,distance)*deg);
+  return jobs;
+}
+function readTile(job,retries=2){
+  const url=`${TERRARIUM_BASE}/${job.z}/${job.x}/${job.y}.png`;
+  const loadOnce=()=>new Promise((resolve,reject)=>{
+    const img=new Image();img.crossOrigin='anonymous';
+    const timeout=setTimeout(()=>{img.onload=img.onerror=null;reject(new Error('Zeitüberschreitung beim Kachelladen'))},30000);
+    img.onload=()=>{clearTimeout(timeout);try{
+      const cv=document.createElement('canvas');cv.width=256;cv.height=256;
+      const ctx=cv.getContext('2d',{willReadFrequently:true});ctx.drawImage(img,0,0,256,256);
+      const rgba=ctx.getImageData(0,0,256,256).data;
+      resolve(rgba);
+    }catch(e){reject(new Error('Terrain-PNG darf im Browser nicht gelesen werden (CORS?): '+e.message))}};
+    img.onerror=()=>{clearTimeout(timeout);reject(new Error('Terrain-Kachel konnte nicht geladen werden: '+url))};
+    img.src=url;
+  });
+  return (async()=>{for(let n=0;;n++){try{return await loadOnce()}catch(e){if(n>=retries)throw e;await delay(800*(n+1))}}})();
+}
+async function buildTerrainHorizon(lat,lon,roofHeight,progress){
+  const jobs=[...tileJobs(lat,lon,13,INNER_RADIUS_M,0),...tileJobs(lat,lon,12,TERRAIN_RADIUS_M,INNER_RADIUS_M)];
+  const baseX=mercX(lon,13),baseY=mercY(lat,13);
+  const localJob=jobs.find(j=>j.z===13&&j.x===Math.floor(baseX/256)&&j.y===Math.floor(baseY/256));
+  if(!localJob)throw Error('Die Terrain-Kachel des Standorts wurde nicht gefunden.');
+  // Read the source elevation before any horizon angle is computed.
+  const first=await readTile(localJob);
+  const idx=(Math.floor(baseY)%256*256+Math.floor(baseX)%256)*4;
+  if(first[idx+3]<200)throw Error('Die Höhenangabe am Haus fehlt.');
+  const homeElevation=elevationFromRgb(first,idx),base=homeElevation+roofHeight;
+  const maxima=new Float32Array(TERRAIN_AZ_COUNT).fill(-90);
+  const counts=new Uint32Array(TERRAIN_AZ_COUNT);
+  const deltaAz=360/TERRAIN_AZ_COUNT;
+  const earthRadius=6371000*7/6;
+  // Start with the local tile so progress begins immediately.
+  const ordered=[localJob,...jobs.filter(j=>j!==localJob)];
+  let validPixels=0;
+  for(let n=0;n<ordered.length;n++){
+    const job=ordered[n],rgba=n===0?first:await readTile(job);
+    const size=2**job.z*256;
+    const eastPerPixel=2*Math.PI*6371000*Math.cos(lat*rad)/size;
+    const centerX=mercX(lon,job.z),centerY=mercY(lat,job.z);
+    const deltaX=(job.x*256-centerX)*eastPerPixel;
+    const eastXs=Array.from({length:256},(_,x)=>deltaX+(x+.5)*eastPerPixel);
+    const northByRow=new Float64Array(256);
+    for(let y=0;y<256;y++)northByRow[y]=(mercLat(job.y*256+y+.5,job.z)-lat)*rad*6371000;
+    for(let row=0;row<256;row++){
+      const north=northByRow[row],north2=north*north;
+      for(let col=0;col<256;col++){
+        const east=eastXs[col],distance=Math.sqrt(east*east+north2);
+        if(distance<3||distance>job.outer||distance<job.inner)continue;
+        const i=(row*256+col)*4;
+        if(rgba[i+3]<200)continue;
+        const h=elevationFromRgb(rgba,i);
+        if(!Number.isFinite(h))continue;
+        validPixels++;
+        const earthDrop=distance*distance/(2*earthRadius);
+        const angle=Math.atan2(h-base-earthDrop,distance)*deg;
+        const az=(Math.atan2(east,north)*deg+360)%360;
+        const k=Math.min(TERRAIN_AZ_COUNT-1,Math.floor(az/deltaAz));
+        if(angle>maxima[k])maxima[k]=angle;
+        counts[k]++;
+      }
     }
-    if(valid<TERRAIN_DISTANCES.length/2)throw Error('Zu viele Geländehöhen fehlen.');
-    points.push({az:j*360/TERRAIN_AZ_COUNT,height:Math.round(clamp(angle,0,89)*100)/100});
+    progress(n+1,ordered.length);
+    if(n%7===6)await delay(0); // yield to iOS browser so it remains responsive
   }
-  return {points,source:'Copernicus DEM GLO-90 · Open-Meteo (berechnet)',details:`${sites.length} Höhenpunkte, 28 km Radius, Standort ${heights[0]} m, Dach +${roofHeight} m`};
+  if(validPixels<10000)throw Error('Zu wenige valide Höhenpunkte im Umkreis gefunden.');
+  // Some sub-degree bins may contain no pixels close to the house; do not invent
+  // terrain values. Fill gaps using neighboring measured angular bins.
+  let nonEmpty=0;
+  for(let k=0;k<TERRAIN_AZ_COUNT;k++)if(counts[k])nonEmpty++;
+  if(nonEmpty<670)throw Error('Das Geländeprofil hat zu viele Richtungen ohne Daten ('+nonEmpty+'/720).');
+  const points=Array.from({length:TERRAIN_AZ_COUNT},(_,j)=>{
+    let val=maxima[j];
+    if(!counts[j]){
+      let l=1,r=1;
+      while(l<TERRAIN_AZ_COUNT&&!counts[(j-l+TERRAIN_AZ_COUNT)%TERRAIN_AZ_COUNT])l++;
+      while(r<TERRAIN_AZ_COUNT&&!counts[(j+r)%TERRAIN_AZ_COUNT])r++;
+      if(l<TERRAIN_AZ_COUNT&&r<TERRAIN_AZ_COUNT){
+        const left=maxima[(j-l+TERRAIN_AZ_COUNT)%TERRAIN_AZ_COUNT];
+        const right=maxima[(j+r)%TERRAIN_AZ_COUNT];
+        val=(left*r+right*l)/(l+r);
+      }
+    }
+    return {az:Math.round(j*deltaAz*1000)/1000,height:Math.round(clamp(val,0,89)*100)/100};
+  });
+  return {points,
+    source:'Mapzen Terrain Tiles (AWS Open Data) · Berghorizont, 30 km',
+    details:`${ordered.length} Terrain-Kacheln, ${validPixels.toLocaleString('de-DE')} geprüfte Pixel, 720 Richtungen / 0,5°, Standort ${homeElevation.toFixed(1)} m, Dach +${roofHeight} m`};
 }
 function showHorizonFailure(err){
   errorHorizon=err.message||String(err);
   if(horizon){
+    $('horizonBadge').textContent='Korrektur aktiv';
     $('horizonSource').textContent=profileSource+' · letztes gespeichertes Profil weiter aktiv (Geländeladen fehlgeschlagen: '+errorHorizon+')';
   }else{
     $('horizonBadge').textContent='Nicht verfügbar';
@@ -396,28 +496,61 @@ function showHorizonFailure(err){
   }
   updateStatus();
 }
-async function fetchHorizon(force=false){
-  if(!force){
-    const saved=loadSavedHorizon();
-    if(saved?.points){try{applyHorizon(saved);return}catch(e){console.error(e)}}
-  }
-  const lat=state.lat,lon=state.lon,roofHeight=state.roofHeight;
-  $('horizonSource').textContent='Lade Höhenmodell von Open-Meteo …';
-  $('horizonBadge').textContent='Lädt Gelände …';
-  try{
-    const profile=await buildTerrainHorizon(lat,lon,roofHeight,(n,all)=>{
-      if(state.lat===lat&&state.lon===lon&&state.roofHeight===roofHeight)
-        $('horizonSource').textContent=`Copernicus-Höhenmodell: ${n} von ${all} Datenpaketen geladen …`;
-    });
-    if(state.lat!==lat||state.lon!==lon||state.roofHeight!==roofHeight)return;
-    applyHorizon(profile);
-    $('horizonSource').textContent=profile.source+' · '+profile.details;
-  }catch(err){showHorizonFailure(err)}
+let horizonFetchPromise=null;
+function profileMatchesSettings(doc){
+  if(!doc||!doc.location)return false;
+  const lat=Number(doc.location.latitude),lon=Number(doc.location.longitude),height=Number(doc.location.roofHeight);
+  return Number.isFinite(lat)&&Number.isFinite(lon)&&Number.isFinite(height)
+    && Math.abs(lat-state.lat)<0.000005&&Math.abs(lon-state.lon)<0.000005
+    && Math.abs(height-state.roofHeight)<0.05;
 }
+async function loadPublishedHorizon(){
+  // Optional small, precomputed JSON file in GitHub Pages: no terrain API request.
+  try{
+    const response=await fetch('./horizontprofil.json',{cache:'no-cache'});
+    if(!response.ok)return false;
+    const doc=await response.json();
+    if(!profileMatchesSettings(doc))return false;
+    applyHorizon({points:doc.points,source:doc.source||'Hinterlegtes Geländeprofil (GitHub)'});
+    $('horizonSource').textContent=profileSource+' · aus GitHub-Profil geladen, keine Geländedatenabfrage';
+    return true;
+  }catch(e){return false}
+}
+async function fetchHorizon(force=false){
+  if(horizonFetchPromise)return horizonFetchPromise;
+  horizonFetchPromise=(async()=>{
+    if(!force){
+      const saved=loadSavedHorizon();
+      if(saved?.points){try{applyHorizon(saved);$('horizonSource').textContent=profileSource+' · lokal gespeichert · keine Gelände-Abfrage';return}catch(e){console.error('Gespeichertes Geländeprofil ungültig',e)}}
+      if(await loadPublishedHorizon())return;
+      // One automatic request only, even when it fails. The user can explicitly retry.
+      if(terrainAttempted()){
+        showHorizonFailure(new Error('Der erste Abruf war nicht erfolgreich. Es wird nicht automatisch erneut versucht. Bitte „Gelände abrufen / erneut versuchen“ anklicken.'));
+        return;
+      }
+    }
+    const lat=state.lat,lon=state.lon,roofHeight=state.roofHeight,key=profileKey();
+    markTerrainAttempted();
+    $('loadHorizon').disabled=true;
+    $('horizonSource').textContent='Lade einmalig Terrain-Kacheln von AWS/Mapzen (bis 30 km, kann einige Minuten dauern) …';
+    $('horizonBadge').textContent='Lädt Gelände …';
+    try{
+      const profile=await buildTerrainHorizon(lat,lon,roofHeight,(n,all)=>{
+        if(profileKey()===key)$('horizonSource').textContent=`Einmaliger Geländeabruf: ${n} von ${all} Terrain-Kacheln · danach dauerhaft gespeichert`;
+      });
+      if(profileKey()!==key)return;
+      applyHorizon(profile);
+      $('horizonSource').textContent=profile.source+' · '+profile.details+(loadSavedHorizon()?.points?' · lokal gespeichert':' · bitte exportieren (lokale Speicherung nicht möglich)');
+    }catch(err){if(profileKey()===key)showHorizonFailure(err)}
+    finally{$('loadHorizon').disabled=false}
+  })();
+  try{return await horizonFetchPromise}finally{horizonFetchPromise=null}
+}
+
 async function refreshAll(loadHorizon=true){
   working=true;errorWeather='';updateStatus();
   const locLat=state.lat,locLon=state.lon;
-  if(loadHorizon){horizon=null;profileSource='';errorHorizon='';$('horizonBadge').textContent='Lade Gelände';$('horizonWarning').classList.add('hidden');}
+  if(loadHorizon){horizon=null;profileSource='';errorHorizon='';$('horizonBadge').textContent='Profil wird geprüft';$('horizonWarning').classList.add('hidden');}
   const jobs=[fetchAPI(forecastUrl(locLat,locLon)).then(v=>{
     if(state.lat!==locLat||state.lon!==locLon)return;
     if(!Array.isArray(v.hourly?.time))throw Error('Open-Meteo lieferte keine gültigen Stundenwerte.');
@@ -431,9 +564,9 @@ async function refreshAll(loadHorizon=true){
 }
 function exportProfile(){
   if(!horizon){toast('Es ist noch kein Horizontprofil vorhanden.');return}
-  const obj={location:{latitude:state.lat,longitude:state.lon},source:profileSource,points:horizon};
+  const obj={location:{latitude:state.lat,longitude:state.lon,roofHeight:state.roofHeight},source:profileSource,points:horizon};
   const blob=new Blob([JSON.stringify(obj,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob);
-  const a=document.createElement('a');a.href=url;a.download='horizontprofil-schliersee.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),500);
+  const a=document.createElement('a');a.href=url;a.download='horizontprofil.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),500);
 }
 function importProfile(text){
   const raw=text.trim();let profile;
@@ -448,8 +581,19 @@ function importProfile(text){
 }
 $('refresh').addEventListener('click',()=>refreshAll(false));
 $('loadHorizon').addEventListener('click',()=>{
-  if(horizon&&!confirm('Das aktuelle Horizontprofil durch neue Copernicus-Höhendaten ersetzen? Manuelle Änderungen gehen dabei verloren.'))return;
-  localStorage.removeItem(profileKey());fetchHorizon(true);
+  if(horizon&&!confirm('Das aktuelle Horizontprofil durch neue Terrain-Höhendaten ersetzen? Manuelle Änderungen gehen dabei verloren.'))return;
+  // Preserve the last working profile until the replacement has succeeded.
+  fetchHorizon(true);
+});
+$('importHorizonFile').addEventListener('change',async e=>{
+  const file=e.target.files?.[0];if(!file)return;
+  try{
+    const doc=JSON.parse(await file.text());
+    if(!profileMatchesSettings(doc))throw Error('Die Datei gehört nicht zu den aktuell eingestellten Koordinaten und der Dachhöhe. Bitte die Standortdaten abgleichen.');
+    applyHorizon({points:doc.points,source:doc.source||'Importierte Profil-Datei'});
+    toast('Geländeprofil importiert und lokal gespeichert.');
+  }catch(err){toast('Profil-Import fehlgeschlagen: '+err.message)}
+  finally{e.target.value=''}
 });
 $('exportHorizon').addEventListener('click',exportProfile);
 $('copyHorizon').addEventListener('click',()=>{
@@ -462,7 +606,7 @@ $('applyHorizonCsv').addEventListener('click',()=>{try{importProfile($('horizonC
 $('applyLocation').addEventListener('click',()=>{
   const lat=Number($('lat').value),lon=Number($('lon').value);
   if(!Number.isFinite(lat)||!Number.isFinite(lon)||Math.abs(lat)>90||Math.abs(lon)>180){toast('Bitte gültige geographische Koordinaten eingeben.');return}
-  state.lat=lat;state.lon=lon;saveState();weather=null;calculated=[];selectedDay='';refreshAll(true);
+  const changed=(lat!==state.lat||lon!==state.lon);state.lat=lat;state.lon=lon;saveState();weather=null;calculated=[];selectedDay='';refreshAll(changed);
 });
 $('applyPhysics').addEventListener('click',()=>{
   const loss=Number($('losses').value),alb=Number($('albedo').value),height=Number($('roofHeight').value);
