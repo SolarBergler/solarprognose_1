@@ -19,7 +19,7 @@
 <body>
 <main class="layout">
   <header class="top">
-    <div><div class="eyebrow">PV · iPhone / Safari · Geländeabschattung</div><h1 class="brand">Solarprognose <span style="color:var(--lime)">Schliersee.</span></h1><p class="sub">Deine Solarprognose, korrigiert um die Berge am Horizont. Läuft in Safari ohne Python. Der Berghorizont wird einmalig berechnet und gespeichert. Danach aktualisieren sich nur die Wetterdaten.</p></div>
+    <div><div class="eyebrow">PV · iPhone / Safari · Geländeabschattung · V7</div><h1 class="brand">Solarprognose <span style="color:var(--lime)">Schliersee.</span></h1><p class="sub">Deine Solarprognose, korrigiert um die Berge am Horizont. Läuft in Safari ohne Python. Der Berghorizont wird einmalig berechnet und gespeichert. Danach aktualisieren sich nur die Wetterdaten.</p></div>
     <div class="top-right"><span class="pill warn" id="status">Daten werden geladen …</span><button class="btn secondary" id="refresh" type="button">↻ Aktualisieren</button></div>
   </header>
   <div class="kpis">
@@ -46,10 +46,9 @@
         <div class="horizon-top"><h2>Gelände-Horizontprofil</h2><span class="badge" id="horizonBadge">Nicht geladen</span></div>
         <p class="horizon-meta" id="horizonSource">Prüfe, ob ein gespeichertes Geländeprofil vorhanden ist …</p>
         <div class="horizon-wrap"><div id="horizonPlot"></div><div class="horizon-tooltip" id="hoverInfo">Süd: —°</div></div>
-        <p class="foot">Die grüne Fläche zeigt den Berghorizont, die gestrichelte Kurve den Sonnenlauf. <strong>Berühre die Grafik, um Winkel und Horizonthöhe abzulesen.</strong> Das verändert keine Messwerte. Nur im ausdrücklich aktivierten Bearbeitungsmodus kannst du den Horizont korrigieren.</p>
-        <div class="setting-actions"><button id="toggleHorizonEdit" class="btn secondary" type="button" aria-pressed="false">Profil bearbeiten: AUS</button><button id="undoHorizonEdit" class="btn secondary" type="button" disabled>Letzten Strich rückgängig</button></div>
+        <p class="foot">Die grüne Fläche zeigt den Berghorizont, die gestrichelte Kurve den Sonnenlauf. <strong>Berühre die Grafik, um Winkel und Horizonthöhe abzulesen.</strong> Das verändert keine Messwerte. Das Diagramm ist dauerhaft schreibgeschützt. Für gezielte Änderungen verwende ausschließlich den CSV-/JSON-Editor unten.</p>
         <div class="setting-actions"><button id="restorePublishedHorizon" class="btn secondary" type="button">Originalprofil aus GitHub wiederherstellen</button></div>
-        <p class="hint" id="horizonEditHint">Schreibschutz aktiv: Du kannst das Diagramm gefahrlos mit dem Finger abtasten und auf der Seite scrollen.</p>
+        <p class="hint">Dauerhafter Schreibschutz: Abtasten verändert niemals das Geländeprofil. Frühere versehentliche Fingerkorrekturen werden in dieser Version ignoriert; das GitHub-Original ist maßgeblich.</p>
         <div class="warning hidden" id="horizonWarning">Das Geländeprofil ist nicht verfügbar: Der angezeigte Ertrag ist deshalb unverschattet. Ein fehlgeschlagener Versuch wird nicht bei jedem Öffnen wiederholt. Über „Gelände abrufen / erneut versuchen“ kannst du es erneut starten. Bei CORS-/Netzwerkproblemen können die Terrain-Kacheln im Browser blockiert werden.</div>
         <div class="setting-actions"><button id="loadHorizon" class="btn secondary" type="button">Gelände abrufen / erneut versuchen</button><button id="exportHorizon" class="btn secondary" type="button">Profil exportieren</button></div>
         <p class="hint">Nach dem ersten erfolgreichen Abruf ist der Berghorizont auf diesem Gerät gespeichert (nicht jedes Mal neu geladen). Wenn du die exportierte Datei <code>horizontprofil.json</code> zusätzlich in dein GitHub-Repository hochlädst, können Mac und iPhone dieselben Daten verwenden – ohne erneuten Gelände-API-Abruf.</p>
@@ -70,7 +69,7 @@
       </div>
     </aside>
   </div>
-  <footer class="footer">Ohne Installation: läuft auf GitHub Pages in Safari/anderen Browsern. Wetter: <a style="color:var(--sky)" href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>. Gelände: <a style="color:var(--sky)" href="https://registry.opendata.aws/terrain-tiles/" target="_blank" rel="noopener">Mapzen Terrain Tiles über AWS Open Data</a> (Quellen u. a. SRTM; meist ca. 30 m echte Geländeauflösung, regional unterschiedlich). Bei jeder Wetteraktualisierung wird dein eingestellter Standort an Open-Meteo übertragen. Geländekacheln werden für jede neue Standort-/Höhenkombination höchstens einmal automatisch abgefragt; danach nur noch auf ausdrücklichen Wunsch. Erfolgreiche Profile werden pro Browser lokal gespeichert. Die Grafik ist standardmäßig schreibgeschützt; Änderungen sind nur im aktivierten Bearbeitungsmodus möglich. Eine exportierte horizontprofil.json kann für alle Geräte auf GitHub Pages hinterlegt werden. Browserdaten können gelöscht werden. Keine Gewähr für tatsächliche Erträge.</footer>
+  <footer class="footer">Ohne Installation: läuft auf GitHub Pages in Safari/anderen Browsern. Wetter: <a style="color:var(--sky)" href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>. Gelände: <a style="color:var(--sky)" href="https://registry.opendata.aws/terrain-tiles/" target="_blank" rel="noopener">Mapzen Terrain Tiles über AWS Open Data</a> (Quellen u. a. SRTM; meist ca. 30 m echte Geländeauflösung, regional unterschiedlich). Bei jeder Wetteraktualisierung wird dein eingestellter Standort an Open-Meteo übertragen. Geländekacheln werden für jede neue Standort-/Höhenkombination höchstens einmal automatisch abgefragt; danach nur noch auf ausdrücklichen Wunsch. Erfolgreiche Profile werden pro Browser lokal gespeichert. Die Grafik ist immer schreibgeschützt; manuelle Änderungen erfolgen nur über den expliziten CSV-/JSON-Import. Eine exportierte horizontprofil.json kann für alle Geräte auf GitHub Pages hinterlegt werden. Browserdaten können gelöscht werden. Keine Gewähr für tatsächliche Erträge.</footer>
 </main>
 <script>
 'use strict';
@@ -82,7 +81,7 @@ function savedSettings(){try{return JSON.parse(localStorage.getItem('schliersee-
 let state={...defaults,...savedSettings(),panels:savedSettings().panels||defaultPanels};
 // Correct old rounded sample coordinates without overriding an actual manually set location.
 if(Math.abs(state.lat-47.7)<1e-7&&Math.abs(state.lon-11.88)<1e-7){state.lat=defaults.lat;state.lon=defaults.lon;}
-let horizonEditEnabled=false, horizonUndoSnapshot=null;
+// V7: Der Horizont ist im Diagramm ausschließlich lesbar; kein Touch-Event darf ihn ändern.
 let weather=null,horizon=null,profileSource='',selectedDay='',calculated=[],errorWeather='',errorHorizon='',working=false;
 const TZ='Europe/Berlin';
 const dateFormatter=new Intl.DateTimeFormat('sv-SE',{timeZone:TZ,year:'numeric',month:'2-digit',day:'2-digit'});
@@ -96,6 +95,17 @@ function fmtLongDay(key){return dateLong.format(new Date(key+'T12:00:00Z'))}
 function saveState(){try{localStorage.setItem('schliersee-settings-v1',JSON.stringify(state))}catch(e){console.warn('Lokale Speicherung nicht möglich',e)}}
 function profileKey(){return `schliersee-profile-terrarium-v4-${Number(state.lat).toFixed(5)}-${Number(state.lon).toFixed(5)}-${Number(state.roofHeight).toFixed(1)}`}
 function loadSavedHorizon(){try{return JSON.parse(localStorage.getItem(profileKey()))}catch{return null}}
+function originalCacheKey(){return 'schliersee-original-github-v7-'+Number(state.lat).toFixed(5)+'-'+Number(state.lon).toFixed(5)+'-'+Number(state.roofHeight).toFixed(1)}
+function explicitOverrideKey(){return 'schliersee-explicit-override-v7-'+Number(state.lat).toFixed(5)+'-'+Number(state.lon).toFixed(5)+'-'+Number(state.roofHeight).toFixed(1)}
+function safeStorageRead(key){try{return JSON.parse(localStorage.getItem(key))}catch{return null}}
+function safeStorageWrite(key, obj){try{localStorage.setItem(key,JSON.stringify(obj));return true}catch(e){console.warn('Lokaler Speicher nicht verfügbar',e);return false}}
+function clearExplicitOverride(){try{localStorage.removeItem(explicitOverrideKey())}catch(e){console.warn(e)}}
+function useExplicitOverride(profile){
+  const tagged={points:profile.points,source:profile.source||'Explizit importiertes Horizontprofil'};
+  applyHorizon(tagged);
+  safeStorageWrite(explicitOverrideKey(),tagged);
+  $('horizonSource').textContent=tagged.source+' · ausdrücklich importiert · zurücksetzen über GitHub-Original';
+}
 function attemptKey(){return profileKey()+'-initial-request-attempted'}
 function terrainAttempted(){try{return localStorage.getItem(attemptKey())==='1'}catch{return false}}
 function markTerrainAttempted(){try{localStorage.setItem(attemptKey(),'1');return true}catch(e){console.warn('Versuch kann nicht dauerhaft markiert werden',e);return false}}
@@ -320,17 +330,7 @@ function localDayStart(day){
   for(let k=0;k<45;k++){const mid=Math.floor((lo+hi)/2);if(dayKey(mid)<day)lo=mid+1;else hi=mid;}
   return hi;
 }
-// Viewing and editing are intentionally separate: finger swipes must never modify data by default.
-function updateHorizonEditUI(){
-  const btn=$('toggleHorizonEdit');
-  btn.textContent='Profil bearbeiten: '+(horizonEditEnabled?'AN':'AUS');
-  btn.setAttribute('aria-pressed',String(horizonEditEnabled));
-  btn.classList.toggle('secondary',!horizonEditEnabled);
-  $('undoHorizonEdit').disabled=!horizonUndoSnapshot;
-  $('horizonEditHint').textContent=horizonEditEnabled
-    ? 'Bearbeiten aktiv: Nur jetzt zeichnet ein Fingerstrich eine geglättete Korrektur. Danach wieder AUS schalten. Änderungen werden lokal gespeichert.'
-    : 'Schreibschutz aktiv: Profil abtasten oder die Seite scrollen, ohne Horizontwerte zu verändern.';
-}
+// V7: Nur Anzeige und Abtasten. Der SVG-Plot besitzt keinerlei schreibende Events.
 function renderHorizon(){
   const w=900,h=265,l=39,r=16,t=17,b=43,ww=w-l-r,hh=h-t-b;
   const lim=clamp(Math.ceil(Math.max(45,...(horizon||[]).map(v=>v.height+8))/10)*10,50,90);
@@ -339,115 +339,30 @@ function renderHorizon(){
     const coords=Array.from({length:721},(_,i)=>[x(i/2),y(interpolateHorizon(i/2))]);
     return 'M '+x(0)+' '+y(0)+' L '+coords.map(p=>p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' L ')+' L '+x(360)+' '+y(0)+' Z';
   };
-  let svg=`<svg id="horizonSvg" class="chart" viewBox="0 0 ${w} ${h}" style="touch-action:${horizonEditEnabled?'none':'pan-y'};cursor:${horizonEditEnabled?'crosshair':'default'}" aria-label="Horizontprofil: Azimut von Nord über Ost Süd West nach Nord">`;
+  let svg=`<svg id="horizonSvg" class="chart" viewBox="0 0 ${w} ${h}" style="touch-action:pan-y;cursor:crosshair" aria-label="Nur-Leseansicht des Gelände-Horizonts">`;
   for(let a=0;a<=360;a+=45){svg+=`<line class="chart-grid" x1="${x(a)}" y1="${t}" x2="${x(a)}" y2="${t+hh}"/><text class="axistext" x="${x(a)}" y="${h-18}" text-anchor="middle">${a===0?'N':a===90?'O':a===180?'S':a===270?'W':a===360?'N':a+'°'}</text>`;}
   for(let a=0;a<=lim;a+=10){svg+=`<line class="chart-grid" x1="${l}" y1="${y(a)}" x2="${w-r}" y2="${y(a)}"/><text class="axistext" x="${l-7}" y="${y(a)+4}" text-anchor="end">${a}°</text>`;}
-  if(horizon){
-    svg+=`<path id="horizonArea" d="${horizonPath()}" fill="#557b68" fill-opacity=".42" stroke="#a4d8a6" stroke-width="2" />`;
-  }
+  if(horizon)svg+=`<path id="horizonArea" d="${horizonPath()}" fill="#557b68" fill-opacity=".42" stroke="#a4d8a6" stroke-width="2" />`;
   if(selectedDay){
     const start=localDayStart(selectedDay),finish=localDayStart(dayAfter(selectedDay));
     let sunPts=[];
     for(let ts=start;ts<=finish;ts+=5*60){const s=solarPosition(ts);if(s.alt>0)sunPts.push([x(s.az),y(s.alt)]);}
-    if(sunPts.length){
-      sunPts.sort((a,b)=>a[0]-b[0]);
-      svg+=`<path d="M ${sunPts.map(p=>p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' L ')}" fill="none" stroke="#f3bf72" stroke-width="2.8" stroke-dasharray="8 5"/>`;
-    }
+    if(sunPts.length){sunPts.sort((a,b)=>a[0]-b[0]);svg+=`<path d="M ${sunPts.map(p=>p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' L ')}" fill="none" stroke="#f3bf72" stroke-width="2.8" stroke-dasharray="8 5"/>`;}
   }
   svg+=`<rect id="horizonOverlay" x="${l}" y="${t}" width="${ww}" height="${hh}" fill="transparent"/>`;
-  svg+='</svg>';
-  $('horizonPlot').innerHTML=svg;
-  updateHorizonEditUI();
+  $('horizonPlot').innerHTML=svg+'</svg>';
   const plot=$('horizonSvg'),overlay=$('horizonOverlay');
-  // getScreenCTM handles aspect-ratio letterboxing on narrow iPhone screens.
-  const coord=event=>{
-    const matrix=plot.getScreenCTM();
-    if(matrix){
-      const point=plot.createSVGPoint();point.x=event.clientX;point.y=event.clientY;
-      const q=point.matrixTransform(matrix.inverse());
-      return {az:clamp((q.x-l)/ww*360,0,359.999),height:clamp((t+hh-q.y)/hh*lim,0,89)};
-    }
-    const rect=plot.getBoundingClientRect();
-    return {az:clamp(((event.clientX-rect.left)/rect.width*w-l)/ww*360,0,359.999),height:clamp((t+hh-((event.clientY-rect.top)/rect.height*h))/hh*lim,0,89)};
-  };
-  let pointerId=null,lastPoint=null,startedProfile=null,changed=false;
-  function readout(p){
-    $('hoverInfo').textContent=`${number(p.az,1)}° Az · ${number(interpolateHorizon(p.az),1)}° Horizont`;
-  }
-  function applyBrush(p){
+  function readout(event){
     if(!horizon)return;
-    // 1.5° feathered brush. A single touch cannot make a 0.5°-wide needle.
-    const radius=1.5;
-    const center=p.az;
-    const step=horizon.length>1?360/horizon.length:1;
-    const centerIndex=Math.round(center/step);
-    const reach=Math.ceil(radius/step)+1;
-    for(let di=-reach;di<=reach;di++){
-      const i=(centerIndex+di+horizon.length*2)%horizon.length;
-      const node=horizon[i];
-      const distance=Math.min(Math.abs(node.az-center),360-Math.abs(node.az-center));
-      if(distance>=radius)continue;
-      const weight=(1+Math.cos(Math.PI*distance/radius))/2;
-      const next=node.height+(p.height-node.height)*weight;
-      node.height=Math.round(clamp(next,0,89)*100)/100;
-    }
-    changed=true;
+    const matrix=plot.getScreenCTM();let q;
+    if(matrix){const point=plot.createSVGPoint();point.x=event.clientX;point.y=event.clientY;q=point.matrixTransform(matrix.inverse());}
+    else{const rect=plot.getBoundingClientRect();q={x:(event.clientX-rect.left)*w/rect.width,y:(event.clientY-rect.top)*h/rect.height};}
+    const az=clamp((q.x-l)/ww*360,0,359.999);
+    $('hoverInfo').textContent=`${number(az,1)}° Az · ${number(interpolateHorizon(az),1)}° Horizont`;
   }
-  function drawBetween(p){
-    if(lastPoint){
-      let delta=p.az-lastPoint.az;
-      if(delta>180)delta-=360;
-      if(delta< -180)delta+=360;
-      const steps=Math.max(1,Math.ceil(Math.abs(delta)/0.5));
-      // Fill every crossed half-degree sample, even when Safari batches pointer events.
-      for(let j=1;j<=steps;j++){
-        const fraction=j/steps;
-        let az=(lastPoint.az+delta*fraction+360)%360;
-        applyBrush({az,height:lastPoint.height+(p.height-lastPoint.height)*fraction});
-      }
-    }else applyBrush(p);
-    lastPoint=p;
-    const area=plot.querySelector('#horizonArea');
-    if(area)area.setAttribute('d',horizonPath());
-    readout(p);
-  }
-  overlay.addEventListener('pointerdown',e=>{
-    if(!horizon)return;
-    const p=coord(e);
-    if(!horizonEditEnabled){readout(p);return;}
-    if(pointerId!==null||e.isPrimary===false)return;
-    pointerId=e.pointerId;
-    startedProfile=horizon.map(node=>({...node}));
-    lastPoint=null;changed=false;
-    if(overlay.setPointerCapture)overlay.setPointerCapture(e.pointerId);
-    e.preventDefault();
-    drawBetween(p);
-  });
-  overlay.addEventListener('pointermove',e=>{
-    const p=coord(e);
-    if(pointerId===e.pointerId&&horizonEditEnabled){e.preventDefault();drawBetween(p)}
-    else if(pointerId===null&&horizon)readout(p);
-  });
-  function finish(e,cancel){
-    if(pointerId===null||e.pointerId!==pointerId)return;
-    pointerId=null;lastPoint=null;
-    if(cancel&&startedProfile){
-      horizon=startedProfile;
-      const area=plot.querySelector('#horizonArea');if(area)area.setAttribute('d',horizonPath());
-    }else if(changed){
-      horizonUndoSnapshot=startedProfile;
-      profileSource='Manuell angepasst (Basis: Geländeprofil)';
-      storeHorizon();
-      $('horizonSource').textContent=profileSource+' · '+horizon.length+' Richtungen · lokal gespeichert';
-      calculate();
-    }
-    startedProfile=null;changed=false;
-    updateHorizonEditUI();
-  }
-  overlay.addEventListener('pointerup',e=>finish(e,false));
-  overlay.addEventListener('pointercancel',e=>finish(e,true));
-  if(!horizon)$('hoverInfo').textContent='Kein Horizont';
-  else $('hoverInfo').textContent=`Süd: ${number(interpolateHorizon(180),1)}°`;
+  overlay.addEventListener('pointerdown',readout,{passive:true});
+  overlay.addEventListener('pointermove',readout,{passive:true});
+  $('hoverInfo').textContent=horizon?`Süd: ${number(interpolateHorizon(180),1)}°`:'Kein Horizont';
 }
 
 function dayAfter(s){return new Date(Date.parse(s+'T12:00:00Z')+86400000).toISOString().slice(0,10)}
@@ -462,7 +377,7 @@ function applyHorizon(profile){
   const sorted=profile.points.map(p=>({az:safe(p.az),height:safe(p.height)})).sort((a,b)=>a.az-b.az);
   if(sorted.some(p=>p.az<0||p.az>=360||p.height<0||p.height>89)||sorted.some((p,i)=>i>0&&p.az<=sorted[i-1].az))throw Error('Ungültige oder doppelte Winkel/Höhen im Horizontprofil.');
   horizon=sorted;profileSource=profile.source||'Benutzerprofil';errorHorizon='';const stored=storeHorizon();
-  $('horizonBadge').textContent='Korrektur aktiv';$('horizonSource').textContent=profileSource+' · '+horizon.length+' Richtungen'+(stored?' · lokal gespeichert':' · ACHTUNG: Speicherung im Browser nicht möglich! Bitte Profil exportieren.');$('horizonWarning').classList.add('hidden');
+  $('horizonBadge').textContent='Bergschatten aktiv';$('horizonSource').textContent=profileSource+' · '+horizon.length+' Richtungen'+(stored?' · lokal gespeichert':' · ACHTUNG: Speicherung im Browser nicht möglich! Bitte Profil exportieren.');$('horizonWarning').classList.add('hidden');
   calculate();if(!weather)renderHorizon();updateStatus();
 }
 function updateStatus(){
@@ -630,7 +545,7 @@ async function buildTerrainHorizon(lat,lon,roofHeight,progress){
 function showHorizonFailure(err){
   errorHorizon=err.message||String(err);
   if(horizon){
-    $('horizonBadge').textContent='Korrektur aktiv';
+    $('horizonBadge').textContent='Bergschatten aktiv';
     $('horizonSource').textContent=profileSource+' · letztes gespeichertes Profil weiter aktiv (Geländeladen fehlgeschlagen: '+errorHorizon+')';
   }else{
     $('horizonBadge').textContent='Nicht verfügbar';
@@ -649,27 +564,40 @@ function profileMatchesSettings(doc){
     && Math.abs(height-state.roofHeight)<0.05;
 }
 async function loadPublishedHorizon(){
-  // Optional small, precomputed JSON file in GitHub Pages: no terrain API request.
+  // Vorrang für das unveränderte, veröffentlichte Profil. Nie alte Touch-Korrekturen laden.
   try{
-    const response=await fetch('./horizontprofil.json',{cache:'no-cache'});
+    const response=await fetch('./horizontprofil.json',{cache:'no-store'});
     if(!response.ok)return false;
     const doc=await response.json();
     if(!profileMatchesSettings(doc))return false;
-    applyHorizon({points:doc.points,source:doc.source||'Hinterlegtes Geländeprofil (GitHub)'});
-    $('horizonSource').textContent=profileSource+' · aus GitHub-Profil geladen, keine Geländedatenabfrage';
+    applyHorizon({points:doc.points,source:'GitHub-Original (unverändert)'});
+    safeStorageWrite(originalCacheKey(),doc);
+    $('horizonSource').textContent='Originalprofil von GitHub · '+horizon.length+' Richtungen · keine Geländedatenabfrage';
     return true;
-  }catch(e){return false}
+  }catch(e){console.warn('GitHub-Original konnte nicht geladen werden',e);return false}
+}
+function loadCachedOriginal(){
+  const doc=safeStorageRead(originalCacheKey());
+  if(!doc||!profileMatchesSettings(doc))return false;
+  try{
+    applyHorizon({points:doc.points,source:'Lokal gesicherte Kopie des GitHub-Originals'});
+    $('horizonSource').textContent='Unveränderte Kopie des GitHub-Originals · offline aus Browsercache geladen';
+    return true;
+  }catch(e){console.warn('Gespeichertes Original ungültig',e);return false}
 }
 async function fetchHorizon(force=false){
   if(horizonFetchPromise)return horizonFetchPromise;
   horizonFetchPromise=(async()=>{
     if(!force){
-      const saved=loadSavedHorizon();
-      if(saved?.points){try{applyHorizon(saved);$('horizonSource').textContent=profileSource+' · lokal gespeichert · keine Gelände-Abfrage';return}catch(e){console.error('Gespeichertes Geländeprofil ungültig',e)}}
+      // V7 ignoriert absichtlich alle früheren, per Finger beschädigten lokalen Profile.
+      // Nur in V7 bewusst importierte Benutzerprofile sind Overrides.
+      const manual=safeStorageRead(explicitOverrideKey());
+      if(manual?.points){try{useExplicitOverride(manual);return}catch(e){console.warn('Manuelles Profil ungültig',e)}}
       if(await loadPublishedHorizon())return;
-      // One automatic request only, even when it fails. The user can explicitly retry.
+      if(loadCachedOriginal())return;
+      // Vorhandene alte, möglicherweise beschädigte Profile dürfen nicht mehr geladen werden.
       if(terrainAttempted()){
-        showHorizonFailure(new Error('Der erste Abruf war nicht erfolgreich. Es wird nicht automatisch erneut versucht. Bitte „Gelände abrufen / erneut versuchen“ anklicken.'));
+        showHorizonFailure(new Error('GitHub-Original nicht erreichbar und keine unveränderte Kopie gespeichert. Bitte Verbindung überprüfen oder „Gelände abrufen“ wählen.'));
         return;
       }
     }
@@ -725,18 +653,8 @@ function importProfile(text){
     if(vals.some(v=>!Number.isFinite(v))||vals.length<8)throw Error('Mindestens 8 gültige Höhenwerte in Grad eingeben.');
     profile={points:vals.map((height,i)=>({az:i*360/vals.length,height})),source:'Importierte manuelle Horizonthöhen'};
   }
-  applyHorizon(profile);
+  useExplicitOverride(profile);
 }
-$('toggleHorizonEdit').addEventListener('click',()=>{
-  if(!horizon){toast('Zuerst das Geländeprofil laden.');return;}
-  horizonEditEnabled=!horizonEditEnabled;
-  renderHorizon();
-});
-$('undoHorizonEdit').addEventListener('click',()=>{
-  if(!horizonUndoSnapshot)return;
-  const old=horizonUndoSnapshot;horizonUndoSnapshot=null;
-  applyHorizon({points:old,source:'Vorheriger Horizont (letzten Strich rückgängig)'});
-});
 $('restorePublishedHorizon').addEventListener('click',async()=>{
   if(!confirm('Alle lokalen Korrekturen auf diesem Gerät durch das unveränderte GitHub-Horizontprofil ersetzen? Die GitHub-Datei bleibt unverändert.'))return;
   const btn=$('restorePublishedHorizon');btn.disabled=true;btn.textContent='Lade Originalprofil …';
@@ -745,17 +663,19 @@ $('restorePublishedHorizon').addEventListener('click',async()=>{
     if(!response.ok)throw Error('GitHub-Profil nicht erreichbar (HTTP '+response.status+').');
     const doc=await response.json();
     if(!profileMatchesSettings(doc))throw Error('Standort oder Dachhöhe stimmen nicht mit der GitHub-Datei überein.');
-    horizonEditEnabled=false;horizonUndoSnapshot=null;
-    applyHorizon({points:doc.points,source:doc.source||'Terrainprofil aus GitHub'});
-    $('horizonSource').textContent=profileSource+' · Original aus GitHub wiederhergestellt · lokal gespeichert';
+    clearExplicitOverride();
+    applyHorizon({points:doc.points,source:'GitHub-Original (unverändert)'});
+    safeStorageWrite(originalCacheKey(),doc);
+    $('horizonSource').textContent='Originalprofil aus GitHub wiederhergestellt · '+horizon.length+' Richtungen · unverändert gespeichert';
     toast('Originalprofil wiederhergestellt. Die versehentlichen Linien sind gelöscht.');
   }catch(e){toast('Originalprofil konnte nicht geladen werden: '+e.message)}
-  finally{btn.disabled=false;btn.textContent='Originalprofil aus GitHub wiederherstellen';updateHorizonEditUI()}
+  finally{btn.disabled=false;btn.textContent='Originalprofil aus GitHub wiederherstellen'}
 });
 $('refresh').addEventListener('click',()=>refreshAll(false));
 $('loadHorizon').addEventListener('click',()=>{
   if(horizon&&!confirm('Das aktuelle Horizontprofil durch neue Terrain-Höhendaten ersetzen? Manuelle Änderungen gehen dabei verloren.'))return;
   // Preserve the last working profile until the replacement has succeeded.
+  clearExplicitOverride();
   fetchHorizon(true);
 });
 $('importHorizonFile').addEventListener('change',async e=>{
@@ -763,7 +683,7 @@ $('importHorizonFile').addEventListener('change',async e=>{
   try{
     const doc=JSON.parse(await file.text());
     if(!profileMatchesSettings(doc))throw Error('Die Datei gehört nicht zu den aktuell eingestellten Koordinaten und der Dachhöhe. Bitte die Standortdaten abgleichen.');
-    applyHorizon({points:doc.points,source:doc.source||'Importierte Profil-Datei'});
+    useExplicitOverride({points:doc.points,source:doc.source||'Ausdrücklich importierte Profil-Datei'});
     toast('Geländeprofil importiert und lokal gespeichert.');
   }catch(err){toast('Profil-Import fehlgeschlagen: '+err.message)}
   finally{e.target.value=''}
@@ -798,7 +718,7 @@ $('applyPanels').addEventListener('click',()=>{
 // Unit tests can replace fetch with mock responses; no backend is required.
 window.SolarApp={solarPosition,interpolateHorizon,diffuseFactor,calculate,groupDays,forecastUrl,
   getWeatherResolution:()=>weatherResolution,getState:()=>state,getHorizon:()=>horizon,getCalculated:()=>calculated,
-  setTestWeather:w=>{weather=w;calculate()},importProfile};
+  setTestWeather:w=>{weather=w;calculate()},importProfile,loadPublishedHorizon,restoreOriginalFromCache:loadCachedOriginal};
 syncSettings();refreshAll(true);
 setInterval(()=>{if(!document.hidden)refreshAll(false)},30*60*1000);
 </script>
