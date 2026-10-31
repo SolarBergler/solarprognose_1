@@ -1,0 +1,64 @@
+name: PV-Prognose zweimal täglich archivieren
+
+on:
+  schedule:
+    - cron: '0 6 1-7 11 *'
+      timezone: 'Europe/Berlin'
+    - cron: '0 18 1-7 11 *'
+      timezone: 'Europe/Berlin'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pv-prognose-archiv
+  cancel-in-progress: false
+
+jobs:
+  archiviere:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Repository holen
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Python vorbereiten (nur GitHub-Server)
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Chromium / Playwright vorbereiten
+        run: |
+          python -m pip install --disable-pip-version-check 'playwright==1.56.0'
+          python -m playwright install --with-deps chromium
+
+      - name: Prognose auf echter Website berechnen und unveränderlich archivieren
+        env:
+          GITHUB_EVENT_SCHEDULE: ${{ github.event.schedule }}
+          PV_SITE_URL: https://solarbergler.github.io/solarprognose_1/
+        run: python scripts/archiviere_prognose.py
+
+      - name: Prognosedateien auf GitHub speichern
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add prognosen/
+          if git diff --cached --quiet; then
+            echo 'Keine neuen Daten'
+          else
+            git commit -m 'PV-Prognose archiviert (automatisch)'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+
+      - name: Fehlerbild zur Diagnose sichern
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pv-prognose-fehlerbild
+          path: pv_archiv_fehler.png
+          if-no-files-found: ignore
+          retention-days: 7
