@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Archiviert die auf der Website berechnete V11-Prognose via Chromium.
+"""Archiviert die auf der Website berechnete V12-Prognose via Chromium.
 
 Benoetigt auf GitHub Actions: playwright + chromium. Auf iOS/macOS keine Installation.
 """
@@ -61,7 +61,7 @@ def main():
     if STATE_FILE.exists():
         previous = json.loads(STATE_FILE.read_text(encoding='utf-8'))
         if previous.get('version') != 2 or not isinstance(previous.get('days'), dict):
-            raise RuntimeError('Gespeicherter V11-Prognosezustand ist ungueltig.')
+            raise RuntimeError('Gespeicherter V12-Prognosezustand ist ungueltig.')
         for record in previous['days'].values():
             # V10 benutzt im RAM eine Map fuer die Diagramme. Nach JSON-Serialisierung
             # waere daraus ein kaputtes {} geworden. Diese Zwischenwerte NIE importieren.
@@ -116,7 +116,7 @@ def main():
                 print('Diagnose fehlgeschlagen:', diagnostic_error)
             print('JavaScript-Fehler:', errors[-5:])
             print('Fehlgeschlagene Netzwerkanfragen:', failed_requests[-10:])
-            raise RuntimeError('V11 konnte keine gültige Live-Prognose mit 720-Punkte-Berg- und DOM20-Nahprofil bereitstellen.') from ex
+            raise RuntimeError('V12 konnte keine gültige Live-Prognose mit 720-Punkte-Berg- und DOM20-Nahprofil bereitstellen.') from ex
 
         result = page.evaluate('''() => {
           const app=window.SolarApp;
@@ -131,7 +131,7 @@ def main():
             status:document.getElementById('status')?.textContent?.trim(),
             horizonSource:document.getElementById('horizonSource')?.textContent?.trim(),
             modelHash:app.archiveModelId(),
-            modelVersion:'V11',
+            modelVersion:'V12',
             nearProfileId:app.getNearData()?.id,
             nearProfileSource:app.getNearData()?.source,
             horizonPoints:app.getHorizon()?.length,
@@ -169,7 +169,7 @@ def main():
         if isinstance(record, dict):
             record.pop('_lookup', None)
             record.pop('_lookupVersion', None)
-    result['captureType'] = 'live-browser-solarprognose-v11-dom20'
+    result['captureType'] = 'live-browser-solarprognose-v12-dom20'
     result['slot'] = slot
     result['sourceUrl'] = URL
     result['description'] = 'Echter JavaScript-Lauf mit DOM20-Baum- und Gebäudeverschattung, 720-Punkte-Berghorizont und 5-Minuten-Werten. Abgelaufene Intervalle bleiben eingefroren. Historische V10-Dateien sind unverändert.'
@@ -177,7 +177,7 @@ def main():
     save_json(output, result)
     save_json(STATE_FILE, browser_archive)
     print('GESPEICHERT:', output)
-    print(f'Ist von der Seite gelesene V11-Prognose: {result["powerKWh"]:.2f} kWh; Original: {sum(v[1]/12 for v in result["original"]["values"]):.2f} kWh')
+    print(f'Ist von der Seite gelesene V12-Prognose: {result["powerKWh"]:.2f} kWh; Original: {sum(v[1]/12 for v in result["original"]["values"]):.2f} kWh')
     print('Gelände:', result['horizonSource'])
     return 0
 
