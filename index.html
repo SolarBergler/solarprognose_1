@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="apple-mobile-web-app-title" content="Solar Schliersee" />
 <meta name="description" content="Mobile PV-Ertragsprognose für Schliersee mit Bergen und Geländehorizont. Läuft ohne Python und ohne Backend." />
-<title>Solarprognose Schliersee · Bergschatten V10</title>
+<title>Solarprognose Schliersee · Berg- und Nahverschattung V11</title>
 <style>
 :root{color-scheme:dark;--bg:#0a111b;--surface:#111d2b;--surface2:#162438;--line:#293b4d;--txt:#e8f0f8;--muted:#95a8bc;--lime:#b9ee69;--sky:#7ba8cb;--orange:#f1ae6a;--red:#f48e8e}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 85% 0, #1e3144 0,transparent 34%),var(--bg);color:var(--txt);font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--lime);outline-offset:2px}input,textarea{border:1px solid var(--line);border-radius:8px;padding:9px 10px;color:var(--txt);background:#0b1725;width:100%}input[type=number]{font-variant-numeric:tabular-nums}input[type=range]{padding:0;accent-color:var(--lime)}.layout{max-width:1320px;margin:0 auto;padding:32px 27px 70px}.top{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;flex-wrap:wrap;margin-bottom:31px}.eyebrow{color:var(--lime);text-transform:uppercase;font-size:11px;letter-spacing:.19em;font-weight:800}.brand{font-size:34px;letter-spacing:-1.5px;line-height:1.1;font-weight:750;margin:11px 0}.sub{color:var(--muted);max-width:710px;margin:0;font-size:14px}.top-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.pill{border:1px solid #345043;background:#172b2b;color:#b8eac2;border-radius:30px;padding:8px 13px;font-size:12px;font-weight:700}.pill.warn{color:#ffcd91;border-color:#76553a;background:#32281f}.btn{border:1px solid #47614f;background:#203d35;color:#cdf3b4;padding:9px 14px;border-radius:10px;font-weight:650;font-size:13px}.btn:hover{background:#2b4b3f}.btn.secondary{border-color:var(--line);background:#152334;color:var(--txt)}.btn.secondary:hover{background:#26394c}.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:22px}.kpi{background:linear-gradient(150deg,#152636,#101c29);border:1px solid #2c4050;border-radius:16px;padding:19px 19px 16px;min-height:135px;overflow:hidden}.kpi span{font-size:12px;color:var(--muted);display:block;margin-bottom:11px}.kpi strong{font-size:34px;font-weight:770;letter-spacing:-1.7px;line-height:1.2;font-variant-numeric:tabular-nums}.kpi .unit{font-size:16px;color:var(--muted);font-weight:500;letter-spacing:0}.kpi em{display:block;color:var(--muted);font-style:normal;margin-top:5px;font-size:12px}.kpi .accent{color:var(--lime)}.kpi .warm{color:var(--orange)}.cols{display:grid;grid-template-columns:minmax(0,1.62fr) minmax(0,1fr);gap:18px}.panel{background:linear-gradient(150deg,#142132,#111b29);border:1px solid #2a394b;border-radius:16px;padding:23px;min-width:0;margin-bottom:18px}.panel h2{font-size:17px;letter-spacing:-.3px;margin:0}.panel-header{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap;margin-bottom:18px}.hint{color:var(--muted);font-size:12px;margin:5px 0 0}.legend{display:flex;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:12px}.legend b{display:inline-block;width:16px;height:3px;border-radius:3px;margin:0 5px 3px 0}.chart{display:block;width:100%;height:auto;overflow:visible;touch-action:pan-y}.axistext{fill:#8299ac;font-size:12px;font-family:inherit}.chart-grid{stroke:#314253;stroke-width:1}.forecast-days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}.day{border:1px solid #344759;background:#152335;min-height:145px;padding:13px 5px 9px;border-radius:11px;color:var(--txt);text-align:center;display:flex;flex-direction:column;gap:5px;align-items:center}.day:hover{background:#21344b}.day.active{border-color:var(--lime);box-shadow:inset 0 0 0 1px var(--lime);background:#21352d}.day .dayname{font-size:11px;color:var(--muted)}.day strong{font-size:17px;font-variant-numeric:tabular-nums}.bars{display:flex;align-items:flex-end;gap:3px;height:70px;width:80%;justify-content:center;margin:4px 0}.bars i{width:15px;display:block;border-radius:3px 3px 0 0;min-height:2px}.bar-base{background:#536d82}.bar-correct{background:var(--lime)}.detail{width:100%;border-collapse:collapse;margin-top:6px;font-size:13px}.detail th,.detail td{text-align:right;padding:12px 6px;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}.detail th:first-child,.detail td:first-child{text-align:left}.detail th{color:var(--muted);font-weight:550;font-size:11px}.detail td:last-child{color:var(--orange)}.detail tr.total td{font-weight:750;color:var(--txt)}.badge{display:inline-flex;gap:7px;align-items:center;font-size:12px;padding:6px 9px;border-radius:6px;background:#1e3136;color:#c5e3de;margin-top:12px}.warning{padding:12px 14px;border-radius:9px;border:1px solid #674b34;background:#332719;color:#ffdaaa;font-size:12px;line-height:1.6;margin-top:12px}.hidden{display:none!important}.horizon-top{display:flex;align-items:center;gap:10px;justify-content:space-between;flex-wrap:wrap}.horizon-meta{color:#a9c0cf;font-size:12px;margin:5px 0 15px}.horizon-wrap{position:relative}.horizon-tooltip{position:absolute;right:0;top:0;border:1px solid #38534d;padding:4px 8px;border-radius:6px;color:var(--lime);font-size:12px;background:#172c28}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}.field .note{font-size:11px;color:var(--muted);margin-top:5px}.settings-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:14px}.setting-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.panels-edit{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:9px}.panels-edit input{padding:8px 6px}.headings{color:var(--muted);font-size:11px;margin-bottom:8px}.panel-edit-row{margin-bottom:8px}details{margin-top:17px;background:#0d1926;border:1px solid #273849;border-radius:12px;padding:12px}summary{font-weight:650;cursor:pointer}textarea{resize:vertical;min-height:84px;margin-top:10px;font-size:12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}.foot{margin-top:13px;color:#8da1b5;font-size:12px;line-height:1.65}.footer{border-top:1px solid #29394b;margin-top:20px;padding-top:19px;color:var(--muted);font-size:12px}.spacer{margin-bottom:14px}.notice{font-size:12px;color:#aac2d4;padding:10px 12px;border-left:3px solid #6086a9;background:#172639;border-radius:3px}.statusbox{border:1px solid var(--line);background:#102130;border-radius:10px;padding:12px;margin-top:10px;font-size:12px;color:var(--muted)}.statusbox strong{color:var(--txt)}
@@ -38,19 +38,19 @@
 <body>
 <main class="layout">
   <header class="top">
-    <div><div class="eyebrow">PV · iPhone / Safari · Geländeabschattung · V10</div><h1 class="brand">Solarprognose <button type="button" class="location-title-button" id="openLocationDialog" aria-haspopup="dialog" aria-controls="locationDialog" title="Ort und Koordinaten ändern"><span id="locationTitle">Schliersee</span></button><span style="color:var(--lime)">.</span></h1><p class="sub">Deine Solarprognose, korrigiert um die Berge am Horizont. Läuft in Safari ohne Python. Der Berghorizont wird einmalig berechnet und gespeichert. Die zeitlich ursprünglichen Prognosekurven werden nun zusätzlich archiviert und mit Aktualisierungen verglichen.</p></div>
+    <div><div class="eyebrow">PV · iPhone / Safari · Berge, Bäume & Gebäude · V11</div><h1 class="brand">Solarprognose <button type="button" class="location-title-button" id="openLocationDialog" aria-haspopup="dialog" aria-controls="locationDialog" title="Ort und Koordinaten ändern"><span id="locationTitle">Schliersee</span></button><span style="color:var(--lime)">.</span></h1><p class="sub">Solarprognose mit Berg-, Baum- und Gebäudeverschattung aus amtlichen 20-cm-Oberflächendaten. Die alten V10-Prognosen bleiben in GitHub historisch erhalten, werden hier aber nicht mehr als zweites Modell angezeigt. Läuft auf Mac und iPhone direkt im Browser.</p></div>
     <div class="top-right"><span class="pill warn" id="status">Daten werden geladen …</span><button class="btn secondary" id="refresh" type="button">↻ Aktualisieren</button></div>
   </header>
   <div class="kpis">
-    <div class="kpi"><span>7-Tage-Ertrag · mit Bergschatten</span><strong class="accent" id="kpiYield">—</strong><em id="kpiYieldNote">Wetterprognose wird geladen</em></div>
-    <div class="kpi"><span>7-Tage-Ertrag · ohne Bergschatten</span><strong id="kpiBase">—</strong><em>Vergleich auf gleicher Wettergrundlage</em></div>
-    <div class="kpi"><span>Verlust durch Geländeschatten</span><strong class="warm" id="kpiLoss">—</strong><em id="kpiLossNote">Nur lokale Geländeverschattung</em></div>
+    <div class="kpi"><span>7-Tage-Ertrag · inklusive Nahverschattung</span><strong class="accent" id="kpiYield">—</strong><em id="kpiYieldNote">Wetterprognose wird geladen</em></div>
+    <div class="kpi"><span>7-Tage-Ertrag · ohne Verschattung</span><strong id="kpiBase">—</strong><em>Vergleich auf gleicher Wettergrundlage</em></div>
+    <div class="kpi"><span>Verlust durch Gelände & Hindernisse</span><strong class="warm" id="kpiLoss">—</strong><em id="kpiLossNote">Berg-, Baum- und Gebäudeverschattung</em></div>
     <div class="kpi"><span>Installierte Generatorleistung</span><strong id="kpiKwp">31,3 <span class="unit">kWp</span></strong><em>Haus · Garage · Carport · Hütte</em></div>
   </div>
   <div class="cols">
     <section>
       <div class="panel">
-        <div class="panel-header"><div><h2>Ertragsprognose · 7 Tage</h2><p class="hint">Wähle einen Tag: ursprüngliche Prognose und neuester, für vergangene Stunden eingefrorener Stand.</p></div><div class="legend"><span><b style="background:#536d82"></b>ohne Berge</span><span><b style="background:var(--lime)"></b>mit Bergen</span></div></div>
+        <div class="panel-header"><div><h2>Ertragsprognose · 7 Tage</h2><p class="hint">Wähle einen Tag: ursprüngliche Prognose und neuester, für vergangene Stunden eingefrorener Stand.</p></div><div class="legend"><span><b style="background:#536d82"></b>ohne Verschattung</span><span><b style="background:var(--lime)"></b>mit Bergen, Bäumen und Gebäuden</span></div></div>
         <div class="forecast-days" id="days"><p class="hint">Lade Wetterdaten …</p></div>
       </div>
       <div class="panel">
@@ -64,7 +64,14 @@
         </div>
         <div class="statusbox" id="daySummary">Wetterdaten werden geladen.</div>
       </div>
-      <div class="panel"><div class="panel-header"><div><h2 id="tableTitle">Ertrag nach Dachfläche</h2><p class="hint">Gleiche Wetterlage, mit und ohne berechneten Bergschatten.</p></div></div><table class="detail"><thead><tr><th>PV-Fläche</th><th>Ohne [kWh]</th><th>Mit [kWh]</th><th>Verlust</th></tr></thead><tbody id="panelTable"><tr><td colspan="4" style="text-align:left">Wetterdaten werden geladen.</td></tr></tbody></table></div>
+      <div class="panel" id="nearModelPanel">
+        <div class="panel-header"><div><h2>Baum- und Gebäudeprofil · DOM20</h2>
+          <p class="hint">Je 9 Modul-Stichproben auf 4 PV-Flächen, 720 Richtungen, Nahbereich 150 m. Eigene Dachflächen ausgeschlossen; ohne zusätzliche elektrische Teilverschattungsverluste.</p></div><span class="badge" id="nearStatus">Lade Profil …</span></div>
+        <div class="statusbox" id="nearSummary">Lade amtliches Nahprofil …</div>
+        <p class="hint" id="nearSource">Quelle: Bayerische Vermessungsverwaltung, DOM20.</p>
+        <div class="setting-actions"><button class="btn secondary" id="nearReload" type="button">Nahprofil neu laden</button></div>
+      </div>
+      <div class="panel"><div class="panel-header"><div><h2 id="tableTitle">Ertrag nach Dachfläche</h2><p class="hint">Gleiche Wetterlage, mit und ohne berechnete Gelände- und Nahverschattung.</p></div></div><table class="detail"><thead><tr><th>PV-Fläche</th><th>Ohne [kWh]</th><th>Mit [kWh]</th><th>Verlust</th></tr></thead><tbody id="panelTable"><tr><td colspan="4" style="text-align:left">Wetterdaten werden geladen.</td></tr></tbody></table></div>
     </section>
     <aside>
       <div class="panel">
@@ -80,7 +87,7 @@
       </div>
       <div class="panel"><h2>Berechnung</h2><p class="hint spacer">Ort und Koordinaten lassen sich über den Ortsnamen in der Titelzeile ändern.</p>
         <div class="settings-grid"><div class="field"><label for="roofHeight">PV-Höhe über Gelände [m]</label><input id="roofHeight" type="number" min="0" max="100" step="0.5" value="5" /></div><div class="field"><label for="losses">Sonstige Systemverluste [%]</label><input id="losses" type="number" min="0" max="50" step="1" value="12" /></div><div class="field"><label for="albedo">Bodenreflexion (Albedo)</label><input id="albedo" type="number" min="0" max="1" step="0.05" value="0.2" /></div></div>
-        <p class="hint spacer">Die angenommene Höhe über dem Gelände beträgt 5 m; passe sie an die Dachhöhe an. Sonstige Verluste 12 %, Albedo 0,2. Schnee, Bäume, Gebäude und lokale Modulverschattung werden nicht automatisch erkannt. Bei einer Änderung der Dachhöhe wird für diese Einstellung einmalig ein neues Profil benötigt.</p><button class="btn secondary" id="applyPhysics" type="button">Berechnung aktualisieren</button>
+        <p class="hint spacer">Die angenommene Höhe über dem Gelände beträgt 5 m; passe sie an die Dachhöhe an. Sonstige Verluste 12 %, Albedo 0,2. Nahverschattung wird nur mit gültiger nahverschattung.json aktiv; ohne diese gilt die Prognose als unvollständig. Bei einer Änderung der Dachhöhe wird für diese Einstellung einmalig ein neues Profil benötigt.</p><button class="btn secondary" id="applyPhysics" type="button">Berechnung aktualisieren</button>
       </div>
       <div class="panel"><h2>PV-Anlagen</h2><p class="hint spacer">Azimut: 0° Nord · 90° Ost · 180° Süd · 270° West.</p>
         <div class="panels-edit headings"><span>Name</span><span>kWp</span><span>Azimut</span><span>Neigung</span></div><div id="panelsEdit"></div>
@@ -89,7 +96,7 @@
       </div>
     </aside>
   </div>
-  <footer class="footer">Ohne Installation: läuft auf GitHub Pages in Safari/anderen Browsern. Wetter: <a style="color:var(--sky)" href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>. Gelände: <a style="color:var(--sky)" href="https://registry.opendata.aws/terrain-tiles/" target="_blank" rel="noopener">Mapzen Terrain Tiles über AWS Open Data</a> (Quellen u. a. SRTM; meist ca. 30 m echte Geländeauflösung, regional unterschiedlich). Bei jeder Wetteraktualisierung wird dein eingestellter Standort an Open-Meteo übertragen. Geländekacheln werden für jede neue Standort-/Höhenkombination höchstens einmal automatisch abgefragt; danach nur noch auf ausdrücklichen Wunsch. Erfolgreiche Profile werden pro Browser lokal gespeichert. Das Horizontdiagramm ist dauerhaft schreibgeschützt. Eine exportierte horizontprofil.json kann für alle Geräte auf GitHub Pages hinterlegt werden. Je Tag werden eine ursprüngliche Vergleichskurve und der fortgeschriebene aktuelle Stand im Browser gespeichert, nicht über GitHub synchronisiert. Safari im privaten Modus kann sie beim Schließen löschen; ohne geöffneten Browser gibt es keine garantierten Vorabend-Aufnahmen. Browserdaten können gelöscht werden. Keine Gewähr für tatsächliche Erträge.</footer>
+  <footer class="footer">Ohne Installation: läuft auf GitHub Pages in Safari/anderen Browsern. Wetter: <a style="color:var(--sky)" href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>. Gelände: <a style="color:var(--sky)" href="https://registry.opendata.aws/terrain-tiles/" target="_blank" rel="noopener">Mapzen Terrain Tiles über AWS Open Data</a> (Quellen u. a. SRTM; meist ca. 30 m echte Geländeauflösung, regional unterschiedlich). Bei jeder Wetteraktualisierung wird dein eingestellter Standort an Open-Meteo übertragen. Geländekacheln werden für jede neue Standort-/Höhenkombination höchstens einmal automatisch abgefragt; danach nur noch auf ausdrücklichen Wunsch. Erfolgreiche Profile werden pro Browser lokal gespeichert. Das Horizontdiagramm ist dauerhaft schreibgeschützt. Eine exportierte horizontprofil.json kann für alle Geräte auf GitHub Pages hinterlegt werden. Je Tag werden eine ursprüngliche Vergleichskurve und der fortgeschriebene aktuelle Stand im Browser gespeichert, nicht über GitHub synchronisiert. Safari im privaten Modus kann sie beim Schließen löschen; ohne geöffneten Browser gibt es keine garantierten Vorabend-Aufnahmen. Browserdaten können gelöscht werden. V11 erfordert die passende DOM20-basierte nahverschattung.json. Vorherige V10-Archivdateien werden nicht verändert. Die Vereinfachung behandelt Bäume und Gebäude als lichtundurchlässige Geometrie und berücksichtigt keine zusätzlichen elektrischen Teilverschattungsverluste. Keine Gewähr für tatsächliche Erträge.</footer>
 </main>
 <dialog id="locationDialog" class="location-dialog" aria-labelledby="locationDialogTitle">
   <form id="locationForm">
@@ -115,6 +122,7 @@ let state={...defaults,...savedSettings(),panels:savedSettings().panels||default
 if(Math.abs(state.lat-47.7)<1e-7&&Math.abs(state.lon-11.88)<1e-7){state.lat=defaults.lat;state.lon=defaults.lon;}
 if(typeof state.locationName!=='string'||!state.locationName.trim())state.locationName=defaults.locationName;
 // V7: Der Horizont ist im Diagramm ausschließlich lesbar; kein Touch-Event darf ihn ändern.
+let nearData=null,nearShadeFactors=[],nearStatusText='Noch kein geprüfter DOM20-Nahbereich';
 let weather=null,horizon=null,profileSource='',selectedDay='',calculated=[],errorWeather='',errorHorizon='',working=false;
 const TZ='Europe/Berlin';
 const dateFormatter=new Intl.DateTimeFormat('sv-SE',{timeZone:TZ,year:'numeric',month:'2-digit',day:'2-digit'});
@@ -129,7 +137,7 @@ function saveState(){try{localStorage.setItem('schliersee-settings-v1',JSON.stri
 // V10: Pro Tag nur ein Originalstand und ein fortgeschriebener Stand.
 // Der Originalstand wird nie durch spätere Wetterprognosen überschrieben.
 // Beim laufenden Tag werden alte 5-Minuten-Intervalle NIE ersetzt.
-const FORECAST_ARCHIVE_KEY='schliersee-forecast-progressive-v10';
+const FORECAST_ARCHIVE_KEY='schliersee-forecast-progressive-v11';
 const FORECAST_ARCHIVE_DAYS=12;
 let archiveWriteWarning='';
 function readForecastArchive(){
@@ -144,7 +152,7 @@ function archiveModelId(){
   // Ortsname beeinflusst das physikalische Modell nicht.
   const conf=[Number(state.lat).toFixed(8),Number(state.lon).toFixed(8),state.roofHeight,state.losses,state.albedo,
     state.panels.map(p=>[p.kwp,p.az,p.tilt]),
-    horizon?.map(p=>[Number(p.az).toFixed(3),Number(p.height).toFixed(3)])||null];
+    horizon?.map(p=>[Number(p.az).toFixed(3),Number(p.height).toFixed(3)])||null,nearData?.id||null,'v11'];
   const str=JSON.stringify(conf);
   let hash=2166136261;
   for(let i=0;i<str.length;i++){hash^=str.charCodeAt(i);hash=Math.imul(hash,16777619)}
@@ -176,7 +184,7 @@ function archiveRecord(day){
 function storedReferencePoints(record){return record?.original?.values?.map(v=>({ts:v[0],power:v[1]}))||[]}
 function rawGroupedDays(){return aggregateDays(calculated)}
 function saveForecastSnapshots(at=Date.now()){
-  if(!weather||!horizon||!calculated.length||errorWeather)return;
+  if(!weather||!horizon||!nearData||!calculated.length||errorWeather)return;
   const today=dayKey(at/1000),model=archiveModelId(),nowSec=at/1000;
   const oldest=new Date(Date.parse(today+'T12:00:00Z')-(FORECAST_ARCHIVE_DAYS-1)*86400000).toISOString().slice(0,10);
   for(const key of Object.keys(forecastArchive.days))if(key<oldest)delete forecastArchive.days[key];
@@ -303,6 +311,78 @@ function diffuseFactor(panel,applyHorizon){
   }
   return clamp(total,0,1);
 }
+// V11: Getrennte Nahprofile pro PV-Fläche. Winkel im 0,5°-Raster,
+// mehrere reale Modul-Stichproben je Fläche. Keine zusätzliche elektrische Verlustannahme.
+function nearAngle(sample,az){
+  const normalized=((az%360)+360)%360*2;
+  const i=Math.floor(normalized)%720,f=normalized-Math.floor(normalized);
+  return sample[i]*(1-f)+sample[(i+1)%720]*f;
+}
+function nearVisibleFraction(panelIndex,az,alt){
+  if(!nearData)return null;
+  const samples=nearData.panelProfiles[panelIndex].samples;
+  const mountain=interpolateHorizon(az);
+  let open=0;
+  for(const sample of samples)if(alt>=Math.max(mountain,nearAngle(sample,az)))open++;
+  return open/samples.length;
+}
+function nearDiffuseFactor(panel,sample){
+  const tilt=panel.tilt*rad,azi=panel.az*rad;
+  let total=0;
+  for(let a=2.5;a<360;a+=5){
+    const hz=Math.max(interpolateHorizon(a),nearAngle(sample,a));
+    for(let el=1.5;el<90;el+=3){
+      if(el<=hz)continue;
+      const inc=Math.sin(el*rad)*Math.cos(tilt)+Math.cos(el*rad)*Math.sin(tilt)*Math.cos(a*rad-azi);
+      if(inc>0)total+=inc*Math.cos(el*rad)*(5*rad)*(3*rad)/Math.PI;
+    }
+  }
+  return clamp(total,0,1);
+}
+function initNearFactors(){
+  nearShadeFactors=nearData&&horizon?state.panels.map((p,j)=>nearData.panelProfiles[j].samples.map(sample=>nearDiffuseFactor(p,sample))):[];
+}
+function validateNearData(doc){
+  if(doc?.version!==1||doc?.kind!=='dom20-nearshade'||!doc?.location||!Array.isArray(doc.panelProfiles)||doc.panelProfiles.length!==4)throw Error('Unerwartetes Nahprofil-Format.');
+  if(Math.abs(Number(doc.location.latitude)-state.lat)>0.00001||Math.abs(Number(doc.location.longitude)-state.lon)>0.00001)throw Error('Nahprofil gehört zu anderen Standortkoordinaten.');
+  if(!/DOM20/i.test(doc.source||''))throw Error('Datensatz muss seine DOM20-Datenquelle angeben.');
+  for(let i=0;i<4;i++){
+    const p=doc.panelProfiles[i];
+    if(p.name!==state.panels[i].name||!p.center||!Number.isFinite(Number(p.center.latitude))||!Number.isFinite(Number(p.center.longitude)))throw Error('Dachfläche oder Dachkoordinaten passen nicht: '+state.panels[i].name);
+    if(!Array.isArray(p.samples)||p.samples.length!==9)throw Error('Keine gültigen Stichproben: '+p.name);
+    for(const sample of p.samples){
+      if(!Array.isArray(sample)||sample.length!==720||sample.some(v=>typeof v!=='number'||!Number.isFinite(v)||v<0||v>=90))throw Error('Ungültige 720 Winkelwerte: '+p.name);
+    }
+  }
+  return doc;
+}
+async function loadNearProfile(){
+  try{
+    const r=await fetch('./nahverschattung.json',{cache:'no-store'});
+    if(!r.ok)throw Error(r.status===404?'Noch keine nahverschattung.json im Repository':'HTTP '+r.status);
+    nearData=validateNearData(await r.json());
+    nearStatusText='DOM20-Profil bereit · '+nearData.panelProfiles.map(p=>p.samples.length).join('/')+' Modul-Stichproben';
+    $('nearStatus').textContent='DOM20 aktiv';
+    $('nearSource').textContent=nearData.source+' · '+(nearData.meta?.generatedAt||'Erstellungsdatum fehlt')+' · Radius '+(nearData.location.radius_m||'?')+' m. Bauwerke und Bäume als zunächst lichtundurchlässige Hindernisse; keine zusätzlichen elektrischen Verluste.';
+    initNearFactors();
+  }catch(e){
+    nearData=null;nearShadeFactors=[];nearStatusText=e.message||String(e);
+    $('nearStatus').textContent='Noch keine DOM20-Daten';
+    $('nearSource').textContent='V11 noch unvollständig: '+nearStatusText+'. Die amtliche nahverschattung.json muss neben index.html liegen.';
+  }
+  if(weather){calculate();if(horizon&&nearData)saveForecastSnapshots();}
+  else renderNearModel();
+  updateStatus();
+}
+function renderNearModel(){
+  if(!nearData){
+    $('nearSummary').textContent='Nahprofil fehlt. V11 ist noch nicht vollständig: es werden keine Prognosen archiviert.';
+    return;
+  }
+  $('nearSummary').innerHTML='<strong>DOM20-Nahverschattung aktiv.</strong> '+
+    nearData.panelProfiles.map(p=>escapeHtml(p.name)+': '+p.samples.length+' Modulpositionen').join(' · ')+
+    '. Direkte Sonnenstrahlung wird je Modulposition durch Berg und Hindernisse abgeschattet; diffuses Himmelslicht anteilig.';
+}
 // V5: Integration in echten 1-Minuten-Schritten. Strahlung: 15-Minuten-
 // Mittelwerte (Endzeitstempel, rueckwaerts) wenn vollstaendig vorhanden;
 // sonst die stündlichen Mittelwerte fuer die gesamte betroffene Stunde.
@@ -326,6 +406,8 @@ function calculate(){
     });
   }
   const factors=state.panels.map(p=>({shaded:diffuseFactor(p,true),open:diffuseFactor(p,false)}));
+  if(nearData&&horizon&&nearShadeFactors.length!==state.panels.length)initNearFactors();
+  const nearReady=!!(nearData&&horizon&&nearShadeFactors.length===state.panels.length);
   const allowedDayKeys=new Set();
   if(h.time.length){let d=dayKey(h.time[0]);for(let j=0;j<7;j++){allowedDayKeys.add(d);d=dayAfter(d)}}
   const result=[];
@@ -347,8 +429,8 @@ function calculate(){
       const binStart=end-3600+five*OUTPUT_SECONDS;
       const key=dayKey(binStart+150);
       if(!allowedDayKeys.has(key))continue;
-      let powerSum=0,baseSum=0,sunlightMinutes=0,blockedMinutes=0;
-      const byPanel=state.panels.map(()=>({base:0,power:0,lit:0}));
+      let powerSum=0,baseSum=0,nearSum=0,sunlightMinutes=0,blockedMinutes=0;
+      const byPanel=state.panels.map(()=>({base:0,power:0,near:0,lit:0}));
       for(let m=0;m<5;m++){
         const ts=binStart+(m+0.5)*INTEGRATION_SECONDS;
         const sun=solarPosition(ts);
@@ -378,12 +460,28 @@ function calculate(){
           const b=modelPower(gtOpen),v=modelPower(gtShade);
           byPanel[j].base+=b/5;
           byPanel[j].power+=v/5;
+          // Auf Dachflächen bezogene Modul-Stichproben: reine geometrische
+          // Abschattung, gleicher pv-Kennwert und gleiche Systemverluste wie V10.
+          if(nearReady){
+            const samples=nearData.panelProfiles[j].samples;
+            const powerPerSample=samples.reduce((total,sample,k)=>{
+              const visible=openSun&&sun.alt>=Math.max(interpolateHorizon(sun.az),nearAngle(sample,sun.az));
+              const gtNear=dni*incidence*(visible?1:0)+(openSun?dhi:0)*nearShadeFactors[j][k]+reflected;
+              return total+modelPower(gtNear);
+            },0)/samples.length;
+            byPanel[j].near+=powerPerSample/5;
+            nearSum+=powerPerSample/5;
+          }
           if(terrainVisible&&incidence>0)byPanel[j].lit+=.2;
           baseSum+=b/5;
           powerSum+=v/5;
         });
       }
-      result.push({ts:binStart+150,day:key,power:powerSum,base:baseSum,
+      if(nearReady){
+        powerSum=nearSum;
+        byPanel.forEach(p=>{p.power=p.near;});
+      }
+      result.push({ts:binStart+150,day:key,power:powerSum,base:baseSum,near:nearReady?nearSum:null,
         loss:Math.max(0,baseSum-powerSum),cloud,byPanel,sunlightMinutes,blockedMinutes,
         radiationSource:use15?'15-min':'60-min', durationHours:OUTPUT_SECONDS/3600});
     }
@@ -426,14 +524,14 @@ function aggregateDays(rows){
 function render(){
   const totalKwp=state.panels.reduce((s,p)=>s+p.kwp,0);
   $('kpiKwp').innerHTML=number(totalKwp,1)+' <span class="unit">kWp</span>';
-  if(!calculated.length){$('kpiYield').textContent='—';$('kpiBase').textContent='—';$('kpiLoss').textContent='—';return;}
+  if(!calculated.length||!nearData||!horizon){$('kpiYield').textContent='—';$('kpiBase').textContent='—';$('kpiLoss').textContent='—';$('days').innerHTML='<div class="notice">Warte auf beide geprüften Verschattungsprofile und Wetterdaten.</div>';$('hourChart').innerHTML='<div class="notice">V11-Prognose noch nicht vollständig geladen.</div>';renderNearModel();return;}
   const days=groupDays();
   const sum=days.reduce((acc,d)=>({power:acc.power+d.power,base:acc.base+d.base,loss:acc.loss+d.loss}),{power:0,base:0,loss:0});
   $('kpiYield').innerHTML=number(sum.power,0)+' <span class="unit">kWh</span>';
   $('kpiYieldNote').textContent='7 Tage · wetterabhängiger Schätzwert';
   $('kpiBase').innerHTML=number(sum.base,0)+' <span class="unit">kWh</span>';
-  $('kpiLoss').innerHTML=(horizon?'-':'— ') + number(sum.loss,0)+' <span class="unit">kWh</span>';
-  $('kpiLossNote').textContent=horizon?`${number(sum.base>0?sum.loss/sum.base*100:0,1)} % gegenüber unverschattet`:'Horizontprofil fehlt';
+  $('kpiLoss').innerHTML=(horizon&&nearData?'-':'— ') + number(sum.loss,0)+' <span class="unit">kWh</span>';
+  $('kpiLossNote').textContent=horizon&&nearData?`${number(sum.base>0?sum.loss/sum.base*100:0,1)} % gegenüber unverschattet`:'Nah- oder Fernprofil fehlt';
   if(!days.some(d=>d.day===selectedDay))selectedDay=days[Math.min(new Date().getHours()>=17?1:0,days.length-1)].day;
   const max=Math.max(...days.map(d=>d.base),1);
   $('days').innerHTML=days.map(d=>{
@@ -442,7 +540,7 @@ function render(){
   }).join('');
   document.querySelectorAll('[data-day]').forEach(el=>el.addEventListener('click',()=>{selectedDay=el.dataset.day;render()}));
   const d=days.find(d=>d.day===selectedDay);
-  renderHourChart(d);renderTable(d);renderHorizon();
+  renderHourChart(d);renderTable(d);renderHorizon();renderNearModel();
 }
 function renderHourChart(day){
   $('hourTitle').textContent='PV-Leistung · 5 Minuten · '+fmtLongDay(day.day);
@@ -483,7 +581,7 @@ function renderHourChart(day){
   const blocked=day.rows.reduce((s,r)=>s+r.blockedMinutes/60,0);
   const litRows=day.rows.filter(r=>r.sunlightMinutes>0),quarterRows=litRows.filter(r=>r.radiationSource==='15-min');
   const quarterShare=litRows.length?quarterRows.length/litRows.length*100:0;
-  $('daySummary').innerHTML=`<strong>${number(day.power,1)} kWh</strong> mit Bergen · <strong>${number(day.base,1)} kWh</strong> ohne Berge · Geländeschatten <strong>${horizon?number(day.loss,1)+' kWh':'nicht verfügbar'}</strong><br> Sonne geometrisch über dem Horizont: ca. ${number(sunlight,1)} h; davon hinter Bergen: ${horizon?number(blocked,1)+' h':'nicht ermittelt'}.<br><span class="hint">Strahlungsdaten bei Tageslicht: ${number(quarterShare,0)} % aus 15-Minuten-Werten, Rest stündlich. Die Wolkenprognose kann trotzdem deutlich abweichen.</span>`;
+  $('daySummary').innerHTML=`<strong>${number(day.power,1)} kWh</strong> mit Berg-, Baum- und Gebäudeverschattung · <strong>${number(day.base,1)} kWh</strong> ohne Verschattung · gesamte Verschattung <strong>${horizon?number(day.loss,1)+' kWh':'nicht verfügbar'}</strong><br> Sonne geometrisch über dem Horizont: ca. ${number(sunlight,1)} h; davon hinter Bergen: ${horizon?number(blocked,1)+' h':'nicht ermittelt'}.<br><span class="hint">Strahlungsdaten bei Tageslicht: ${number(quarterShare,0)} % aus 15-Minuten-Werten, Rest stündlich. Die Wolkenprognose kann trotzdem deutlich abweichen.</span>`;
 }
 function renderTable(day){
   $('tableTitle').textContent='Ertrag pro PV-Fläche · '+fmtLongDay(day.day);
@@ -540,7 +638,7 @@ function refreshPanelEditor(){
 }
 function updateLocationHeading(){
   $('locationTitle').textContent=state.locationName;
-  document.title='Solarprognose '+state.locationName+' · Bergschatten';
+  document.title='Solarprognose '+state.locationName+' · V11 mit Bäumen und Gebäuden';
 }
 function syncSettings(){
   updateLocationHeading();
@@ -551,7 +649,7 @@ function applyHorizon(profile){
   if(!Array.isArray(profile?.points)||profile.points.length<8)throw Error('Das Horizontprofil muss mindestens 8 Punkte enthalten.');
   const sorted=profile.points.map(p=>({az:safe(p.az),height:safe(p.height)})).sort((a,b)=>a.az-b.az);
   if(sorted.some(p=>p.az<0||p.az>=360||p.height<0||p.height>89)||sorted.some((p,i)=>i>0&&p.az<=sorted[i-1].az))throw Error('Ungültige oder doppelte Winkel/Höhen im Horizontprofil.');
-  horizon=sorted;profileSource=profile.source||'Benutzerprofil';errorHorizon='';const stored=storeHorizon();
+  horizon=sorted;profileSource=profile.source||'Benutzerprofil';errorHorizon='';initNearFactors();const stored=storeHorizon();
   $('horizonBadge').textContent='Bergschatten aktiv';$('horizonSource').textContent=profileSource+' · '+horizon.length+' Richtungen'+(stored?' · lokal gespeichert':' · ACHTUNG: Speicherung im Browser nicht möglich! Bitte Profil exportieren.');$('horizonWarning').classList.add('hidden');
   calculate();if(!weather)renderHorizon();updateStatus();
 }
@@ -560,7 +658,8 @@ function updateStatus(){
   if(working){setStatus('Aktualisierung läuft …',true);return;}
   if(!weather){setStatus('Lade Wetterprognose …',true);return;}
   if(!horizon){setStatus('Nur unverschattete Prognose',true);return;}
-  setStatus('Live · Bergschatten aktiv');
+  if(!nearData){setStatus('Nahprofil fehlt · V11 unvollständig',true);return;}
+  setStatus('Live · Berg- und Nahverschattung aktiv');
 }
 // API responses may be temporarily rate-limited. Only elevation requests are retried.
 const delay=ms=>new Promise(resolve=>setTimeout(resolve,ms));
@@ -818,7 +917,7 @@ async function refreshAll(loadHorizon=true,forceTerrain=false){
   })];
   if(loadHorizon)jobs.push(fetchHorizon(forceTerrain));
   await Promise.all(jobs);
-  if(!errorWeather&&weather&&horizon&&state.lat===locLat&&state.lon===locLon)saveForecastSnapshots();
+  if(!errorWeather&&weather&&horizon&&nearData&&state.lat===locLat&&state.lon===locLon){saveForecastSnapshots();}
   working=false;updateStatus();
 }
 function exportProfile(){
@@ -854,6 +953,7 @@ $('restorePublishedHorizon').addEventListener('click',async()=>{
   }catch(e){toast('Originalprofil konnte nicht geladen werden: '+e.message)}
   finally{btn.disabled=false;btn.textContent='Originalprofil aus GitHub wiederherstellen'}
 });
+$('nearReload').addEventListener('click',loadNearProfile);
 $('refresh').addEventListener('click',()=>refreshAll(false));
 $('loadHorizon').addEventListener('click',()=>{
   if(horizon&&!confirm('Das aktuelle Horizontprofil durch neue Terrain-Höhendaten ersetzen? Manuelle Änderungen gehen dabei verloren.'))return;
@@ -886,12 +986,13 @@ $('locationForm').addEventListener('submit',event=>{
   // Nur der Ortsname? Keinerlei Neuberechnung und keine Netzwerkanfrage.
   // Neue Koordinaten? Wetterdaten UND Gelände zwingend neu berechnen.
   if(changed){
+    nearData=null;nearShadeFactors=[];
     weather=null;calculated=[];selectedDay='';horizon=null;profileSource='';errorHorizon='';
     $('days').innerHTML='<p class="hint">Neuer Standort: lade Wetterdaten und berechne den Berghorizont …</p>';
     $('hourChart').innerHTML='<div class="notice">Geländeberechnung und Wetterdaten für die neuen Koordinaten werden geladen …</div>';
     $('daySummary').textContent='Wetterdaten und Geländeprofil werden aktualisiert.';
     $('panelTable').innerHTML='<tr><td colspan="4">Standortwechsel: Neuberechnung läuft …</td></tr>';
-    refreshAll(true,true);
+    refreshAll(true,true);loadNearProfile();
   }
 });
 $('applyPhysics').addEventListener('click',()=>{
@@ -906,14 +1007,16 @@ $('applyPanels').addEventListener('click',()=>{
     return {name:f('name').trim(),kwp:Number(f('kwp')),az:Number(f('az')),tilt:Number(f('tilt'))};
   });
   if(input.some(p=>!p.name||!Number.isFinite(p.kwp)||p.kwp<0||!Number.isFinite(p.az)||p.az<0||p.az>360||!Number.isFinite(p.tilt)||p.tilt<0||p.tilt>90)){toast('Dachflächen-Daten kontrollieren (kWp ≥ 0, Azimut 0–360, Neigung 0–90).');return}
-  state.panels=input;saveState();calculate();
+  state.panels=input;saveState();if(nearData){try{validateNearData(nearData);initNearFactors()}catch(e){nearData=null;nearShadeFactors=[]}}calculate();
 });
 // Unit tests can replace fetch with mock responses; no backend is required.
 window.SolarApp={solarPosition,interpolateHorizon,diffuseFactor,calculate,groupDays,forecastUrl,
   getWeatherResolution:()=>weatherResolution,getState:()=>state,getHorizon:()=>horizon,getCalculated:()=>calculated,
   profileKey,archiveModelId,archiveRecord,readForecastArchive,getArchive:()=>forecastArchive,saveForecastSnapshots,renderHistoryInfo,
-  setTestWeather:w=>{weather=w;calculate()},importProfile,loadPublishedHorizon,restoreOriginalFromCache:loadCachedOriginal};
-syncSettings();refreshAll(true);
+  setTestWeather:w=>{weather=w;calculate()},importProfile,loadPublishedHorizon,restoreOriginalFromCache:loadCachedOriginal,
+  getNearData:()=>nearData,loadNearProfile,validateNearData,nearVisibleFraction,
+  setTestNearData:d=>{nearData=validateNearData(d);nearStatusText="DOM20-Testprofil";initNearFactors();calculate()}};
+syncSettings();loadNearProfile();refreshAll(true);
 setInterval(()=>{if(!document.hidden)refreshAll(false)},30*60*1000);
 </script>
 </body></html>
