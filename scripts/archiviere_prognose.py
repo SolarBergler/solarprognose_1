@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Archiviert ausschließlich die bereits in V10 berechneten Prognosen via Chromium.
+"""Archiviert die auf der Website berechnete V11-Prognose via Chromium.
 
 Benoetigt auf GitHub Actions: playwright + chromium. Auf iOS/macOS keine Installation.
 """
@@ -15,12 +15,12 @@ from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeo
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / 'prognosen'
-STATE_FILE = DATA / 'browser_prognosezustand.json'
+STATE_FILE = DATA / 'browser_prognosezustand_v11.json'
 URL = os.getenv('PV_SITE_URL', 'https://solarbergler.github.io/solarprognose_1/')
 EVENT = os.getenv('GITHUB_EVENT_NAME', 'workflow_dispatch')
 CRON = os.getenv('GITHUB_EVENT_SCHEDULE', '')
 TZ = ZoneInfo('Europe/Berlin')
-ARCHIVE_KEY = 'schliersee-forecast-progressive-v10'
+ARCHIVE_KEY = 'schliersee-forecast-progressive-v11'
 
 
 def save_json(path, value):
@@ -61,7 +61,7 @@ def main():
     if STATE_FILE.exists():
         previous = json.loads(STATE_FILE.read_text(encoding='utf-8'))
         if previous.get('version') != 2 or not isinstance(previous.get('days'), dict):
-            raise RuntimeError('Gespeicherter V10-Prognosezustand ist ungueltig.')
+            raise RuntimeError('Gespeicherter V11-Prognosezustand ist ungueltig.')
         for record in previous['days'].values():
             # V10 benutzt im RAM eine Map fuer die Diagramme. Nach JSON-Serialisierung
             # waere daraus ein kaputtes {} geworden. Diese Zwischenwerte NIE importieren.
@@ -98,7 +98,8 @@ def main():
         try:
             page.wait_for_function('''() => {
               const a=window.SolarApp;
-              if (!a || a.getHorizon()?.length!==720) return false;
+              if (!a || a.getHorizon()?.length!==720 || !a.getNearData?.() ||
+                  !document.getElementById('status')?.textContent?.includes('Nahverschattung aktiv')) return false;
               const date=new Intl.DateTimeFormat('sv-SE',{timeZone:'Europe/Berlin',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
               const rec=a.getArchive()?.days?.[date];
               return !!(rec && rec.model===a.archiveModelId() && rec.current?.length>=280 &&
@@ -115,7 +116,7 @@ def main():
                 print('Diagnose fehlgeschlagen:', diagnostic_error)
             print('JavaScript-Fehler:', errors[-5:])
             print('Fehlgeschlagene Netzwerkanfragen:', failed_requests[-10:])
-            raise RuntimeError('V10 konnte keine gueltige Live-Prognose mit 720-Punkte-Bergprofil bereitstellen.') from ex
+            raise RuntimeError('V11 konnte keine gültige Live-Prognose mit 720-Punkte-Berg- und DOM20-Nahprofil bereitstellen.') from ex
 
         result = page.evaluate('''() => {
           const app=window.SolarApp;
@@ -130,6 +131,9 @@ def main():
             status:document.getElementById('status')?.textContent?.trim(),
             horizonSource:document.getElementById('horizonSource')?.textContent?.trim(),
             modelHash:app.archiveModelId(),
+            modelVersion:'V11',
+            nearProfileId:app.getNearData()?.id,
+            nearProfileSource:app.getNearData()?.source,
             horizonPoints:app.getHorizon()?.length,
             weatherResolution:app.getWeatherResolution(),
             locationName:state.locationName,
@@ -148,7 +152,7 @@ def main():
 
     if result['day'] != day:
         raise RuntimeError(f'Lokales Datum {day} != Prognosedatum {result["day"]}')
-    if result['horizonPoints'] != 720 or not result['status'] or 'Bergschatten aktiv' not in result['status']:
+    if result['horizonPoints'] != 720 or not result['nearProfileId'] or not result['status'] or 'Nahverschattung aktiv' not in result['status']:
         raise RuntimeError('Kein aktives Geländeprofil. Zahlen werden nicht archiviert.')
     if len(result['progressiveCurrent']) < 280 or len(result['original']['values']) < 280:
         raise RuntimeError('Unvollständige Fünf-Minuten-Prognose.')
@@ -165,15 +169,15 @@ def main():
         if isinstance(record, dict):
             record.pop('_lookup', None)
             record.pop('_lookupVersion', None)
-    result['captureType'] = 'live-browser-solarprognose-v10'
+    result['captureType'] = 'live-browser-solarprognose-v11-dom20'
     result['slot'] = slot
     result['sourceUrl'] = URL
-    result['description'] = 'Echter JavaScript-Lauf im Chromium; alte Tagesintervalle sind in V10 eingefroren. Originalprognose wird nicht ueberschrieben.'
+    result['description'] = 'Echter JavaScript-Lauf mit DOM20-Baum- und Gebäudeverschattung, 720-Punkte-Berghorizont und 5-Minuten-Werten. Abgelaufene Intervalle bleiben eingefroren. Historische V10-Dateien sind unverändert.'
     result['capturedAtLocal'] = datetime.now(TZ).isoformat()
     save_json(output, result)
     save_json(STATE_FILE, browser_archive)
     print('GESPEICHERT:', output)
-    print(f'Ist von der Seite gelesene Prognose: {result["powerKWh"]:.2f} kWh; Original: {sum(v[1]/12 for v in result["original"]["values"]):.2f} kWh')
+    print(f'Ist von der Seite gelesene V11-Prognose: {result["powerKWh"]:.2f} kWh; Original: {sum(v[1]/12 for v in result["original"]["values"]):.2f} kWh')
     print('Gelände:', result['horizonSource'])
     return 0
 
