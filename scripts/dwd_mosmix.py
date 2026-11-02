@@ -74,11 +74,12 @@ def haversine(lat1,lon1,lat2,lon2):
     return 12742*math.asin(min(1,math.sqrt(h)))
 
 
-def parse_kml(kml,station_id=None):
+def parse_kml(kml_stream,station_id=None):
     time_steps=[];issue=None;selected=None;best=float('inf')
-    # iterparse is memory-bounded on the huge DWD all-stations KMZ.
+    # IMPORTANT: stream the decompressed KML directly from ZipFile.open().
+    # Never read the whole uncompressed all-stations KML into RAM.
     root=None
-    for event,el in ET.iterparse(io.BytesIO(kml),events=('start','end')):
+    for event,el in ET.iterparse(kml_stream,events=('start','end')):
         if root is None:root=el
         if event!='end':continue
         typ=tag(el)
@@ -196,8 +197,9 @@ def obtain():
             with zipfile.ZipFile(io.BytesIO(raw)) as z:
                 names=[n for n in z.namelist() if n.lower().endswith('.kml')]
                 if not names:raise RuntimeError('DWD KMZ enthält keine KML')
-                kml=z.read(names[0])
-            times,issue,st=parse_kml(kml,station_id if mode=='single' else None)
+                # Stream decompression and XML parsing; uncompressed KML can exceed 1 GiB.
+                with z.open(names[0]) as kml_stream:
+                    times,issue,st=parse_kml(kml_stream,station_id if mode=='single' else None)
             result=build_weather(times,issue,st)
             return result
         except Exception as ex:
