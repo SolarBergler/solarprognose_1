@@ -39,9 +39,9 @@ def main():
         return 0
 
     if EVENT == 'schedule':
-        if CRON == '0 6 1-7 11 *':
+        if CRON in ('0 6 1-7 11 *', '0 6 * * *'):
             slot, target = '06', 6
-        elif CRON == '0 18 1-7 11 *':
+        elif CRON in ('0 18 1-7 11 *', '0 18 * * *'):
             slot, target = '18', 18
         else:
             raise RuntimeError(f'Unbekannter Scheduler-Ausloeser {CRON!r}; archiviere nichts.')
@@ -77,6 +77,13 @@ def main():
         page = context.new_page()
         page.on('pageerror', lambda e: errors.append(str(e)))
         page.on('requestfailed', lambda req: failed_requests.append(f'{req.url}: {req.failure}'))
+        # Frisch abgerufene DWD-Datei sofort für den automatischen Browser bereitstellen.
+        # GitHub Pages braucht nach einem Commit eventuell noch einige Minuten zur Veröffentlichung.
+        dwd_file = DATA / 'dwd_wetterstand.json'
+        if dwd_file.exists():
+            def serve_dwd(route):
+                route.fulfill(status=200,content_type='application/json',body=dwd_file.read_text(encoding='utf-8'))
+            page.route('**/prognosen/dwd_wetterstand.json*',serve_dwd)
         if previous is not None:
             # localStorage wird vor dem ersten V10-Script gesetzt, damit die Daten vor
             # dem neuen Abruf eingefroren sind und die Vorabendkurve erhalten bleibt.
@@ -98,7 +105,8 @@ def main():
         try:
             page.wait_for_function('''() => {
               const a=window.SolarApp;
-              if (!a || a.getHorizon()?.length!==720 || !a.getNearData?.() ||
+              if (!a || !document.querySelector('.eyebrow')?.textContent?.includes('V12.4') ||
+                  a.getHorizon()?.length!==720 || !a.getNearData?.() ||
                   !document.getElementById('status')?.textContent?.includes('Nahverschattung aktiv')) return false;
               const date=new Intl.DateTimeFormat('sv-SE',{timeZone:'Europe/Berlin',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
               const rec=a.getArchive()?.days?.[date];
@@ -131,12 +139,15 @@ def main():
             status:document.getElementById('status')?.textContent?.trim(),
             horizonSource:document.getElementById('horizonSource')?.textContent?.trim(),
             modelHash:app.archiveModelId(),
-            modelVersion:'V12',
+            modelVersion:'V12.4',
+            weatherDiagnostics:app.getWeatherDiagnostics?.(),
             nearProfileId:app.getNearData()?.id,
             nearProfileSource:app.getNearData()?.source,
             horizonPoints:app.getHorizon()?.length,
             weatherResolution:app.getWeatherResolution(),
             locationName:state.locationName,
+            latitude:state.lat,
+            longitude:state.lon,
             plantKWp:state.panels.reduce((a,p)=>a+p.kwp,0),
             panelNames:state.panels.map(p=>p.name),
             powerKWh:day.power,
@@ -146,6 +157,7 @@ def main():
             progressiveCurrent:record.current,
             progressiveLastUpdate:record.updatedAt,
             browserArchive:archive,
+            sourceWeatherData:app.getWeatherData?.() || null,
           };
         }''')
         browser.close()
@@ -164,19 +176,41 @@ def main():
     if abs(total - float(result['powerKWh'])) > 0.2:
         raise RuntimeError(f'Widerspruch zwischen archivierter 5-Minuten-Kurve ({total:.3f} kWh) und Tageswert ({result["powerKWh"]:.3f} kWh)')
 
+    # Der Roh-Wetterstand wird zusätzlich öffentlich auf GitHub Pages bereitgestellt.
+    # Bei einer fehlgeschlagenen Browser-Open-Meteo-Abfrage darf nie ein alter
+    # Cache als frischer Wetterstand gespeichert werden. Die bestehende
+    # Archivdatei (06/18 Uhr) und die fortgeschriebenen Kurven bleiben unverändert.
+    source_weather = result.pop('sourceWeatherData', None)
+    meteo_provider=(result.get('weatherDiagnostics') or {}).get('source', 'unknown')
+    if meteo_provider not in ('open-meteo','dwd'):
+        raise RuntimeError(f'Kein frischer unabhängiger Wetterstand verfügbar: {meteo_provider}')
+    if isinstance(source_weather, dict) and isinstance(source_weather.get('hourly', {}).get('time'), list):
+        shared_weather = {
+            'schema': 1,
+            'capturedAt': datetime.now(timezone.utc).isoformat(),
+            'latitude': result['latitude'],
+            'longitude': result['longitude'],
+            'source': 'Open-Meteo, live über die archivierende GitHub-Actions-Browserausführung',
+            'weather': source_weather,
+        }
+        save_json(DATA / 'letzter_wetterstand.json', shared_weather)
+        print('GitHub-Wetterstand aktualisiert (Safari-Fallback).')
+    else:
+        print('WARNUNG: Kein sicher live erfasster Wetterstand verfügbar; GitHub-Wettercache bleibt unverändert.')
+
     browser_archive = result.pop('browserArchive')
     for record in browser_archive.get('days', {}).values():
         if isinstance(record, dict):
             record.pop('_lookup', None)
             record.pop('_lookupVersion', None)
-    result['captureType'] = 'live-browser-solarprognose-v12-dom20'
+    result['captureType'] = 'live-browser-solarprognose-v12.4-dom20'
     result['slot'] = slot
     result['sourceUrl'] = URL
     result['description'] = 'Echter JavaScript-Lauf mit DOM20-Baum- und Gebäudeverschattung, 720-Punkte-Berghorizont und 5-Minuten-Werten. Abgelaufene Intervalle bleiben eingefroren. Historische V10-Dateien sind unverändert.'
     result['capturedAtLocal'] = datetime.now(TZ).isoformat()
     save_json(output, result)
     save_json(STATE_FILE, browser_archive)
-    print('GESPEICHERT:', output)
+    print('GESPEICHERT:', output, '| Wetterquelle:', meteo_provider)
     print(f'Ist von der Seite gelesene V12-Prognose: {result["powerKWh"]:.2f} kWh; Original: {sum(v[1]/12 for v in result["original"]["values"]):.2f} kWh')
     print('Gelände:', result['horizonSource'])
     return 0
