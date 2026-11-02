@@ -31,9 +31,15 @@ jobs:
           python-version: '3.12'
 
       - name: DWD MOSMIX L unabhängig abrufen
+        id: dwd
         # DWD-Ausfall darf Open-Meteo nicht blockieren; im Log bleibt der Fehler sichtbar.
         continue-on-error: true
         run: python scripts/dwd_mosmix.py
+
+      - name: DWD-Abrufstatus sichtbar kennzeichnen
+        if: steps.dwd.outcome == 'failure'
+        run: |
+          echo '::warning title=DWD-Fallback fehlt::DWD-MOSMIX-Download fehlgeschlagen. Bitte Protokoll des Schritts DWD MOSMIX L unabhängig abrufen prüfen; vorhandene PV-Prognosearchivierung wird fortgesetzt.'
 
       - name: Messwoche oder manueller Test?
         id: archive_window
