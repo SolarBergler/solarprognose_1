@@ -15,12 +15,13 @@ from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeo
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / 'prognosen'
-STATE_FILE = DATA / 'browser_prognosezustand_v11.json'
+# Neuer Modellzustand; bisherige V11/V12.6-Originale und Zustandsdateien bleiben erhalten.
+STATE_FILE = DATA / 'browser_prognosezustand_v12_7.json'
 URL = os.getenv('PV_SITE_URL', 'https://solarbergler.github.io/solarprognose_1/')
 EVENT = os.getenv('GITHUB_EVENT_NAME', 'workflow_dispatch')
 CRON = os.getenv('GITHUB_EVENT_SCHEDULE', '')
 TZ = ZoneInfo('Europe/Berlin')
-ARCHIVE_KEY = 'schliersee-forecast-progressive-v11'
+ARCHIVE_KEY = 'schliersee-forecast-progressive-v12.7'
 
 
 def save_json(path, value):
@@ -60,7 +61,7 @@ def main():
     previous = None
     if STATE_FILE.exists():
         previous = json.loads(STATE_FILE.read_text(encoding='utf-8'))
-        if previous.get('version') != 2 or not isinstance(previous.get('days'), dict):
+        if previous.get('version') != 3 or not isinstance(previous.get('days'), dict):
             raise RuntimeError('Gespeicherter V12-Prognosezustand ist ungueltig.')
         for record in previous['days'].values():
             # V10 benutzt im RAM eine Map fuer die Diagramme. Nach JSON-Serialisierung
@@ -106,7 +107,7 @@ def main():
             page.wait_for_function('''() => {
               const a=window.SolarApp;
               const required=['getHorizon','getNearData','getArchive','archiveModelId',
-                              'groupDays','getState','getWeatherResolution'];
+                              'groupDays','getState','getWeatherResolution','getInverterConfiguration'];
               if (!a || !required.every(name=>typeof a[name]==='function') ||
                   a.getHorizon()?.length!==720 || !a.getNearData?.() ||
                   !document.getElementById('status')?.textContent?.includes('Nahverschattung aktiv')) return false;
@@ -152,6 +153,10 @@ def main():
             longitude:state.lon,
             plantKWp:state.panels.reduce((a,p)=>a+p.kwp,0),
             panelNames:state.panels.map(p=>p.name),
+            inverterConfiguration:app.getInverterConfiguration(),
+            systemLossesPercent:state.losses,
+            clippingKWh:day.clipping,
+            withoutHorizonClippingKWh:day.baseClipping,
             powerKWh:day.power,
             withoutHorizonKWh:day.base,
             byPanel:day.panels.map((p,i)=>({name:state.panels[i].name,kWh:p.power,withoutHorizonKWh:p.base})),
@@ -170,6 +175,11 @@ def main():
         raise RuntimeError('Kein aktives Geländeprofil. Zahlen werden nicht archiviert.')
     if len(result['progressiveCurrent']) < 280 or len(result['original']['values']) < 280:
         raise RuntimeError('Unvollständige Fünf-Minuten-Prognose.')
+    if result['inverterConfiguration'].get('model') != 'v12.7-ac-limit-1':
+        raise RuntimeError('Wechselrichter-Modellkennung fehlt; keine eindeutige Zuordnung zur Messwoche.')
+    if not all(isinstance(result.get(k), (int, float)) and result[k] >= 0
+               for k in ('clippingKWh', 'withoutHorizonClippingKWh')):
+        raise RuntimeError('Ungültige Clipping-Metadaten.')
     if abs(datetime.now(timezone.utc).timestamp()*1000 - result['progressiveLastUpdate']) > 5*60*1000:
         raise RuntimeError('Prognose wurde nicht frisch erzeugt.')
 

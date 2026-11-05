@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="apple-mobile-web-app-title" content="Solar Schliersee" />
 <meta name="description" content="Mobile PV-Ertragsprognose für Schliersee mit Bergen und Geländehorizont. Läuft ohne Python und ohne Backend." />
-<title>Solarprognose Schliersee · Berg- und Nahverschattung V12.6.1</title>
+<title>Solarprognose Schliersee · Berg- und Nahverschattung V12.7</title>
 <style>
 :root{color-scheme:dark;--bg:#0a111b;--surface:#111d2b;--surface2:#162438;--line:#293b4d;--txt:#e8f0f8;--muted:#95a8bc;--lime:#b9ee69;--sky:#7ba8cb;--orange:#f1ae6a;--red:#f48e8e}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 85% 0, #1e3144 0,transparent 34%),var(--bg);color:var(--txt);font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--lime);outline-offset:2px}input,textarea{border:1px solid var(--line);border-radius:8px;padding:9px 10px;color:var(--txt);background:#0b1725;width:100%}input[type=number]{font-variant-numeric:tabular-nums}input[type=range]{padding:0;accent-color:var(--lime)}.layout{max-width:1320px;margin:0 auto;padding:32px 27px 70px}.top{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;flex-wrap:wrap;margin-bottom:31px}.eyebrow{color:var(--lime);text-transform:uppercase;font-size:11px;letter-spacing:.19em;font-weight:800}.brand{font-size:34px;letter-spacing:-1.5px;line-height:1.1;font-weight:750;margin:11px 0}.sub{color:var(--muted);max-width:710px;margin:0;font-size:14px}.top-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.pill{border:1px solid #345043;background:#172b2b;color:#b8eac2;border-radius:30px;padding:8px 13px;font-size:12px;font-weight:700}.pill.warn{color:#ffcd91;border-color:#76553a;background:#32281f}.btn{border:1px solid #47614f;background:#203d35;color:#cdf3b4;padding:9px 14px;border-radius:10px;font-weight:650;font-size:13px}.btn:hover{background:#2b4b3f}.btn.secondary{border-color:var(--line);background:#152334;color:var(--txt)}.btn.secondary:hover{background:#26394c}.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:22px}.kpi{background:linear-gradient(150deg,#152636,#101c29);border:1px solid #2c4050;border-radius:16px;padding:19px 19px 16px;min-height:135px;overflow:hidden}.kpi span{font-size:12px;color:var(--muted);display:block;margin-bottom:11px}.kpi strong{font-size:34px;font-weight:770;letter-spacing:-1.7px;line-height:1.2;font-variant-numeric:tabular-nums}.kpi .unit{font-size:16px;color:var(--muted);font-weight:500;letter-spacing:0}.kpi em{display:block;color:var(--muted);font-style:normal;margin-top:5px;font-size:12px}.kpi .accent{color:var(--lime)}.kpi .warm{color:var(--orange)}.cols{display:grid;grid-template-columns:minmax(0,1.62fr) minmax(0,1fr);gap:18px}.panel{background:linear-gradient(150deg,#142132,#111b29);border:1px solid #2a394b;border-radius:16px;padding:23px;min-width:0;margin-bottom:18px}.panel h2{font-size:17px;letter-spacing:-.3px;margin:0}.panel-header{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap;margin-bottom:18px}.hint{color:var(--muted);font-size:12px;margin:5px 0 0}.legend{display:flex;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:12px}.legend b{display:inline-block;width:16px;height:3px;border-radius:3px;margin:0 5px 3px 0}.chart{display:block;width:100%;height:auto;overflow:visible;touch-action:pan-y}.axistext{fill:#8299ac;font-size:12px;font-family:inherit}.chart-grid{stroke:#314253;stroke-width:1}.forecast-days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}.day{border:1px solid #344759;background:#152335;min-height:145px;padding:13px 5px 9px;border-radius:11px;color:var(--txt);text-align:center;display:flex;flex-direction:column;gap:5px;align-items:center}.day:hover{background:#21344b}.day.active{border-color:var(--lime);box-shadow:inset 0 0 0 1px var(--lime);background:#21352d}.day .dayname{font-size:11px;color:var(--muted)}.day strong{font-size:17px;font-variant-numeric:tabular-nums}.bars{display:flex;align-items:flex-end;gap:3px;height:70px;width:80%;justify-content:center;margin:4px 0}.bars i{width:15px;display:block;border-radius:3px 3px 0 0;min-height:2px}.bar-base{background:#536d82}.bar-correct{background:var(--lime)}.detail{width:100%;border-collapse:collapse;margin-top:6px;font-size:13px}.detail th,.detail td{text-align:right;padding:12px 6px;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}.detail th:first-child,.detail td:first-child{text-align:left}.detail th{color:var(--muted);font-weight:550;font-size:11px}.detail td:last-child{color:var(--orange)}.detail tr.total td{font-weight:750;color:var(--txt)}.badge{display:inline-flex;gap:7px;align-items:center;font-size:12px;padding:6px 9px;border-radius:6px;background:#1e3136;color:#c5e3de;margin-top:12px}.warning{padding:12px 14px;border-radius:9px;border:1px solid #674b34;background:#332719;color:#ffdaaa;font-size:12px;line-height:1.6;margin-top:12px}.hidden{display:none!important}.horizon-top{display:flex;align-items:center;gap:10px;justify-content:space-between;flex-wrap:wrap}.horizon-meta{color:#a9c0cf;font-size:12px;margin:5px 0 15px}.horizon-wrap{position:relative}.horizon-tooltip{position:absolute;right:0;top:0;border:1px solid #38534d;padding:4px 8px;border-radius:6px;color:var(--lime);font-size:12px;background:#172c28}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}.field .note{font-size:11px;color:var(--muted);margin-top:5px}.settings-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:14px}.setting-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.panels-edit{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:9px}.panels-edit input{padding:8px 6px}.headings{color:var(--muted);font-size:11px;margin-bottom:8px}.panel-edit-row{margin-bottom:8px}details{margin-top:17px;background:#0d1926;border:1px solid #273849;border-radius:12px;padding:12px}summary{font-weight:650;cursor:pointer}textarea{resize:vertical;min-height:84px;margin-top:10px;font-size:12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}.foot{margin-top:13px;color:#8da1b5;font-size:12px;line-height:1.65}.footer{border-top:1px solid #29394b;margin-top:20px;padding-top:19px;color:var(--muted);font-size:12px}.spacer{margin-bottom:14px}.notice{font-size:12px;color:#aac2d4;padding:10px 12px;border-left:3px solid #6086a9;background:#172639;border-radius:3px}.statusbox{border:1px solid var(--line);background:#102130;border-radius:10px;padding:12px;margin-top:10px;font-size:12px;color:var(--muted)}.statusbox strong{color:var(--txt)}
@@ -61,12 +61,24 @@
 .day .day-footer{color:var(--orange);font-size:11px;font-weight:800;margin-top:3px;line-height:1.15;font-variant-numeric:tabular-nums;white-space:nowrap;letter-spacing:-.15px}
 .day .day-footer small{font-size:.85em;font-weight:600}
 @media(max-width:660px){.day{min-height:162px;padding:10px 1px 8px}.day .day-reading{font-size:12px;gap:1px}.day .day-reading small{font-size:8px}.day .bars{height:76px;gap:3px}.day .bars i{width:13px}.day .day-footer{display:flex;flex-direction:column;gap:1px;align-items:center;font-size:11px;white-space:normal}.day .day-footer small{font-size:9px}}
+/* V12.7: Elektrische Konfiguration getrennt von der Profilgeometrie. */
+.plant-dialog select{width:100%;min-width:0;padding:9px;border:1px solid var(--line);border-radius:8px;background:#0b1725;color:var(--txt);font:inherit}
+.plant-dialog .editcells label,.inverter-card label{display:block;min-width:0;font-size:12px;color:var(--muted)}
+.plant-dialog .editcells input{width:100%;margin-top:4px;font-size:16px}
+.assignment{display:flex;gap:10px;align-items:end;margin-top:9px}.assignment label{flex:1;min-width:0;font-size:12px;color:var(--muted)}
+.assignment select{margin-top:4px}.remove-action{flex:none;font-size:12px;padding:9px;border:1px solid #765044;border-radius:8px;background:#32221f;color:#ffc6ad;cursor:pointer}
+.remove-action:disabled{opacity:.5;cursor:not-allowed}.inverters-section{margin-top:22px;border-top:1px solid var(--line);padding-top:18px}
+.inverter-card{margin:10px 0;padding:12px;background:#0d1926;border:1px solid var(--line);border-radius:10px}
+.inverter-inputs{display:grid;grid-template-columns:1fr 1fr;gap:12px}.inverter-inputs input{width:100%;margin-top:4px;font-size:16px}
+.inverter-summary{font-size:12px;color:var(--muted);margin:9px 0;overflow-wrap:anywhere}
+#inverterInfo{margin:-8px 0 20px}#inverterDraftStatus{margin:12px 0}
+@media(max-width:660px){.plant-dialog .editcells{grid-template-columns:1fr 1fr;gap:10px}.plant-dialog .edithead{display:none}.plant-dialog .geometry input{font-size:16px}.inverter-inputs{grid-template-columns:1fr}.assignment{align-items:stretch;flex-direction:column}.remove-action{align-self:flex-start}}
 </style>
 </head>
 <body>
 <main class="layout">
   <header class="top">
-    <div><div class="eyebrow">PV · iPhone / Safari · Berge, Bäume & Gebäude · V12.6.1</div><h1 class="brand">Solarprognose <button type="button" class="location-title-button" id="openLocationDialog" aria-haspopup="dialog" aria-controls="locationDialog" title="Ort und Koordinaten ändern"><span id="locationTitle">Schliersee</span></button><span style="color:var(--lime)">.</span></h1><p class="sub">Solarprognose mit Berg-, Baum- und Gebäudeverschattung aus amtlichen 20-cm-Oberflächendaten. Die alten V10-Prognosen bleiben in GitHub historisch erhalten, werden hier aber nicht mehr als zweites Modell angezeigt. Läuft auf Mac und iPhone direkt im Browser.</p></div>
+    <div><div class="eyebrow">PV · iPhone / Safari · Berge, Bäume & Gebäude · V12.7</div><h1 class="brand">Solarprognose <button type="button" class="location-title-button" id="openLocationDialog" aria-haspopup="dialog" aria-controls="locationDialog" title="Ort und Koordinaten ändern"><span id="locationTitle">Schliersee</span></button><span style="color:var(--lime)">.</span></h1><p class="sub">Solarprognose mit Berg-, Baum- und Gebäudeverschattung aus amtlichen 20-cm-Oberflächendaten. Die alten V10-Prognosen bleiben in GitHub historisch erhalten, werden hier aber nicht mehr als zweites Modell angezeigt. Läuft auf Mac und iPhone direkt im Browser.</p></div>
     <div class="top-right"><span class="pill warn" id="status">Daten werden geladen …</span><button class="btn secondary" id="refresh" type="button">↻ Aktualisieren</button></div>
     <details class="weather-debug hidden" id="weatherDetails" style="width:100%;max-width:710px"><summary>Wetterabruf: Fehlerdetails</summary><p id="weatherDetailText" class="hint" style="white-space:pre-wrap;word-break:break-word"></p></details>
   </header>
@@ -76,6 +88,7 @@
     <div class="kpi"><span>Verlust durch Gelände & Hindernisse</span><strong class="warm" id="kpiLoss">—</strong><em id="kpiLossNote">Berg-, Baum- und Gebäudeverschattung</em></div>
     <div class="kpi"><span>Installierte Generatorleistung</span><button type="button" class="kwp-trigger" id="openPanels" title="Modulfelder bearbeiten"><strong id="kpiKwp">31,305 <span class="unit">kWp</span></strong><span class="pen" aria-hidden="true">✎</span></button><em>Zum Bearbeiten auf die kWp-Zahl tippen</em></div>
   </div>
+  <div class="statusbox" id="inverterInfo" aria-live="polite">AC-Begrenzung · Noch nicht konfiguriert</div>
   <div class="cols">
     <section>
       <div class="panel">
@@ -135,12 +148,20 @@
   </form>
 </dialog>
 <dialog id="panelsDialog" class="plant-dialog" aria-labelledby="plantDialogTitle">
-  <h2 id="plantDialogTitle">PV-Modulfelder</h2>
-  <p class="hint">Modulfelder bearbeiten oder über <strong>+</strong> neue hinzufügen. Der grüne Haken übernimmt Änderungen. Neue/geometrisch geänderte Flächen benötigen neue Gelände- und DOM20-Profile.</p>
+  <h2 id="plantDialogTitle">Modulfelder & Wechselrichter</h2>
+  <p class="hint">Modulfelder bearbeiten oder über <strong>+</strong> hinzufügen. Jedes Feld gehört zu genau einem Wechselrichter; ein aufgeteilter Generator wird als zwei Felder erfasst. Nur geometrische Änderungen benötigen neue Gelände- und DOM20-Profile.</p>
   <form id="panelsForm">
-    <div class="edithead"><span>Name</span><span>kWp</span><span>Azimut °</span><span>Neigung °</span></div>
     <div id="panelsEdit"></div>
-    <div class="plant-actions"><button type="button" class="btn secondary" id="cancelPanels">Abbrechen</button><button type="button" id="addPanel" class="round-action add" title="Modulfeld hinzufügen" aria-label="Modulfeld hinzufügen">+</button><button type="submit" id="applyPanels" class="round-action save" title="Änderungen bestätigen" aria-label="Änderungen speichern">✓</button></div>
+    <button type="button" id="addPanel" class="round-action add" title="Modulfeld hinzufügen" aria-label="Modulfeld hinzufügen">+</button>
+    <section class="inverters-section" aria-labelledby="invertersTitle">
+      <h3 id="invertersTitle">Wechselrichter</h3>
+      <p class="hint">Maximale AC-Wirkleistung laut Datenblatt in <strong>kW</strong> eintragen, nicht kVA oder DC-Modulleistung in kWp. Namen und Zuordnungen sind frei wählbar.</p>
+      <div id="invertersEdit"></div>
+      <button type="button" id="addInverter" class="round-action add" title="Wechselrichter hinzufügen" aria-label="Wechselrichter hinzufügen">+</button>
+      <p class="notice" id="inverterDraftStatus" aria-live="polite"></p>
+      <p class="hint">Die pauschalen Systemverluste aus „Berechnung“ bleiben unverändert. Es wird kein zusätzlicher Wechselrichterwirkungsgrad angesetzt. Einstellungen werden in diesem Browser gespeichert.</p>
+    </section>
+    <div class="plant-actions"><button type="button" class="btn secondary" id="cancelPanels">Abbrechen</button><button type="submit" id="applyPanels" class="round-action save" title="Änderungen bestätigen" aria-label="Änderungen speichern">✓</button></div>
   </form>
 </dialog>
 <dialog id="profileWizard" class="plant-dialog" aria-labelledby="wizardTitle">
@@ -156,17 +177,19 @@
   <div id="wizardDownloads" class="wizard-downloads hidden" aria-live="polite"></div>
   <div class="plant-actions"><button type="button" class="btn secondary" id="closeWizard">Schließen</button><button type="button" class="btn" id="generateProfiles">Profile berechnen</button><button type="button" class="btn hidden" id="verifyProfiles">GitHub-Dateien prüfen & aktivieren</button></div>
 </dialog>
+<script src="./inverters.js?v=12.7"></script>
 <script>
 'use strict';
 const $=id=>document.getElementById(id);
+const WR=window.SolarInverters;
 const rad=Math.PI/180,deg=180/Math.PI;
 const defaultPanels=[{name:'Haus',kwp:14.225,az:165,tilt:37},{name:'Garage',kwp:5.28,az:165,tilt:30},{name:'Carport',kwp:9.9,az:165,tilt:20},{name:'Hütte',kwp:1.9,az:254,tilt:20}];
 const defaultPanelGeometry=[{"name":"Haus","latitude":47.697785941129744,"longitude":11.880120223346184,"width_m":17,"depth_m":6,"azimuth":165,"tilt_deg":37,"lower_edge_height_m":3,"upper_edge_height_m":7},{"name":"Garage","latitude":47.69792646402266,"longitude":11.880227171529725,"width_m":8,"depth_m":5,"azimuth":165,"tilt_deg":30,"lower_edge_height_m":3,"upper_edge_height_m":6},{"name":"Carport","latitude":47.69786343561308,"longitude":11.879849604421532,"width_m":11,"depth_m":6,"azimuth":165,"tilt_deg":20,"lower_edge_height_m":3,"upper_edge_height_m":7},{"name":"Hütte","latitude":47.698012109923496,"longitude":11.880217099312013,"width_m":5.5,"depth_m":1.8,"azimuth":254,"tilt_deg":20,"lower_edge_height_m":2.5,"upper_edge_height_m":4}];
 const defaults={locationName:'Schliersee',lat:47.69784444,lon:11.88009722,losses:12,albedo:.2,roofHeight:5,panels:defaultPanels};
 function savedSettings(){try{return JSON.parse(localStorage.getItem('schliersee-settings-v1'))||{}}catch{return {}}}
-let state={...defaults,...savedSettings(),panels:savedSettings().panels||defaultPanels};
-let panelGeometry=defaultPanelGeometry.map(p=>({...p}));
-let panelsDraft=[];let pendingPanels=null;let pendingGeometry=null;let generatedFiles={};
+let state=WR.migratePlant({...defaults,...savedSettings(),panels:savedSettings().panels||defaultPanels});
+let panelGeometry=(state.panelGeometry||defaultPanelGeometry).map(p=>({...p}));
+let panelsDraft=[],invertersDraft=[];let pendingPanels=null;let pendingGeometry=null;let pendingInverters=null;let generatedFiles={};
 // Correct old rounded sample coordinates without overriding an actual manually set location.
 if(Math.abs(state.lat-47.7)<1e-7&&Math.abs(state.lon-11.88)<1e-7){state.lat=defaults.lat;state.lon=defaults.lon;}
 if(typeof state.locationName!=='string'||!state.locationName.trim())state.locationName=defaults.locationName;
@@ -190,22 +213,23 @@ function saveState(){try{localStorage.setItem('schliersee-settings-v1',JSON.stri
 // V10: Pro Tag nur ein Originalstand und ein fortgeschriebener Stand.
 // Der Originalstand wird nie durch spätere Wetterprognosen überschrieben.
 // Beim laufenden Tag werden alte 5-Minuten-Intervalle NIE ersetzt.
-const FORECAST_ARCHIVE_KEY='schliersee-forecast-progressive-v11';
+const FORECAST_ARCHIVE_KEY='schliersee-forecast-progressive-v12.7';
 const FORECAST_ARCHIVE_DAYS=12;
 let archiveWriteWarning='';
 function readForecastArchive(){
   try{
     const saved=JSON.parse(localStorage.getItem(FORECAST_ARCHIVE_KEY));
-    if(saved?.version===2&&saved.days&&typeof saved.days==='object')return saved;
+    if(saved?.version===3&&saved.days&&typeof saved.days==='object')return saved;
   }catch(e){console.warn('Prognosehistorie nicht lesbar',e)}
-  return {version:2,days:{}};
+  // V10/V11-Originale bleiben im bisherigen Speicherschlüssel unverändert erhalten.
+  return {version:3,days:{},previousModels:{}};
 }
 let forecastArchive=readForecastArchive();
 function archiveModelId(){
   // Ortsname beeinflusst das physikalische Modell nicht.
   const conf=[Number(state.lat).toFixed(8),Number(state.lon).toFixed(8),state.roofHeight,state.losses,state.albedo,
     state.panels.map(p=>[p.kwp,p.az,p.tilt]),
-    horizon?.map(p=>[Number(p.az).toFixed(3),Number(p.height).toFixed(3)])||null,nearData?.id||null,'v11'];
+    horizon?.map(p=>[Number(p.az).toFixed(3),Number(p.height).toFixed(3)])||null,nearData?.id||null,WR.modelConfiguration(state.panels,state.inverters)];
   const str=JSON.stringify(conf);
   let hash=2166136261;
   for(let i=0;i<str.length;i++){hash^=str.charCodeAt(i);hash=Math.imul(hash,16777619)}
@@ -224,11 +248,17 @@ function baseKind(at,day){
 }
 function baseRank(kind){return kind==='Vorabend'?3:kind==='Morgen'?2:1}
 const roundPower=x=>Math.round(x*1000)/1000;
-function packRow(r){return [r.ts,roundPower(r.power),roundPower(r.base),...r.byPanel.flatMap(p=>[roundPower(p.power),roundPower(p.base)])];}
+function packRow(r){
+  // Bei gemeinsamem WR darf Einzelrundung der Felder die gespeicherte AC-Summe nicht erhöhen.
+  const fieldPower=WR.configurationStatus(state.panels,state.inverters).configured?
+    v=>Math.floor(Math.max(0,v)*1e6)/1e6:roundPower;
+  return [r.ts,roundPower(r.power),roundPower(r.base),...r.byPanel.flatMap(p=>[fieldPower(p.power),fieldPower(p.base)]),roundPower(r.clipping),roundPower(r.baseClipping)];
+}
 function restoreRow(raw,packed){
-  if(!packed||packed[0]!==raw.ts||packed.length!==3+state.panels.length*2)return raw;
+  const offset=3+state.panels.length*2;
+  if(!packed||packed[0]!==raw.ts||packed.length!==offset+2)return raw;
   const byPanel=raw.byPanel.map((p,j)=>({...p,power:packed[3+j*2],base:packed[4+j*2]}));
-  return {...raw,power:packed[1],base:packed[2],loss:Math.max(0,packed[2]-packed[1]),byPanel};
+  return {...raw,power:packed[1],base:packed[2],loss:Math.max(0,packed[2]-packed[1]),clipping:packed[offset],baseClipping:packed[offset+1],byPanel};
 }
 function archiveRecord(day){
   const obj=forecastArchive.days[day];
@@ -244,7 +274,7 @@ function saveForecastSnapshots(at=Date.now()){
   for(const day of rawGroupedDays()){
     if(day.day<today||day.rows.length<60)continue;
     const raw=day.rows.map(packRow),kind=baseKind(at,day.day);
-    const old=archiveRecord(day.day);
+    const old=archiveRecord(day.day)||forecastArchive.previousModels?.[model]?.[day.day]||null;
     const oldMap=new Map(old?.current?.map(v=>[v[0],v])||[]);
     const current=raw.map(row=>{
       // Bereits begonnene 5-Minuten-Intervalle gelten als Vergangenheit;
@@ -256,7 +286,15 @@ function saveForecastSnapshots(at=Date.now()){
     // Morgenstand, dieser vor einer früher angelegten Wochen-Vorschau.
     const promote=!old||baseRank(kind)>baseRank(old.original?.kind);
     const original=promote?{at,kind,values:raw.map(r=>[r[0],r[1]])}:old.original;
-    forecastArchive.days[day.day]={model,original,current,updatedAt:at};
+    const previous=forecastArchive.days[day.day];
+    if(previous&&previous.model!==model){
+      // Modellwechsel erhalten den vorherigen Originalstand, auch innerhalb von V12.7.
+      forecastArchive.previousModels??={};
+      forecastArchive.previousModels[previous.model]??={};
+      const {_lookup,_lookupVersion,...persistent}=previous;
+      forecastArchive.previousModels[previous.model][day.day]=persistent;
+    }
+    forecastArchive.days[day.day]={model,modelVersion:'V12.7',inverterConfiguration:getInverterConfiguration(),original,current,updatedAt:at};
   }
   try{
     localStorage.setItem(FORECAST_ARCHIVE_KEY,JSON.stringify(forecastArchive));
@@ -411,17 +449,24 @@ function validateNearData(doc,expectedPanels=state.panels){
   }
   return doc;
 }
-function acceptPublishedConfig(doc){
+function acceptPublishedConfig(doc,{force=false}={}){
   // Neuen Modulfeldbestand auf allen Geräten erst nach Veröffentlichung übernehmen.
   if(!doc?.config?.panels)return;
   const list=doc.config.panels;
   if(!Array.isArray(list)||!list.length||list.length>24)throw Error('Veröffentlichte Modulfeldkonfiguration ist ungültig.');
-  const values=list.map(p=>({name:String(p.name||''),kwp:+p.kwp,az:+p.az,tilt:+p.tilt}));
+  const values=list.map((p,i)=>({id:p.id||'panel-'+(i+1),name:String(p.name||''),kwp:+p.kwp,az:+p.az,tilt:+p.tilt,inverterId:p.inverterId||null}));
   if(values.some(p=>!p.name||!(p.kwp>0)||!Number.isFinite(p.az)||!Number.isFinite(p.tilt)))throw Error('Veröffentlichte kWp/Azimut/Neigung ungültig.');
   // Erst prüfen, dann die lokale Darstellung aktualisieren.
   if(doc.panelProfiles.length!==values.length)throw Error('Neue Konfiguration und Nahprofil passen nicht zusammen.');
+  const sameGeometry=values.length===state.panels.length&&values.every((p,i)=>p.az===state.panels[i].az&&p.tilt===state.panels[i].tilt&&
+    ['latitude','longitude','width_m','depth_m','lower_edge_height_m','upper_edge_height_m'].every(k=>String(list[i].geo?.[k])===String(panelGeometry[i]?.[k])));
+  // Ein erneutes Laden desselben Profils darf lokale Namen, kWp und WR-Zuordnungen nicht zurücksetzen.
+  if(force||!sameGeometry){
+    state.panels=values;
+    if(Array.isArray(doc.config.inverters))state.inverters=WR.migratePlant({...state,inverters:doc.config.inverters}).inverters;
+  }
   panelGeometry=list.map(p=>({...p.geo}));
-  state.panels=values;
+  state.panelGeometry=panelGeometry.map(p=>({...p}));
   saveState();
   renderKwp();
 }
@@ -494,6 +539,7 @@ function calculate(){
   const factors=state.panels.map(p=>({shaded:diffuseFactor(p,true),open:diffuseFactor(p,false)}));
   if(nearData&&horizon&&nearShadeFactors.length!==state.panels.length)initNearFactors();
   const nearReady=!!(nearData&&horizon&&nearShadeFactors.length===state.panels.length);
+  const inverterPlan=WR.compileLimits(state.panels,state.inverters);
   const allowedDayKeys=new Set();
   if(h.time.length){let d=dayKey(h.time[0]);for(let j=0;j<7;j++){allowedDayKeys.add(d);d=dayAfter(d)}}
   const result=[];
@@ -515,9 +561,10 @@ function calculate(){
       const binStart=end-3600+five*OUTPUT_SECONDS;
       const key=dayKey(binStart+150);
       if(!allowedDayKeys.has(key))continue;
-      let powerSum=0,baseSum=0,nearSum=0,sunlightMinutes=0,blockedMinutes=0;
+      let powerSum=0,baseSum=0,clipping=0,baseClipping=0,sunlightMinutes=0,blockedMinutes=0;
       const byPanel=state.panels.map(()=>({base:0,power:0,near:0,lit:0}));
       for(let m=0;m<5;m++){
+        const minuteBase=[],minuteShaded=[];
         const ts=binStart+(m+0.5)*INTEGRATION_SECONDS;
         const sun=solarPosition(ts);
         if(sun.alt>0){
@@ -544,8 +591,8 @@ function calculate(){
             return Math.max(0,p.kwp*gt/1000*tempFactor*(1-state.losses/100));
           };
           const b=modelPower(gtOpen),v=modelPower(gtShade);
-          byPanel[j].base+=b/5;
-          byPanel[j].power+=v/5;
+          minuteBase[j]=b;
+          minuteShaded[j]=v;
           // Auf Dachflächen bezogene Modul-Stichproben: reine geometrische
           // Abschattung, gleicher pv-Kennwert und gleiche Systemverluste wie V10.
           if(nearReady){
@@ -555,19 +602,18 @@ function calculate(){
               const gtNear=dni*incidence*(visible?1:0)+(openSun?dhi:0)*nearShadeFactors[j][k]+reflected;
               return total+modelPower(gtNear);
             },0)/samples.length;
-            byPanel[j].near+=powerPerSample/5;
-            nearSum+=powerPerSample/5;
+            minuteShaded[j]=powerPerSample;
           }
           if(terrainVisible&&incidence>0)byPanel[j].lit+=.2;
-          baseSum+=b/5;
-          powerSum+=v/5;
         });
+        // Bestehende Systemverluste sind bereits in modelPower enthalten.
+        // AC-Begrenzung nach zeitgleicher Feldsummierung je WR, vor der 5-Minuten-Mittelung.
+        const shaded=WR.limitPower(minuteShaded,inverterPlan),open=WR.limitPower(minuteBase,inverterPlan);
+        powerSum+=shaded.total/5;baseSum+=open.total/5;
+        clipping+=shaded.loss/5;baseClipping+=open.loss/5;
+        byPanel.forEach((p,j)=>{p.power+=shaded.power[j]/5;p.base+=open.power[j]/5;});
       }
-      if(nearReady){
-        powerSum=nearSum;
-        byPanel.forEach(p=>{p.power=p.near;});
-      }
-      result.push({ts:binStart+150,day:key,power:powerSum,base:baseSum,near:nearReady?nearSum:null,
+      result.push({ts:binStart+150,day:key,power:powerSum,base:baseSum,clipping,baseClipping,near:nearReady?powerSum:null,
         loss:Math.max(0,baseSum-powerSum),cloud,byPanel,sunlightMinutes,blockedMinutes,
         radiationSource:use15?'15-min':'60-min', durationHours:OUTPUT_SECONDS/3600});
     }
@@ -600,9 +646,10 @@ function groupDays(){
 function aggregateDays(rows){
   const days=new Map();
   for(const row of rows){
-    if(!days.has(row.day))days.set(row.day,{day:row.day,base:0,power:0,loss:0,rows:[],panels:state.panels.map(()=>({base:0,power:0}))});
+    if(!days.has(row.day))days.set(row.day,{day:row.day,base:0,power:0,loss:0,clipping:0,baseClipping:0,rows:[],panels:state.panels.map(()=>({base:0,power:0}))});
     const day=days.get(row.day),duration=row.durationHours;
     day.base+=row.base*duration;day.power+=row.power*duration;day.loss+=row.loss*duration;day.rows.push(row);
+    day.clipping+=(row.clipping||0)*duration;day.baseClipping+=(row.baseClipping||0)*duration;
     row.byPanel.forEach((p,j)=>{day.panels[j].base+=p.base*duration;day.panels[j].power+=p.power*duration});
   }
   return [...days.values()];
@@ -610,8 +657,10 @@ function aggregateDays(rows){
 function render(){
   const totalKwp=state.panels.reduce((s,p)=>s+p.kwp,0);
   renderKwp();
+  renderInverterInfo();
   if(!calculated.length||!nearData||!horizon){$('kpiYield').textContent='—';$('kpiBase').textContent='—';$('kpiLoss').textContent='—';$('days').innerHTML='<div class="notice">Warte auf beide geprüften Verschattungsprofile und Wetterdaten.</div>';$('hourChart').innerHTML='<div class="notice">V12-Prognose noch nicht vollständig geladen.</div>';renderNearModel();return;}
   const days=groupDays();
+  renderInverterInfo(days);
   const sum=days.reduce((acc,d)=>({power:acc.power+d.power,base:acc.base+d.base,loss:acc.loss+d.loss}),{power:0,base:0,loss:0});
   $('kpiYield').innerHTML=number(sum.power,0)+' <span class="unit">kWh</span>';
   $('kpiYieldNote').textContent='7 Tage · wetterabhängiger Schätzwert';
@@ -671,7 +720,8 @@ function renderHourChart(day){
   const blocked=day.rows.reduce((s,r)=>s+r.blockedMinutes/60,0);
   const litRows=day.rows.filter(r=>r.sunlightMinutes>0),quarterRows=litRows.filter(r=>r.radiationSource==='15-min');
   const quarterShare=litRows.length?quarterRows.length/litRows.length*100:0;
-  $('daySummary').innerHTML=`<strong>${number(day.power,1)} kWh</strong> mit Berg-, Baum- und Gebäudeverschattung · <strong>${number(day.base,1)} kWh</strong> ohne Verschattung · gesamte Verschattung <strong>${horizon?number(day.loss,1)+' kWh':'nicht verfügbar'}</strong><br> Sonne geometrisch über dem Horizont: ca. ${number(sunlight,1)} h; davon hinter Bergen: ${horizon?number(blocked,1)+' h':'nicht ermittelt'}.<br><span class="hint">Strahlungsdaten bei Tageslicht: ${number(quarterShare,0)} % aus 15-Minuten-Werten, Rest stündlich. Die Wolkenprognose kann trotzdem deutlich abweichen.</span>`;
+  const ac=WR.configurationStatus(state.panels,state.inverters);
+  $('daySummary').innerHTML=`<strong>${number(day.power,1)} kWh</strong> mit Berg-, Baum- und Gebäudeverschattung · <strong>${number(day.base,1)} kWh</strong> ohne Verschattung · Verschattungsdifferenz bei gleichen WR-Grenzen <strong>${horizon?number(day.loss,1)+' kWh':'nicht verfügbar'}</strong><br><strong>Clipping-Verlust: ${ac.configured?number(day.clipping,2)+' kWh (ohne Verschattung: '+number(day.baseClipping,2)+' kWh)':'Noch nicht konfiguriert'}</strong><br> Sonne geometrisch über dem Horizont: ca. ${number(sunlight,1)} h; davon hinter Bergen: ${horizon?number(blocked,1)+' h':'nicht ermittelt'}.<br><span class="hint">Strahlungsdaten bei Tageslicht: ${number(quarterShare,0)} % aus 15-Minuten-Werten, Rest stündlich. Die Wolkenprognose kann trotzdem deutlich abweichen.</span>`;
 }
 function renderTable(day){
   $('tableTitle').textContent='Ertrag pro PV-Fläche · '+fmtLongDay(day.day);
@@ -727,17 +777,57 @@ function renderKwp(){
   const total=state.panels.reduce((a,p)=>a+(+p.kwp||0),0);
   $('kpiKwp').innerHTML=number(total,3)+' <span class="unit">kWp</span>';
 }
+function getInverterConfiguration(){return WR.configurationSnapshot(state.panels,state.inverters);}
+function inverterStatusText(panels,inverters){
+  const s=WR.configurationStatus(panels,inverters);
+  if(s.configured)return 'AC-Begrenzung aktiv · gleiche WR-Grenzen für beide Verschattungsvergleiche.';
+  const details=[];
+  if(s.missingFields.length)details.push('Zuordnung fehlt: '+s.missingFields.join(', '));
+  if(s.missingLimits.length)details.push('AC-Wirkleistung fehlt: '+s.missingLimits.join(', '));
+  return 'Noch nicht konfiguriert · '+details.join(' · ')+'. Die bisherige Prognose läuft ohne AC-Begrenzung weiter.';
+}
+function renderInverterInfo(days=[]){
+  const configured=WR.configurationStatus(state.panels,state.inverters).configured;
+  $('inverterInfo').textContent='Wechselrichter · '+inverterStatusText(state.panels,state.inverters)+
+    (configured&&days.length?' Clipping in 7 Tagen: '+number(days.reduce((s,d)=>s+d.clipping,0),2)+' kWh.':'');
+}
+function inverterOptions(selected){
+  return '<option value="">Noch nicht zugeordnet</option>'+invertersDraft.map(w=>`<option value="${escapeHtml(w.id)}" ${selected===w.id?'selected':''}>${escapeHtml(w.name||'Ohne Namen')}</option>`).join('');
+}
+function updateInverterDraft(){
+  $('inverterDraftStatus').textContent=inverterStatusText(panelsDraft,invertersDraft);
+  for(const w of invertersDraft){
+    const card=[...$('invertersEdit').children].find(el=>el.dataset.id===w.id);
+    if(!card)continue;
+    const s=WR.inverterSummary(w,panelsDraft);
+    card.querySelector('.inverter-summary').textContent='Modulfelder: '+(s.assigned.map(p=>p.name||'Neues Feld').join(', ')||'keine')+
+      ' · DC: '+number(s.dcKwp,3)+' kWp · DC/AC: '+(s.ratio===null?'—':number(s.ratio,2));
+    const remove=card.querySelector('[data-remove-inverter]');
+    remove.disabled=s.assigned.length>0;
+    remove.title=s.assigned.length?'Zuerst zugeordnete Modulfelder einem anderen WR zuordnen.':'Wechselrichter entfernen';
+  }
+}
+function refreshInverterOptions(){
+  $('panelsEdit').querySelectorAll('select[data-p="inverterId"]').forEach(el=>{el.innerHTML=inverterOptions(panelsDraft[+el.dataset.i].inverterId);});
+}
+function refreshInverterEditor(){
+  $('invertersEdit').innerHTML=invertersDraft.map((w,i)=>`<div class="inverter-card" data-id="${escapeHtml(w.id)}"><div class="inverter-inputs">
+    <label>Anzeigename<input data-w="${i}" data-field="name" aria-label="Wechselrichtername ${i+1}" maxlength="50" value="${escapeHtml(w.name)}" required></label>
+    <label>Maximale AC-Wirkleistung [kW]<input type="number" inputmode="decimal" min="0.001" step="0.001" data-w="${i}" data-field="maxAcKw" aria-label="AC-Wirkleistung ${i+1}" placeholder="Noch nicht konfiguriert" value="${w.maxAcKw??''}"></label>
+    </div><p class="inverter-summary"></p><button type="button" class="remove-action" data-remove-inverter="${escapeHtml(w.id)}">Entfernen</button></div>`).join('');
+  updateInverterDraft();
+}
 function geometryFields(g,i){
   const specs=[['latitude','Breitengrad','any'],['longitude','Längengrad','any'],['width_m','Breite [m]','0.1'],['depth_m','Tiefe [m]','0.1'],['lower_edge_height_m','Unterkante [m]','0.1'],['upper_edge_height_m','Oberkante [m]','0.1']];
   return specs.map(([f,label,step])=>`<label>${label}<input type="number" inputmode="decimal" step="${step}" data-geo="${f}" data-i="${i}" value="${g[f]??''}" aria-label="${label} für Modulfläche ${i+1}"></label>`).join('');
 }
 function refreshPanelEditor(){
   $('panelsEdit').innerHTML=panelsDraft.map((p,i)=>`<div class="editrow ${i>=state.panels.length?'newrow':''}" data-row="${i}"><div class="editcells">
-    <input data-i="${i}" data-p="name" maxlength="50" aria-label="Modulfeldname ${i+1}" value="${escapeHtml(p.name)}" required>
-    <input data-i="${i}" data-p="kwp" type="number" inputmode="decimal" step="0.001" min="0.001" aria-label="kWp ${i+1}" value="${p.kwp}" required>
-    <input data-i="${i}" data-p="az" type="number" inputmode="decimal" step="0.1" min="0" max="360" aria-label="Azimut ${i+1}" value="${p.az}" required>
-    <input data-i="${i}" data-p="tilt" type="number" inputmode="decimal" step="0.1" min="0" max="90" aria-label="Neigung ${i+1}" value="${p.tilt}" required>
-    </div><details class="geometry" ${i>=state.panels.length?'open':''}><summary>Standort & Modulmaße ${i>=state.panels.length?'– neues Feld, erforderlich':'– bei Bedarf ändern'}</summary><div class="geometry-grid">${geometryFields(p.geo,i)}</div></details></div>`).join('');
+    <label>Name<input data-i="${i}" data-p="name" maxlength="50" aria-label="Modulfeldname ${i+1}" value="${escapeHtml(p.name)}" required></label>
+    <label>DC-Leistung [kWp]<input data-i="${i}" data-p="kwp" type="number" inputmode="decimal" step="0.001" min="0.001" aria-label="kWp ${i+1}" value="${p.kwp}" required></label>
+    <label>Azimut [°]<input data-i="${i}" data-p="az" type="number" inputmode="decimal" step="0.1" min="0" max="360" aria-label="Azimut ${i+1}" value="${p.az}" required></label>
+    <label>Dachneigung [°]<input data-i="${i}" data-p="tilt" type="number" inputmode="decimal" step="0.1" min="0" max="90" aria-label="Neigung ${i+1}" value="${p.tilt}" required></label>
+    </div><div class="assignment"><label>Wechselrichter<select data-i="${i}" data-p="inverterId" aria-label="Wechselrichter für ${escapeHtml(p.name||'neues Feld')}">${inverterOptions(p.inverterId)}</select></label><button type="button" class="remove-action" data-remove-panel="${i}" ${panelsDraft.length===1?'disabled':''}>Modulfeld entfernen</button></div><details class="geometry" ${i>=state.panels.length?'open':''}><summary>Standort & Modulmaße ${i>=state.panels.length?'– neues Feld, erforderlich':'– bei Bedarf ändern'}</summary><div class="geometry-grid">${geometryFields(p.geo,i)}</div></details></div>`).join('');
 }
 function draftValuesValid(){
   if(!panelsDraft.length||panelsDraft.length>24)return false;
@@ -757,7 +847,7 @@ function isGeometricallyChanged(){
 }
 function updateLocationHeading(){
   $('locationTitle').textContent=state.locationName;
-  document.title='Solarprognose '+state.locationName+' · V12.4 mit Bäumen und Gebäuden';
+  document.title='Solarprognose '+state.locationName+' · V12.7 mit Bäumen, Gebäuden und Wechselrichtern';
 }
 function syncSettings(){
   updateLocationHeading();
@@ -1260,19 +1350,45 @@ $('applyPhysics').addEventListener('click',()=>{
 const panelsDialog=$('panelsDialog'),profileWizard=$('profileWizard');
 $('openPanels').addEventListener('click',()=>{
   panelsDraft=state.panels.map((p,i)=>({...p,geo:{...(panelGeometry[i]||{})}}));
-  refreshPanelEditor();panelsDialog.showModal();
+  invertersDraft=state.inverters.map(w=>({...w}));
+  refreshPanelEditor();refreshInverterEditor();panelsDialog.showModal();
 });
 $('cancelPanels').addEventListener('click',()=>panelsDialog.close());
 $('panelsEdit').addEventListener('input',e=>{
   const t=e.target,i=+t.dataset.i;
   if(!Number.isInteger(i)||!panelsDraft[i])return;
-  if(t.dataset.p)panelsDraft[i][t.dataset.p]=t.dataset.p==='name'?t.value:Number(t.value);
+  if(t.dataset.p)panelsDraft[i][t.dataset.p]=t.dataset.p==='name'?t.value:t.dataset.p==='inverterId'?(t.value||null):Number(t.value);
   if(t.dataset.geo)panelsDraft[i].geo[t.dataset.geo]=t.value===''?null:Number(t.value);
+  updateInverterDraft();
+});
+$('panelsEdit').addEventListener('click',e=>{
+  const button=e.target.closest('[data-remove-panel]');
+  if(!button||panelsDraft.length<=1)return;
+  panelsDraft.splice(+button.dataset.removePanel,1);refreshPanelEditor();updateInverterDraft();
+});
+$('invertersEdit').addEventListener('input',e=>{
+  const t=e.target,w=invertersDraft[+t.dataset.w];
+  if(!w||!t.dataset.field)return;
+  w[t.dataset.field]=t.dataset.field==='name'?t.value:(t.value===''?null:Number(t.value));
+  updateInverterDraft();
+});
+$('invertersEdit').addEventListener('change',refreshInverterOptions);
+$('invertersEdit').addEventListener('click',e=>{
+  const button=e.target.closest('[data-remove-inverter]');
+  if(!button)return;
+  try{invertersDraft=WR.removeInverter(invertersDraft,panelsDraft,button.dataset.removeInverter);refreshInverterEditor();refreshInverterOptions();}
+  catch(err){toast(err.message);}
+});
+$('addInverter').addEventListener('click',()=>{
+  if(invertersDraft.length>=WR.MAX_INVERTERS){toast('Maximal '+WR.MAX_INVERTERS+' Wechselrichter.');return;}
+  invertersDraft.push({id:WR.createId(),name:'WR'+(invertersDraft.length+1),maxAcKw:null});
+  refreshInverterEditor();refreshInverterOptions();
 });
 $('addPanel').addEventListener('click',()=>{
   if(panelsDraft.length>=24){toast('Maximal 24 Modulfelder.');return;}
-  panelsDraft.push({name:'',kwp:0,az:165,tilt:30,geo:{latitude:null,longitude:null,width_m:null,depth_m:null,lower_edge_height_m:null,upper_edge_height_m:null}});
+  panelsDraft.push({id:'panel-'+WR.createId(),name:'',kwp:0,az:165,tilt:30,inverterId:null,geo:{latitude:null,longitude:null,width_m:null,depth_m:null,lower_edge_height_m:null,upper_edge_height_m:null}});
   refreshPanelEditor();
+  updateInverterDraft();
   const rows=$('panelsEdit').querySelectorAll('.editrow');
   rows[rows.length-1]?.scrollIntoView({behavior:'smooth',block:'nearest'});
   rows[rows.length-1]?.querySelector('input')?.focus();
@@ -1280,9 +1396,14 @@ $('addPanel').addEventListener('click',()=>{
 $('panelsForm').addEventListener('submit',e=>{
   e.preventDefault();
   if(!draftValuesValid()){toast('Bitte Namen, kWp, Azimut und Neigung aller Modulfelder korrekt ausfüllen.');return;}
+  if(invertersDraft.length>WR.MAX_INVERTERS||invertersDraft.some(w=>!w.name.trim()||(w.maxAcKw!==null&&(!Number.isFinite(w.maxAcKw)||w.maxAcKw<=0)))||
+     panelsDraft.some(p=>p.inverterId&&!invertersDraft.some(w=>w.id===p.inverterId))){toast('Bitte gültige Wechselrichternamen, Zuordnungen und positive AC-Leistungen in kW eingeben.');return;}
+  const newPanels=panelsDraft.map(p=>({id:p.id,name:p.name.trim(),kwp:+p.kwp,az:+p.az,tilt:+p.tilt,inverterId:p.inverterId||null}));
+  const newInverters=invertersDraft.map(w=>({...w,name:w.name.trim()}));
   if(!isGeometricallyChanged()){
-    const powerChanged=panelsDraft.some((p,i)=>+p.kwp!==state.panels[i].kwp);
-    state.panels=panelsDraft.map(p=>({name:p.name.trim(),kwp:+p.kwp,az:+p.az,tilt:+p.tilt}));
+    const powerChanged=panelsDraft.some((p,i)=>+p.kwp!==state.panels[i].kwp)||
+      JSON.stringify(WR.modelConfiguration(newPanels,newInverters))!==JSON.stringify(WR.modelConfiguration(state.panels,state.inverters));
+    state.panels=newPanels;state.inverters=newInverters;
     saveState();renderKwp();
     if(powerChanged){calculate();if(weather&&nearData&&horizon)saveForecastSnapshots();}
     else render(); // Bei reiner Umbenennung nur Beschriftungen aktualisieren.
@@ -1294,7 +1415,7 @@ $('panelsForm').addEventListener('submit',e=>{
     if(first>=0)$('panelsEdit').querySelector(`[data-row="${first}"] details`)?.setAttribute('open','');
     return;
   }
-  pendingPanels=panelsDraft.map(p=>({name:p.name.trim(),kwp:+p.kwp,az:+p.az,tilt:+p.tilt}));
+  pendingPanels=newPanels;pendingInverters=newInverters;
   pendingGeometry=panelsDraft.map(p=>({...p.geo,azimuth:+p.az,tilt_deg:+p.tilt,name:p.name.trim()}));
   // Do not update state or the current forecast until both profiles are published.
   panelsDialog.close();
@@ -1408,7 +1529,7 @@ async function makeNearProfile(geometry,files){
     }
     profiles.push({name:p.name,center:{latitude:p.latitude,longitude:p.longitude},samples});
   }
-  const config={panels:pendingPanels.map((p,i)=>({...p,geo:{...pendingGeometry[i]}}))};
+  const config={panels:pendingPanels.map((p,i)=>({...p,geo:{...pendingGeometry[i]}})),inverters:pendingInverters.map(w=>({...w}))};
   const output={version:1,kind:'dom20-nearshade',source:'Bayerische Vermessungsverwaltung · DOM20 (CC BY 4.0)',
     location:{latitude:state.lat,longitude:state.lon,radius_m:150},panelProfiles:profiles,
     config,meta:{generatedAt:new Date().toISOString(),gridStepM:.2,sourceGridM:.2,samplesPerPanel:9,method:'Maximale Oberflächenhöhe je Azimut; geometrische Verschattung, keine elektrischen Zusatzverluste',license:'CC BY 4.0',inputFiles:Array.from(files).map(f=>f.name)}};
@@ -1445,7 +1566,7 @@ $('verifyProfiles').addEventListener('click',async()=>{
     if(!profileMatchesSettings(hdoc))throw Error('Geländeprofil hat falsche Koordinaten oder Dachhöhe.');
     if(ndoc.id!==generatedFiles.doc?.id||ndoc.panelProfiles?.length!==pendingPanels.length)throw Error('Nahprofil passt noch nicht zu den neuen Modulfeldern.');
     // Atomic publish: adopt only after BOTH remote files were verified.
-    acceptPublishedConfig(ndoc);nearData=validateNearData(ndoc);
+    acceptPublishedConfig(ndoc,{force:true});nearData=validateNearData(ndoc);
     applyHorizon(hdoc);initNearFactors();calculate();saveForecastSnapshots();
     setWizardProgress('GitHub-Profile bestätigt und neue Modulfelder aktiviert.');
     profileWizard.close();
@@ -1455,6 +1576,7 @@ $('verifyProfiles').addEventListener('click',async()=>{
 
 // Unit tests can replace fetch with mock responses; no backend is required.
 window.SolarApp={solarPosition,interpolateHorizon,diffuseFactor,calculate,groupDays,forecastUrl,
+  getInverterConfiguration,
   getWeatherResolution:()=>weatherResolution,getState:()=>state,getHorizon:()=>horizon,getCalculated:()=>calculated,
   profileKey,archiveModelId,archiveRecord,readForecastArchive,getArchive:()=>forecastArchive,saveForecastSnapshots,renderHistoryInfo,
   setTestWeather:w=>{weather=w;calculate()},getWeatherData:()=>!weatherIsCached&&weatherProvider==='open-meteo'?weather:null,
