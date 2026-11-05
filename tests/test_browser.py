@@ -13,7 +13,12 @@ from urllib.parse import urlsplit
 from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parents[1]
-WEATHER = json.loads((ROOT / 'prognosen/letzter_wetterstand.json').read_text())['weather']
+BASELINE='c2b2e5e197c93cd2eacbd6ea9852bf38d5a5ccf9'
+def fixture_json(path):
+    return json.loads(subprocess.check_output(['git','show',BASELINE+':'+path],cwd=ROOT,text=True))
+# Historische Testdaten bleiben auch bei neuen, realen Anlagenprofilen reproduzierbar.
+FIXTURES={path:fixture_json(path) for path in ['horizontprofil.json','nahverschattung.json','prognosen/dwd_wetterstand.json','prognosen/letzter_wetterstand.json']}
+WEATHER = FIXTURES['prognosen/letzter_wetterstand.json']['weather']
 HTML = (ROOT / 'index.html').read_text()
 CHROMIUM = os.getenv('PW_CHROMIUM_PATH', '/usr/bin/chromium')
 LEGACY_KEY = 'schliersee-forecast-progressive-v11'
@@ -48,6 +53,8 @@ def browser_page(browser, html=HTML, settings=None, viewport=None, failure=None)
             request_route.fulfill(content_type='text/html', body=html)
         elif failure == 'github' and path == 'prognosen/dwd_wetterstand.json':
             request_route.fulfill(status=404, body='not found')
+        elif path in FIXTURES:
+            request_route.fulfill(content_type='application/json',body=json.dumps(FIXTURES[path]))
         elif (ROOT / path).is_file():
             request_route.fulfill(path=str(ROOT / path))
         else:
@@ -166,7 +173,7 @@ with sync_playwright() as p:
     browser.close()
 
 # Echte Archivierungsroutine mit der vollständigen App und kontrollierten Wetterdaten.
-resources={p:json.loads((ROOT/p).read_text()) for p in ['horizontprofil.json','nahverschattung.json','prognosen/dwd_wetterstand.json']}
+resources={p:FIXTURES[p] for p in ['horizontprofil.json','nahverschattung.json','prognosen/dwd_wetterstand.json']}
 resources['weather']=WEATHER
 prefix=r'''<script>window.__fakeStore={};Object.defineProperty(window,'localStorage',{value:{
 getItem:k=>window.__fakeStore[k]??null,setItem:(k,v)=>window.__fakeStore[k]=String(v),removeItem:k=>delete window.__fakeStore[k]}});
@@ -199,7 +206,7 @@ sys.exit(m.main())
     new_files=[p for p in (target/'prognosen').glob('*/*.json') if p not in protected]
     assert len(new_files)==1
     data=json.loads(new_files[0].read_text())
-    assert data['modelVersion']=='V12.7.1'
+    assert data['modelVersion']=='V12.7.2'
     assert data['inverterConfiguration']['model']=='v12.7-ac-limit-1'
     assert data['inverterConfiguration']['configured'] is False
     assert data['clippingKWh']==0

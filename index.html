@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="apple-mobile-web-app-title" content="Solar Schliersee" />
 <meta name="description" content="Mobile PV-Ertragsprognose für Schliersee mit Bergen und Geländehorizont. Läuft ohne Python und ohne Backend." />
-<title>Solarprognose Schliersee · Berg- und Nahverschattung V12.7.1</title>
+<title>Solarprognose Schliersee · Berg- und Nahverschattung V12.7.2</title>
 <style>
 :root{color-scheme:dark;--bg:#0a111b;--surface:#111d2b;--surface2:#162438;--line:#293b4d;--txt:#e8f0f8;--muted:#95a8bc;--lime:#b9ee69;--sky:#7ba8cb;--orange:#f1ae6a;--red:#f48e8e}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 85% 0, #1e3144 0,transparent 34%),var(--bg);color:var(--txt);font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--lime);outline-offset:2px}input,textarea{border:1px solid var(--line);border-radius:8px;padding:9px 10px;color:var(--txt);background:#0b1725;width:100%}input[type=number]{font-variant-numeric:tabular-nums}input[type=range]{padding:0;accent-color:var(--lime)}.layout{max-width:1320px;margin:0 auto;padding:32px 27px 70px}.top{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;flex-wrap:wrap;margin-bottom:31px}.eyebrow{color:var(--lime);text-transform:uppercase;font-size:11px;letter-spacing:.19em;font-weight:800}.brand{font-size:34px;letter-spacing:-1.5px;line-height:1.1;font-weight:750;margin:11px 0}.sub{color:var(--muted);max-width:710px;margin:0;font-size:14px}.top-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.pill{border:1px solid #345043;background:#172b2b;color:#b8eac2;border-radius:30px;padding:8px 13px;font-size:12px;font-weight:700}.pill.warn{color:#ffcd91;border-color:#76553a;background:#32281f}.btn{border:1px solid #47614f;background:#203d35;color:#cdf3b4;padding:9px 14px;border-radius:10px;font-weight:650;font-size:13px}.btn:hover{background:#2b4b3f}.btn.secondary{border-color:var(--line);background:#152334;color:var(--txt)}.btn.secondary:hover{background:#26394c}.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:22px}.kpi{background:linear-gradient(150deg,#152636,#101c29);border:1px solid #2c4050;border-radius:16px;padding:19px 19px 16px;min-height:135px;overflow:hidden}.kpi span{font-size:12px;color:var(--muted);display:block;margin-bottom:11px}.kpi strong{font-size:34px;font-weight:770;letter-spacing:-1.7px;line-height:1.2;font-variant-numeric:tabular-nums}.kpi .unit{font-size:16px;color:var(--muted);font-weight:500;letter-spacing:0}.kpi em{display:block;color:var(--muted);font-style:normal;margin-top:5px;font-size:12px}.kpi .accent{color:var(--lime)}.kpi .warm{color:var(--orange)}.cols{display:grid;grid-template-columns:minmax(0,1.62fr) minmax(0,1fr);gap:18px}.panel{background:linear-gradient(150deg,#142132,#111b29);border:1px solid #2a394b;border-radius:16px;padding:23px;min-width:0;margin-bottom:18px}.panel h2{font-size:17px;letter-spacing:-.3px;margin:0}.panel-header{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap;margin-bottom:18px}.hint{color:var(--muted);font-size:12px;margin:5px 0 0}.legend{display:flex;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:12px}.legend b{display:inline-block;width:16px;height:3px;border-radius:3px;margin:0 5px 3px 0}.chart{display:block;width:100%;height:auto;overflow:visible;touch-action:pan-y}.axistext{fill:#8299ac;font-size:12px;font-family:inherit}.chart-grid{stroke:#314253;stroke-width:1}.forecast-days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}.day{border:1px solid #344759;background:#152335;min-height:145px;padding:13px 5px 9px;border-radius:11px;color:var(--txt);text-align:center;display:flex;flex-direction:column;gap:5px;align-items:center}.day:hover{background:#21344b}.day.active{border-color:var(--lime);box-shadow:inset 0 0 0 1px var(--lime);background:#21352d}.day .dayname{font-size:11px;color:var(--muted)}.day strong{font-size:17px;font-variant-numeric:tabular-nums}.bars{display:flex;align-items:flex-end;gap:3px;height:70px;width:80%;justify-content:center;margin:4px 0}.bars i{width:15px;display:block;border-radius:3px 3px 0 0;min-height:2px}.bar-base{background:#536d82}.bar-correct{background:var(--lime)}.detail{width:100%;border-collapse:collapse;margin-top:6px;font-size:13px}.detail th,.detail td{text-align:right;padding:12px 6px;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}.detail th:first-child,.detail td:first-child{text-align:left}.detail th{color:var(--muted);font-weight:550;font-size:11px}.detail td:last-child{color:var(--orange)}.detail tr.total td{font-weight:750;color:var(--txt)}.badge{display:inline-flex;gap:7px;align-items:center;font-size:12px;padding:6px 9px;border-radius:6px;background:#1e3136;color:#c5e3de;margin-top:12px}.warning{padding:12px 14px;border-radius:9px;border:1px solid #674b34;background:#332719;color:#ffdaaa;font-size:12px;line-height:1.6;margin-top:12px}.hidden{display:none!important}.horizon-top{display:flex;align-items:center;gap:10px;justify-content:space-between;flex-wrap:wrap}.horizon-meta{color:#a9c0cf;font-size:12px;margin:5px 0 15px}.horizon-wrap{position:relative}.horizon-tooltip{position:absolute;right:0;top:0;border:1px solid #38534d;padding:4px 8px;border-radius:6px;color:var(--lime);font-size:12px;background:#172c28}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}.field .note{font-size:11px;color:var(--muted);margin-top:5px}.settings-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:14px}.setting-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.panels-edit{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:9px}.panels-edit input{padding:8px 6px}.headings{color:var(--muted);font-size:11px;margin-bottom:8px}.panel-edit-row{margin-bottom:8px}details{margin-top:17px;background:#0d1926;border:1px solid #273849;border-radius:12px;padding:12px}summary{font-weight:650;cursor:pointer}textarea{resize:vertical;min-height:84px;margin-top:10px;font-size:12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}.foot{margin-top:13px;color:#8da1b5;font-size:12px;line-height:1.65}.footer{border-top:1px solid #29394b;margin-top:20px;padding-top:19px;color:var(--muted);font-size:12px}.spacer{margin-bottom:14px}.notice{font-size:12px;color:#aac2d4;padding:10px 12px;border-left:3px solid #6086a9;background:#172639;border-radius:3px}.statusbox{border:1px solid var(--line);background:#102130;border-radius:10px;padding:12px;margin-top:10px;font-size:12px;color:var(--muted)}.statusbox strong{color:var(--txt)}
@@ -61,7 +61,7 @@
 .day .day-footer{color:var(--orange);font-size:11px;font-weight:800;margin-top:3px;line-height:1.15;font-variant-numeric:tabular-nums;white-space:nowrap;letter-spacing:-.15px}
 .day .day-footer small{font-size:.85em;font-weight:600}
 @media(max-width:660px){.day{min-height:162px;padding:10px 1px 8px}.day .day-reading{font-size:12px;gap:1px}.day .day-reading small{font-size:8px}.day .bars{height:76px;gap:3px}.day .bars i{width:13px}.day .day-footer{display:flex;flex-direction:column;gap:1px;align-items:center;font-size:11px;white-space:normal}.day .day-footer small{font-size:9px}}
-/* V12.7.1: Elektrische Konfiguration getrennt von der Profilgeometrie. */
+/* V12.7.2: Elektrische Konfiguration getrennt von der Profilgeometrie. */
 .plant-dialog select{width:100%;min-width:0;padding:9px;border:1px solid var(--line);border-radius:8px;background:#0b1725;color:var(--txt);font:inherit}
 .plant-dialog .editcells label,.inverter-card label{display:block;min-width:0;font-size:12px;color:var(--muted)}
 .plant-dialog .editcells input{width:100%;margin-top:4px;font-size:16px}
@@ -72,13 +72,16 @@
 .inverter-inputs{display:grid;grid-template-columns:1fr 1fr;gap:12px}.inverter-inputs input{width:100%;margin-top:4px;font-size:16px}
 .inverter-summary{font-size:12px;color:var(--muted);margin:9px 0;overflow-wrap:anywhere}
 #inverterInfo{margin:-8px 0 20px}#inverterDraftStatus{margin:12px 0}
+.publish-wait{padding:12px;margin:12px 0;border:1px solid #456078;border-radius:10px;background:#101e2d}
+.publish-wait progress{display:block;width:100%;height:12px;margin-bottom:10px;accent-color:var(--lime)}
+.publish-wait p{margin:6px 0;font-size:13px;color:var(--muted)}
 @media(max-width:660px){.plant-dialog .editcells{grid-template-columns:1fr 1fr;gap:10px}.plant-dialog .edithead{display:none}.plant-dialog .geometry input{font-size:16px}.inverter-inputs{grid-template-columns:1fr}.assignment{align-items:stretch;flex-direction:column}.remove-action{align-self:flex-start}}
 </style>
 </head>
 <body>
 <main class="layout">
   <header class="top">
-    <div><div class="eyebrow">PV · iPhone / Safari · Berge, Bäume & Gebäude · V12.7.1</div><h1 class="brand">Solarprognose <button type="button" class="location-title-button" id="openLocationDialog" aria-haspopup="dialog" aria-controls="locationDialog" title="Ort und Koordinaten ändern"><span id="locationTitle">Schliersee</span></button><span style="color:var(--lime)">.</span></h1><p class="sub">Solarprognose mit Berg-, Baum- und Gebäudeverschattung aus amtlichen 20-cm-Oberflächendaten. Die alten V10-Prognosen bleiben in GitHub historisch erhalten, werden hier aber nicht mehr als zweites Modell angezeigt. Läuft auf Mac und iPhone direkt im Browser.</p></div>
+    <div><div class="eyebrow">PV · iPhone / Safari · Berge, Bäume & Gebäude · V12.7.2</div><h1 class="brand">Solarprognose <button type="button" class="location-title-button" id="openLocationDialog" aria-haspopup="dialog" aria-controls="locationDialog" title="Ort und Koordinaten ändern"><span id="locationTitle">Schliersee</span></button><span style="color:var(--lime)">.</span></h1><p class="sub">Solarprognose mit Berg-, Baum- und Gebäudeverschattung aus amtlichen 20-cm-Oberflächendaten. Die alten V10-Prognosen bleiben in GitHub historisch erhalten, werden hier aber nicht mehr als zweites Modell angezeigt. Läuft auf Mac und iPhone direkt im Browser.</p></div>
     <div class="top-right"><span class="pill warn" id="status">Daten werden geladen …</span><button class="btn secondary" id="refresh" type="button">↻ Aktualisieren</button></div>
     <details class="weather-debug hidden" id="weatherDetails" style="width:100%;max-width:710px"><summary>Wetterabruf: Fehlerdetails</summary><p id="weatherDetailText" class="hint" style="white-space:pre-wrap;word-break:break-word"></p></details>
   </header>
@@ -174,6 +177,11 @@
     <p class="hint">Die Dateien werden nur im Browser verarbeitet, nicht auf einen Server hochgeladen. Für die GeoTIFF-Dekodierung wird einmalig die freie JavaScript-Bibliothek geotiff.js geladen.</p>
   </div>
   <div class="statusbox" id="wizardStatus" aria-live="polite">Bereit. Wähle die DOM20-Dateien und starte die Berechnung.</div>
+  <div id="profilePublishProgress" class="publish-wait hidden">
+    <progress aria-label="GitHub-Veröffentlichung wird geprüft"></progress>
+    <p>GitHub braucht nach dem Hochladen manchmal einige Minuten, bis beide Dateien auf der Website verfügbar sind. Die Prüfung wiederholt sich automatisch alle 5 Sekunden, höchstens 5 Minuten lang.</p>
+    <p><strong id="profilePublishElapsed" aria-live="off">Prüfung läuft seit 0:00 Minuten.</strong> Sobald beide Dateien passen, wird die Konfiguration aktiviert und dieses Fenster automatisch geschlossen.</p>
+  </div>
   <div id="wizardDownloads" class="wizard-downloads hidden" aria-live="polite"></div>
   <div class="plant-actions"><button type="button" class="btn secondary" id="closeWizard">Schließen</button><button type="button" class="btn" id="generateProfiles">Profile berechnen</button><button type="button" class="btn hidden" id="verifyProfiles">GitHub-Dateien prüfen & aktivieren</button></div>
 </dialog>
@@ -288,13 +296,13 @@ function saveForecastSnapshots(at=Date.now()){
     const original=promote?{at,kind,values:raw.map(r=>[r[0],r[1]])}:old.original;
     const previous=forecastArchive.days[day.day];
     if(previous&&previous.model!==model){
-      // Modellwechsel erhalten den vorherigen Originalstand, auch innerhalb von V12.7.1.
+      // Modellwechsel erhalten den vorherigen Originalstand, auch innerhalb von V12.7.2.
       forecastArchive.previousModels??={};
       forecastArchive.previousModels[previous.model]??={};
       const {_lookup,_lookupVersion,...persistent}=previous;
       forecastArchive.previousModels[previous.model][day.day]=persistent;
     }
-    forecastArchive.days[day.day]={model,modelVersion:'V12.7.1',inverterConfiguration:getInverterConfiguration(),original,current,updatedAt:at};
+    forecastArchive.days[day.day]={model,modelVersion:'V12.7.2',inverterConfiguration:getInverterConfiguration(),original,current,updatedAt:at};
   }
   try{
     localStorage.setItem(FORECAST_ARCHIVE_KEY,JSON.stringify(forecastArchive));
@@ -433,14 +441,14 @@ function nearDiffuseFactor(panel,sample){
 function initNearFactors(){
   nearShadeFactors=nearData&&horizon?state.panels.map((p,j)=>nearData.panelProfiles[j].samples.map(sample=>nearDiffuseFactor(p,sample))):[];
 }
-function validateNearData(doc,expectedPanels=state.panels){
+function validateNearData(doc,expectedPanels=state.panels,expectedGeometry=panelGeometry){
   if(doc?.version!==1||doc?.kind!=='dom20-nearshade'||!doc?.location||!Array.isArray(doc.panelProfiles)||doc.panelProfiles.length!==expectedPanels.length)throw Error('Nahprofil gehört nicht zu dieser Anlagenkonfiguration.');
   if(Math.abs(Number(doc.location.latitude)-state.lat)>0.00001||Math.abs(Number(doc.location.longitude)-state.lon)>0.00001)throw Error('Nahprofil gehört zu anderen Standortkoordinaten.');
   if(!/DOM20/i.test(doc.source||''))throw Error('DOM20-Datenquelle fehlt.');
   for(let i=0;i<expectedPanels.length;i++){
     const p=doc.panelProfiles[i],expected=expectedPanels[i];
     if(!p?.center||!Number.isFinite(+p.center.latitude)||!Number.isFinite(+p.center.longitude))throw Error('Dachkoordinaten fehlen: '+expected.name);
-    const geom=panelGeometry[i];
+    const geom=expectedGeometry[i];
     if(geom&&geom.latitude!=null&&(Math.abs(p.center.latitude-geom.latitude)>.000001||Math.abs(p.center.longitude-geom.longitude)>.000001)){
       throw Error('Nahprofil und Dachmittelpunkt stimmen nicht überein: '+expected.name);
     }
@@ -847,7 +855,7 @@ function isGeometricallyChanged(){
 }
 function updateLocationHeading(){
   $('locationTitle').textContent=state.locationName;
-  document.title='Solarprognose '+state.locationName+' · V12.7.1 mit Bäumen, Gebäuden und Wechselrichtern';
+  document.title='Solarprognose '+state.locationName+' · V12.7.2 mit Bäumen, Gebäuden und Wechselrichtern';
 }
 function syncSettings(){
   updateLocationHeading();
@@ -1424,7 +1432,9 @@ $('panelsForm').addEventListener('submit',e=>{
   $('wizardStatus').textContent='Die laufende Prognose bleibt unverändert. DOM20-Kacheln auswählen und die neue Berechnung starten.';
   profileWizard.showModal();
 });
-$('closeWizard').addEventListener('click',()=>profileWizard.close());
+$('closeWizard').addEventListener('click',()=>{cancelProfilePublication();profileWizard.close();});
+profileWizard.addEventListener('cancel',cancelProfilePublication);
+profileWizard.addEventListener('close',cancelProfilePublication);
 function exportJsonUrl(obj){return URL.createObjectURL(new Blob([JSON.stringify(obj,null,2)+'\n'],{type:'application/json;charset=utf-8'}));}
 function releaseGeneratedUrls(){for(const u of Object.values(generatedFiles))if(typeof u==='string'&&u.startsWith('blob:'))URL.revokeObjectURL(u);generatedFiles={};}
 function setWizardProgress(txt){$('wizardStatus').textContent=txt;}
@@ -1548,7 +1558,7 @@ $('generateProfiles').addEventListener('click',async()=>{
     setWizardProgress('DOM20-Profil fertig. Prüfe nun Gelände bis 30 km (kann einige Minuten dauern) …');
     const terrain=await buildTerrainHorizon(state.lat,state.lon,state.roofHeight,(n,total)=>setWizardProgress('Geländeprofil: '+n+'/'+total+' Kacheln …'));
     const far={version:1,location:{latitude:state.lat,longitude:state.lon,roofHeight:state.roofHeight},points:terrain.points,source:terrain.source,details:terrain.details,generatedAt:new Date().toISOString()};
-    generatedFiles={horizon:exportJsonUrl(far),near:exportJsonUrl(near),doc:near};
+    generatedFiles={horizon:exportJsonUrl(far),near:exportJsonUrl(near),doc:near,horizonDoc:far};
     $('wizardDownloads').innerHTML=`<strong>2 · Beide Dateien herunterladen</strong><a download="horizontprofil.json" href="${generatedFiles.horizon}">↓ horizontprofil.json</a><a download="nahverschattung.json" href="${generatedFiles.near}">↓ nahverschattung.json</a><p class="hint">3 · Lade beide Dateien in <strong>solarbergler/solarprognose_1</strong> direkt ins <strong>Hauptverzeichnis</strong>, ersetze die bisherigen Versionen und bestätige mit „Commit changes“. Erst danach „GitHub-Dateien prüfen & aktivieren“ klicken. Die alte Prognose läuft bis zur Freigabe unverändert weiter.</p>`;
     $('wizardDownloads').classList.remove('hidden');
     $('verifyProfiles').classList.remove('hidden');
@@ -1556,22 +1566,89 @@ $('generateProfiles').addEventListener('click',async()=>{
   }catch(err){setWizardProgress('Berechnung nicht abgeschlossen: '+(err.message||String(err))+' · Die aktive Prognose bleibt unverändert.');console.error(err)}
   finally{$('generateProfiles').disabled=false;}
 });
-$('verifyProfiles').addEventListener('click',async()=>{
-  const button=$('verifyProfiles');button.disabled=true;
+const PROFILE_PUBLISH_WAIT_MS=5*60*1000,PROFILE_PUBLISH_POLL_MS=5000;
+let profilePublication=null;
+function finishProfilePublication(run){
+  if(profilePublication!==run)return;
+  run.controller.abort();clearInterval(run.ticker);profilePublication=null;
+  $('verifyProfiles').disabled=false;$('verifyProfiles').textContent='GitHub-Dateien prüfen & aktivieren';
+  $('generateProfiles').disabled=false;$('domFiles').disabled=false;$('closeWizard').textContent='Schließen';
+  $('profilePublishProgress').classList.add('hidden');$('profilePublishProgress').setAttribute('aria-busy','false');
+  $('wizardStatus').scrollIntoView({block:'nearest'});
+}
+function cancelProfilePublication(){
+  if(!profilePublication)return;
+  setWizardProgress('Prüfung abgebrochen. Die bisherige Prognose bleibt aktiv. Du kannst die Prüfung später erneut starten.');
+  finishProfilePublication(profilePublication);
+}
+function waitForProfilePublication(ms,signal){
+  return new Promise(resolve=>{
+    const done=()=>{clearTimeout(timer);signal.removeEventListener('abort',done);resolve();};
+    const timer=setTimeout(done,ms);signal.addEventListener('abort',done,{once:true});
+    if(signal.aborted)done();
+  });
+}
+async function readPublishedProfiles(run,remaining){
+  const request=new AbortController(),abort=()=>request.abort();
+  run.controller.signal.addEventListener('abort',abort,{once:true});
+  const timer=setTimeout(abort,Math.min(12000,remaining));
   try{
-    const query='?v12='+Date.now();
-    const [h,n]=await Promise.all([fetch('./horizontprofil.json'+query,{cache:'no-store'}),fetch('./nahverschattung.json'+query,{cache:'no-store'})]);
-    if(!h.ok||!n.ok)throw Error('GitHub Pages hat noch nicht beide Dateien veröffentlicht.');
-    const hdoc=await h.json(),ndoc=await n.json();
-    if(!profileMatchesSettings(hdoc))throw Error('Geländeprofil hat falsche Koordinaten oder Dachhöhe.');
-    if(ndoc.id!==generatedFiles.doc?.id||ndoc.panelProfiles?.length!==pendingPanels.length)throw Error('Nahprofil passt noch nicht zu den neuen Modulfeldern.');
-    // Atomic publish: adopt only after BOTH remote files were verified.
-    acceptPublishedConfig(ndoc,{force:true});nearData=validateNearData(ndoc);
-    applyHorizon(hdoc);initNearFactors();calculate();saveForecastSnapshots();
-    setWizardProgress('GitHub-Profile bestätigt und neue Modulfelder aktiviert.');
-    profileWizard.close();
-  }catch(err){setWizardProgress('GitHub-Kontrolle: '+(err.message||String(err))+' Bitte Veröffentlichung prüfen und erneut versuchen.');}
-  finally{button.disabled=false;}
+    const query='?profile-check='+Date.now();
+    const options={cache:'no-store',signal:request.signal};
+    const [h,n]=await Promise.all([fetch('./horizontprofil.json'+query,options),fetch('./nahverschattung.json'+query,options)]);
+    if(!h.ok||!n.ok)throw Error('Beide Dateien sind auf der Website noch nicht abrufbar.');
+    return await Promise.all([h.json(),n.json()]);
+  }finally{clearTimeout(timer);run.controller.signal.removeEventListener('abort',abort);request.abort();}
+}
+$('verifyProfiles').addEventListener('click',async()=>{
+  if(profilePublication)return;
+  if(!pendingPanels||!generatedFiles.doc||!generatedFiles.horizonDoc){
+    setWizardProgress('Bitte zuerst die Profile berechnen und beide erzeugten Dateien auf GitHub hochladen.');return;
+  }
+  const run={controller:new AbortController(),started:performance.now(),ticker:null};
+  profilePublication=run;
+  const elapsed=()=>{
+    const s=Math.floor((performance.now()-run.started)/1000);
+    $('profilePublishElapsed').textContent=`Prüfung läuft seit ${Math.floor(s/60)}:${String(s%60).padStart(2,'0')} Minuten.`;
+  };
+  elapsed();run.ticker=setInterval(elapsed,1000);
+  $('verifyProfiles').disabled=true;$('verifyProfiles').textContent='Veröffentlichung wird geprüft …';
+  $('generateProfiles').disabled=true;$('domFiles').disabled=true;$('closeWizard').textContent='Prüfung abbrechen & schließen';
+  $('profilePublishProgress').classList.remove('hidden');$('profilePublishProgress').setAttribute('aria-busy','true');
+  $('profilePublishProgress').scrollIntoView({block:'nearest'});
+  setWizardProgress('Prüfe die veröffentlichten Dateien. Bitte dieses Fenster geöffnet lassen.');
+  try{
+    while(!run.controller.signal.aborted&&performance.now()-run.started<PROFILE_PUBLISH_WAIT_MS){
+      let documents;
+      try{
+        documents=await readPublishedProfiles(run,PROFILE_PUBLISH_WAIT_MS-(performance.now()-run.started));
+      }catch(err){
+        if(run.controller.signal.aborted)return;
+        if(err instanceof SyntaxError)throw Error('Eine veröffentlichte Datei enthält kein gültiges JSON. Bitte die beiden erzeugten JSON-Dateien unverändert hochladen.');
+        setWizardProgress('Warte auf GitHub: Die Dateien sind noch nicht erreichbar. Die Prüfung wird automatisch wiederholt.');
+      }
+      if(run.controller.signal.aborted)return;
+      if(documents){
+        const [hdoc,ndoc]=documents,expected=generatedFiles.horizonDoc.points;
+        const horizonReady=profileMatchesSettings(hdoc)&&Array.isArray(hdoc.points)&&hdoc.points.length===expected.length&&
+          hdoc.points.every((p,i)=>p.az===expected[i].az&&p.height===expected[i].height);
+        if(horizonReady&&ndoc.id===generatedFiles.doc.id&&ndoc.panelProfiles?.length===pendingPanels.length){
+          // Erst beide Dateien prüfen; die aktive Konfiguration bleibt während des Wartens unverändert.
+          const checkedNear=validateNearData(ndoc,pendingPanels,pendingGeometry);
+          acceptPublishedConfig(ndoc,{force:true});nearData=checkedNear;
+          applyHorizon(hdoc);initNearFactors();calculate();saveForecastSnapshots();
+          setWizardProgress('GitHub-Profile bestätigt und neue Modulfelder aktiviert.');
+          finishProfilePublication(run);profileWizard.close();return;
+        }
+        setWizardProgress('Warte auf GitHub: Die Website liefert noch einen älteren Profilstand. Sobald beide neuen Dateien verfügbar sind, wird automatisch aktiviert.');
+      }
+      const remaining=PROFILE_PUBLISH_WAIT_MS-(performance.now()-run.started);
+      if(remaining>0)await waitForProfilePublication(Math.min(PROFILE_PUBLISH_POLL_MS,remaining),run.controller.signal);
+    }
+    if(!run.controller.signal.aborted)setWizardProgress('Nach 5 Minuten sind die passenden Dateien noch nicht auf der Website verfügbar. Deine Berechnung bleibt erhalten. Prüfe, ob beide Dateien im Hauptverzeichnis auf GitHub hochgeladen sind, und starte die Prüfung erneut.');
+  }catch(err){
+    if(!run.controller.signal.aborted)setWizardProgress('Aktivierung nicht abgeschlossen: '+(err.message||String(err))+' Deine Berechnung bleibt erhalten.');
+  }finally{finishProfilePublication(run);}
 });
 
 // Unit tests can replace fetch with mock responses; no backend is required.
