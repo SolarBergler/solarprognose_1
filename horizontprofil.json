@@ -1,10 +1,10 @@
 {
+  "version": 1,
   "location": {
     "latitude": 47.697844,
     "longitude": 11.880098,
     "roofHeight": 5
   },
-  "source": "Mapzen Terrain Tiles (AWS Open Data) · Berghorizont, 30 km",
   "points": [
     {
       "az": 0,
@@ -2886,5 +2886,8 @@
       "az": 359.5,
       "height": 9.14
     }
-  ]
+  ],
+  "source": "Mapzen Terrain Tiles (AWS Open Data) · Berghorizont, 30 km",
+  "details": "137 Terrain-Kacheln, 6.338.655 geprüfte Pixel, 720 Richtungen / 0,5°, Standort 802.7 m, Dach +5 m",
+  "generatedAt": "2026-11-05T19:21:06.725Z"
 }
