@@ -33,8 +33,8 @@ def save_json(path, value):
 def main():
     now = datetime.now(TZ)
     day = now.strftime('%Y-%m-%d')
-    # Dieser Testlauf ist absichtlich nur fuer den 1.–7. November 2026 aktiv.
-    if EVENT == 'schedule' and not ('2026-11-01' <= day <= '2026-11-07'):
+    # Dieser Testlauf ist absichtlich nur fuer den 1.–8. November 2026 aktiv.
+    if EVENT == 'schedule' and not ('2026-11-01' <= day <= '2026-11-08'):
         print('Außerhalb des vereinbarten Messzeitraums: keine Aktion.')
         return 0
 
@@ -105,7 +105,9 @@ def main():
         try:
             page.wait_for_function('''() => {
               const a=window.SolarApp;
-              if (!a || !document.querySelector('.eyebrow')?.textContent?.includes('V12.4') ||
+              const required=['getHorizon','getNearData','getArchive','archiveModelId',
+                              'groupDays','getState','getWeatherResolution'];
+              if (!a || !required.every(name=>typeof a[name]==='function') ||
                   a.getHorizon()?.length!==720 || !a.getNearData?.() ||
                   !document.getElementById('status')?.textContent?.includes('Nahverschattung aktiv')) return false;
               const date=new Intl.DateTimeFormat('sv-SE',{timeZone:'Europe/Berlin',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
@@ -126,7 +128,7 @@ def main():
             print('Fehlgeschlagene Netzwerkanfragen:', failed_requests[-10:])
             raise RuntimeError('V12 konnte keine gültige Live-Prognose mit 720-Punkte-Berg- und DOM20-Nahprofil bereitstellen.') from ex
 
-        result = page.evaluate('''() => {
+        result = page.evaluate(r'''() => {
           const app=window.SolarApp;
           const today=new Intl.DateTimeFormat('sv-SE',{timeZone:'Europe/Berlin',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
           const day=app.groupDays().find(d=>d.day===today);
@@ -139,7 +141,7 @@ def main():
             status:document.getElementById('status')?.textContent?.trim(),
             horizonSource:document.getElementById('horizonSource')?.textContent?.trim(),
             modelHash:app.archiveModelId(),
-            modelVersion:'V12.4',
+            modelVersion:document.querySelector('.eyebrow')?.textContent?.match(/\bV\d+(?:\.\d+)+\b/i)?.[0] || null,
             weatherDiagnostics:app.getWeatherDiagnostics?.(),
             nearProfileId:app.getNearData()?.id,
             nearProfileSource:app.getNearData()?.source,
@@ -203,7 +205,7 @@ def main():
         if isinstance(record, dict):
             record.pop('_lookup', None)
             record.pop('_lookupVersion', None)
-    result['captureType'] = 'live-browser-solarprognose-v12.4-dom20'
+    result['captureType'] = 'live-browser-solarprognose-dom20'
     result['slot'] = slot
     result['sourceUrl'] = URL
     result['description'] = 'Echter JavaScript-Lauf mit DOM20-Baum- und Gebäudeverschattung, 720-Punkte-Berghorizont und 5-Minuten-Werten. Abgelaufene Intervalle bleiben eingefroren. Historische V10-Dateien sind unverändert.'
