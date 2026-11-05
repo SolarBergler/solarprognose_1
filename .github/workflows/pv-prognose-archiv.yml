@@ -59,9 +59,23 @@ jobs:
 
       - name: Chromium und Playwright vorbereiten
         if: steps.archive_window.outputs.active == 'true'
+        timeout-minutes: 6
         run: |
           python -m pip install --disable-pip-version-check 'playwright==1.56.0'
-          python -m playwright install --with-deps chromium
+          # GitHub-Runner enthalten bereits Chrome. Kein apt-Abruf bei jedem Archivlauf.
+          browser_path=''
+          for candidate in google-chrome google-chrome-stable chromium chromium-browser; do
+            if command -v "$candidate" >/dev/null 2>&1; then
+              browser_path="$(command -v "$candidate")"
+              break
+            fi
+          done
+          if [ -n "$browser_path" ]; then
+            "$browser_path" --version
+            echo "PW_CHROMIUM_PATH=$browser_path" >> "$GITHUB_ENV"
+          else
+            timeout 240s python -m playwright install --with-deps chromium
+          fi
 
       - name: Prognose im echten Browser berechnen und archivieren
         if: steps.archive_window.outputs.active == 'true'

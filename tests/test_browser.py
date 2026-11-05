@@ -199,7 +199,7 @@ sys.exit(m.main())
     new_files=[p for p in (target/'prognosen').glob('*/*.json') if p not in protected]
     assert len(new_files)==1
     data=json.loads(new_files[0].read_text())
-    assert data['modelVersion']=='V12.7'
+    assert data['modelVersion']=='V12.7.1'
     assert data['inverterConfiguration']['model']=='v12.7-ac-limit-1'
     assert data['inverterConfiguration']['configured'] is False
     assert data['clippingKWh']==0
