@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 1,
+  "revision": 1,
+  "updatedAt": "2026-11-05T20:08:45.979764+00:00",
+  "location": {
+    "name": "Schliersee",
+    "latitude": 47.697844,
+    "longitude": 11.880098,
+    "roofHeightM": 5
+  },
+  "systemLossesPercent": 12,
+  "albedo": 0.2,
+  "panels": [
+    {
+      "id": "panel-1",
+      "name": "Haus links",
+      "kwp": 6.275,
+      "az": 165,
+      "tilt": 37,
+      "inverterId": "wr-4",
+      "geo": {
+        "name": "Haus links",
+        "latitude": 47.69776829404692,
+        "longitude": 11.88006023907851,
+        "width_m": 8,
+        "depth_m": 6,
+        "azimuth": 165,
+        "tilt_deg": 37,
+        "lower_edge_height_m": 3,
+        "upper_edge_height_m": 7
+      }
+    },
+    {
+      "id": "panel-2",
+      "name": "Garage",
+      "kwp": 5.28,
+      "az": 165,
+      "tilt": 30,
+      "inverterId": "wr-2",
+      "geo": {
+        "name": "Garage",
+        "latitude": 47.69792646402266,
+        "longitude": 11.880227171529725,
+        "width_m": 8,
+        "depth_m": 5,
+        "azimuth": 165,
+        "tilt_deg": 30,
+        "lower_edge_height_m": 3,
+        "upper_edge_height_m": 6
+      }
+    },
+    {
+      "id": "panel-3",
+      "name": "Carport",
+      "kwp": 9.9,
+      "az": 165,
+      "tilt": 20,
+      "inverterId": "wr-3",
+      "geo": {
+        "name": "Carport",
+        "latitude": 47.69786343561308,
+        "longitude": 11.879849604421532,
+        "width_m": 11,
+        "depth_m": 6,
+        "azimuth": 165,
+        "tilt_deg": 20,
+        "lower_edge_height_m": 3,
+        "upper_edge_height_m": 7
+      }
+    },
+    {
+      "id": "panel-4",
+      "name": "Hütte",
+      "kwp": 1.9,
+      "az": 254,
+      "tilt": 20,
+      "inverterId": "wr-2",
+      "geo": {
+        "name": "Hütte",
+        "latitude": 47.698012109923496,
+        "longitude": 11.880217099312013,
+        "width_m": 5.5,
+        "depth_m": 1.8,
+        "azimuth": 254,
+        "tilt_deg": 20,
+        "lower_edge_height_m": 2.5,
+        "upper_edge_height_m": 4
+      }
+    },
+    {
+      "id": "panel-wr-184dd470-e193-4036-a286-b621e04e321b",
+      "name": "Haus rechts",
+      "kwp": 7.95,
+      "az": 165,
+      "tilt": 37,
+      "inverterId": "wr-1",
+      "geo": {
+        "latitude": 47.697801624225924,
+        "longitude": 11.880186730760354,
+        "width_m": 8,
+        "depth_m": 6,
+        "lower_edge_height_m": 3,
+        "upper_edge_height_m": 7,
+        "azimuth": 165,
+        "tilt_deg": 37,
+        "name": "Haus rechts"
+      }
+    }
+  ],
+  "inverters": [
+    {
+      "id": "wr-1",
+      "name": "WR1",
+      "maxAcKw": 5
+    },
+    {
+      "id": "wr-2",
+      "name": "WR2",
+      "maxAcKw": 5
+    },
+    {
+      "id": "wr-3",
+      "name": "WR3",
+      "maxAcKw": 10
+    },
+    {
+      "id": "wr-4",
+      "name": "WR4",
+      "maxAcKw": 7
+    }
+  ],
+  "profiles": {
+    "horizon": {
+      "path": "horizontprofil.json",
+      "sha256": "4b46c53eade52f4bf31345b997a7e5c16f99dc5ca0b57a17964a8fa0a4b43ef2"
+    },
+    "near": {
+      "path": "nahverschattung.json",
+      "sha256": "def0533ac4b306d20855442684ec03ca1d35147ebf74602a8e59dc38c0625346",
+      "id": "b6670371"
+    },
+    "geometryHash": "5a5c13d1a944bce772a2b34d629a6185dd9fa89749c3d9c0a7cc0b453de0c9a2"
+  }
+}
