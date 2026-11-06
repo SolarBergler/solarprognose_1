@@ -4,6 +4,7 @@ import copy
 import hashlib
 import json
 import os
+import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urlsplit
@@ -12,11 +13,16 @@ ROOT=Path(__file__).resolve().parents[1]
 CHROMIUM=os.getenv('PW_CHROMIUM_PATH','/usr/bin/chromium')
 TOKEN='t'*40
 REPO='SolarBergler/solarprognose_1'
+# Feste Wetterdaten: Tests bleiben unabhängig von täglichen Archiv-Commits reproduzierbar.
+def fixture_weather(path):
+    return json.loads(subprocess.check_output(['git','show','e94f948943a1d7593bcec1e7d777cec29b853763:'+path],cwd=ROOT,text=True))
+
 
 class Server:
     def __init__(self):
         self.files={p:(ROOT/p).read_text() for p in ['anlagenkonfiguration.json','horizontprofil.json','nahverschattung.json']}
         self.pages=self.files.copy();self.head='a'*40;self.requests=[];self.trees=[];self.stage=[]
+        self.weather=fixture_weather('prognosen/letzter_wetterstand.json')['weather']
         self.auto_publish=True;self.offline=False;self.weather_fail=False;self.denied=False;self.errors=[]
     def release(self):self.pages=self.files.copy()
     def route(self,route):
@@ -48,21 +54,21 @@ class Server:
             return
         if url.netloc=='api.open-meteo.com':
             if self.offline or self.weather_fail:respond({'error':True,'reason':'test unavailable'},400)
-            else:respond(json.loads((ROOT/'prognosen/letzter_wetterstand.json').read_text())['weather'])
+            else:respond(self.weather)
         elif path in self.pages:
             if self.offline:route.abort()
             else:respond(self.pages[path])
         elif path=='prognosen/dwd_wetterstand.json' and (self.offline or self.weather_fail=='cached'):respond({},404)
         elif path in ['prognosen/dwd_wetterstand.json','prognosen/letzter_wetterstand.json']:
-            doc=json.loads((ROOT/path).read_text());doc['capturedAt']='2026-11-05T17:55:00+00:00'
+            doc=fixture_weather(path);doc['capturedAt']='2026-11-05T17:55:00+00:00'
             if 'issueTime' in doc:doc['issueTime']='2026-11-05T15:00:00.000Z'
             respond(doc)
         elif (ROOT/path).is_file():route.fulfill(path=str(ROOT/path))
         else:respond({},404)
 
-def open_page(browser,server,width=1365,legacy=None,storage=None,html=None):
+def open_page(browser,server,width=1365,legacy=None,storage=None,html=None,at=None):
     context=browser.new_context(timezone_id='Europe/Berlin',locale='de-DE',viewport={'width':width,'height':1000},**({'storage_state':storage} if storage else {}))
-    page=context.new_page();page.clock.install(time=datetime(2026,11,5,18,tzinfo=timezone.utc));errors=[]
+    page=context.new_page();page.clock.install(time=at or datetime(2026,11,5,18,tzinfo=timezone.utc));errors=[]
     page.on('pageerror',lambda e:errors.append(str(e)))
     if legacy is not None:context.add_init_script('localStorage.setItem("schliersee-settings-v1",'+json.dumps(json.dumps(legacy))+');')
     def handler(route):

@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="apple-mobile-web-app-title" content="Solar Schliersee" />
 <meta name="description" content="Mobile PV-Ertragsprognose für Schliersee mit Bergen und Geländehorizont. Läuft ohne Python und ohne Backend." />
-<title>Solarprognose Schliersee · Berg- und Nahverschattung V12.8.1</title>
+<title>Solarprognose Schliersee · Berg- und Nahverschattung V12.8.2</title>
 <style>
 :root{color-scheme:dark;--bg:#0a111b;--surface:#111d2b;--surface2:#162438;--line:#293b4d;--txt:#e8f0f8;--muted:#95a8bc;--lime:#b9ee69;--sky:#7ba8cb;--orange:#f1ae6a;--red:#f48e8e}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 85% 0, #1e3144 0,transparent 34%),var(--bg);color:var(--txt);font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--lime);outline-offset:2px}input,textarea{border:1px solid var(--line);border-radius:8px;padding:9px 10px;color:var(--txt);background:#0b1725;width:100%}input[type=number]{font-variant-numeric:tabular-nums}input[type=range]{padding:0;accent-color:var(--lime)}.layout{max-width:1320px;margin:0 auto;padding:32px 27px 70px}.top{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;flex-wrap:wrap;margin-bottom:31px}.eyebrow{color:var(--lime);text-transform:uppercase;font-size:11px;letter-spacing:.19em;font-weight:800}.brand{font-size:34px;letter-spacing:-1.5px;line-height:1.1;font-weight:750;margin:11px 0}.sub{color:var(--muted);max-width:710px;margin:0;font-size:14px}.top-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.pill{border:1px solid #345043;background:#172b2b;color:#b8eac2;border-radius:30px;padding:8px 13px;font-size:12px;font-weight:700}.pill.warn{color:#ffcd91;border-color:#76553a;background:#32281f}.btn{border:1px solid #47614f;background:#203d35;color:#cdf3b4;padding:9px 14px;border-radius:10px;font-weight:650;font-size:13px}.btn:hover{background:#2b4b3f}.btn.secondary{border-color:var(--line);background:#152334;color:var(--txt)}.btn.secondary:hover{background:#26394c}.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:22px}.kpi{background:linear-gradient(150deg,#152636,#101c29);border:1px solid #2c4050;border-radius:16px;padding:19px 19px 16px;min-height:135px;overflow:hidden}.kpi span{font-size:12px;color:var(--muted);display:block;margin-bottom:11px}.kpi strong{font-size:34px;font-weight:770;letter-spacing:-1.7px;line-height:1.2;font-variant-numeric:tabular-nums}.kpi .unit{font-size:16px;color:var(--muted);font-weight:500;letter-spacing:0}.kpi em{display:block;color:var(--muted);font-style:normal;margin-top:5px;font-size:12px}.kpi .accent{color:var(--lime)}.kpi .warm{color:var(--orange)}.cols{display:grid;grid-template-columns:minmax(0,1.62fr) minmax(0,1fr);gap:18px}.panel{background:linear-gradient(150deg,#142132,#111b29);border:1px solid #2a394b;border-radius:16px;padding:23px;min-width:0;margin-bottom:18px}.panel h2{font-size:17px;letter-spacing:-.3px;margin:0}.panel-header{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap;margin-bottom:18px}.hint{color:var(--muted);font-size:12px;margin:5px 0 0}.legend{display:flex;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:12px}.legend b{display:inline-block;width:16px;height:3px;border-radius:3px;margin:0 5px 3px 0}.chart{display:block;width:100%;height:auto;overflow:visible;touch-action:pan-y}.axistext{fill:#8299ac;font-size:12px;font-family:inherit}.chart-grid{stroke:#314253;stroke-width:1}.forecast-days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}.day{border:1px solid #344759;background:#152335;min-height:145px;padding:13px 5px 9px;border-radius:11px;color:var(--txt);text-align:center;display:flex;flex-direction:column;gap:5px;align-items:center}.day:hover{background:#21344b}.day.active{border-color:var(--lime);box-shadow:inset 0 0 0 1px var(--lime);background:#21352d}.day .dayname{font-size:11px;color:var(--muted)}.day strong{font-size:17px;font-variant-numeric:tabular-nums}.bars{display:flex;align-items:flex-end;gap:3px;height:70px;width:80%;justify-content:center;margin:4px 0}.bars i{width:15px;display:block;border-radius:3px 3px 0 0;min-height:2px}.bar-base{background:#536d82}.bar-correct{background:var(--lime)}.detail{width:100%;border-collapse:collapse;margin-top:6px;font-size:13px}.detail th,.detail td{text-align:right;padding:12px 6px;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}.detail th:first-child,.detail td:first-child{text-align:left}.detail th{color:var(--muted);font-weight:550;font-size:11px}.detail td:last-child{color:var(--orange)}.detail tr.total td{font-weight:750;color:var(--txt)}.badge{display:inline-flex;gap:7px;align-items:center;font-size:12px;padding:6px 9px;border-radius:6px;background:#1e3136;color:#c5e3de;margin-top:12px}.warning{padding:12px 14px;border-radius:9px;border:1px solid #674b34;background:#332719;color:#ffdaaa;font-size:12px;line-height:1.6;margin-top:12px}.hidden{display:none!important}.horizon-top{display:flex;align-items:center;gap:10px;justify-content:space-between;flex-wrap:wrap}.horizon-meta{color:#a9c0cf;font-size:12px;margin:5px 0 15px}.horizon-wrap{position:relative}.horizon-tooltip{position:absolute;right:0;top:0;border:1px solid #38534d;padding:4px 8px;border-radius:6px;color:var(--lime);font-size:12px;background:#172c28}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}.field .note{font-size:11px;color:var(--muted);margin-top:5px}.settings-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:14px}.setting-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.panels-edit{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:9px}.panels-edit input{padding:8px 6px}.headings{color:var(--muted);font-size:11px;margin-bottom:8px}.panel-edit-row{margin-bottom:8px}details{margin-top:17px;background:#0d1926;border:1px solid #273849;border-radius:12px;padding:12px}summary{font-weight:650;cursor:pointer}textarea{resize:vertical;min-height:84px;margin-top:10px;font-size:12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}.foot{margin-top:13px;color:#8da1b5;font-size:12px;line-height:1.65}.footer{border-top:1px solid #29394b;margin-top:20px;padding-top:19px;color:var(--muted);font-size:12px}.spacer{margin-bottom:14px}.notice{font-size:12px;color:#aac2d4;padding:10px 12px;border-left:3px solid #6086a9;background:#172639;border-radius:3px}.statusbox{border:1px solid var(--line);background:#102130;border-radius:10px;padding:12px;margin-top:10px;font-size:12px;color:var(--muted)}.statusbox strong{color:var(--txt)}
@@ -61,7 +61,7 @@
 .day .day-footer{color:var(--orange);font-size:11px;font-weight:800;margin-top:3px;line-height:1.15;font-variant-numeric:tabular-nums;white-space:nowrap;letter-spacing:-.15px}
 .day .day-footer small{font-size:.85em;font-weight:600}
 @media(max-width:660px){.day{min-height:162px;padding:10px 1px 8px}.day .day-reading{font-size:12px;gap:1px}.day .day-reading small{font-size:8px}.day .bars{height:76px;gap:3px}.day .bars i{width:13px}.day .day-footer{display:flex;flex-direction:column;gap:1px;align-items:center;font-size:11px;white-space:normal}.day .day-footer small{font-size:9px}}
-/* V12.8.1: Elektrische Konfiguration getrennt von der Profilgeometrie. */
+/* V12.8.2: Elektrische Konfiguration getrennt von der Profilgeometrie. */
 .plant-dialog select{width:100%;min-width:0;padding:9px;border:1px solid var(--line);border-radius:8px;background:#0b1725;color:var(--txt);font:inherit}
 .plant-dialog .editcells label,.inverter-card label{display:block;min-width:0;font-size:12px;color:var(--muted)}
 .plant-dialog .editcells input{width:100%;margin-top:4px;font-size:16px}
@@ -83,11 +83,12 @@
 <body>
 <main class="layout">
   <header class="top">
-    <div><div class="eyebrow">PV · iPhone / Safari · Berge, Bäume & Gebäude · V12.8.1</div><h1 class="brand">Solarprognose <button type="button" class="location-title-button" id="openLocationDialog" aria-haspopup="dialog" aria-controls="locationDialog" title="Ort und Koordinaten ändern"><span id="locationTitle">Schliersee</span></button><span style="color:var(--lime)">.</span></h1><p class="sub">Solarprognose mit Berg-, Baum- und Gebäudeverschattung aus amtlichen 20-cm-Oberflächendaten. Die alten V10-Prognosen bleiben in GitHub historisch erhalten, werden hier aber nicht mehr als zweites Modell angezeigt. Läuft auf Mac und iPhone direkt im Browser.</p></div>
+    <div><div class="eyebrow">PV · iPhone / Safari · Berge, Bäume & Gebäude · V12.8.2</div><h1 class="brand">Solarprognose <button type="button" class="location-title-button" id="openLocationDialog" aria-haspopup="dialog" aria-controls="locationDialog" title="Ort und Koordinaten ändern"><span id="locationTitle">Schliersee</span></button><span style="color:var(--lime)">.</span></h1><p class="sub">Solarprognose mit Berg-, Baum- und Gebäudeverschattung aus amtlichen 20-cm-Oberflächendaten. Die alten V10-Prognosen bleiben in GitHub historisch erhalten, werden hier aber nicht mehr als zweites Modell angezeigt. Läuft auf Mac und iPhone direkt im Browser.</p></div>
     <div class="top-right"><span class="pill warn" id="status">Daten werden geladen …</span><button class="btn secondary" id="refresh" type="button">↻ Aktualisieren</button></div>
     <details class="weather-debug hidden" id="weatherDetails" style="width:100%;max-width:710px"><summary>Wetterabruf: Fehlerdetails</summary><p id="weatherDetailText" class="hint" style="white-space:pre-wrap;word-break:break-word"></p></details>
   </header>
   <div class="central-source" id="centralSource" role="status" aria-live="polite">Lade die verbindliche Anlagenkonfiguration von GitHub …</div>
+  <div class="statusbox" id="startupNotice" role="status" aria-live="polite"><p id="startupMessage">Lade geprüfte Anlagenkonfiguration, Verschattungsprofile und Wetterdaten …</p><button class="btn secondary" id="retryStartup" type="button" onclick="window.SolarApp ? window.SolarApp.retryStart() : location.reload()">Erneut laden</button></div>
   <div class="kpis">
     <div class="kpi"><span>7-Tage-Ertrag · inklusive Nahverschattung</span><strong class="accent" id="kpiYield">—</strong><em id="kpiYieldNote">Wetterprognose wird geladen</em></div>
     <div class="kpi"><span>7-Tage-Ertrag · ohne Verschattung</span><strong id="kpiBase">—</strong><em>Vergleich auf gleicher Wettergrundlage</em></div>
@@ -107,6 +108,7 @@
         <div class="forecast-history" id="historyPanel">
           <div class="history-header"><strong>Prognoseverlauf</strong><span class="history-pill" id="historyCount">Noch kein Verlauf</span></div>
           <p class="hint" id="historyInfo" aria-live="polite">Der erste Prognosestand wird beim nächsten erfolgreichen Abruf gespeichert.</p>
+          <p class="hint hidden" id="historyMigration" aria-live="polite"></p>
 
           <p class="hint history-footnote" id="historyFootnote">Es werden nur zwei Kurven angezeigt: ursprüngliche Referenz und jeweils aktuelle Prognose. Für heute wird ausschließlich die noch bevorstehende Zeit neu berechnet. Speicherung nur in diesem Browser; kein automatischer Abruf bei geschlossener Seite.</p>
         </div>
@@ -196,13 +198,28 @@
   <div class="publish-wait hidden" id="centralPublishProgress"><progress aria-label="Zentrale Veröffentlichung läuft"></progress><p id="centralPublishElapsed"></p><p>GitHub Pages kann einige Minuten für die Veröffentlichung benötigen. Sobald die zusammengehörigen Dateien verfügbar sind, wird die Konfiguration übernommen und das Fenster geschlossen.</p></div>
   <div class="plant-actions"><button type="button" class="btn secondary" id="cancelCentralPublish">Zurück zum Entwurf</button><button type="button" class="btn" id="confirmCentralPublish">Autorisieren & zentral speichern</button></div>
 </dialog>
+<script>
+window.SolarStartup={
+  show(message,error=false){const box=document.getElementById('startupNotice');box.classList.remove('hidden');box.classList.toggle('warning',error);document.getElementById('startupMessage').textContent=message;},
+  done(){document.getElementById('startupNotice').classList.add('hidden');}
+};
+window.addEventListener('error',event=>{
+  const file=event.target?.src;
+  if(file)window.SolarStartup.show('Programmdatei konnte nicht geladen werden: '+file.split('/').pop()+'. Bitte erneut laden.',true);
+  else if(!window.SolarApp?.getCalculated().length)window.SolarStartup.show('Prognosestart fehlgeschlagen: '+event.message+'. Bitte erneut laden.',true);
+},true);
+window.addEventListener('unhandledrejection',event=>{
+  if(!window.SolarApp?.getCalculated().length)window.SolarStartup.show('Prognosestart fehlgeschlagen: '+(event.reason?.message||event.reason)+'. Bitte erneut laden.',true);
+});
+</script>
 <script src="./inverters.js?v=12.7"></script>
-<script src="./central-config.js?v=12.8.1"></script>
+<script src="./central-config.js?v=12.8.2"></script>
 <script>
 'use strict';
 const $=id=>document.getElementById(id);
 const WR=window.SolarInverters;
-const CENTRAL=window.SolarCentral;
+let CENTRAL=window.SolarCentral;
+let centralScriptPromise=null,startupPromise=null;
 const rad=Math.PI/180,deg=180/Math.PI;
 const defaultPanels=[{name:'Haus',kwp:14.225,az:165,tilt:37},{name:'Garage',kwp:5.28,az:165,tilt:30},{name:'Carport',kwp:9.9,az:165,tilt:20},{name:'Hütte',kwp:1.9,az:254,tilt:20}];
 const defaultPanelGeometry=[{"name":"Haus","latitude":47.697785941129744,"longitude":11.880120223346184,"width_m":17,"depth_m":6,"azimuth":165,"tilt_deg":37,"lower_edge_height_m":3,"upper_edge_height_m":7},{"name":"Garage","latitude":47.69792646402266,"longitude":11.880227171529725,"width_m":8,"depth_m":5,"azimuth":165,"tilt_deg":30,"lower_edge_height_m":3,"upper_edge_height_m":6},{"name":"Carport","latitude":47.69786343561308,"longitude":11.879849604421532,"width_m":11,"depth_m":6,"azimuth":165,"tilt_deg":20,"lower_edge_height_m":3,"upper_edge_height_m":7},{"name":"Hütte","latitude":47.698012109923496,"longitude":11.880217099312013,"width_m":5.5,"depth_m":1.8,"azimuth":254,"tilt_deg":20,"lower_edge_height_m":2.5,"upper_edge_height_m":4}];
@@ -249,6 +266,70 @@ function readForecastArchive(){
 }
 let forecastArchive=readForecastArchive();
 function archiveModelId(){return centralBundle?'v12.8-'+centralBundle.physicalHash:'central-configuration-unavailable';}
+function legacyModelId(bundle,latitude=state.lat,longitude=state.lon){
+  // Unveränderte Modellkennung von V12.7; nur zur Prüfung alter Kurven, nie zur Berechnung.
+  const conf=[Number(latitude).toFixed(8),Number(longitude).toFixed(8),state.roofHeight,state.losses,state.albedo,
+    state.panels.map(p=>[p.kwp,p.az,p.tilt]),
+    bundle.horizon.points.map(p=>[Number(p.az).toFixed(3),Number(p.height).toFixed(3)]),bundle.near.id,WR.modelConfiguration(state.panels,state.inverters)];
+  let hash=2166136261;for(const char of JSON.stringify(conf)){hash^=char.charCodeAt(0);hash=Math.imul(hash,16777619);}
+  return (hash>>>0).toString(16).padStart(8,'0');
+}
+function validHistoryRecord(record){
+  return !!(record&&typeof record.model==='string'&&Number.isFinite(record.updatedAt)&&
+    Number.isFinite(record.original?.at)&&typeof record.original.kind==='string'&&Array.isArray(record.original.values)&&record.original.values.length&&
+    record.original.values.every(row=>Array.isArray(row)&&row.length===2&&row.every(Number.isFinite))&&
+    Array.isArray(record.current)&&record.current.length&&record.current.every(row=>Array.isArray(row)&&row.length>=3&&row.every(Number.isFinite)));
+}
+function migrateForecastHistory(bundle){
+  const target=archiveModelId(),legacy=legacyModelId(bundle),expectedWidth=5+state.panels.length*2;
+  const compatibleModels=new Map([[legacy,'identical']]);
+  // V12.8 übernahm die Standortpräzision der veröffentlichten Profile anstelle der
+  // bisherigen V12.7-Startkoordinaten (< 8 cm Differenz). Nur diese bekannte Migration
+  // zulassen; alle Profile, Modulparameter und WR-Grenzen müssen weiterhin exakt passen.
+  // Die Originalkurven werden nicht neu berechnet und ihre frühere Modellkennung bleibt erhalten.
+  if(state.lat===47.697844&&state.lon===11.880098){
+    compatibleModels.set(legacyModelId(bundle,47.69784444,11.88009722),'published-location-precision-v12.8');
+  }
+  forecastArchive.previousModels??={};
+  let restored=0,separate=0;
+  for(const key of ['schliersee-forecast-progressive-v12.7','schliersee-forecast-progressive-v11','schliersee-forecast-progressive-v10']){
+    let saved;try{saved=JSON.parse(localStorage.getItem(key));}catch{continue;}
+    if(!saved?.days||typeof saved.days!=='object')continue;
+    const groups=[saved.days,...Object.values(saved.previousModels||{})];
+    for(const days of groups)for(const [day,source] of Object.entries(days||{})){
+      if(!/^\d{4}-\d\d-\d\d$/.test(day)||!validHistoryRecord(source))continue;
+      const record=JSON.parse(JSON.stringify(source));delete record._lookup;delete record._lookupVersion;
+      const namespace='legacy:'+key+':'+record.model;
+      forecastArchive.previousModels[namespace]??={};
+      forecastArchive.previousModels[namespace][day]??=record;
+      const electrical=record.inverterConfiguration;
+      const compatible=key.endsWith('v12.7')&&/^V12\.7(?:\.|$)/.test(record.modelVersion||'')&&compatibleModels.has(record.model)&&
+        electrical?.model===WR.MODEL&&Array.isArray(electrical.panels)&&Array.isArray(electrical.inverters)&&
+        electrical.panels.length===state.panels.length&&electrical.panels.every((p,i)=>p.id===state.panels[i].id&&p.dcKwp===state.panels[i].kwp&&p.inverterId===state.panels[i].inverterId)&&
+        JSON.stringify(WR.modelConfiguration(electrical.panels,electrical.inverters))===JSON.stringify(WR.modelConfiguration(state.panels,state.inverters))&&
+        record.current.every(row=>row.length===expectedWidth);
+      if(!compatible){separate++;continue;}
+      const active=forecastArchive.days[day],original=active?.model===target&&validHistoryRecord(active)?active.original:null;
+      const better=!original||baseRank(record.original.kind)>baseRank(original.kind)||
+        (baseRank(record.original.kind)===baseRank(original.kind)&&record.original.at<original.at);
+      if(!better)continue;
+      const reference={...record.original,sourceArchiveKey:key,sourceModel:record.model,sourceModelVersion:record.modelVersion,compatibility:compatibleModels.get(record.model)};
+      if(original){
+        active.referenceHistory??=[];
+        active.referenceHistory.push(original);active.original=reference;
+      }else{
+        if(active){forecastArchive.previousModels[active.model]??={};forecastArchive.previousModels[active.model][day]??=active;}
+        forecastArchive.days[day]={...record,model:target,modelVersion:'V12.8.2',centralConfiguration:getCentralConfiguration(),original:reference};
+      }
+      restored++;
+    }
+  }
+  const message=restored?restored+' frühere Originalkurven aus V12.7 wurden für dasselbe Anlagenmodell übernommen.':
+    separate?'Frühere Kurven bleiben getrennt erhalten. Ihr Anlagenmodell stimmt nicht nachweislich mit der zentralen Konfiguration überein; sie werden nicht als neue Originale ausgegeben.':'';
+  if(message){$('historyMigration').textContent=message;$('historyMigration').classList.remove('hidden');}
+  // Alte Schlüssel bleiben bytegleich erhalten. Erst nach bestätigter zentraler Prüfung die Kopie sichern.
+  try{localStorage.setItem(FORECAST_ARCHIVE_KEY,JSON.stringify(forecastArchive,(key,value)=>key==='_lookup'||key==='_lookupVersion'?undefined:value));}catch{/* Historie bleibt im alten Schlüssel und im Arbeitsspeicher erhalten. */}
+}
 const berlinHour=new Intl.DateTimeFormat('en-GB',{timeZone:TZ,hour:'2-digit',hourCycle:'h23'});
 const dateTimeLabel=new Intl.DateTimeFormat('de-DE',{timeZone:TZ,day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
 const timeOnly=new Intl.DateTimeFormat('de-DE',{timeZone:TZ,hour:'2-digit',minute:'2-digit'});
@@ -276,7 +357,7 @@ function restoreRow(raw,packed){
 }
 function archiveRecord(day){
   const obj=forecastArchive.days[day];
-  return obj?.model===archiveModelId()&&Array.isArray(obj.current)&&obj.current.length?obj:null;
+  return obj?.model===archiveModelId()&&validHistoryRecord(obj)?obj:null;
 }
 function storedReferencePoints(record){return record?.original?.values?.map(v=>({ts:v[0],power:v[1]}))||[]}
 function rawGroupedDays(){return aggregateDays(calculated)}
@@ -300,15 +381,18 @@ function saveForecastSnapshots(at=Date.now()){
     // Morgenstand, dieser vor einer früher angelegten Wochen-Vorschau.
     const promote=!old||baseRank(kind)>baseRank(old.original?.kind);
     const original=promote?{at,kind,configurationHash:centralBundle.configHash,configurationRevision:centralBundle.config.revision,values:raw.map(r=>[r[0],r[1]])}:old.original;
+    const referenceHistory=[...(old?.referenceHistory||[])];
+    if(promote&&old)referenceHistory.push(old.original);
     const previous=forecastArchive.days[day.day];
     if(previous&&previous.model!==model){
-      // Modellwechsel erhalten den vorherigen Originalstand, auch innerhalb von V12.8.1.
+      // Modellwechsel erhalten den vorherigen Originalstand, auch innerhalb von V12.8.2.
       forecastArchive.previousModels??={};
       forecastArchive.previousModels[previous.model]??={};
       const {_lookup,_lookupVersion,...persistent}=previous;
       forecastArchive.previousModels[previous.model][day.day]=persistent;
     }
-    forecastArchive.days[day.day]={model,modelVersion:'V12.8.1',centralConfiguration:getCentralConfiguration(),inverterConfiguration:getInverterConfiguration(),original,current,updatedAt:at};
+    forecastArchive.days[day.day]={model,modelVersion:'V12.8.2',centralConfiguration:getCentralConfiguration(),inverterConfiguration:getInverterConfiguration(),original,current,updatedAt:at,
+      ...(referenceHistory.length?{referenceHistory}:{})};
   }
   try{
     localStorage.setItem(FORECAST_ARCHIVE_KEY,JSON.stringify(forecastArchive));
@@ -332,6 +416,8 @@ function renderHistoryInfo(day){
   $('historyCount').textContent='2 Kurven maximal';
   const pastNote=day.day===dayKey(Date.now()/1000)?'Bereits begonnene 5-Minuten-Intervalle bleiben unverändert; nur die Zukunft wird aktualisiert.':'Für zukünftige Tage wird jeweils die gesamte Prognose aktualisiert.';
   $('historyInfo').innerHTML=`<strong>${escapeHtml(orig.kind)}: ${escapeHtml(dateTimeLabel.format(new Date(orig.at)))} Uhr</strong> · Original ${number(orig.values.reduce((v,row)=>v+row[1]/12,0),1)} kWh · aktuell ${number(day.power,1)} kWh (${diff>=0?'+':'−'}${number(Math.abs(diff),1)} kWh).<br>${escapeHtml(pastNote)}` +
+    (orig.sourceModelVersion?'<br>Ursprüngliche Referenz unverändert aus '+escapeHtml(orig.sourceModelVersion)+' übernommen; Anlagenmodell und Profile geprüft.'+
+      (orig.compatibility==='published-location-precision-v12.8'?' Die frühere Standortpräzision wurde nur für die Zuordnung berücksichtigt.':''):'')+
     (archiveWriteWarning?'<br><strong>'+escapeHtml(archiveWriteWarning)+'</strong>':'');
   return reference;
 }
@@ -591,7 +677,7 @@ function groupDays(){
   const rows=calculated.map(row=>{
     const rec=byDate.get(row.day);
     if(!rec)return row;
-    if(!rec._lookup||rec._lookupVersion!==rec.updatedAt){
+    if(!(rec._lookup instanceof Map)||rec._lookupVersion!==rec.updatedAt){
       // Kein Speichern im Repository; Lookup nur im aktuellen JS-Lauf.
       rec._lookup=new Map(rec.current.map(value=>[value[0],value]));
       rec._lookupVersion=rec.updatedAt;
@@ -753,6 +839,7 @@ function activateCentralBundle(bundle){
   const previous=centralBundle,locationChanged=previous&&(previous.config.location.latitude!==bundle.config.location.latitude||previous.config.location.longitude!==bundle.config.location.longitude);
   centralBundle=bundle;state=WR.migratePlant(CENTRAL.toState(bundle.config));panelGeometry=state.panelGeometry.map(p=>({...p}));
   nearData=bundle.near;nearShadeFactors=[];
+  migrateForecastHistory(bundle);
   if(locationChanged){weather=null;calculated=[];selectedDay='';}
   syncSettings();applyHorizon(bundle.horizon);initNearFactors();
   nearStatusText='Zentral veröffentlichtes DOM20-Profil · '+nearData.panelProfiles.map(p=>p.samples.length).join('/')+' Stichproben';
@@ -764,22 +851,50 @@ async function reloadCentralConfiguration(){
   if(centralLoadPromise)return centralLoadPromise;
   centralLoadPromise=(async()=>{
     try{
-      const bundle=await CENTRAL.loadBundle({known:centralBundle});
+      CENTRAL=await ensureCentralModule();
+      const bundle=await CENTRAL.loadBundle({known:centralBundle,onProgress:message=>window.SolarStartup.show(message)});
       if(bundle.configHash!==centralBundle?.configHash)activateCentralBundle(bundle);
       else{centralBundle=bundle;updateCentralSource();}
       return bundle;
     }catch(error){
       if(centralBundle){centralBundle={...centralBundle,online:false,warning:'Die neueste zentrale Konfiguration ist nicht erreichbar.'};updateCentralSource();return centralBundle;}
-      updateCentralSource(error.message);setStatus('Keine geprüfte zentrale Anlagenkonfiguration',true);return null;
+      updateCentralSource(error.message);setStatus('Keine geprüfte zentrale Anlagenkonfiguration',true);
+      window.SolarStartup.show(error.message+' Keine Prognose mit ungeprüften Profildaten. Bitte erneut laden.',true);return null;
     }
   })();
   try{return await centralLoadPromise;}finally{centralLoadPromise=null;}
 }
-async function refreshCentralForecast(){if(await reloadCentralConfiguration())await refreshAll(false);}
+async function ensureCentralModule(){
+  if(window.SolarCentral?.loadBundle)return window.SolarCentral;
+  if(centralScriptPromise)return centralScriptPromise;
+  centralScriptPromise=new Promise((resolve,reject)=>{
+    const script=document.createElement('script');
+    const failed=()=>{clearTimeout(timer);script.remove();reject(Error('central-config.js konnte nicht geladen werden. Bitte Verbindung oder Browser-Blockierung prüfen und erneut laden.'));};
+    const timer=setTimeout(failed,15000);
+    script.src='./central-config.js?v=12.8.2&retry='+Date.now();
+    script.onload=()=>{clearTimeout(timer);window.SolarCentral?.loadBundle?resolve(window.SolarCentral):failed();};script.onerror=failed;
+    document.head.appendChild(script);
+  });
+  try{return await centralScriptPromise;}finally{centralScriptPromise=null;}
+}
+async function refreshCentralForecast(){
+  if(startupPromise)return startupPromise;
+  startupPromise=(async()=>{
+    $('retryStartup').disabled=true;window.SolarStartup.show('Lade die zentrale Konfiguration und passende Verschattungsprofile …');
+    try{
+      if(!await reloadCentralConfiguration())return;
+      window.SolarStartup.show('Anlage und Profile geprüft. Lade Wetterdaten und berechne die Tagesprognosen …');
+      await refreshAll(false);
+      if(errorWeather||!calculated.length)throw Error(weatherFetchError||errorWeather||'Keine verwertbaren Wetterdaten verfügbar.');
+      window.SolarStartup.done();
+    }catch(error){window.SolarStartup.show('Prognose konnte nicht geladen werden: '+error.message+' Bitte erneut laden.',true);}
+    finally{working=false;updateStatus();$('retryStartup').disabled=false;}
+  })();
+  try{return await startupPromise;}finally{startupPromise=null;}
+}
 async function startCentralApplication(){
   ['openPanels','openLocationDialog','applyPhysics','loadHorizon','nearReload'].forEach(id=>$(id).disabled=true);
-  const bundle=await reloadCentralConfiguration();
-  if(bundle){['openPanels','openLocationDialog','applyPhysics','loadHorizon','nearReload'].forEach(id=>$(id).disabled=false);await refreshAll(false);}
+  await refreshCentralForecast();
 }
 function closePublication(job,success=false){
   if(publishJob!==job)return;
@@ -937,7 +1052,7 @@ function isGeometricallyChanged(){
 }
 function updateLocationHeading(){
   $('locationTitle').textContent=state.locationName;
-  document.title='Solarprognose '+state.locationName+' · V12.8.1 mit Bäumen, Gebäuden und Wechselrichtern';
+  document.title='Solarprognose '+state.locationName+' · V12.8.2 mit Bäumen, Gebäuden und Wechselrichtern';
 }
 function syncSettings(){
   updateLocationHeading();
@@ -1563,7 +1678,7 @@ $('verifyProfiles').addEventListener('click',async()=>{
 
 // Unit tests can replace fetch with mock responses; no backend is required.
 window.SolarApp={solarPosition,interpolateHorizon,diffuseFactor,calculate,groupDays,forecastUrl,
-  getInverterConfiguration,getCentralConfiguration,
+  getInverterConfiguration,getCentralConfiguration,retryStart:refreshCentralForecast,
   getWeatherResolution:()=>weatherResolution,getState:()=>state,getHorizon:()=>horizon,getCalculated:()=>calculated,
   profileKey,archiveModelId,archiveRecord,readForecastArchive,getArchive:()=>forecastArchive,saveForecastSnapshots,renderHistoryInfo,
   setTestWeather:w=>{weather=w;calculate()},getWeatherData:()=>!weatherIsCached&&weatherProvider==='open-meteo'?weather:null,

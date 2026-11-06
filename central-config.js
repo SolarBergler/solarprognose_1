@@ -1,4 +1,4 @@
-/* V12.8.1: Eine veröffentlichte Konfiguration mit kryptographisch gebundenen Profilen. */
+/* V12.8.2: Eine veröffentlichte Konfiguration mit kryptographisch gebundenen Profilen. */
 (function(root){
   'use strict';
   const FILE='anlagenkonfiguration.json',CACHE_KEY='solar-central-bundle-v1';
@@ -78,18 +78,34 @@
   function cacheBundle(bundle,store=storage()){
     try{store?.setItem(CACHE_KEY,JSON.stringify({configText:bundle.configText,horizonText:bundle.horizonText,nearText:bundle.nearText,configHash:bundle.configHash,physicalHash:bundle.physicalHash,fetchedAt:new Date().toISOString()}));}catch{/* Prognose bleibt bei gesperrtem Cache nutzbar. */}
   }
-  async function loadBundle({fetchImpl=root.fetch?.bind(root),store=storage(),known=null,allowCache=true}={}){
-    const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),15000);
-    try{
-      const get=async path=>{const r=await fetchImpl('./'+path+'?central='+Date.now(),{cache:'no-store',signal:controller.signal});if(!r.ok)throw fail('Zentrale Datei nicht erreichbar (HTTP '+r.status+').','NETWORK');return r.text();};
-      const configText=await get(FILE),hash=await sha256(configText);
-      if(known?.configHash===hash){const fresh={...known,online:true};cacheBundle(fresh,store);return fresh;}
-      const [h,n]=await Promise.all([get('horizontprofil.json'),get('nahverschattung.json')]);
-      const bundle=await verifyBundle(configText,h,n);cacheBundle(bundle,store);return bundle;
-    }catch(error){
-      if(allowCache){const cached=await readCache(store);if(cached)return {...cached,warning:error.code==='PROFILE_MISMATCH'?'Eine neue Veröffentlichung ist noch nicht vollständig verfügbar.':'Die zentrale Konfiguration ist momentan nicht erreichbar.'};}
-      throw error.code?error:fail('Die zentrale Konfiguration konnte nicht von GitHub geladen werden. Es ist kein vollständig geprüfter zentraler Cache verfügbar.','NETWORK');
-    }finally{clearTimeout(timer);controller.abort();}
+  async function loadBundle({fetchImpl=root.fetch?.bind(root),store=storage(),known=null,allowCache=true,retries=2,retryDelayMs=1000,onProgress=()=>{}}={}){
+    let lastError;
+    for(let attempt=0;attempt<=retries;attempt++){
+      const controllers=[];
+      try{
+        const get=async path=>{
+          onProgress('Lade '+path+' · Versuch '+(attempt+1)+'/'+(retries+1)+' …');
+          const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),15000);controllers.push(controller);
+          try{
+            const r=await fetchImpl('./'+path+'?central='+Date.now()+'-'+attempt,{cache:'no-store',signal:controller.signal});
+            if(!r.ok)throw fail(path+': HTTP '+r.status+'.','NETWORK');
+            return await r.text();
+          }catch(error){throw error.code==='NETWORK'?error:fail(path+': '+(controller.signal.aborted?'Download nach 15 Sekunden abgebrochen.':'Download fehlgeschlagen; bitte Internetverbindung oder Browser-Blockierung prüfen.'),'NETWORK');}
+          finally{clearTimeout(timer);}
+        };
+        const configText=await get(FILE),hash=await sha256(configText);
+        if(known?.configHash===hash){const fresh={...known,online:true};cacheBundle(fresh,store);return fresh;}
+        const [h,n]=await Promise.all([get('horizontprofil.json'),get('nahverschattung.json')]);
+        onProgress('Prüfe Konfiguration und beide Verschattungsprofile …');
+        const bundle=await verifyBundle(configText,h,n);cacheBundle(bundle,store);return bundle;
+      }catch(error){
+        lastError=error.code?error:fail('Konfiguration konnte nicht geprüft werden: '+error.message,'INVALID');
+        if(allowCache){const cached=await readCache(store);if(cached)return {...cached,warning:lastError.code==='PROFILE_MISMATCH'?'Eine neue Veröffentlichung ist noch nicht vollständig verfügbar.':lastError.message};}
+        if(attempt===retries||!['NETWORK','PROFILE_MISMATCH'].includes(lastError.code))throw lastError;
+      }finally{controllers.forEach(c=>c.abort());}
+      onProgress(lastError.message+' Automatischer neuer Versuch …');
+      await new Promise(resolve=>setTimeout(resolve,retryDelayMs));
+    }
   }
   function toState(c){
     return {locationName:c.location.name,lat:c.location.latitude,lon:c.location.longitude,roofHeight:c.location.roofHeightM,losses:c.systemLossesPercent,albedo:c.albedo,

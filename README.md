@@ -12,6 +12,14 @@ Die Anzeige nennt Revision und den Anfang des SHA-256-Konfigurationshashs. Die K
 
 `localStorage` speichert Prognosehistorie, Wetter und eine geprüfte Kopie des gesamten zentralen Konfigurationspakets. Bei fehlender Verbindung darf diese Kopie weiter verwendet werden; die Website kennzeichnet sie ausdrücklich als **nicht aktuell bestätigt**. Ohne gültigen zentralen Stand oder gültige Kopie wird keine Prognose berechnet. Offline können keine zentralen Änderungen veröffentlicht werden. Die automatische Archivierung verlangt einen online bestätigten zentralen Stand.
 
+## Korrektur V12.8.2: Start und bisherige Originalkurven
+
+V12.8 führte einen neuen lokalen Archivschlüssel und eine neue Modellkennung ein. Ohne Übernahme des bisherigen Verlaufs entstanden dadurch neue Referenzkurven, die zunächst mit der aktuellen Prognose identisch waren. V12.8.2 liest zusätzlich die älteren lokalen Archive. V12.7-Originale werden mit unveränderten Werten und Zeitstempeln übernommen, wenn Profilbindung, Modulparameter und Wechselrichtermodell passen. Die bekannte Änderung der Standortpräzision bei der Einführung von V12.8 (unter 8 cm; ursprüngliche veröffentlichte Startkoordinaten) wird ausschließlich für diese historische Zuordnung berücksichtigt und gekennzeichnet. Sie verändert keine Anlagenparameter und berechnet keine historischen Werte neu.
+
+Anderen Anlagen- und Modellständen werden getrennte Historien zugewiesen. Die alten Browserschlüssel bleiben unverändert erhalten. Bereits neu angelegte V12.8-Referenzen bleiben beim Wiederherstellen eines älteren Originals ebenfalls in der Historie erhalten. Browserdaten nicht löschen: Früher ausschließlich lokal gespeicherte Kurven können nur aus dem bisherigen Browser wiederhergestellt werden.
+
+Fehlgeschlagene Downloads der zentralen Konfiguration oder Profile werden bis zu zweimal automatisch wiederholt. Unvollständige Pages-Veröffentlichungen werden weiterhin abgewiesen. Eine konkrete Fehlermeldung nennt die betroffene Datei; **Erneut laden** wiederholt den vollständigen Start, einschließlich einer fehlgeschlagenen `central-config.js`-Anfrage. Die Originalkurven dürfen auch bei einem Ladefehler nicht durch neu berechnete Werte ersetzt werden.
+
 ## Änderungen zentral speichern
 
 1. Wie bisher Modulfelder/Wechselrichter, Standort oder Berechnungsparameter bearbeiten und speichern. Bis zur Veröffentlichung bleibt die bisherige Konfiguration aktiv.
@@ -39,6 +47,7 @@ Der Messzeitraum endet einschließlich 8. November 2026. Der DWD-MOSMIX-Abruf l�
 node tests/inverters.test.cjs
 node tests/central-config.test.cjs
 python tests/test_dwd_configuration.py
+python tests/test_startup.py
 python tests/test_browser.py
 python tests/test_profile_publication.py
 ```

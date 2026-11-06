@@ -11,7 +11,7 @@ import tempfile
 import threading
 from pathlib import Path
 from playwright.sync_api import sync_playwright
-from browser_fixtures import ROOT,CHROMIUM,TOKEN,Server,open_page,ready,enter_key,complete,no_key_stored
+from browser_fixtures import ROOT,CHROMIUM,TOKEN,Server,open_page,ready,enter_key,complete,no_key_stored,fixture_weather
 
 def plant_state(c):
     return {'locationName':c['location']['name'],'lat':c['location']['latitude'],'lon':c['location']['longitude'],'roofHeight':c['location']['roofHeightM'],
@@ -51,7 +51,7 @@ def run_regressions():
         assert 'nicht aktuell bestätigt' in offline.locator('#centralSource').inner_text()
         assert not errors,errors;c.close()
         c,empty,errors=open_page(b,server,legacy=plant_state(config))
-        empty.wait_for_function('document.getElementById("centralSource").textContent.includes("konnte")')
+        empty.wait_for_function('document.getElementById("startupNotice").classList.contains("warning")')
         assert not empty.evaluate('SolarApp.getCentralConfiguration().ready')
         assert empty.evaluate('SolarApp.getCalculated().length')==0
         assert empty.locator('#openPanels').is_disabled()
@@ -65,7 +65,7 @@ def run_regressions():
                     raw=json.loads(item['value']);changed=json.loads(raw['configText']);changed['systemLossesPercent']=49
                     raw['configText']=json.dumps(changed);item['value']=json.dumps(raw)
         c,broken,errors=open_page(b,server,storage=tampered)
-        broken.wait_for_function('document.getElementById("centralSource").textContent.includes("konnte")')
+        broken.wait_for_function('document.getElementById("startupNotice").classList.contains("warning")')
         assert not broken.evaluate('SolarApp.getCentralConfiguration().ready');c.close()
         print('OK: gleiche Parameter auf unabhängigen Browsern, alte lokale Einstellungen ignoriert, Offline-Cache und Sperre ohne gültiges Paket.')
         print('OK: Leistungsberechnung numerisch unverändert gegenüber V12.7.2 bei identischen veröffentlichten Parametern.')
@@ -84,7 +84,7 @@ def run_archive_regression():
     # Vollständige reale App, aber alle Dateien und Schreibvorgänge in einem temporären Verzeichnis.
     html=(ROOT/'index.html').read_text()
     resources={p:json.loads((ROOT/p).read_text()) for p in ['anlagenkonfiguration.json','horizontprofil.json','nahverschattung.json','prognosen/dwd_wetterstand.json']}
-    weather=json.loads((ROOT/'prognosen/letzter_wetterstand.json').read_text())['weather']
+    weather=fixture_weather('prognosen/letzter_wetterstand.json')['weather']
     raw={p:(ROOT/p).read_text() for p in resources}
     prefix=r'''<script>(()=>{
     window.__fakeStore={};Object.defineProperty(window,'localStorage',{value:{getItem:k=>window.__fakeStore[k]??null,setItem:(k,v)=>window.__fakeStore[k]=String(v),removeItem:k=>delete window.__fakeStore[k]}});
@@ -94,13 +94,13 @@ def run_archive_regression():
       return {ok:doc!==undefined,status:doc===undefined?404:200,json:async()=>JSON.parse(doc),text:async()=>doc};};
     })();</script><!-- BEFORE_APP -->'''%(json.dumps(raw),json.dumps(weather))
     html=html.replace('<script src="./inverters.js?v=12.7"></script>',prefix+'<script>'+(ROOT/'inverters.js').read_text()+'</script>')
-    html=html.replace('<script src="./central-config.js?v=12.8.1"></script>','<script>'+(ROOT/'central-config.js').read_text()+'</script>')
+    html=html.replace('<script src="./central-config.js?v=12.8.2"></script>','<script>'+(ROOT/'central-config.js').read_text()+'</script>')
     # localhost ist ein Secure Context und bietet die echte WebCrypto-Prüfung auch ohne Internet.
     with tempfile.TemporaryDirectory() as tmp:
         root=Path(tmp);(root/'scripts').mkdir();shutil.copy(ROOT/'scripts/archiviere_prognose.py',root/'scripts/archiviere_prognose.py')
         shutil.copy(ROOT/'anlagenkonfiguration.json',root/'anlagenkonfiguration.json')
         shutil.copytree(ROOT/'prognosen',root/'prognosen')
-        protected={p:p.read_bytes() for p in (root/'prognosen').rglob('*.json') if p.name!='letzter_wetterstand.json'}
+        protected={p:p.read_bytes() for p in (root/'prognosen').rglob('*.json') if p.name not in ['letzter_wetterstand.json','browser_prognosezustand_v12_8.json']}
         (root/'fixture.html').write_text(html)
         runner='''import importlib.util,datetime,sys,os
 spec=importlib.util.spec_from_file_location('archive',sys.argv[1]);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
@@ -128,7 +128,7 @@ sys.exit(m.main())
             assert all(p.read_bytes()==data for p,data in protected.items())
             new=next(p for p in (root/'prognosen').glob('*/*.json') if p not in protected)
             d=json.loads(new.read_text());expected=hashlib.sha256(raw['anlagenkonfiguration.json'].encode()).hexdigest()
-            assert d['modelVersion']=='V12.8.1'
+            assert d['modelVersion']=='V12.8.2'
             assert d['centralConfiguration']['configurationHash']==expected
             assert d['centralConfiguration']['online']
             assert d['centralConfiguration']['configuration']==resources['anlagenkonfiguration.json']
