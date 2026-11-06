@@ -3,6 +3,7 @@
 
 Benoetigt auf GitHub Actions: playwright + chromium. Auf iOS/macOS keine Installation.
 """
+import hashlib
 import json
 import os
 import re
@@ -58,6 +59,10 @@ def main():
         print(f'Originalsnapshot existiert bereits und bleibt unveraendert: {output}')
         return 0
 
+    # Pages darf während einer Veröffentlichung noch einen älteren Stand ausliefern.
+    # Nur die zum ausgecheckten Repository gehörende Konfiguration archivieren.
+    expected_configuration_hash=hashlib.sha256((ROOT/'anlagenkonfiguration.json').read_bytes()).hexdigest()
+
     previous = None
     if STATE_FILE.exists():
         previous = json.loads(STATE_FILE.read_text(encoding='utf-8'))
@@ -104,19 +109,20 @@ def main():
         else:
             page.goto(URL, wait_until='domcontentloaded', timeout=60000)
         try:
-            page.wait_for_function('''() => {
+            page.wait_for_function('''expectedHash => {
               const a=window.SolarApp;
               const required=['getHorizon','getNearData','getArchive','archiveModelId',
                               'groupDays','getState','getWeatherResolution','getInverterConfiguration','getCentralConfiguration'];
               if (!a || !required.every(name=>typeof a[name]==='function') ||
                   !a.getCentralConfiguration()?.online ||
+                  a.getCentralConfiguration()?.configurationHash!==expectedHash ||
                   a.getHorizon()?.length!==720 || !a.getNearData?.() ||
                   !document.getElementById('status')?.textContent?.includes('Nahverschattung aktiv')) return false;
               const date=new Intl.DateTimeFormat('sv-SE',{timeZone:'Europe/Berlin',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
               const rec=a.getArchive()?.days?.[date];
               return !!(rec && rec.model===a.archiveModelId() && rec.current?.length>=280 &&
                         a.groupDays().some(d=>d.day===date && d.rows?.length>=280));
-            }''', timeout=120000)
+            }''', arg=expected_configuration_hash, timeout=120000)
         except PlaywrightTimeoutError as ex:
             try:
                 path = ROOT / 'pv_archiv_fehler.png'
@@ -124,6 +130,11 @@ def main():
                 print(f'Fehlerscreenshot: {path}')
                 print('Status:', page.locator('#status').inner_text(timeout=2000) if page.locator('#status').count() else '?')
                 print('Horizont:', page.locator('#horizonSource').inner_text(timeout=2000) if page.locator('#horizonSource').count() else '?')
+                print('Erwarteter zentraler Konfigurationshash:', expected_configuration_hash)
+                print('Geladene zentrale Konfiguration:', page.evaluate('''() => {
+                    const c=window.SolarApp?.getCentralConfiguration?.();
+                    return c ? {online:c.online,revision:c.revision,hash:c.configurationHash} : null;
+                }'''))
             except Exception as diagnostic_error:
                 print('Diagnose fehlgeschlagen:', diagnostic_error)
             print('JavaScript-Fehler:', errors[-5:])
@@ -182,6 +193,7 @@ def main():
     central = result.get('centralConfiguration') or {}
     if (not central.get('online') or central.get('schemaVersion') != 1
             or not re.fullmatch(r'[a-f0-9]{64}', central.get('configurationHash', ''))
+            or central.get('configurationHash') != expected_configuration_hash
             or not isinstance(central.get('revision'), int)):
         raise RuntimeError('Keine live bestätigte zentrale Anlagenkonfiguration; archiviere keinen lokalen Ersatzstand.')
     if not all(isinstance(result.get(k), (int, float)) and result[k] >= 0

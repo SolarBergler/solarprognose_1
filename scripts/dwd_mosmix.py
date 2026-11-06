@@ -11,7 +11,6 @@ from __future__ import annotations
 import io
 import json
 import math
-import os
 import re
 import sys
 import urllib.request
@@ -24,8 +23,18 @@ from zoneinfo import ZoneInfo
 ROOT=Path(__file__).resolve().parent.parent
 OUTPUT=ROOT/'prognosen'/'dwd_wetterstand.json'
 STATION=ROOT/'prognosen'/'dwd_station.json'
-LAT=float(os.environ.get('PV_LAT','47.69784444'))
-LON=float(os.environ.get('PV_LON','11.88009722'))
+
+def load_location(path):
+    config=json.loads(Path(path).read_text(encoding='utf-8'))
+    location=config.get('location') or {}
+    lat,lon=location.get('latitude'),location.get('longitude')
+    if (config.get('schemaVersion')!=1 or type(lat) not in (int,float) or type(lon) not in (int,float)
+            or not math.isfinite(lat) or not math.isfinite(lon) or not -90<=lat<=90 or not -180<=lon<=180):
+        raise ValueError('Kein gültiger Standort in der zentralen Anlagenkonfiguration; kein abweichender Ersatzstandort.')
+    return float(lat),float(lon)
+
+
+LAT,LON=load_location(ROOT/'anlagenkonfiguration.json')
 BASE='https://opendata.dwd.de/weather/local_forecasts/mos/MOSMIX_L/'
 USER_AGENT='SolarprognoseSchliersee/1.0 (DWD MOSMIX-L non-commercial forecast backup)'
 TZ=ZoneInfo('Europe/Berlin')

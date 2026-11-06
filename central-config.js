@@ -1,4 +1,4 @@
-/* V12.8: Eine veröffentlichte Konfiguration mit kryptographisch gebundenen Profilen. */
+/* V12.8.1: Eine veröffentlichte Konfiguration mit kryptographisch gebundenen Profilen. */
 (function(root){
   'use strict';
   const FILE='anlagenkonfiguration.json',CACHE_KEY='solar-central-bundle-v1';

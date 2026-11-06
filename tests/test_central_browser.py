@@ -94,19 +94,27 @@ def run_archive_regression():
       return {ok:doc!==undefined,status:doc===undefined?404:200,json:async()=>JSON.parse(doc),text:async()=>doc};};
     })();</script><!-- BEFORE_APP -->'''%(json.dumps(raw),json.dumps(weather))
     html=html.replace('<script src="./inverters.js?v=12.7"></script>',prefix+'<script>'+(ROOT/'inverters.js').read_text()+'</script>')
-    html=html.replace('<script src="./central-config.js?v=12.8"></script>','<script>'+(ROOT/'central-config.js').read_text()+'</script>')
+    html=html.replace('<script src="./central-config.js?v=12.8.1"></script>','<script>'+(ROOT/'central-config.js').read_text()+'</script>')
     # localhost ist ein Secure Context und bietet die echte WebCrypto-Prüfung auch ohne Internet.
     with tempfile.TemporaryDirectory() as tmp:
         root=Path(tmp);(root/'scripts').mkdir();shutil.copy(ROOT/'scripts/archiviere_prognose.py',root/'scripts/archiviere_prognose.py')
+        shutil.copy(ROOT/'anlagenkonfiguration.json',root/'anlagenkonfiguration.json')
         shutil.copytree(ROOT/'prognosen',root/'prognosen')
         protected={p:p.read_bytes() for p in (root/'prognosen').rglob('*.json') if p.name!='letzter_wetterstand.json'}
         (root/'fixture.html').write_text(html)
-        runner='''import importlib.util,datetime,sys
+        runner='''import importlib.util,datetime,sys,os
 spec=importlib.util.spec_from_file_location('archive',sys.argv[1]);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
 class Clock(datetime.datetime):
     @classmethod
     def now(cls,tz=None):return datetime.datetime.fromtimestamp(1793901600,tz)
 m.datetime=Clock
+if os.getenv('TEST_CENTRAL_MISMATCH'):
+    from playwright.sync_api import Page
+    original_wait=Page.wait_for_function
+    def bounded_wait(self,*args,**kwargs):
+        kwargs['timeout']=3000
+        return original_wait(self,*args,**kwargs)
+    Page.wait_for_function=bounded_wait
 sys.exit(m.main())
 '''
         class QuietHandler(http.server.SimpleHTTPRequestHandler):
@@ -115,17 +123,25 @@ sys.exit(m.main())
         thread=threading.Thread(target=server.serve_forever,daemon=True);thread.start()
         env={**os.environ,'PV_SITE_URL':f'http://127.0.0.1:{server.server_port}/fixture.html','PW_CHROMIUM_PATH':CHROMIUM,'GITHUB_EVENT_NAME':'workflow_dispatch'}
         env.pop('PV_TEST_HTML_FILE',None)
-        try:subprocess.run(['python','-u','-c',runner,str(root/'scripts/archiviere_prognose.py')],env=env,check=True,timeout=150)
+        try:
+            subprocess.run(['python','-u','-c',runner,str(root/'scripts/archiviere_prognose.py')],env=env,check=True,timeout=150)
+            assert all(p.read_bytes()==data for p,data in protected.items())
+            new=next(p for p in (root/'prognosen').glob('*/*.json') if p not in protected)
+            d=json.loads(new.read_text());expected=hashlib.sha256(raw['anlagenkonfiguration.json'].encode()).hexdigest()
+            assert d['modelVersion']=='V12.8.1'
+            assert d['centralConfiguration']['configurationHash']==expected
+            assert d['centralConfiguration']['online']
+            assert d['centralConfiguration']['configuration']==resources['anlagenkonfiguration.json']
+            assert (root/'prognosen/browser_prognosezustand_v12_8.json').is_file()
+            # Ein neuer GitHub-Stand mit noch alter Pages-Datei darf keinen Snapshot erzeugen.
+            new.unlink();(root/'anlagenkonfiguration.json').write_text(raw['anlagenkonfiguration.json']+' ')
+            blocked=subprocess.run(['python','-u','-c',runner,str(root/'scripts/archiviere_prognose.py')],env={**env,'TEST_CENTRAL_MISMATCH':'1'},capture_output=True,text=True,timeout=20)
+            assert blocked.returncode!=0,blocked.stdout
+            assert expected in blocked.stdout and "'online': True" in blocked.stdout,blocked.stdout
+            assert not new.exists()
+            assert all(p.read_bytes()==data for p,data in protected.items())
         finally:server.shutdown();server.server_close();thread.join()
-        assert all(p.read_bytes()==data for p,data in protected.items())
-        new=next(p for p in (root/'prognosen').glob('*/*.json') if p not in protected)
-        d=json.loads(new.read_text());expected=hashlib.sha256(raw['anlagenkonfiguration.json'].encode()).hexdigest()
-        assert d['modelVersion']=='V12.8'
-        assert d['centralConfiguration']['configurationHash']==expected
-        assert d['centralConfiguration']['online']
-        assert d['centralConfiguration']['configuration']==resources['anlagenkonfiguration.json']
-        assert (root/'prognosen/browser_prognosezustand_v12_8.json').is_file()
-    print('OK: Archivierung verwendet den zentralen Hash und die vollständige Konfiguration; alle bisherigen Prognosedateien unverändert.')
+    print('OK: Archivierung verwendet den zentralen Hash und die vollständige Konfiguration; alte Pages-Stände werden blockiert und alle bisherigen Prognosedateien bleiben unverändert.')
 
 def run_publication_tests():
     with sync_playwright() as p:

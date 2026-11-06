@@ -29,6 +29,8 @@ Elektrische Änderungen (kWp, Zuordnung, AC-Grenzen, WR-Verwaltung) benötigen k
 
 Neue Prognosen enthalten unter `centralConfiguration` die Konfigurationsrevision, den vollständigen SHA-256-Hash, einen Hash des physikalischen Modells, beide Profilhashes und die tatsächlich verwendete vollständige Konfiguration. Der Browserzustand ab V12.8 liegt getrennt in `prognosen/browser_prognosezustand_v12_8.json`. Frühere Prognose- und Modellstände bleiben unverändert; manuelle Läufe erzeugen weiterhin ausdrücklich als Test benannte Snapshots. Fehlende historische Originalprognosen werden nicht nachberechnet.
 
+Ab V12.8.1 liest auch der DWD-Abruf seinen Standort ausschließlich aus der zentralen Konfiguration. Die Archivierung verlangt zusätzlich exakt den Konfigurationshash des ausgecheckten Repository-Stands; eine noch veraltete Pages-Version wird nicht archiviert.
+
 Der Messzeitraum endet einschließlich 8. November 2026. Der DWD-MOSMIX-Abruf läuft anschließend wie bisher weiter.
 
 ## Tests
@@ -36,6 +38,7 @@ Der Messzeitraum endet einschließlich 8. November 2026. Der DWD-MOSMIX-Abruf l�
 ```sh
 node tests/inverters.test.cjs
 node tests/central-config.test.cjs
+python tests/test_dwd_configuration.py
 python tests/test_browser.py
 python tests/test_profile_publication.py
 ```
