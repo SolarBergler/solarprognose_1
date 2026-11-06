@@ -1,8 +1,8 @@
 {
   "schema": 1,
-  "capturedAt": "2026-11-06T05:02:50.899243+00:00",
-  "latitude": 47.69784444,
-  "longitude": 11.88009722,
+  "capturedAt": "2026-11-06T05:14:12.979958+00:00",
+  "latitude": 47.697844,
+  "longitude": 11.880098,
   "source": "DWD MOSMIX-L (Rad1h, direkte/diffuse Strahlung mit Erbs angenähert)",
   "approximation": "Erbs diffuse fraction of measured-modelled GHI; not official DWD direct/diffuse",
   "issueTime": "2026-11-06T03:00:00.000Z",
@@ -13,8 +13,8 @@
     "distanceKm": 2.12
   },
   "weather": {
-    "latitude": 47.69784444,
-    "longitude": 11.88009722,
+    "latitude": 47.697844,
+    "longitude": 11.880098,
     "timezone": "Europe/Berlin",
     "utc_offset_seconds": 3600,
     "hourly_units": {
@@ -784,7 +784,7 @@
         169.51,
         107.87,
         100.77,
-        220.39,
+        220.4,
         0.0,
         0.0,
         0.0,
