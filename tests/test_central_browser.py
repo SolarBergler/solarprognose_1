@@ -128,7 +128,7 @@ sys.exit(m.main())
             assert all(p.read_bytes()==data for p,data in protected.items())
             new=next(p for p in (root/'prognosen').glob('*/*.json') if p not in protected)
             d=json.loads(new.read_text());expected=hashlib.sha256(raw['anlagenkonfiguration.json'].encode()).hexdigest()
-            assert d['modelVersion']=='V12.8.2'
+            assert d['modelVersion']=='V12.8.3'
             assert d['centralConfiguration']['configurationHash']==expected
             assert d['centralConfiguration']['online']
             assert d['centralConfiguration']['configuration']==resources['anlagenkonfiguration.json']
