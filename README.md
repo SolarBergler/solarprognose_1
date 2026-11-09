@@ -39,7 +39,9 @@ Neue Prognosen enthalten unter `centralConfiguration` die Konfigurationsrevision
 
 Ab V12.8.1 liest auch der DWD-Abruf seinen Standort ausschließlich aus der zentralen Konfiguration. Die Archivierung verlangt zusätzlich exakt den Konfigurationshash des ausgecheckten Repository-Stands; eine noch veraltete Pages-Version wird nicht archiviert.
 
-Der Messzeitraum endet einschließlich 8. November 2026. Der DWD-MOSMIX-Abruf läuft anschließend wie bisher weiter.
+Die Prognosearchivierung läuft seit der Verlängerung am 9. November 2026 ohne festes Enddatum täglich um 06:00 und 18:00 Uhr in `Europe/Berlin` weiter. Der unabhängige DWD-MOSMIX-Abruf bleibt erhalten. Bereits gespeicherte Originalsnapshots werden nicht überschrieben; verspätete oder manuelle Läufe werden nicht als authentischer 06-/18-Uhr-Abruf ausgegeben. Die Rohwetterstände bleiben über die jeweiligen Archiv-Commits nachvollziehbar.
+
+Die nächste Vergleichsphase wartet auf einen tatsächlich weitgehend wolkenlosen Tag mit niedrigem Sonnenstand. Dann werden die zuvor gesicherten Prognosen einschließlich Wetter- und Modellstand mit der gemessenen Leistungskurve verglichen: Produktionsbeginn und -ende, Verschattungsübergänge, Leistung während direkter Sonne und Tagesenergie. Die örtlichen Strahlungsdaten sowie Schnee, Reif oder Nebel sind gesondert zu prüfen; Wolkenlosigkeit allein beweist keine fehlerfreien Einstrahlungseingaben. Das Anlagen- und Verschattungsmodell wird während der Messphase nicht anhand der Erträge kalibriert.
 
 ## Tests
 

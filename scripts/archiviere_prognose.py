@@ -35,11 +35,6 @@ def save_json(path, value):
 def main():
     now = datetime.now(TZ)
     day = now.strftime('%Y-%m-%d')
-    # Dieser Testlauf ist absichtlich nur fuer den 1.–8. November 2026 aktiv.
-    if EVENT == 'schedule' and not ('2026-11-01' <= day <= '2026-11-08'):
-        print('Außerhalb des vereinbarten Messzeitraums: keine Aktion.')
-        return 0
-
     if EVENT == 'schedule':
         if CRON in ('0 6 1-7 11 *', '0 6 * * *'):
             slot, target = '06', 6
@@ -189,7 +184,7 @@ def main():
     if len(result['progressiveCurrent']) < 280 or len(result['original']['values']) < 280:
         raise RuntimeError('Unvollständige Fünf-Minuten-Prognose.')
     if result['inverterConfiguration'].get('model') != 'v12.7-ac-limit-1':
-        raise RuntimeError('Wechselrichter-Modellkennung fehlt; keine eindeutige Zuordnung zur Messwoche.')
+        raise RuntimeError('Wechselrichter-Modellkennung fehlt; keine eindeutige Zuordnung zum Anlagenmodell.')
     central = result.get('centralConfiguration') or {}
     if (not central.get('online') or central.get('schemaVersion') != 1
             or not re.fullmatch(r'[a-f0-9]{64}', central.get('configurationHash', ''))
