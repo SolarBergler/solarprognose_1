@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "revision": 1,
-  "updatedAt": "2026-11-05T20:08:45.979764+00:00",
+  "revision": 2,
+  "updatedAt": "2026-11-14T21:37:51.032Z",
   "location": {
     "name": "Schliersee",
     "latitude": 47.697844,
@@ -13,11 +13,11 @@
   "panels": [
     {
       "id": "panel-1",
-      "name": "Haus links",
+      "name": "Haus rechts",
       "kwp": 6.275,
       "az": 165,
       "tilt": 37,
-      "inverterId": "wr-4",
+      "inverterId": "wr-1",
       "geo": {
         "name": "Haus links",
         "latitude": 47.69776829404692,
@@ -89,11 +89,11 @@
     },
     {
       "id": "panel-wr-184dd470-e193-4036-a286-b621e04e321b",
-      "name": "Haus rechts",
+      "name": "Haus links",
       "kwp": 7.95,
       "az": 165,
       "tilt": 37,
-      "inverterId": "wr-1",
+      "inverterId": "wr-4",
       "geo": {
         "latitude": 47.697801624225924,
         "longitude": 11.880186730760354,
