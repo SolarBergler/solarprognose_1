@@ -2,7 +2,8 @@
 
 Aufruf: python scripts/baue_modulnahprofil.py <DOM20.tif> <Nachbarkachel.tif>
 Benötigt numpy und Pillow. TIFFs bleiben unverändert; Quellenhashes im Profil.
-Algorithmus wie bisher: 150 m, 0.5 Grad, Ausschlusskreis 3 m, DOM + 0.3 m.
+150 m, 0.5 Grad, Ausschlusskreis 3 m, DOM + 0.3 m. Azimute beziehen sich
+auf geografisch Nord; UTM-Meridiankonvergenz wird vor der Rasterung korrigiert.
 """
 import hashlib, json, math, sys, subprocess
 from datetime import datetime, timezone
@@ -16,6 +17,16 @@ def utm32(lat,lon):
     n=a/math.sqrt(1-ee*math.sin(p)**2);t=math.tan(p)**2;c=ep2*math.cos(p)**2;aa=math.cos(p)*lam
     m=a*((1-ee/4-3*ee**2/64-5*ee**3/256)*p-(3*ee/8+3*ee**2/32+45*ee**3/1024)*math.sin(2*p)+(15*ee**2/256+45*ee**3/1024)*math.sin(4*p)-(35*ee**3/3072)*math.sin(6*p))
     return (500000+k*n*(aa+(1-t+c)*aa**3/6+(5-18*t+t*t+72*c-58*ep2)*aa**5/120),k*(m+n*math.tan(p)*(aa*aa/2+(5-t+9*c+4*c*c)*aa**4/24+(61-58*t+t*t+600*c-330*ep2)*aa**6/720)))
+
+def grid_convergence_degrees(lat,lon):
+    """Geografischer Azimut = UTM-Gitterazimut + Meridiankonvergenz."""
+    south=utm32(lat-1e-5,lon);north=utm32(lat+1e-5,lon)
+    return -math.degrees(math.atan2(north[0]-south[0],north[1]-south[1]))
+
+def true_north_bins(dx,dy,convergence):
+    # nearAngle interpoliert an 0, 0.5, 1.0 ... Grad, nicht an Bin-Unterkanten.
+    bearing=(np.degrees(np.arctan2(dx,dy))+convergence+360)%360
+    return np.floor(bearing*2+.5).astype(int)%720
 
 def main(paths):
     c=json.loads((ROOT/'anlagenkonfiguration.json').read_text());mods=[m for p in c['panels'] for m in p['geo']['modulePositions']]
@@ -34,6 +45,7 @@ def main(paths):
         samples=[];heights=[]
         for m in p['geo']['modulePositions']:
             x,y=utm32(m['latitude'],m['longitude']);height=None
+            convergence=grid_convergence_degrees(m['latitude'],m['longitude'])
             for xx,yy,z in tiles:
                 col=int(math.floor((x-xx[0]+.1)/.2));row=int(math.floor((yy[0]+.1-y)/.2))
                 if 0<=row<len(yy) and 0<=col<len(xx):height=float(z[row,col])+.3;break
@@ -44,7 +56,7 @@ def main(paths):
                 valid=(d2<=150**2)&np.isfinite(z)&(z>-500)&(z<10000);valid_count+=int(valid.sum())
                 mask=valid&(d2>9)&(z>height)
                 rr,cc=np.nonzero(mask);dxx=xx[cc]-x;dyy=yy[rr]-y
-                bins=np.floor((np.degrees(np.arctan2(dxx,dyy))+360)%360*2).astype(int)%720
+                bins=true_north_bins(dxx,dyy,convergence)
                 ang=np.degrees(np.arctan2(z[rr,cc]-height,np.sqrt(dxx*dxx+dyy*dyy)))
                 np.maximum.at(maxima,bins,ang)
             if valid_count<math.pi*150**2/.04*.9:raise ValueError('Unvollständige DOM-Abdeckung')
@@ -56,7 +68,9 @@ def main(paths):
     doc=dict(version=2,kind='dom20-nearshade',source='Bayerische Vermessungsverwaltung · DOM20 (CC BY 4.0)',
              location=dict(latitude=c['location']['latitude'],longitude=c['location']['longitude'],radius_m=150),panelProfiles=out,
              config=dict(panels=c['panels'],inverters=c['inverters']),meta=dict(generatedAt=datetime.now(timezone.utc).isoformat(),gridStepM=.2,sourceGridM=.2,
-             samplesPerPanel=[len(p['samples']) for p in out],method='Ein DOM20-Horizont je abgeleitetem Modulmittelpunkt; Gewichtung nach Wp; 3-m-Ausschlusskreis wie bisher; keine elektrischen Zusatzverluste',
+             samplesPerPanel=[len(p['samples']) for p in out],azimuthReference='true-north',azimuthBinConvention='nearest-0.5-degree-center',
+             gridConvergenceDegrees=grid_convergence_degrees(c['location']['latitude'],c['location']['longitude']),
+             method='Ein DOM20-Horizont je abgeleitetem Modulmittelpunkt; geografisch Nord mit UTM-Konvergenzkorrektur; Gewichtung nach Wp; 3-m-Ausschlusskreis wie bisher; keine elektrischen Zusatzverluste',
              placementAccuracy='Aus Belegung, Modulmaßen und GPS-Ankern abgeleitet; Fugen, Fensterlage im Raster und Garage-Einzelpositionen sind Näherungen.',license='CC BY 4.0',inputFiles=sources))
     doc['id']=hashlib.sha256(json.dumps(doc,sort_keys=True,ensure_ascii=False).encode()).hexdigest()[:16]
     near=json.dumps(doc,ensure_ascii=False,separators=(',',':'))+'\n';(ROOT/'nahverschattung.json').write_text(near)

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "revision": 3,
-  "updatedAt": "2026-11-15T08:44:42.150158+00:00",
+  "revision": 4,
+  "updatedAt": "2026-11-15T18:19:42.493500+00:00",
   "location": {
     "name": "Schliersee",
     "latitude": 47.697844,
@@ -1478,8 +1478,8 @@
     },
     "near": {
       "path": "nahverschattung.json",
-      "sha256": "752ebd9e9f84795bcde16059a9b3ed81dd4bf81a8c95ce704e7fb9f47fcd760a",
-      "id": "fa2e6c4db6a0bb7e"
+      "sha256": "305da55c1e0ff04fbedb1bcdd3145067927421f3cc0bd833506a0509eda7fd63",
+      "id": "827f316942d091f9"
     },
     "geometryHash": "61c0e9b635095b8e5158ceaf688106363e316c2fd051d9829b703ab410467d98"
   }

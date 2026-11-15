@@ -2,6 +2,14 @@
 
 PV-Prognose mit Gelände- und DOM20-Nahverschattung. Website: https://solarbergler.github.io/solarprognose_1/
 
+## Richtungsfehler behoben in V12.9.1
+
+Die DOM20-Rasterachsen beziehen sich auf UTM-Gitternord, der Sonnenstand auf geografisch Nord. Der bisherige Profilgenerator vermischte beide Richtungen. Die Meridiankonvergenz beträgt am Standort rund 2,131°. Python- und Browsergenerator korrigieren sie jetzt vor der Azimut-Zuordnung. Die 0,5°-Bins sind auf die von der Prognose interpolierten Winkelstützstellen zentriert. Alle 88 Nahhorizonte wurden aus denselben unveränderten DOM20-Dateien neu erzeugt; Modulpositionen, Geländeprofil, Wirkungsgrad und elektrische Grenzen wurden dabei nicht angepasst. Konfigurationsrevision 4 bindet das korrigierte Profil und trennt es durch die Modellkennung von alten Originalprognosen.
+
+Die Korrektur ist keine Kalibrierung auf einen Tagesertrag: Für den 14.11.2026 erhöht sie die rückblickende Rechnung mit dem archivierten Morgenwetter von 55,326 auf 56,138 kWh, gegenüber 40,528 kWh SolarEdge. Sie behebt einen Richtungsfehler, nicht die gesamte Überschätzung. Die Morgenoriginalprognose von 58,123 kWh bleibt unverändert.
+
+Weiter bestehende Modellgrenzen: Leistungen ganzer Module werden unabhängig summiert; SolarEdge-Stringspannung, Optimierer-Ausgangsspannungsgrenzen und Schatten innerhalb eines Moduls sind nicht modelliert. Streulicht wird isotrop verteilt; seine Richtungsverteilung und das Verhalten bei geringer Einstrahlung sind mit dem einen Messtag nicht eindeutig bestimmt. Diagnostische Gegenrechnungen mit 60/80-V-Optimierergrenzen, 750-V-Stringspannung und Hay-Davies-Streulicht sind keine bestätigten Geräteparameter und wurden nicht in die Prognose übernommen. Ein passender Einzelzeitpunkt oder eine passende Tagesenergie genügt nicht als Validierung. Es wurde kein empirischer Ertragsfaktor eingeführt.
+
 ## Belegung und Modulmittelpunkte ab V12.9.0
 
 Die bestätigte Bestückung umfasst 88 Module und 31,305 kWp: Haus rechts/WR1 6,275 kWp, Garage und Hütte/WR2 7,180 kWp, Carport/WR3 9,900 kWp und Haus links/WR4 7,950 kWp. Gerätekennungen, Modultypen, Herstellermaße, Quellen und die fünf vom Betreiber genannten geografischen Bezugspunkte stehen in der zentralen Konfiguration. Die beiden Garagen-Einzelmodule sind getrennte Ost- und Westgruppen mit je 330 Wp und etwa 20° Neigung; die Südgruppe hat 4,620 kWp.
