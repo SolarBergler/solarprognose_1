@@ -19,8 +19,8 @@ def fixture_weather(path):
 
 
 class Server:
-    def __init__(self):
-        self.files={p:(ROOT/p).read_text() for p in ['anlagenkonfiguration.json','horizontprofil.json','nahverschattung.json']}
+    def __init__(self, legacy=False):
+        self.files={p:(subprocess.check_output(['git','show','52a263cb745faa09df3147002c9ac7c22df774c3:'+p],cwd=ROOT,text=True) if legacy else (ROOT/p).read_text()) for p in ['anlagenkonfiguration.json','horizontprofil.json','nahverschattung.json']}
         self.pages=self.files.copy();self.head='a'*40;self.requests=[];self.trees=[];self.stage=[]
         self.weather=fixture_weather('prognosen/letzter_wetterstand.json')['weather']
         self.auto_publish=True;self.offline=False;self.weather_fail=False;self.denied=False;self.errors=[]

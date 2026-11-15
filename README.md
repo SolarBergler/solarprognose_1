@@ -2,6 +2,16 @@
 
 PV-Prognose mit Gelände- und DOM20-Nahverschattung. Website: https://solarbergler.github.io/solarprognose_1/
 
+## Belegung und Modulmittelpunkte ab V12.9.0
+
+Die bestätigte Bestückung umfasst 88 Module und 31,305 kWp: Haus rechts/WR1 6,275 kWp, Garage und Hütte/WR2 7,180 kWp, Carport/WR3 9,900 kWp und Haus links/WR4 7,950 kWp. Gerätekennungen, Modultypen, Herstellermaße, Quellen und die fünf vom Betreiber genannten geografischen Bezugspunkte stehen in der zentralen Konfiguration. Die beiden Garagen-Einzelmodule sind getrennte Ost- und Westgruppen mit je 330 Wp und etwa 20° Neigung; die Südgruppe hat 4,620 kWp.
+
+Die Modulpositionen sind aus Belegungsraster, Modulmaßen und GPS-Ankern **abgeleitete Näherungen, keine Vermessung**. Die Dachfenster dienen als Bezugspunkte; sie werden nicht pauschal als Feldmittelpunkte übernommen. Die Lage des Fensterankers innerhalb des Rasters und 25 mm Fugenabstand sind Arbeitsannahmen. Die Optimiererpositionen 2.1.15/16 sind noch keiner Ost-/Westrichtung sicher zugeordnet. Diese beiden Orientierungen verwenden daher vorläufig die gemeinsame, aus dem Schema geschätzte Paarmitte. Azimut 90°/270° ist aus der Himmelsrichtung abgeleitet, nicht separat vermessen. Die Website zeigt diese Grenzen in der Belegungsansicht und bei den Anlagenangaben.
+
+Das DOM20-Nahprofil Version 2 enthält einen Horizont je Modulmittelpunkt und gewichtet die resultierenden Leistungen nach den jeweiligen Wp. Andere elektrische Annahmen, Wirkungsgrad, Systemverluste, Albedo und WR-Grenzen bleiben erhalten. Es gibt keinen neuen Ertrags- oder Diffusfaktor. Die vorhandene 0,5°-Winkelauflösung, 150 m Radius und 3 m Ausschlusskreis bleiben bestehen. DOM20-Quellen und ihre SHA-256-Hashes sind im Profil dokumentiert. Quellenlizenz: © Bayerische Vermessungsverwaltung, CC BY 4.0; Profile sind daraus abgeleitete Daten. Das Gelände-Horizontprofil bleibt unverändert.
+
+Alte Version-1-Profile mit neun Stichproben werden weiterhin unterstützt. Alte Originalprognosen werden weder geändert noch nachberechnet. Das neue physikalische Modell erhält durch Geometrie- und Profilbindung eine eigene Modellkennung. `scripts/erstelle_modullayout.py` dokumentiert die geometrische Ableitung aus der vorbereiteten Bestückung; `scripts/baue_modulnahprofil.py` erzeugt und prüft das Nahprofil aus den originalen DOM20-TIFFs (numpy/Pillow und Node erforderlich). Felder ohne Einzelbelegung verwenden im vorhandenen Profilgenerator weiterhin neun Stichproben. Die aus Einzelmodulen abgeleiteten Rechteckmaße und Zentren sind im Editor schreibgeschützt; die Einzelpositionen dürfen nicht durch eine freie Rechteckänderung unbemerkt veralten.
+
 ## Zentrale Anlagenkonfiguration ab V12.8
 
 `anlagenkonfiguration.json` ist die verbindliche Quelle für Standort, Höhe, Systemverluste, Albedo, Modulfelder einschließlich Geometrie, Wechselrichter, Zuordnungen und maximale AC-Wirkleistung in kW. Die erste zentrale Veröffentlichung übernimmt die vorhandenen fünf Modulfelder mit zusammen 31,305 kWp und vier Wechselrichtern unverändert. Schema-Version und Konfigurationsrevision sind unabhängig von der Website-Version.
@@ -48,6 +58,7 @@ Die nächste Vergleichsphase wartet auf einen tatsächlich weitgehend wolkenlose
 ```sh
 node tests/inverters.test.cjs
 node tests/central-config.test.cjs
+node tests/module-layout.test.cjs
 python tests/test_dwd_configuration.py
 python tests/test_startup.py
 python tests/test_browser.py

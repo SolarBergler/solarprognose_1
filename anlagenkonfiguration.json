@@ -1,52 +1,574 @@
 {
   "schemaVersion": 1,
-  "revision": 2,
-  "updatedAt": "2026-11-14T21:37:51.032Z",
+  "revision": 3,
+  "updatedAt": "2026-11-15T08:44:42.150158+00:00",
   "location": {
     "name": "Schliersee",
     "latitude": 47.697844,
     "longitude": 11.880098,
-    "roofHeightM": 5
+    "roofHeightM": 5,
+    "layoutUpAzimuth": 345
   },
   "systemLossesPercent": 12,
   "albedo": 0.2,
   "panels": [
     {
       "id": "panel-1",
-      "name": "Haus rechts",
-      "kwp": 6.275,
+      "name": "Haus links",
+      "kwp": 7.95,
       "az": 165,
       "tilt": 37,
-      "inverterId": "wr-1",
+      "inverterId": "wr-4",
       "geo": {
         "name": "Haus links",
-        "latitude": 47.69776829404692,
-        "longitude": 11.88006023907851,
-        "width_m": 8,
-        "depth_m": 6,
+        "latitude": 47.69776982786513,
+        "longitude": 11.88006136584164,
+        "width_m": 9.965,
+        "depth_m": 4.92119,
         "azimuth": 165,
         "tilt_deg": 37,
         "lower_edge_height_m": 3,
-        "upper_edge_height_m": 7
+        "upper_edge_height_m": 7,
+        "modulePositions": [
+          {
+            "id": "4.1.9",
+            "latitude": 47.69777655541279,
+            "longitude": 11.880008479027998,
+            "wp": 300,
+            "groupIndex": 0,
+            "width_m": 1.64,
+            "depth_m": 0.992,
+            "roofX_m": -3.33,
+            "roofY_m": -2.5425
+          },
+          {
+            "id": "4.1.10",
+            "latitude": 47.69778043125825,
+            "longitude": 11.880029905389357,
+            "wp": 300,
+            "groupIndex": 0,
+            "width_m": 1.64,
+            "depth_m": 0.992,
+            "roofX_m": -1.665,
+            "roofY_m": -2.5425
+          },
+          {
+            "id": "4.1.13",
+            "latitude": 47.69778430710372,
+            "longitude": 11.880051331750716,
+            "wp": 300,
+            "groupIndex": 0,
+            "width_m": 1.64,
+            "depth_m": 0.992,
+            "roofX_m": 0,
+            "roofY_m": -2.5425
+          },
+          {
+            "id": "4.1.14",
+            "latitude": 47.69778818294919,
+            "longitude": 11.880072758112076,
+            "wp": 300,
+            "groupIndex": 0,
+            "width_m": 1.64,
+            "depth_m": 0.992,
+            "roofX_m": 1.665,
+            "roofY_m": -2.5425
+          },
+          {
+            "id": "4.1.23",
+            "latitude": 47.697792058794654,
+            "longitude": 11.880094184473435,
+            "wp": 300,
+            "groupIndex": 0,
+            "width_m": 1.64,
+            "depth_m": 0.992,
+            "roofX_m": 3.33,
+            "roofY_m": -2.5425
+          },
+          {
+            "id": "4.1.24",
+            "latitude": 47.69779593464012,
+            "longitude": 11.880115610834794,
+            "wp": 300,
+            "groupIndex": 0,
+            "width_m": 1.64,
+            "depth_m": 0.992,
+            "roofX_m": 4.995,
+            "roofY_m": -2.5425
+          },
+          {
+            "id": "4.1.8",
+            "latitude": 47.697769499237964,
+            "longitude": 11.880011279661044,
+            "wp": 300,
+            "groupIndex": 0,
+            "width_m": 1.64,
+            "depth_m": 0.992,
+            "roofX_m": -3.33,
+            "roofY_m": -1.5255
+          },
+          {
+            "id": "4.1.11",
+            "latitude": 47.69777337508343,
+            "longitude": 11.880032706022405,
+            "wp": 300,
+            "groupIndex": 0,
+            "width_m": 1.64,
+            "depth_m": 0.992,
+            "roofX_m": -1.665,
+            "roofY_m": -1.5255
+          },
+          {
+            "id": "4.1.12",
+            "latitude": 47.6977772509289,
+            "longitude": 11.880054132383764,
+            "wp": 300,
+            "groupIndex": 0,
+            "width_m": 1.64,
+            "depth_m": 0.992,
+            "roofX_m": 0,
+            "roofY_m": -1.5255
+          },
+          {
+            "id": "4.1.15",
+            "latitude": 47.697781126774366,
+            "longitude": 11.880075558745123,
+            "wp": 300,
+            "groupIndex": 0,
+            "width_m": 1.64,
+            "depth_m": 0.992,
+            "roofX_m": 1.665,
+            "roofY_m": -1.5255
+          },
+          {
+            "id": "4.1.22",
+            "latitude": 47.69778500261983,
+            "longitude": 11.880096985106482,
+            "wp": 300,
+            "groupIndex": 0,
+            "width_m": 1.64,
+            "depth_m": 0.992,
+            "roofX_m": 3.33,
+            "roofY_m": -1.5255
+          },
+          {
+            "id": "4.1.7",
+            "latitude": 47.69776244306314,
+            "longitude": 11.880014080294092,
+            "wp": 300,
+            "groupIndex": 0,
+            "width_m": 1.64,
+            "depth_m": 0.992,
+            "roofX_m": -3.33,
+            "roofY_m": -0.5085
+          },
+          {
+            "id": "4.1.16",
+            "latitude": 47.69777407059954,
+            "longitude": 11.880078359378171,
+            "wp": 300,
+            "groupIndex": 0,
+            "width_m": 1.64,
+            "depth_m": 0.992,
+            "roofX_m": 1.665,
+            "roofY_m": -0.5085
+          },
+          {
+            "id": "4.1.21",
+            "latitude": 47.69777794644501,
+            "longitude": 11.88009978573953,
+            "wp": 300,
+            "groupIndex": 0,
+            "width_m": 1.64,
+            "depth_m": 0.992,
+            "roofX_m": 3.33,
+            "roofY_m": -0.5085
+          },
+          {
+            "id": "4.1.6",
+            "latitude": 47.697755386888325,
+            "longitude": 11.880016880927139,
+            "wp": 300,
+            "groupIndex": 0,
+            "width_m": 1.64,
+            "depth_m": 0.992,
+            "roofX_m": -3.33,
+            "roofY_m": 0.5085
+          },
+          {
+            "id": "4.1.17",
+            "latitude": 47.69776701442472,
+            "longitude": 11.880081160011217,
+            "wp": 300,
+            "groupIndex": 0,
+            "width_m": 1.64,
+            "depth_m": 0.992,
+            "roofX_m": 1.665,
+            "roofY_m": 0.5085
+          },
+          {
+            "id": "4.1.20",
+            "latitude": 47.69777089027019,
+            "longitude": 11.880102586372576,
+            "wp": 300,
+            "groupIndex": 0,
+            "width_m": 1.64,
+            "depth_m": 0.992,
+            "roofX_m": 3.33,
+            "roofY_m": 0.5085
+          },
+          {
+            "id": "4.1.19",
+            "latitude": 47.69776383409537,
+            "longitude": 11.880105387005624,
+            "wp": 300,
+            "groupIndex": 0,
+            "width_m": 1.64,
+            "depth_m": 0.992,
+            "roofX_m": 3.33,
+            "roofY_m": 1.5255
+          },
+          {
+            "id": "4.1.18",
+            "latitude": 47.697756777920546,
+            "longitude": 11.88010818763867,
+            "wp": 300,
+            "groupIndex": 0,
+            "width_m": 1.64,
+            "depth_m": 0.992,
+            "roofX_m": 3.33,
+            "roofY_m": 2.5425
+          },
+          {
+            "id": "4.1.1",
+            "latitude": 47.69774380707316,
+            "longitude": 11.880017325439646,
+            "wp": 450,
+            "groupIndex": 1,
+            "width_m": 1.038,
+            "depth_m": 2.094,
+            "roofX_m": -3.631,
+            "roofY_m": 2.0765
+          },
+          {
+            "id": "4.1.2",
+            "latitude": 47.697746281561884,
+            "longitude": 11.880031004852333,
+            "wp": 450,
+            "groupIndex": 1,
+            "width_m": 1.038,
+            "depth_m": 2.094,
+            "roofX_m": -2.568,
+            "roofY_m": 2.0765
+          },
+          {
+            "id": "4.1.3",
+            "latitude": 47.697748756050615,
+            "longitude": 11.88004468426502,
+            "wp": 450,
+            "groupIndex": 1,
+            "width_m": 1.038,
+            "depth_m": 2.094,
+            "roofX_m": -1.505,
+            "roofY_m": 2.0765
+          },
+          {
+            "id": "4.1.4",
+            "latitude": 47.69775123053934,
+            "longitude": 11.880058363677708,
+            "wp": 450,
+            "groupIndex": 1,
+            "width_m": 1.038,
+            "depth_m": 2.094,
+            "roofX_m": -0.442,
+            "roofY_m": 2.0765
+          },
+          {
+            "id": "4.1.5",
+            "latitude": 47.69775370502807,
+            "longitude": 11.880072043090395,
+            "wp": 450,
+            "groupIndex": 1,
+            "width_m": 1.038,
+            "depth_m": 2.094,
+            "roofX_m": 0.621,
+            "roofY_m": 2.0765
+          }
+        ]
+      },
+      "moduleGroups": [
+        {
+          "count": 19,
+          "wp": 300,
+          "label": "Querliegende Module",
+          "manufacturer": "IBC SOLAR",
+          "model": "MonoSol 300 VL4",
+          "dimensionsMm": {
+            "length": 1640,
+            "width": 992,
+            "height": 40
+          },
+          "datasheetUrl": "https://www.solarconcept.at/uploads/hjjhuVOt/2088956_de-datenblatteuropajapan-ibcmonosol300vl4.pdf",
+          "datasheetDate": "2016-10-13",
+          "confirmedOn": "2026-11-15",
+          "mounting": "landscape"
+        },
+        {
+          "count": 5,
+          "wp": 450,
+          "label": "Fünf hochkant ergänzte Module unten",
+          "manufacturer": "LONGi Solar",
+          "model": "LR4-72HIH-450M",
+          "dimensionsMm": {
+            "length": 2094,
+            "width": 1038,
+            "height": 35
+          },
+          "datasheetUrl": "https://static.longi.com/20220421_LON_Gi_Data_Sheet_LR_4_72_HIH_440_460_M_EPC_Version_V15_Low_Res_ES_afb1631a7f.pdf",
+          "confirmedOn": "2026-11-15",
+          "mounting": "portrait"
+        }
+      ],
+      "referencePoint": {
+        "latitude": 47.697766666666666,
+        "longitude": 11.880058333333334,
+        "kind": "roof_landmark",
+        "description": "Mitte des rechten der beiden Dachfenster neben dem Kamin",
+        "dms": "47°41'51.96\"N 11°52'48.21\"E",
+        "confirmedOn": "2026-11-15"
+      },
+      "layoutSurvey": {
+        "status": "derived-approximate",
+        "source": "SolarEdge-Belegung Haus links; Bezugspunkt rechtes der beiden Dachfenster neben dem Kamin",
+        "gapAssumptionM": 0.025,
+        "anchorRoofX_m": 3.3299999999999996,
+        "anchorRoofY_m": 2.5424999999999995,
+        "note": "Modulmaße und Bestückung bestätigt; Einzelpositionen aus Belegungsraster und GPS-Anker abgeleitet, nicht vermessen. Fensterfreiräume und Fugenabstände sind Näherungen."
       }
     },
     {
       "id": "panel-2",
       "name": "Garage",
-      "kwp": 5.28,
+      "kwp": 4.62,
       "az": 165,
       "tilt": 30,
       "inverterId": "wr-2",
       "geo": {
         "name": "Garage",
-        "latitude": 47.69792646402266,
-        "longitude": 11.880227171529725,
-        "width_m": 8,
-        "depth_m": 5,
+        "latitude": 47.69792440585319,
+        "longitude": 11.880220565106077,
+        "width_m": 10.355,
+        "depth_m": 2.71412,
         "azimuth": 165,
         "tilt_deg": 30,
         "lower_edge_height_m": 3,
-        "upper_edge_height_m": 6
+        "upper_edge_height_m": 6,
+        "modulePositions": [
+          {
+            "id": "2.1.14",
+            "latitude": 47.69791882739502,
+            "longitude": 11.88014949096255,
+            "wp": 330,
+            "groupIndex": 1,
+            "width_m": 1.705,
+            "depth_m": 1.028,
+            "roofX_m": -6.055,
+            "roofY_m": -1.053
+          },
+          {
+            "id": "2.1.13",
+            "latitude": 47.69792285454966,
+            "longitude": 11.880171753855869,
+            "wp": 330,
+            "groupIndex": 1,
+            "width_m": 1.705,
+            "depth_m": 1.028,
+            "roofX_m": -4.325,
+            "roofY_m": -1.053
+          },
+          {
+            "id": "2.1.12",
+            "latitude": 47.6979268817043,
+            "longitude": 11.880194016749186,
+            "wp": 330,
+            "groupIndex": 0,
+            "width_m": 1.705,
+            "depth_m": 1.028,
+            "roofX_m": -2.595,
+            "roofY_m": -1.053
+          },
+          {
+            "id": "2.1.10",
+            "latitude": 47.697930908858936,
+            "longitude": 11.880216279642505,
+            "wp": 330,
+            "groupIndex": 0,
+            "width_m": 1.705,
+            "depth_m": 1.028,
+            "roofX_m": -0.865,
+            "roofY_m": -1.053
+          },
+          {
+            "id": "2.1.7",
+            "latitude": 47.697934936013574,
+            "longitude": 11.880238542535823,
+            "wp": 330,
+            "groupIndex": 0,
+            "width_m": 1.705,
+            "depth_m": 1.028,
+            "roofX_m": 0.865,
+            "roofY_m": -1.053
+          },
+          {
+            "id": "2.1.6",
+            "latitude": 47.69793896316821,
+            "longitude": 11.88026080542914,
+            "wp": 330,
+            "groupIndex": 0,
+            "width_m": 1.705,
+            "depth_m": 1.028,
+            "roofX_m": 2.595,
+            "roofY_m": -1.053
+          },
+          {
+            "id": "2.1.11",
+            "latitude": 47.697918959268044,
+            "longitude": 11.880197161215579,
+            "wp": 330,
+            "groupIndex": 0,
+            "width_m": 1.705,
+            "depth_m": 1.028,
+            "roofX_m": -2.595,
+            "roofY_m": 0
+          },
+          {
+            "id": "2.1.9",
+            "latitude": 47.69792298642268,
+            "longitude": 11.880219424108898,
+            "wp": 330,
+            "groupIndex": 0,
+            "width_m": 1.705,
+            "depth_m": 1.028,
+            "roofX_m": -0.865,
+            "roofY_m": 0
+          },
+          {
+            "id": "2.1.8",
+            "latitude": 47.69792701357731,
+            "longitude": 11.880241687002215,
+            "wp": 330,
+            "groupIndex": 0,
+            "width_m": 1.705,
+            "depth_m": 1.028,
+            "roofX_m": 0.865,
+            "roofY_m": 0
+          },
+          {
+            "id": "2.1.5",
+            "latitude": 47.69793104073195,
+            "longitude": 11.880263949895534,
+            "wp": 330,
+            "groupIndex": 0,
+            "width_m": 1.705,
+            "depth_m": 1.028,
+            "roofX_m": 2.595,
+            "roofY_m": 0
+          },
+          {
+            "id": "2.1.1",
+            "latitude": 47.69791103683178,
+            "longitude": 11.880200305681972,
+            "wp": 330,
+            "groupIndex": 0,
+            "width_m": 1.705,
+            "depth_m": 1.028,
+            "roofX_m": -2.595,
+            "roofY_m": 1.053
+          },
+          {
+            "id": "2.1.2",
+            "latitude": 47.69791506398642,
+            "longitude": 11.88022256857529,
+            "wp": 330,
+            "groupIndex": 0,
+            "width_m": 1.705,
+            "depth_m": 1.028,
+            "roofX_m": -0.865,
+            "roofY_m": 1.053
+          },
+          {
+            "id": "2.1.3",
+            "latitude": 47.69791909114106,
+            "longitude": 11.880244831468607,
+            "wp": 330,
+            "groupIndex": 0,
+            "width_m": 1.705,
+            "depth_m": 1.028,
+            "roofX_m": 0.865,
+            "roofY_m": 1.053
+          },
+          {
+            "id": "2.1.4",
+            "latitude": 47.6979231182957,
+            "longitude": 11.880267094361926,
+            "wp": 330,
+            "groupIndex": 0,
+            "width_m": 1.705,
+            "depth_m": 1.028,
+            "roofX_m": 2.595,
+            "roofY_m": 1.053
+          }
+        ]
+      },
+      "moduleGroups": [
+        {
+          "count": 12,
+          "wp": 330,
+          "label": "Hauptblock mit 3 × 4 Modulen nach Süden",
+          "mounting": "landscape",
+          "facing": "south",
+          "manufacturer": "WINAICO",
+          "model": "WSP-330MX PERC",
+          "dimensionsMm": {
+            "length": 1705,
+            "width": 1028,
+            "height": 35
+          },
+          "datasheetUrl": "https://winaico.com/wp-content/uploads/2021/08/d315_Datasheet_WSP-MX_EU_0620_mailing.pdf",
+          "confirmedOn": "2026-11-15"
+        },
+        {
+          "count": 2,
+          "wp": 330,
+          "label": "Weitere querliegende Module links nach Süden",
+          "mounting": "landscape",
+          "facing": "south",
+          "manufacturer": "WINAICO",
+          "model": "WSP-330MX PERC",
+          "dimensionsMm": {
+            "length": 1705,
+            "width": 1028,
+            "height": 35
+          },
+          "datasheetUrl": "https://winaico.com/wp-content/uploads/2021/08/d315_Datasheet_WSP-MX_EU_0620_mailing.pdf",
+          "confirmedOn": "2026-11-15"
+        }
+      ],
+      "referencePoint": {
+        "latitude": 47.697925,
+        "longitude": 11.880230555555556,
+        "kind": "subarray_center",
+        "description": "Mitte des großen 3×4-Modulblocks; nicht Mittelpunkt aller 16 Module",
+        "dms": "47°41'52.53\"N 11°52'48.83\"E",
+        "confirmedOn": "2026-11-15"
+      },
+      "layoutSurvey": {
+        "status": "derived-approximate",
+        "source": "SolarEdge-Belegung Garage; GPS-Mitte des 3×4-Hauptblocks; zwei Zusatzmodule links",
+        "gapAssumptionM": 0.025,
+        "anchorRoofX_m": 6.055,
+        "anchorRoofY_m": 1.053,
+        "note": "Modulmaße und Bestückung bestätigt; Einzelpositionen aus Belegungsraster und GPS-Anker abgeleitet, nicht vermessen. Fensterfreiräume und Fugenabstände sind Näherungen."
       }
     },
     {
@@ -58,52 +580,868 @@
       "inverterId": "wr-3",
       "geo": {
         "name": "Carport",
-        "latitude": 47.69786343561308,
-        "longitude": 11.879849604421532,
-        "width_m": 11,
-        "depth_m": 6,
+        "latitude": 47.69785398922421,
+        "longitude": 11.879859130850434,
+        "width_m": 10.649,
+        "depth_m": 5.1279,
         "azimuth": 165,
         "tilt_deg": 20,
         "lower_edge_height_m": 3,
-        "upper_edge_height_m": 7
+        "upper_edge_height_m": 7,
+        "modulePositions": [
+          {
+            "id": "3.1.4",
+            "latitude": 47.697857131763655,
+            "longitude": 11.87978913414501,
+            "wp": 400,
+            "groupIndex": 0,
+            "width_m": 1.754,
+            "depth_m": 1.096,
+            "roofX_m": -4.4475,
+            "roofY_m": -1.121
+          },
+          {
+            "id": "3.1.5",
+            "latitude": 47.69786127298226,
+            "longitude": 11.879812027576644,
+            "wp": 400,
+            "groupIndex": 0,
+            "width_m": 1.754,
+            "depth_m": 1.096,
+            "roofX_m": -2.6685,
+            "roofY_m": -1.121
+          },
+          {
+            "id": "3.1.8",
+            "latitude": 47.69786541420086,
+            "longitude": 11.879834921008278,
+            "wp": 400,
+            "groupIndex": 0,
+            "width_m": 1.754,
+            "depth_m": 1.096,
+            "roofX_m": -0.8895,
+            "roofY_m": -1.121
+          },
+          {
+            "id": "3.1.9",
+            "latitude": 47.697869555419466,
+            "longitude": 11.87985781443991,
+            "wp": 400,
+            "groupIndex": 0,
+            "width_m": 1.754,
+            "depth_m": 1.096,
+            "roofX_m": 0.8895,
+            "roofY_m": -1.121
+          },
+          {
+            "id": "3.1.12",
+            "latitude": 47.69787369663807,
+            "longitude": 11.879880707871544,
+            "wp": 400,
+            "groupIndex": 0,
+            "width_m": 1.754,
+            "depth_m": 1.096,
+            "roofX_m": 2.6685,
+            "roofY_m": -1.121
+          },
+          {
+            "id": "3.1.13",
+            "latitude": 47.69787783785667,
+            "longitude": 11.879903601303178,
+            "wp": 400,
+            "groupIndex": 0,
+            "width_m": 1.754,
+            "depth_m": 1.096,
+            "roofX_m": 4.4475,
+            "roofY_m": -1.121
+          },
+          {
+            "id": "3.1.3",
+            "latitude": 47.69784798028682,
+            "longitude": 11.879792766420918,
+            "wp": 400,
+            "groupIndex": 0,
+            "width_m": 1.754,
+            "depth_m": 1.096,
+            "roofX_m": -4.4475,
+            "roofY_m": 0
+          },
+          {
+            "id": "3.1.6",
+            "latitude": 47.69785212150542,
+            "longitude": 11.879815659852552,
+            "wp": 400,
+            "groupIndex": 0,
+            "width_m": 1.754,
+            "depth_m": 1.096,
+            "roofX_m": -2.6685,
+            "roofY_m": 0
+          },
+          {
+            "id": "3.1.7",
+            "latitude": 47.697856262724024,
+            "longitude": 11.879838553284184,
+            "wp": 400,
+            "groupIndex": 0,
+            "width_m": 1.754,
+            "depth_m": 1.096,
+            "roofX_m": -0.8895,
+            "roofY_m": 0
+          },
+          {
+            "id": "3.1.10",
+            "latitude": 47.697860403942634,
+            "longitude": 11.879861446715818,
+            "wp": 400,
+            "groupIndex": 0,
+            "width_m": 1.754,
+            "depth_m": 1.096,
+            "roofX_m": 0.8895,
+            "roofY_m": 0
+          },
+          {
+            "id": "3.1.11",
+            "latitude": 47.69786454516124,
+            "longitude": 11.87988434014745,
+            "wp": 400,
+            "groupIndex": 0,
+            "width_m": 1.754,
+            "depth_m": 1.096,
+            "roofX_m": 2.6685,
+            "roofY_m": 0
+          },
+          {
+            "id": "3.1.14",
+            "latitude": 47.69786868637984,
+            "longitude": 11.879907233579084,
+            "wp": 400,
+            "groupIndex": 0,
+            "width_m": 1.754,
+            "depth_m": 1.096,
+            "roofX_m": 4.4475,
+            "roofY_m": 0
+          },
+          {
+            "id": "3.1.2",
+            "latitude": 47.697838828809985,
+            "longitude": 11.879796398696824,
+            "wp": 400,
+            "groupIndex": 0,
+            "width_m": 1.754,
+            "depth_m": 1.096,
+            "roofX_m": -4.4475,
+            "roofY_m": 1.121
+          },
+          {
+            "id": "3.1.1",
+            "latitude": 47.69784297002859,
+            "longitude": 11.879819292128458,
+            "wp": 400,
+            "groupIndex": 0,
+            "width_m": 1.754,
+            "depth_m": 1.096,
+            "roofX_m": -2.6685,
+            "roofY_m": 1.121
+          },
+          {
+            "id": "3.1.18",
+            "latitude": 47.69784711124719,
+            "longitude": 11.879842185560092,
+            "wp": 400,
+            "groupIndex": 0,
+            "width_m": 1.754,
+            "depth_m": 1.096,
+            "roofX_m": -0.8895,
+            "roofY_m": 1.121
+          },
+          {
+            "id": "3.1.17",
+            "latitude": 47.697851252465796,
+            "longitude": 11.879865078991724,
+            "wp": 400,
+            "groupIndex": 0,
+            "width_m": 1.754,
+            "depth_m": 1.096,
+            "roofX_m": 0.8895,
+            "roofY_m": 1.121
+          },
+          {
+            "id": "3.1.16",
+            "latitude": 47.6978553936844,
+            "longitude": 11.879887972423358,
+            "wp": 400,
+            "groupIndex": 0,
+            "width_m": 1.754,
+            "depth_m": 1.096,
+            "roofX_m": 2.6685,
+            "roofY_m": 1.121
+          },
+          {
+            "id": "3.1.15",
+            "latitude": 47.697859534903,
+            "longitude": 11.879910865854992,
+            "wp": 400,
+            "groupIndex": 0,
+            "width_m": 1.754,
+            "depth_m": 1.096,
+            "roofX_m": 4.4475,
+            "roofY_m": 1.121
+          },
+          {
+            "id": "3.1.19",
+            "latitude": 47.69783477067512,
+            "longitude": 11.87985232481007,
+            "wp": 450,
+            "groupIndex": 1,
+            "width_m": 1.038,
+            "depth_m": 2.094,
+            "roofX_m": -0.5095,
+            "roofY_m": 2.741
+          },
+          {
+            "id": "3.1.20",
+            "latitude": 47.69783724516381,
+            "longitude": 11.879866004246734,
+            "wp": 450,
+            "groupIndex": 1,
+            "width_m": 1.038,
+            "depth_m": 2.094,
+            "roofX_m": 0.5535,
+            "roofY_m": 2.741
+          },
+          {
+            "id": "3.1.21",
+            "latitude": 47.6978397196525,
+            "longitude": 11.879879683683399,
+            "wp": 450,
+            "groupIndex": 1,
+            "width_m": 1.038,
+            "depth_m": 2.094,
+            "roofX_m": 1.6165,
+            "roofY_m": 2.741
+          },
+          {
+            "id": "3.1.22",
+            "latitude": 47.69784219414119,
+            "longitude": 11.879893363120065,
+            "wp": 450,
+            "groupIndex": 1,
+            "width_m": 1.038,
+            "depth_m": 2.094,
+            "roofX_m": 2.6795,
+            "roofY_m": 2.741
+          },
+          {
+            "id": "3.1.23",
+            "latitude": 47.69784466862987,
+            "longitude": 11.879907042556729,
+            "wp": 450,
+            "groupIndex": 1,
+            "width_m": 1.038,
+            "depth_m": 2.094,
+            "roofX_m": 3.7425,
+            "roofY_m": 2.741
+          },
+          {
+            "id": "3.1.24",
+            "latitude": 47.69784714311856,
+            "longitude": 11.879920721993393,
+            "wp": 450,
+            "groupIndex": 1,
+            "width_m": 1.038,
+            "depth_m": 2.094,
+            "roofX_m": 4.8055,
+            "roofY_m": 2.741
+          }
+        ]
+      },
+      "moduleGroups": [
+        {
+          "count": 18,
+          "wp": 400,
+          "label": "Oberes Feld mit 18 querliegenden Modulen",
+          "manufacturer": "Trina Solar",
+          "model": "TSM-400DE09.08 Vertex S",
+          "dimensionsMm": {
+            "length": 1754,
+            "width": 1096,
+            "height": 30
+          },
+          "datasheetUrl": "https://static.trinasolar.com/sites/default/files/EU_Datasheet_VertexS_DE09.08_C.pdf",
+          "datasheetAccess": "Herstellerdatenblatt im Suchindex; direkter PDF-Abruf am 15.11.2026 nicht verfügbar",
+          "confirmedOn": "2026-11-15",
+          "mounting": "landscape"
+        },
+        {
+          "count": 6,
+          "wp": 450,
+          "label": "Sechs hochkant ergänzte Module darunter",
+          "manufacturer": "LONGi Solar",
+          "model": "LR4-72HIH-450M",
+          "dimensionsMm": {
+            "length": 2094,
+            "width": 1038,
+            "height": 35
+          },
+          "datasheetUrl": "https://static.longi.com/20220421_LON_Gi_Data_Sheet_LR_4_72_HIH_440_460_M_EPC_Version_V15_Low_Res_ES_afb1631a7f.pdf",
+          "confirmedOn": "2026-11-15",
+          "mounting": "portrait"
+        }
+      ],
+      "referencePoint": {
+        "latitude": 47.69785833333333,
+        "longitude": 11.879850000000001,
+        "kind": "subarray_center",
+        "description": "Mitte des oberen Modulfeldes mit 18 Modulen; Wechselrichter nördlich",
+        "dms": "47°41'52.29\"N 11°52'47.46\"E",
+        "confirmedOn": "2026-11-15"
+      },
+      "layoutSurvey": {
+        "status": "derived-approximate",
+        "source": "SolarEdge-Belegung Carport; GPS-Mitte ausschließlich des oberen 3×6-Feldes",
+        "gapAssumptionM": 0.025,
+        "anchorRoofX_m": 4.4475,
+        "anchorRoofY_m": 1.121,
+        "note": "Modulmaße und Bestückung bestätigt; Einzelpositionen aus Belegungsraster und GPS-Anker abgeleitet, nicht vermessen. Fensterfreiräume und Fugenabstände sind Näherungen."
       }
     },
     {
       "id": "panel-4",
-      "name": "Hütte",
+      "name": "Hütte vorne",
       "kwp": 1.9,
       "az": 254,
       "tilt": 20,
       "inverterId": "wr-2",
       "geo": {
-        "name": "Hütte",
-        "latitude": 47.698012109923496,
-        "longitude": 11.880217099312013,
-        "width_m": 5.5,
-        "depth_m": 1.8,
+        "name": "Hütte vorne",
+        "latitude": 47.69800833333333,
+        "longitude": 11.880216666666668,
+        "width_m": 5.245,
+        "depth_m": 1.58996,
         "azimuth": 254,
         "tilt_deg": 20,
         "lower_edge_height_m": 2.5,
-        "upper_edge_height_m": 4
+        "upper_edge_height_m": 4,
+        "modulePositions": [
+          {
+            "id": "2.1.17",
+            "latitude": 47.69802655836156,
+            "longitude": 11.880208925594832,
+            "wp": 380,
+            "groupIndex": 0,
+            "width_m": 1.029,
+            "depth_m": 1.692,
+            "roofX_m": -2.108,
+            "roofY_m": 0
+          },
+          {
+            "id": "2.1.18",
+            "latitude": 47.69801744584745,
+            "longitude": 11.880212796130749,
+            "wp": 380,
+            "groupIndex": 0,
+            "width_m": 1.029,
+            "depth_m": 1.692,
+            "roofX_m": -1.054,
+            "roofY_m": 0
+          },
+          {
+            "id": "2.1.19",
+            "latitude": 47.69800833333333,
+            "longitude": 11.880216666666668,
+            "wp": 380,
+            "groupIndex": 0,
+            "width_m": 1.029,
+            "depth_m": 1.692,
+            "roofX_m": 0,
+            "roofY_m": 0
+          },
+          {
+            "id": "2.1.20",
+            "latitude": 47.697999220819206,
+            "longitude": 11.880220537202586,
+            "wp": 380,
+            "groupIndex": 0,
+            "width_m": 1.029,
+            "depth_m": 1.692,
+            "roofX_m": 1.054,
+            "roofY_m": 0
+          },
+          {
+            "id": "2.1.21",
+            "latitude": 47.69799010830509,
+            "longitude": 11.880224407738503,
+            "wp": 380,
+            "groupIndex": 0,
+            "width_m": 1.029,
+            "depth_m": 1.692,
+            "roofX_m": 2.108,
+            "roofY_m": 0
+          }
+        ]
+      },
+      "moduleGroups": [
+        {
+          "count": 5,
+          "wp": 380,
+          "label": "Fünf nach Westen ausgerichtete Module",
+          "manufacturer": "Jinko Solar",
+          "model": "JKM380N-6TL3-V0",
+          "datasheetModel": "JKM380N-6TL3-V",
+          "dimensionsMm": {
+            "length": 1692,
+            "width": 1029,
+            "height": 30
+          },
+          "datasheetUrl": "https://www.jinkosolar.com/uploads/JKM360-380N-6TL3-(V)-F2.1-EN.pdf",
+          "confirmedOn": "2026-11-15",
+          "facing": "west",
+          "mounting": "portrait"
+        }
+      ],
+      "referencePoint": {
+        "latitude": 47.69800833333333,
+        "longitude": 11.880216666666668,
+        "kind": "module_center",
+        "description": "Mitte des mittleren der fünf nach Westen ausgerichteten Module",
+        "dms": "47°41'52.83\"N 11°52'48.78\"E",
+        "confirmedOn": "2026-11-15"
+      },
+      "layoutSurvey": {
+        "status": "derived-approximate",
+        "source": "SolarEdge-Belegung Hütte; GPS-Mitte des mittleren Moduls",
+        "gapAssumptionM": 0.025,
+        "anchorRoofX_m": 0,
+        "anchorRoofY_m": 0,
+        "note": "Modulmaße und Bestückung bestätigt; Einzelpositionen aus Belegungsraster und GPS-Anker abgeleitet, nicht vermessen. Fensterfreiräume und Fugenabstände sind Näherungen."
       }
     },
     {
       "id": "panel-wr-184dd470-e193-4036-a286-b621e04e321b",
-      "name": "Haus links",
-      "kwp": 7.95,
+      "name": "Haus rechts",
+      "kwp": 6.275,
       "az": 165,
       "tilt": 37,
-      "inverterId": "wr-4",
+      "inverterId": "wr-1",
       "geo": {
-        "latitude": 47.697801624225924,
-        "longitude": 11.880186730760354,
-        "width_m": 8,
-        "depth_m": 6,
+        "latitude": 47.69780117456909,
+        "longitude": 11.880173104829145,
+        "width_m": 10.715,
+        "depth_m": 4.85491,
         "lower_edge_height_m": 3,
         "upper_edge_height_m": 7,
         "azimuth": 165,
         "tilt_deg": 37,
-        "name": "Haus rechts"
+        "name": "Haus rechts",
+        "modulePositions": [
+          {
+            "id": "1.1.1",
+            "latitude": 47.697813909764854,
+            "longitude": 11.880129084173838,
+            "wp": 300,
+            "groupIndex": 0,
+            "width_m": 1.64,
+            "depth_m": 0.992,
+            "roofX_m": -5.1825,
+            "roofY_m": -2.5425
+          },
+          {
+            "id": "1.1.2",
+            "latitude": 47.69781778561029,
+            "longitude": 11.88015051055227,
+            "wp": 300,
+            "groupIndex": 0,
+            "width_m": 1.64,
+            "depth_m": 0.992,
+            "roofX_m": -3.5175,
+            "roofY_m": -2.5425
+          },
+          {
+            "id": "1.1.3",
+            "latitude": 47.697821661455734,
+            "longitude": 11.880171936930699,
+            "wp": 300,
+            "groupIndex": 0,
+            "width_m": 1.64,
+            "depth_m": 0.992,
+            "roofX_m": -1.8525,
+            "roofY_m": -2.5425
+          },
+          {
+            "id": "1.1.4",
+            "latitude": 47.69781460528096,
+            "longitude": 11.880174737565977,
+            "wp": 300,
+            "groupIndex": 0,
+            "width_m": 1.64,
+            "depth_m": 0.992,
+            "roofX_m": -1.8525,
+            "roofY_m": -1.5255
+          },
+          {
+            "id": "1.1.19",
+            "latitude": 47.697807549106194,
+            "longitude": 11.880177538201256,
+            "wp": 300,
+            "groupIndex": 0,
+            "width_m": 1.64,
+            "depth_m": 0.992,
+            "roofX_m": -1.8525,
+            "roofY_m": -0.5085
+          },
+          {
+            "id": "1.1.18",
+            "latitude": 47.69780049293142,
+            "longitude": 11.880180338836533,
+            "wp": 300,
+            "groupIndex": 0,
+            "width_m": 1.64,
+            "depth_m": 0.992,
+            "roofX_m": -1.8525,
+            "roofY_m": 0.5085
+          },
+          {
+            "id": "1.1.14",
+            "latitude": 47.69778180922034,
+            "longitude": 11.880118860336522,
+            "wp": 300,
+            "groupIndex": 0,
+            "width_m": 1.64,
+            "depth_m": 0.992,
+            "roofX_m": -6.8475,
+            "roofY_m": 1.5255
+          },
+          {
+            "id": "1.1.15",
+            "latitude": 47.697785685065774,
+            "longitude": 11.880140286714953,
+            "wp": 300,
+            "groupIndex": 0,
+            "width_m": 1.64,
+            "depth_m": 0.992,
+            "roofX_m": -5.1825,
+            "roofY_m": 1.5255
+          },
+          {
+            "id": "1.1.16",
+            "latitude": 47.69778956091122,
+            "longitude": 11.880161713093383,
+            "wp": 300,
+            "groupIndex": 0,
+            "width_m": 1.64,
+            "depth_m": 0.992,
+            "roofX_m": -3.5175,
+            "roofY_m": 1.5255
+          },
+          {
+            "id": "1.1.17",
+            "latitude": 47.697793436756655,
+            "longitude": 11.880183139471812,
+            "wp": 300,
+            "groupIndex": 0,
+            "width_m": 1.64,
+            "depth_m": 0.992,
+            "roofX_m": -1.8525,
+            "roofY_m": 1.5255
+          },
+          {
+            "id": "1.1.13",
+            "latitude": 47.697774753045564,
+            "longitude": 11.8801216609718,
+            "wp": 300,
+            "groupIndex": 0,
+            "width_m": 1.64,
+            "depth_m": 0.992,
+            "roofX_m": -6.8475,
+            "roofY_m": 2.5425
+          },
+          {
+            "id": "1.1.12",
+            "latitude": 47.69777862889101,
+            "longitude": 11.88014308735023,
+            "wp": 300,
+            "groupIndex": 0,
+            "width_m": 1.64,
+            "depth_m": 0.992,
+            "roofX_m": -5.1825,
+            "roofY_m": 2.5425
+          },
+          {
+            "id": "1.1.11",
+            "latitude": 47.697782504736445,
+            "longitude": 11.88016451372866,
+            "wp": 300,
+            "groupIndex": 0,
+            "width_m": 1.64,
+            "depth_m": 0.992,
+            "roofX_m": -3.5175,
+            "roofY_m": 2.5425
+          },
+          {
+            "id": "1.1.10",
+            "latitude": 47.69778638058188,
+            "longitude": 11.880185940107092,
+            "wp": 300,
+            "groupIndex": 0,
+            "width_m": 1.64,
+            "depth_m": 0.992,
+            "roofX_m": -1.8525,
+            "roofY_m": 2.5425
+          },
+          {
+            "id": "1.1.6",
+            "latitude": 47.69782597377025,
+            "longitude": 11.880195776189582,
+            "wp": 415,
+            "groupIndex": 1,
+            "width_m": 2.015,
+            "depth_m": 0.996,
+            "roofX_m": 0,
+            "roofY_m": -2.5425
+          },
+          {
+            "id": "1.1.5",
+            "latitude": 47.697818917595484,
+            "longitude": 11.880198576824862,
+            "wp": 415,
+            "groupIndex": 1,
+            "width_m": 2.015,
+            "depth_m": 0.996,
+            "roofX_m": 0,
+            "roofY_m": -1.5255
+          },
+          {
+            "id": "1.1.7",
+            "latitude": 47.69781661020431,
+            "longitude": 11.880227629599478,
+            "wp": 415,
+            "groupIndex": 1,
+            "width_m": 2.015,
+            "depth_m": 0.996,
+            "roofX_m": 2.04,
+            "roofY_m": -0.5085
+          },
+          {
+            "id": "1.1.8",
+            "latitude": 47.69780955402954,
+            "longitude": 11.880230430234755,
+            "wp": 415,
+            "groupIndex": 1,
+            "width_m": 2.015,
+            "depth_m": 0.996,
+            "roofX_m": 2.04,
+            "roofY_m": 0.5085
+          },
+          {
+            "id": "1.1.9",
+            "latitude": 47.697802497854774,
+            "longitude": 11.880233230870035,
+            "wp": 415,
+            "groupIndex": 1,
+            "width_m": 2.015,
+            "depth_m": 0.996,
+            "roofX_m": 2.04,
+            "roofY_m": 1.5255
+          }
+        ]
+      },
+      "moduleGroups": [
+        {
+          "count": 14,
+          "wp": 300,
+          "label": "Kleinere Module",
+          "manufacturer": "IBC SOLAR",
+          "model": "MonoSol 300 VL4",
+          "dimensionsMm": {
+            "length": 1640,
+            "width": 992,
+            "height": 40
+          },
+          "datasheetUrl": "https://www.solarconcept.at/uploads/hjjhuVOt/2088956_de-datenblatteuropajapan-ibcmonosol300vl4.pdf",
+          "datasheetDate": "2016-10-13",
+          "confirmedOn": "2026-11-15",
+          "mounting": "landscape"
+        },
+        {
+          "count": 5,
+          "wp": 415,
+          "label": "Fünf größere Module rechts oben",
+          "manufacturer": "JA Solar",
+          "model": "JAM72S10-415/MR",
+          "userModel": "JAM72S-10-415-MR-MC4",
+          "dimensionsMm": {
+            "length": 2015,
+            "width": 996
+          },
+          "frameHeightOptionsMm": [
+            35,
+            40
+          ],
+          "frameVariantStatus": "Rahmenvariante nicht bestätigt; Länge und Breite stimmen in beiden Herstellerdatenblättern überein",
+          "datasheetUrl": "https://www.jasolar.com/uploadfile/2022/0513/20220513050716243.pdf",
+          "additionalDatasheetUrls": [
+            "https://www.jasolar.com/uploadfile/2020/0619/20200619041943525.pdf"
+          ],
+          "datasheetAccess": "Herstellerdatenblätter im Suchindex; direkter PDF-Abruf am 15.11.2026 HTTP 403",
+          "confirmedOn": "2026-11-15",
+          "mounting": "landscape"
+        }
+      ],
+      "referencePoint": {
+        "latitude": 47.69780833333333,
+        "longitude": 11.880202777777779,
+        "kind": "roof_landmark",
+        "description": "Mitte des oberen Dachfensters rechts zwischen den fünf 415-Wp-Modulen",
+        "dms": "47°41'52.11\"N 11°52'48.73\"E",
+        "confirmedOn": "2026-11-15"
+      },
+      "layoutSurvey": {
+        "status": "derived-approximate",
+        "source": "SolarEdge-Belegung Haus rechts; Bezugspunkt oberes Dachfenster zwischen den fünf JA-Solar-Modulen",
+        "gapAssumptionM": 0.025,
+        "anchorRoofX_m": 6.8475,
+        "anchorRoofY_m": 2.5424999999999995,
+        "note": "Modulmaße und Bestückung bestätigt; Einzelpositionen aus Belegungsraster und GPS-Anker abgeleitet, nicht vermessen. Fensterfreiräume und Fugenabstände sind Näherungen."
+      }
+    },
+    {
+      "id": "panel-garage-east",
+      "name": "Garage Ost",
+      "kwp": 0.33,
+      "az": 90,
+      "tilt": 20,
+      "inverterId": "wr-2",
+      "geo": {
+        "name": "Garage Ost",
+        "latitude": 47.69787921521374,
+        "longitude": 11.880165213294513,
+        "width_m": 1.028,
+        "depth_m": 1.60218,
+        "azimuth": 90,
+        "tilt_deg": 20,
+        "lower_edge_height_m": 3,
+        "upper_edge_height_m": 6,
+        "modulePositions": [
+          {
+            "id": "panel-garage-east",
+            "latitude": 47.69787921521374,
+            "longitude": 11.880165213294513,
+            "wp": 330,
+            "groupIndex": 0,
+            "width_m": 1.028,
+            "depth_m": 1.705,
+            "roofX_m": 0,
+            "roofY_m": 0
+          }
+        ]
+      },
+      "moduleGroups": [
+        {
+          "count": 1,
+          "wp": 330,
+          "label": "Ein hochkant liegendes Modul darunter nach Osten",
+          "mounting": "portrait",
+          "facing": "east",
+          "tiltDeg": 20,
+          "manufacturer": "WINAICO",
+          "model": "WSP-330MX PERC",
+          "dimensionsMm": {
+            "length": 1705,
+            "width": 1028,
+            "height": 35
+          },
+          "datasheetUrl": "https://winaico.com/wp-content/uploads/2021/08/d315_Datasheet_WSP-MX_EU_0620_mailing.pdf",
+          "confirmedOn": "2026-11-15",
+          "tiltApproximate": true,
+          "azimuthDeg": 90,
+          "azimuthApproximate": true
+        }
+      ],
+      "referencePoint": {
+        "latitude": 47.69787921521374,
+        "longitude": 11.880165213294513,
+        "kind": "derived_pair_center",
+        "description": "Abgeleitete Mitte des separaten Ost-/West-Paares unterhalb der Garage",
+        "dms": "Aus bestätigtem Garage-Anker abgeleitet",
+        "confirmedOn": "2026-11-15"
+      },
+      "layoutSurvey": {
+        "status": "derived-approximate",
+        "source": "Je ein Ost- und Westmodul mit ca. 20° vom Betreiber bestätigt; Paarposition aus SolarEdge-Schema geschätzt",
+        "gapAssumptionM": 0.025,
+        "anchorRoofX_m": 0,
+        "anchorRoofY_m": 0,
+        "note": "Ca. 20° Neigung bestätigt; Azimut 90°/270° aus Ost/West abgeleitet. Einzelzuordnung der Positionen 2.1.15/16 zu Ost/West unbekannt; gemeinsame geschätzte Paarmitte, keine vorgetäuschte Nummernzuordnung."
+      }
+    },
+    {
+      "id": "panel-garage-west",
+      "name": "Garage West",
+      "kwp": 0.33,
+      "az": 270,
+      "tilt": 20,
+      "inverterId": "wr-2",
+      "geo": {
+        "name": "Garage West",
+        "latitude": 47.69787921521374,
+        "longitude": 11.880165213294513,
+        "width_m": 1.028,
+        "depth_m": 1.60218,
+        "azimuth": 270,
+        "tilt_deg": 20,
+        "lower_edge_height_m": 3,
+        "upper_edge_height_m": 6,
+        "modulePositions": [
+          {
+            "id": "panel-garage-west",
+            "latitude": 47.69787921521374,
+            "longitude": 11.880165213294513,
+            "wp": 330,
+            "groupIndex": 0,
+            "width_m": 1.028,
+            "depth_m": 1.705,
+            "roofX_m": 0,
+            "roofY_m": 0
+          }
+        ]
+      },
+      "moduleGroups": [
+        {
+          "count": 1,
+          "wp": 330,
+          "label": "Ein hochkant liegendes Modul darunter nach Westen",
+          "mounting": "portrait",
+          "facing": "west",
+          "tiltDeg": 20,
+          "manufacturer": "WINAICO",
+          "model": "WSP-330MX PERC",
+          "dimensionsMm": {
+            "length": 1705,
+            "width": 1028,
+            "height": 35
+          },
+          "datasheetUrl": "https://winaico.com/wp-content/uploads/2021/08/d315_Datasheet_WSP-MX_EU_0620_mailing.pdf",
+          "confirmedOn": "2026-11-15",
+          "tiltApproximate": true,
+          "azimuthDeg": 270,
+          "azimuthApproximate": true
+        }
+      ],
+      "referencePoint": {
+        "latitude": 47.69787921521374,
+        "longitude": 11.880165213294513,
+        "kind": "derived_pair_center",
+        "description": "Abgeleitete Mitte des separaten Ost-/West-Paares unterhalb der Garage",
+        "dms": "Aus bestätigtem Garage-Anker abgeleitet",
+        "confirmedOn": "2026-11-15"
+      },
+      "layoutSurvey": {
+        "status": "derived-approximate",
+        "source": "Je ein Ost- und Westmodul mit ca. 20° vom Betreiber bestätigt; Paarposition aus SolarEdge-Schema geschätzt",
+        "gapAssumptionM": 0.025,
+        "anchorRoofX_m": 0,
+        "anchorRoofY_m": 0,
+        "note": "Ca. 20° Neigung bestätigt; Azimut 90°/270° aus Ost/West abgeleitet. Einzelzuordnung der Positionen 2.1.15/16 zu Ost/West unbekannt; gemeinsame geschätzte Paarmitte, keine vorgetäuschte Nummernzuordnung."
       }
     }
   ],
@@ -111,22 +1449,26 @@
     {
       "id": "wr-1",
       "name": "WR1",
-      "maxAcKw": 5
+      "maxAcKw": 5,
+      "deviceId": "74050E87"
     },
     {
       "id": "wr-2",
       "name": "WR2",
-      "maxAcKw": 5
+      "maxAcKw": 5,
+      "deviceId": "731B5ECC"
     },
     {
       "id": "wr-3",
       "name": "WR3",
-      "maxAcKw": 10
+      "maxAcKw": 10,
+      "deviceId": "7B02BA64"
     },
     {
       "id": "wr-4",
       "name": "WR4",
-      "maxAcKw": 7
+      "maxAcKw": 7,
+      "deviceId": "7E06E58E"
     }
   ],
   "profiles": {
@@ -136,9 +1478,9 @@
     },
     "near": {
       "path": "nahverschattung.json",
-      "sha256": "def0533ac4b306d20855442684ec03ca1d35147ebf74602a8e59dc38c0625346",
-      "id": "b6670371"
+      "sha256": "752ebd9e9f84795bcde16059a9b3ed81dd4bf81a8c95ce704e7fb9f47fcd760a",
+      "id": "fa2e6c4db6a0bb7e"
     },
-    "geometryHash": "5a5c13d1a944bce772a2b34d629a6185dd9fa89749c3d9c0a7cc0b453de0c9a2"
+    "geometryHash": "61c0e9b635095b8e5158ceaf688106363e316c2fd051d9829b703ab410467d98"
   }
 }

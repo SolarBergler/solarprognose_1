@@ -23,13 +23,20 @@ def run_regressions():
     config=json.loads(original_config);expected_hash=hashlib.sha256(original_config.encode()).hexdigest()
     with sync_playwright() as p:
         b=p.chromium.launch(executable_path=CHROMIUM,args=['--no-sandbox'])
-        server=Server()
+        server=Server(legacy=True)
+        legacy_config=json.loads(server.files['anlagenkonfiguration.json'])
         # Dieselben veröffentlichten Parameter wie vor der Umstellung: numerisch identische Physik.
         baseline=subprocess.check_output(['git','show','e94f948943a1d7593bcec1e7d777cec29b853763:index.html'],cwd=ROOT,text=True)
-        old_context,old,errors=open_page(b,server,legacy=plant_state(config),html=baseline)
+        old_context,old,errors=open_page(b,server,legacy=plant_state(legacy_config),html=baseline)
         old.wait_for_function('SolarApp?.getCalculated().length>1900')
         old_rows=old.evaluate('SolarApp.getCalculated().map(r=>[r.ts,r.power,r.base])')
         assert not errors,errors;old_context.close()
+        c,check,errors=open_page(b,server);ready(check)
+        checked=check.evaluate('SolarApp.getCalculated().map(r=>[r.ts,r.power,r.base])')
+        assert len(checked)==len(old_rows)
+        assert all(abs(x-y)<1e-8 for new,old in zip(checked,old_rows) for x,y in zip(new,old))
+        assert not errors,errors;c.close()
+        server=Server()
         a,pa,ea=open_page(b,server,legacy={'locationName':'Veraltet A','lat':0,'lon':0,'losses':50,'albedo':.9,'panels':[]})
         z,pz,ez=open_page(b,server,width=390,legacy={'locationName':'Veraltet B','lat':1,'lon':1,'losses':0,'panels':[{'name':'Falsch','kwp':1000}]})
         ready(pa);ready(pz)
@@ -39,7 +46,7 @@ def run_regressions():
         assert pa.evaluate('JSON.stringify(SolarApp.getState())')==pz.evaluate('JSON.stringify(SolarApp.getState())')
         new_rows=pa.evaluate('SolarApp.getCalculated().map(r=>[r.ts,r.power,r.base])')
         assert len(new_rows)==len(old_rows)
-        assert all(abs(x-y)<1e-8 for new,old in zip(new_rows,old_rows) for x,y in zip(new,old))
+        assert all(all(__import__('math').isfinite(v) for v in row) for row in new_rows)
         assert not ea+ez,ea+ez
         # Frische Browserkopie darf keine eigenständige lokale Anlagenkonfiguration erzeugen.
         assert json.loads(pa.evaluate('localStorage.getItem("schliersee-settings-v1")'))['lat']==0
@@ -94,7 +101,7 @@ def run_archive_regression():
       return {ok:doc!==undefined,status:doc===undefined?404:200,json:async()=>JSON.parse(doc),text:async()=>doc};};
     })();</script><!-- BEFORE_APP -->'''%(json.dumps(raw),json.dumps(weather))
     html=html.replace('<script src="./inverters.js?v=12.7"></script>',prefix+'<script>'+(ROOT/'inverters.js').read_text()+'</script>')
-    html=html.replace('<script src="./central-config.js?v=12.8.2"></script>','<script>'+(ROOT/'central-config.js').read_text()+'</script>')
+    html=html.replace('<script src="./central-config.js?v=12.9.0"></script>','<script>'+(ROOT/'central-config.js').read_text()+'</script>')
     # localhost ist ein Secure Context und bietet die echte WebCrypto-Prüfung auch ohne Internet.
     with tempfile.TemporaryDirectory() as tmp:
         root=Path(tmp);(root/'scripts').mkdir();shutil.copy(ROOT/'scripts/archiviere_prognose.py',root/'scripts/archiviere_prognose.py')
@@ -128,7 +135,7 @@ sys.exit(m.main())
             assert all(p.read_bytes()==data for p,data in protected.items())
             new=next(p for p in (root/'prognosen').glob('*/*.json') if p not in protected)
             d=json.loads(new.read_text());expected=hashlib.sha256(raw['anlagenkonfiguration.json'].encode()).hexdigest()
-            assert d['modelVersion']=='V12.8.3'
+            assert d['modelVersion']=='V12.9.0'
             assert d['centralConfiguration']['configurationHash']==expected
             assert d['centralConfiguration']['online']
             assert d['centralConfiguration']['configuration']==resources['anlagenkonfiguration.json']
@@ -182,7 +189,7 @@ def run_publication_tests():
         page.locator('#applyPanels').click();assert page.locator('#profileWizard').is_visible()
         page.evaluate('''()=>{
           const near=CENTRAL.clone(centralBundle.near),far=CENTRAL.clone(centralBundle.horizon);
-          near.id='central-profile-test';near.panelProfiles.push(CENTRAL.clone(near.panelProfiles[0]));
+          near.id='central-profile-test';const generic=CENTRAL.clone(near.panelProfiles[0]);generic.samples=generic.samples.slice(0,9);delete generic.sampleWeights;delete generic.samplePositions;near.panelProfiles.push(generic);
           near.config={panels:pendingPlant.panels.map((p,i)=>({...p,geo:pendingPlant.panelGeometry[i]})),inverters:pendingPlant.inverters};
           far.generatedAt=new Date().toISOString();generatedFiles={doc:near,horizonDoc:far};
           document.getElementById('verifyProfiles').classList.remove('hidden');

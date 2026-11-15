@@ -1,4 +1,4 @@
-/* V12.8.2: Eine veröffentlichte Konfiguration mit kryptographisch gebundenen Profilen. */
+/* V12.9.0: Bestätigte Bestückung, GPS-Anker und gewichtete Modulmittelpunkte. */
 (function(root){
   'use strict';
   const FILE='anlagenkonfiguration.json',CACHE_KEY='solar-central-bundle-v1';
@@ -14,9 +14,31 @@
     return [...new Uint8Array(digest)].map(v=>v.toString(16).padStart(2,'0')).join('');
   }
   const finite=(n,min,max)=>typeof n==='number'&&Number.isFinite(n)&&n>=min&&n<=max;
+  function validateSurvey(p){
+    if(p.moduleGroups!==undefined){
+      if(!Array.isArray(p.moduleGroups)||!p.moduleGroups.length||p.moduleGroups.length>20||p.moduleGroups.some(g=>
+        !Number.isInteger(g.count)||g.count<1||g.count>10000||!finite(g.wp,1,100000)||typeof g.label!=='string'||!g.label.trim()||g.label.length>150))throw fail('Ungültige bestätigte Modulbestückung: '+p.name);
+    }
+    const r=p.referencePoint;
+    if(r!==undefined&&(!r||!finite(r.latitude,-90,90)||!finite(r.longitude,-180,180)||typeof r.description!=='string'||!r.description.trim()||r.description.length>300||!['subarray_center','module_center','roof_landmark','derived_pair_center'].includes(r.kind)||typeof r.dms!=='string'||r.dms.length>100||!/^\d{4}-\d{2}-\d{2}$/.test(r.confirmedOn)))throw fail('Ungültiger geografischer Bezugspunkt: '+p.name);
+    const m=p.geo.modulePositions;
+    if(m!==undefined&&(!Array.isArray(m)||!m.length||m.length>500||new Set(m.map(x=>x.id)).size!==m.length||m.some(x=>
+       typeof x.id!=='string'||!x.id||!finite(x.latitude,-90,90)||!finite(x.longitude,-180,180)||!finite(x.wp,1,100000)||
+       !finite(x.width_m,.01,20)||!finite(x.depth_m,.01,20)||!finite(x.roofX_m,-10000,10000)||!finite(x.roofY_m,-10000,10000))))throw fail('Ungültige Modulpositionen: '+p.name);
+  }
   function geometry(config){
     return {latitude:config.location.latitude,longitude:config.location.longitude,roofHeightM:config.location.roofHeightM,
-      panels:config.panels.map(p=>({id:p.id,az:p.az,tilt:p.tilt,geo:Object.fromEntries(GEO.map(k=>[k,p.geo[k]]))}))};
+      panels:config.panels.map(p=>({id:p.id,az:p.az,tilt:p.tilt,geo:{...Object.fromEntries(GEO.map(k=>[k,p.geo[k]])),
+        ...(p.geo.modulePositions?{modulePositions:clone(p.geo.modulePositions)}:{})}}))};
+  }
+  function verifyPanelProfile(panel,profile){
+    const modules=panel.geo.modulePositions,expected=modules?modules.length:9;
+    if(!Array.isArray(profile?.samples)||profile.samples.length!==expected||profile.samples.some(a=>!Array.isArray(a)||a.length!==720||a.some(v=>!finite(v,0,89.999999))))throw fail('DOM20-Stichproben passen nicht zur Modulgeometrie: '+panel.name);
+    if(profile.sampleWeights!==undefined&&(!Array.isArray(profile.sampleWeights)||profile.sampleWeights.length!==expected||profile.sampleWeights.some(w=>!finite(w,.000001,1000000))))throw fail('Ungültige DOM20-Gewichte: '+panel.name);
+    if(modules&&(!Array.isArray(profile.sampleWeights)||profile.sampleWeights.length!==expected||!Array.isArray(profile.samplePositions)||profile.samplePositions.length!==expected||modules.some((m,i)=>{
+      const s=profile.samplePositions[i];return !s||s.id!==m.id||s.latitude!==m.latitude||s.longitude!==m.longitude||s.wp!==m.wp||profile.sampleWeights[i]!==m.wp;
+    })))throw fail('DOM20-Modulpositionen oder Wp-Gewichte stimmen nicht überein: '+panel.name);
+    return profile;
   }
   function validateConfig(c){
     const allowed=['schemaVersion','revision','updatedAt','location','systemLossesPercent','albedo','panels','inverters','profiles'];
@@ -25,10 +47,12 @@
     const l=c.location;
     if(!l||typeof l.name!=='string'||!l.name.trim()||l.name.length>50||!finite(l.latitude,-90,90)||!finite(l.longitude,-180,180)||!finite(l.roofHeightM,0,100)||
        !finite(c.systemLossesPercent,0,50)||!finite(c.albedo,0,1))throw fail('Standort oder Berechnungsparameter sind ungültig.');
+    if(l.layoutUpAzimuth!==undefined&&!finite(l.layoutUpAzimuth,0,360))throw fail('Ungültige Bildausrichtung.');
     if(!Array.isArray(c.panels)||!c.panels.length||c.panels.length>24||!Array.isArray(c.inverters)||c.inverters.length>32)throw fail('Ungültige Anzahl von Modulfeldern oder Wechselrichtern.');
     const unique=list=>list.every(x=>typeof x.id==='string'&&x.id&&x.id.length<=100)&&new Set(list.map(x=>x.id)).size===list.length;
     if(!unique(c.panels)||!unique(c.inverters))throw fail('Interne IDs müssen eindeutig sein.');
     if(c.inverters.some(w=>typeof w.name!=='string'||!w.name.trim()||w.name.length>50||(w.maxAcKw!==null&&!finite(w.maxAcKw,.000001,1000000))))throw fail('Ungültige Wechselrichterleistung; AC-Wirkleistung in kW verwenden.');
+    if(c.inverters.some(w=>w.deviceId!==undefined&&!/^[A-F0-9]{8}$/.test(w.deviceId)))throw fail('Ungültige Wechselrichter-Gerätekennung.');
     const ids=new Set(c.inverters.map(w=>w.id));
     for(const p of c.panels){
       if(typeof p.name!=='string'||!p.name.trim()||p.name.length>50||!finite(p.kwp,.000001,1000000)||!finite(p.az,0,360)||!finite(p.tilt,0,90)||
@@ -36,6 +60,7 @@
       const g=p.geo;
       if(!g||!finite(g.latitude,-90,90)||!finite(g.longitude,-180,180)||!finite(g.width_m,.000001,100000)||!finite(g.depth_m,.000001,100000)||
          !finite(g.lower_edge_height_m,-1000,10000)||!finite(g.upper_edge_height_m,-1000,10000))throw fail('Modulgeometrie ist unvollständig.');
+      validateSurvey(p);
     }
     const profiles=c.profiles;
     if(profiles?.horizon?.path!=='horizontprofil.json'||profiles?.near?.path!=='nahverschattung.json'||!profiles.near.id||
@@ -51,14 +76,16 @@
     const l=c.location;
     if(!h.location||Math.abs(h.location.latitude-l.latitude)>0.00001||Math.abs(h.location.longitude-l.longitude)>0.00001||Math.abs(h.location.roofHeight-l.roofHeightM)>.05||
        !Array.isArray(h.points)||h.points.length!==720||h.points.some((p,i)=>!finite(p.az,0,359.999999)||!finite(p.height,0,89)||(i>0&&p.az<=h.points[i-1].az)))throw fail('Das zentrale Berghorizontprofil ist ungültig.');
-    if(n.version!==1||n.kind!=='dom20-nearshade'||!/DOM20/i.test(n.source||'')||n.id!==c.profiles.near.id||!n.location||
+    if(![1,2].includes(n.version)||n.kind!=='dom20-nearshade'||!/DOM20/i.test(n.source||'')||n.id!==c.profiles.near.id||!n.location||
        Math.abs(n.location.latitude-l.latitude)>.00001||Math.abs(n.location.longitude-l.longitude)>.00001||!Array.isArray(n.panelProfiles)||n.panelProfiles.length!==c.panels.length||
        !Array.isArray(n.config?.panels)||n.config.panels.length!==c.panels.length)throw fail('DOM20-Profil gehört nicht zur zentralen Anlage.');
     c.panels.forEach((p,i)=>{
       const profile=n.panelProfiles[i],meta=n.config.panels[i];
       if(!profile?.center||Math.abs(profile.center.latitude-p.geo.latitude)>.000001||Math.abs(profile.center.longitude-p.geo.longitude)>.000001||
          meta.az!==p.az||meta.tilt!==p.tilt||GEO.some(k=>Number(meta.geo?.[k])!==p.geo[k])||
-         !Array.isArray(profile.samples)||profile.samples.length!==9||profile.samples.some(a=>!Array.isArray(a)||a.length!==720||a.some(v=>!finite(v,0,89.999999))))throw fail('DOM20-Profil und Modulgeometrie stimmen nicht überein: '+p.name);
+         canonical(meta.geo?.modulePositions||null)!==canonical(p.geo.modulePositions||null)||
+         (p.geo.modulePositions&&n.version!==2))throw fail('DOM20-Profil und Modulgeometrie stimmen nicht überein: '+p.name);
+      verifyPanelProfile(p,profile);
     });
     // Anzeigenamen und Veröffentlichungszeit ändern das physikalische Modell nicht.
     const physical={geometry:geometry(c),losses:c.systemLossesPercent,albedo:c.albedo,profiles:[c.profiles.horizon.sha256,c.profiles.near.sha256],
@@ -114,10 +141,11 @@
   async function draftConfig(state,base,{horizonText,nearText}={}){
     const c=clone(base);
     c.revision=base.revision+1;c.updatedAt=new Date().toISOString();
-    c.location={name:state.locationName,latitude:state.lat,longitude:state.lon,roofHeightM:state.roofHeight};
+    c.location={...clone(base.location),name:state.locationName,latitude:state.lat,longitude:state.lon,roofHeightM:state.roofHeight};
     c.systemLossesPercent=state.losses;c.albedo=state.albedo;
-    c.panels=state.panels.map((p,i)=>({id:p.id,name:p.name,kwp:p.kwp,az:p.az,tilt:p.tilt,inverterId:p.inverterId||null,geo:clone(state.panelGeometry[i])}));
-    c.inverters=state.inverters.map(w=>({id:w.id,name:w.name,maxAcKw:w.maxAcKw}));
+    c.panels=state.panels.map((p,i)=>({id:p.id,name:p.name,kwp:p.kwp,az:p.az,tilt:p.tilt,inverterId:p.inverterId||null,geo:clone(state.panelGeometry[i]),
+      ...(p.moduleGroups?{moduleGroups:clone(p.moduleGroups)}:{}),...(p.referencePoint?{referencePoint:clone(p.referencePoint)}:{}),...(p.layoutSurvey?{layoutSurvey:clone(p.layoutSurvey)}:{})}));
+    c.inverters=state.inverters.map(w=>({id:w.id,name:w.name,maxAcKw:w.maxAcKw,...(w.deviceId?{deviceId:w.deviceId}:{})}));
     c.profiles.geometryHash=await sha256(canonical(geometry(c)));
     if(horizonText)c.profiles.horizon.sha256=await sha256(horizonText);
     if(nearText){c.profiles.near.sha256=await sha256(nearText);c.profiles.near.id=JSON.parse(nearText).id;}
@@ -170,6 +198,6 @@
       return {bundle,commitSha:commit.sha,pagesReady:false};
     }finally{token='';}
   }
-  const api={FILE,CACHE_KEY,REPOSITORY,canonical,serialize,sha256,geometry,validateConfig,verifyBundle,readCache,cacheBundle,loadBundle,toState,draftConfig,publish,clone};
+  const api={FILE,CACHE_KEY,REPOSITORY,canonical,serialize,sha256,geometry,validateConfig,verifyPanelProfile,verifyBundle,readCache,cacheBundle,loadBundle,toState,draftConfig,publish,clone};
   if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.SolarCentral=Object.freeze(api);
 })(typeof globalThis!=='undefined'?globalThis:this);

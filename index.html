@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="apple-mobile-web-app-title" content="Solar Schliersee" />
 <meta name="description" content="Mobile PV-Ertragsprognose für Schliersee mit Bergen und Geländehorizont. Läuft ohne Python und ohne Backend." />
-<title>Solarprognose Schliersee · Berg- und Nahverschattung V12.8.3</title>
+<title>Solarprognose Schliersee · Berg- und Nahverschattung V12.9.0</title>
 <style>
 :root{color-scheme:dark;--bg:#0a111b;--surface:#111d2b;--surface2:#162438;--line:#293b4d;--txt:#e8f0f8;--muted:#95a8bc;--lime:#b9ee69;--sky:#7ba8cb;--orange:#f1ae6a;--red:#f48e8e}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 85% 0, #1e3144 0,transparent 34%),var(--bg);color:var(--txt);font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--lime);outline-offset:2px}input,textarea{border:1px solid var(--line);border-radius:8px;padding:9px 10px;color:var(--txt);background:#0b1725;width:100%}input[type=number]{font-variant-numeric:tabular-nums}input[type=range]{padding:0;accent-color:var(--lime)}.layout{max-width:1320px;margin:0 auto;padding:32px 27px 70px}.top{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;flex-wrap:wrap;margin-bottom:31px}.eyebrow{color:var(--lime);text-transform:uppercase;font-size:11px;letter-spacing:.19em;font-weight:800}.brand{font-size:34px;letter-spacing:-1.5px;line-height:1.1;font-weight:750;margin:11px 0}.sub{color:var(--muted);max-width:710px;margin:0;font-size:14px}.top-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.pill{border:1px solid #345043;background:#172b2b;color:#b8eac2;border-radius:30px;padding:8px 13px;font-size:12px;font-weight:700}.pill.warn{color:#ffcd91;border-color:#76553a;background:#32281f}.btn{border:1px solid #47614f;background:#203d35;color:#cdf3b4;padding:9px 14px;border-radius:10px;font-weight:650;font-size:13px}.btn:hover{background:#2b4b3f}.btn.secondary{border-color:var(--line);background:#152334;color:var(--txt)}.btn.secondary:hover{background:#26394c}.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:22px}.kpi{background:linear-gradient(150deg,#152636,#101c29);border:1px solid #2c4050;border-radius:16px;padding:19px 19px 16px;min-height:135px;overflow:hidden}.kpi span{font-size:12px;color:var(--muted);display:block;margin-bottom:11px}.kpi strong{font-size:34px;font-weight:770;letter-spacing:-1.7px;line-height:1.2;font-variant-numeric:tabular-nums}.kpi .unit{font-size:16px;color:var(--muted);font-weight:500;letter-spacing:0}.kpi em{display:block;color:var(--muted);font-style:normal;margin-top:5px;font-size:12px}.kpi .accent{color:var(--lime)}.kpi .warm{color:var(--orange)}.cols{display:grid;grid-template-columns:minmax(0,1.62fr) minmax(0,1fr);gap:18px}.panel{background:linear-gradient(150deg,#142132,#111b29);border:1px solid #2a394b;border-radius:16px;padding:23px;min-width:0;margin-bottom:18px}.panel h2{font-size:17px;letter-spacing:-.3px;margin:0}.panel-header{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap;margin-bottom:18px}.hint{color:var(--muted);font-size:12px;margin:5px 0 0}.legend{display:flex;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:12px}.legend b{display:inline-block;width:16px;height:3px;border-radius:3px;margin:0 5px 3px 0}.chart{display:block;width:100%;height:auto;overflow:visible;touch-action:pan-y}.axistext{fill:#8299ac;font-size:12px;font-family:inherit}.chart-grid{stroke:#314253;stroke-width:1}.forecast-days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}.day{border:1px solid #344759;background:#152335;min-height:145px;padding:13px 5px 9px;border-radius:11px;color:var(--txt);text-align:center;display:flex;flex-direction:column;gap:5px;align-items:center}.day:hover{background:#21344b}.day.active{border-color:var(--lime);box-shadow:inset 0 0 0 1px var(--lime);background:#21352d}.day .dayname{font-size:11px;color:var(--muted)}.day strong{font-size:17px;font-variant-numeric:tabular-nums}.bars{display:flex;align-items:flex-end;gap:3px;height:70px;width:80%;justify-content:center;margin:4px 0}.bars i{width:15px;display:block;border-radius:3px 3px 0 0;min-height:2px}.bar-base{background:#536d82}.bar-correct{background:var(--lime)}.detail{width:100%;border-collapse:collapse;margin-top:6px;font-size:13px}.detail th,.detail td{text-align:right;padding:12px 6px;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}.detail th:first-child,.detail td:first-child{text-align:left}.detail th{color:var(--muted);font-weight:550;font-size:11px}.detail td:last-child{color:var(--orange)}.detail tr.total td{font-weight:750;color:var(--txt)}.badge{display:inline-flex;gap:7px;align-items:center;font-size:12px;padding:6px 9px;border-radius:6px;background:#1e3136;color:#c5e3de;margin-top:12px}.warning{padding:12px 14px;border-radius:9px;border:1px solid #674b34;background:#332719;color:#ffdaaa;font-size:12px;line-height:1.6;margin-top:12px}.hidden{display:none!important}.horizon-top{display:flex;align-items:center;gap:10px;justify-content:space-between;flex-wrap:wrap}.horizon-meta{color:#a9c0cf;font-size:12px;margin:5px 0 15px}.horizon-wrap{position:relative}.horizon-tooltip{position:absolute;right:0;top:0;border:1px solid #38534d;padding:4px 8px;border-radius:6px;color:var(--lime);font-size:12px;background:#172c28}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}.field .note{font-size:11px;color:var(--muted);margin-top:5px}.settings-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:14px}.setting-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.panels-edit{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:9px}.panels-edit input{padding:8px 6px}.headings{color:var(--muted);font-size:11px;margin-bottom:8px}.panel-edit-row{margin-bottom:8px}details{margin-top:17px;background:#0d1926;border:1px solid #273849;border-radius:12px;padding:12px}summary{font-weight:650;cursor:pointer}textarea{resize:vertical;min-height:84px;margin-top:10px;font-size:12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}.foot{margin-top:13px;color:#8da1b5;font-size:12px;line-height:1.65}.footer{border-top:1px solid #29394b;margin-top:20px;padding-top:19px;color:var(--muted);font-size:12px}.spacer{margin-bottom:14px}.notice{font-size:12px;color:#aac2d4;padding:10px 12px;border-left:3px solid #6086a9;background:#172639;border-radius:3px}.statusbox{border:1px solid var(--line);background:#102130;border-radius:10px;padding:12px;margin-top:10px;font-size:12px;color:var(--muted)}.statusbox strong{color:var(--txt)}
@@ -88,7 +88,7 @@
 <body>
 <main class="layout">
   <header class="top">
-    <div><div class="eyebrow">PV · iPhone / Safari · Berge, Bäume & Gebäude · V12.8.3</div><h1 class="brand">Solarprognose <button type="button" class="location-title-button" id="openLocationDialog" aria-haspopup="dialog" aria-controls="locationDialog" title="Ort und Koordinaten ändern"><span id="locationTitle">Schliersee</span></button><span style="color:var(--lime)">.</span></h1><p class="sub">Solarprognose mit Berg-, Baum- und Gebäudeverschattung aus amtlichen 20-cm-Oberflächendaten. Die alten V10-Prognosen bleiben in GitHub historisch erhalten, werden hier aber nicht mehr als zweites Modell angezeigt. Läuft auf Mac und iPhone direkt im Browser.</p></div>
+    <div><div class="eyebrow">PV · iPhone / Safari · Berge, Bäume & Gebäude · V12.9.0</div><h1 class="brand">Solarprognose <button type="button" class="location-title-button" id="openLocationDialog" aria-haspopup="dialog" aria-controls="locationDialog" title="Ort und Koordinaten ändern"><span id="locationTitle">Schliersee</span></button><span style="color:var(--lime)">.</span></h1><p class="sub">Solarprognose mit Berg-, Baum- und Gebäudeverschattung aus amtlichen 20-cm-Oberflächendaten. Die alten V10-Prognosen bleiben in GitHub historisch erhalten, werden hier aber nicht mehr als zweites Modell angezeigt. Läuft auf Mac und iPhone direkt im Browser.</p></div>
     <div class="top-right"><span class="pill warn" id="status">Daten werden geladen …</span><button class="btn secondary" id="refresh" type="button">↻ Aktualisieren</button></div>
     <details class="weather-debug hidden" id="weatherDetails" style="width:100%;max-width:710px"><summary>Wetterabruf: Fehlerdetails</summary><p id="weatherDetailText" class="hint" style="white-space:pre-wrap;word-break:break-word"></p></details>
   </header>
@@ -108,6 +108,7 @@
     </div>
   </section>
   <div class="statusbox" id="inverterInfo" aria-live="polite">AC-Begrenzung · Noch nicht konfiguriert</div>
+  <details class="panel" id="plantLayoutPanel"><summary><strong id="plantLayoutSummary">Modulbelegung & Bezugspunkte</strong></summary><p class="hint">Ansicht von oben · oben 345° · Modulmaße maßstäblich auf die Dachfläche projiziert. Kreuze markieren Bezugspunkte, keine zusätzlichen Module.</p><div id="plantLayout"></div><p class="hint">Positionen aus deinen Belegungsplänen und GPS-Punkten abgeleitet. Fugenabstand als Arbeitsannahme 25 mm; Fensterfreiräume näherungsweise. Die beiden Garagen-Einzelmodule verwenden vorläufig die gemeinsame geschätzte Paarmitte; ihre Optimierernummern sind noch keiner Himmelsrichtung zugeordnet.</p></details>
   <div class="cols">
     <section>
       <div class="panel">
@@ -142,7 +143,7 @@
       </div>
       <div class="panel" id="nearModelPanel">
         <div class="panel-header"><div><h2>Baum- und Gebäudeprofil · DOM20</h2>
-          <p class="hint">Je 9 Modul-Stichproben pro PV-Fläche, 720 Richtungen, Nahbereich 150 m. Eigene Dachflächen ausgeschlossen; ohne zusätzliche elektrische Teilverschattungsverluste.</p></div><span class="badge" id="nearStatus">Lade Profil …</span></div>
+          <p class="hint">720 Richtungen je Position, Nahbereich 150 m. Bei hinterlegter Belegung ein Horizont je Modulmittelpunkt, sonst neun Stichproben pro Fläche. Unmittelbarer 3-m-Umkreis wie bisher ausgespart; ohne zusätzliche elektrische Teilverschattungsverluste.</p></div><span class="badge" id="nearStatus">Lade Profil …</span></div>
         <div class="statusbox" id="nearSummary">Lade amtliches Nahprofil …</div>
         <p class="hint" id="nearSource">Quelle: Bayerische Vermessungsverwaltung, DOM20.</p>
         <div class="setting-actions"><button class="btn secondary" id="nearReload" type="button">Nahprofil neu laden</button></div>
@@ -225,7 +226,7 @@ window.addEventListener('unhandledrejection',event=>{
 });
 </script>
 <script src="./inverters.js?v=12.7"></script>
-<script src="./central-config.js?v=12.8.2"></script>
+<script src="./central-config.js?v=12.9.0"></script>
 <script>
 'use strict';
 const $=id=>document.getElementById(id);
@@ -246,7 +247,7 @@ let panelsDraft=[],invertersDraft=[];let pendingPanels=null;let pendingGeometry=
 if(Math.abs(state.lat-47.7)<1e-7&&Math.abs(state.lon-11.88)<1e-7){state.lat=defaults.lat;state.lon=defaults.lon;}
 if(typeof state.locationName!=='string'||!state.locationName.trim())state.locationName=defaults.locationName;
 // V7: Der Horizont ist im Diagramm ausschließlich lesbar; kein Touch-Event darf ihn ändern.
-let nearData=null,nearShadeFactors=[],nearStatusText='Noch kein geprüfter DOM20-Nahbereich';
+let nearData=null,nearShadeFactors=[],nearWeights=[],nearStatusText='Noch kein geprüfter DOM20-Nahbereich';
 let weather=null,horizon=null,profileSource='',selectedDay='',calculated=[],errorWeather='',errorHorizon='',working=false;
 let weatherIsCached=false,weatherCachedAt=null,weatherCachedSource='';
 let weatherFetchError='';
@@ -331,7 +332,7 @@ function migrateForecastHistory(bundle){
         active.referenceHistory.push(original);active.original=reference;
       }else{
         if(active){forecastArchive.previousModels[active.model]??={};forecastArchive.previousModels[active.model][day]??=active;}
-        forecastArchive.days[day]={...record,model:target,modelVersion:'V12.8.3',centralConfiguration:getCentralConfiguration(),original:reference};
+        forecastArchive.days[day]={...record,model:target,modelVersion:'V12.9.0',centralConfiguration:getCentralConfiguration(),original:reference};
       }
       restored++;
     }
@@ -403,7 +404,7 @@ function saveForecastSnapshots(at=Date.now()){
       const {_lookup,_lookupVersion,...persistent}=previous;
       forecastArchive.previousModels[previous.model][day.day]=persistent;
     }
-    forecastArchive.days[day.day]={model,modelVersion:'V12.8.3',centralConfiguration:getCentralConfiguration(),inverterConfiguration:getInverterConfiguration(),original,current,updatedAt:at,
+    forecastArchive.days[day.day]={model,modelVersion:'V12.9.0',centralConfiguration:getCentralConfiguration(),inverterConfiguration:getInverterConfiguration(),original,current,updatedAt:at,
       ...(referenceHistory.length?{referenceHistory}:{})};
   }
   try{
@@ -520,9 +521,7 @@ function nearVisibleFraction(panelIndex,az,alt){
   if(!nearData)return null;
   const samples=nearData.panelProfiles[panelIndex].samples;
   const mountain=interpolateHorizon(az);
-  let open=0;
-  for(const sample of samples)if(alt>=Math.max(mountain,nearAngle(sample,az)))open++;
-  return open/samples.length;
+  return samples.reduce((open,sample,k)=>open+(alt>=Math.max(mountain,nearAngle(sample,az))?nearWeights[panelIndex][k]:0),0);
 }
 function nearDiffuseFactor(panel,sample){
   const tilt=panel.tilt*rad,azi=panel.az*rad;
@@ -538,10 +537,11 @@ function nearDiffuseFactor(panel,sample){
   return clamp(total,0,1);
 }
 function initNearFactors(){
+  nearWeights=nearData?nearData.panelProfiles.map(p=>{const w=p.sampleWeights||p.samples.map(()=>1),sum=w.reduce((a,b)=>a+b,0);return w.map(v=>v/sum);}):[];
   nearShadeFactors=nearData&&horizon?state.panels.map((p,j)=>nearData.panelProfiles[j].samples.map(sample=>nearDiffuseFactor(p,sample))):[];
 }
 function validateNearData(doc,expectedPanels=state.panels,expectedGeometry=panelGeometry){
-  if(doc?.version!==1||doc?.kind!=='dom20-nearshade'||!doc?.location||!Array.isArray(doc.panelProfiles)||doc.panelProfiles.length!==expectedPanels.length)throw Error('Nahprofil gehört nicht zu dieser Anlagenkonfiguration.');
+  if(![1,2].includes(doc?.version)||doc?.kind!=='dom20-nearshade'||!doc?.location||!Array.isArray(doc.panelProfiles)||doc.panelProfiles.length!==expectedPanels.length)throw Error('Nahprofil gehört nicht zu dieser Anlagenkonfiguration.');
   if(Math.abs(Number(doc.location.latitude)-state.lat)>0.00001||Math.abs(Number(doc.location.longitude)-state.lon)>0.00001)throw Error('Nahprofil gehört zu anderen Standortkoordinaten.');
   if(!/DOM20/i.test(doc.source||''))throw Error('DOM20-Datenquelle fehlt.');
   for(let i=0;i<expectedPanels.length;i++){
@@ -551,8 +551,7 @@ function validateNearData(doc,expectedPanels=state.panels,expectedGeometry=panel
     if(geom&&geom.latitude!=null&&(Math.abs(p.center.latitude-geom.latitude)>.000001||Math.abs(p.center.longitude-geom.longitude)>.000001)){
       throw Error('Nahprofil und Dachmittelpunkt stimmen nicht überein: '+expected.name);
     }
-    if(!Array.isArray(p.samples)||p.samples.length!==9)throw Error('Keine gültigen neun Stichproben: '+expected.name);
-    for(const sample of p.samples)if(!Array.isArray(sample)||sample.length!==720||sample.some(v=>typeof v!=='number'||!Number.isFinite(v)||v<0||v>=90))throw Error('Ungültige 720 Winkelwerte: '+expected.name);
+    CENTRAL.verifyPanelProfile({...expected,geo:geom},p);
   }
   return doc;
 }
@@ -566,8 +565,8 @@ function renderNearModel(){
     return;
   }
   $('nearSummary').innerHTML='<strong>DOM20-Nahverschattung aktiv.</strong> '+
-    nearData.panelProfiles.map(p=>escapeHtml(p.name)+': '+p.samples.length+' Modulpositionen').join(' · ')+
-    '. Direkte Sonnenstrahlung wird je Modulposition durch Berg und Hindernisse abgeschattet; diffuses Himmelslicht anteilig.';
+    nearData.panelProfiles.map((p,i)=>escapeHtml(state.panels[i].name)+': '+p.samples.length+(panelGeometry[i].modulePositions?' Modulmittelpunkte':' Stichproben')).join(' · ')+
+    '. Direkte Strahlung und diffuses Himmelslicht werden je Position berechnet, bei Einzelmodulen nach Wp gewichtet. Abgeleitete Positionen sind Näherungen.';
 }
 // V5: Integration in echten 1-Minuten-Schritten. Strahlung: 15-Minuten-
 // Mittelwerte (Endzeitstempel, rueckwaerts) wenn vollstaendig vorhanden;
@@ -655,8 +654,8 @@ function calculate(){
             const powerPerSample=samples.reduce((total,sample,k)=>{
               const visible=openSun&&sun.alt>=Math.max(interpolateHorizon(sun.az),nearAngle(sample,sun.az));
               const gtNear=dni*incidence*(visible?1:0)+(openSun?dhi:0)*nearShadeFactors[j][k]+reflected;
-              return total+modelPower(gtNear);
-            },0)/samples.length;
+              return total+modelPower(gtNear)*nearWeights[j][k];
+            },0);
             minuteShaded[j]=powerPerSample;
           }
           if(terrainVisible&&incidence>0)byPanel[j].lit+=.2;
@@ -879,7 +878,7 @@ function activateCentralBundle(bundle){
   nearStatusText='Zentral veröffentlichtes DOM20-Profil · '+nearData.panelProfiles.map(p=>p.samples.length).join('/')+' Stichproben';
   $('nearStatus').textContent='DOM20 aktiv';$('nearSource').textContent=nearStatusText+' · '+nearData.source;
   ['openPanels','openLocationDialog','applyPhysics','loadHorizon','nearReload'].forEach(id=>$(id).disabled=false);
-  updateCentralSource();render();updateStatus();
+  updateCentralSource();renderPlantLayout();render();updateStatus();
 }
 async function reloadCentralConfiguration(){
   if(centralLoadPromise)return centralLoadPromise;
@@ -905,7 +904,7 @@ async function ensureCentralModule(){
     const script=document.createElement('script');
     const failed=()=>{clearTimeout(timer);script.remove();reject(Error('central-config.js konnte nicht geladen werden. Bitte Verbindung oder Browser-Blockierung prüfen und erneut laden.'));};
     const timer=setTimeout(failed,15000);
-    script.src='./central-config.js?v=12.8.2&retry='+Date.now();
+    script.src='./central-config.js?v=12.9.0&retry='+Date.now();
     script.onload=()=>{clearTimeout(timer);window.SolarCentral?.loadBundle?resolve(window.SolarCentral):failed();};script.onerror=failed;
     document.head.appendChild(script);
   });
@@ -1052,12 +1051,36 @@ function refreshInverterEditor(){
   $('invertersEdit').innerHTML=invertersDraft.map((w,i)=>`<div class="inverter-card" data-id="${escapeHtml(w.id)}"><div class="inverter-inputs">
     <label>Anzeigename<input data-w="${i}" data-field="name" aria-label="Wechselrichtername ${i+1}" maxlength="50" value="${escapeHtml(w.name)}" required></label>
     <label>Maximale AC-Wirkleistung [kW]<input type="number" inputmode="decimal" min="0.001" step="0.001" data-w="${i}" data-field="maxAcKw" aria-label="AC-Wirkleistung ${i+1}" placeholder="Noch nicht konfiguriert" value="${w.maxAcKw??''}"></label>
-    </div><p class="inverter-summary"></p><button type="button" class="remove-action" data-remove-inverter="${escapeHtml(w.id)}">Entfernen</button></div>`).join('');
+    </div>${w.deviceId?`<p class="hint">SolarEdge-Gerätekennung: ${escapeHtml(w.deviceId)}</p>`:""}<p class="inverter-summary"></p><button type="button" class="remove-action" data-remove-inverter="${escapeHtml(w.id)}">Entfernen</button></div>`).join('');
   updateInverterDraft();
 }
 function geometryFields(g,i){
   const specs=[['latitude','Breitengrad','any'],['longitude','Längengrad','any'],['width_m','Breite [m]','0.1'],['depth_m','Tiefe [m]','0.1'],['lower_edge_height_m','Unterkante [m]','0.1'],['upper_edge_height_m','Oberkante [m]','0.1']];
-  return specs.map(([f,label,step])=>`<label>${label}<input type="number" inputmode="decimal" step="${step}" data-geo="${f}" data-i="${i}" value="${g[f]??''}" aria-label="${label} für Modulfläche ${i+1}"></label>`).join('');
+  return specs.map(([f,label,step])=>`<label>${label}<input type="number" inputmode="decimal" step="${step}" ${g.modulePositions&&['latitude','longitude','width_m','depth_m'].includes(f)?'readonly title="Aus den Einzelmodulpositionen abgeleitet"':''} data-geo="${f}" data-i="${i}" value="${g[f]??''}" aria-label="${label} für Modulfläche ${i+1}"></label>`).join('');
+}
+function renderPlantLayout(){
+  const node=$('plantLayout'),config=centralBundle?.config;if(!node||!config)return;
+  const entries=config.panels.flatMap(p=>(p.geo.modulePositions||[]).map(m=>({p,m}))),colors=['#f2b45b','#c6d876','#b787e4','#66cfaa','#61cafa','#c6d876','#c6d876'];
+  if(!entries.length){node.textContent='Für diesen Anlagenstand sind noch keine Einzelpositionen hinterlegt.';return;}
+  const origin=config.location,latRad=origin.latitude*rad;
+  const xy=(lat,lon)=>{const east=(lon-origin.longitude)*111320*Math.cos(latRad),north=(lat-origin.latitude)*111132;return {x:east*Math.sin(75*rad)+north*Math.cos(75*rad),y:east*Math.sin(165*rad)+north*Math.cos(165*rad)};};
+  const polys=entries.map(({p,m})=>{const c=xy(m.latitude,m.longitude),angle=(p.az-165)*rad,w=m.width_m,d=m.depth_m*Math.cos(p.tilt*rad);
+    const points=[[-.5,-.5],[.5,-.5],[.5,.5],[-.5,.5]].map(([a,b])=>({x:c.x+a*w*Math.cos(angle)+b*d*Math.sin(angle),y:c.y-a*w*Math.sin(angle)+b*d*Math.cos(angle)}));return {p,m,points};});
+  const all=polys.flatMap(p=>p.points),minX=Math.min(...all.map(p=>p.x))-2,maxX=Math.max(...all.map(p=>p.x))+2,minY=Math.min(...all.map(p=>p.y))-2,maxY=Math.max(...all.map(p=>p.y))+2;
+  const body=polys.map(({p,m,points})=>`<polygon points="${points.map(q=>q.x+','+q.y).join(' ')}" fill="${colors[config.panels.indexOf(p)%colors.length]}" fill-opacity=".28" stroke="${colors[config.panels.indexOf(p)%colors.length]}" stroke-width=".045"><title>${escapeHtml(p.name)} · ${escapeHtml(m.id)} · ${m.wp} Wp</title></polygon>`).join('');
+  const crosses=config.panels.filter(p=>p.referencePoint).map(p=>{const r=p.referencePoint,q=xy(r.latitude,r.longitude);return `<path d="M${q.x-.22} ${q.y}h.44 M${q.x} ${q.y-.22}v.44" stroke="#fff" stroke-width=".07"><title>${escapeHtml(r.description)}</title></path>`;}).join('');
+  node.innerHTML=`<svg viewBox="${minX} ${minY} ${maxX-minX} ${maxY-minY}" role="img" aria-label="Abgeleitete Anordnung aller Module und geografischer Bezugspunkte" style="display:block;width:100%;max-height:560px">${body}${crosses}</svg><div class="legend">${config.panels.map((p,i)=>`<span><b style="background:${colors[i%colors.length]}"></b>${escapeHtml(p.name)} · ${number(p.kwp,3)} kWp</span>`).join('')}</div>`;
+  $('plantLayoutSummary').textContent='Modulbelegung · '+entries.length+' Module · '+number(config.panels.reduce((s,p)=>s+p.kwp,0),3)+' kWp';
+}
+function confirmedPlantDetails(p){
+  if(!p.moduleGroups&&!p.referencePoint)return '';
+  const groups=p.moduleGroups||[],r=p.referencePoint;
+  const watts=groups.reduce((s,g)=>s+g.count*g.wp,0),count=groups.reduce((s,g)=>s+g.count,0);
+  return `<div class="confirmed-plant notice"><strong>Bestätigte Anlagenangaben${r?' · '+escapeHtml(r.confirmedOn):''}</strong>`+
+    (groups.length?`<ul>${groups.map(g=>`<li>${g.count} × ${number(g.wp,0)} Wp · ${escapeHtml(g.label)}<br>${escapeHtml(g.manufacturer||'')} ${escapeHtml(g.model||'')}${g.dimensionsMm?` · ${g.dimensionsMm.length} × ${g.dimensionsMm.width} mm`:''}</li>`).join('')}</ul><p>${count} Module · ${number(watts/1000,3)} kWp</p>`:'')+
+    (groups.length&&Math.abs(watts/1000-p.kwp)>.000001?'<p>Die eingestellte DC-Leistung weicht von dieser bestätigten Bestückung ab.</p>':'')+
+    (r?`<p><strong>Geografischer Anker:</strong> ${escapeHtml(r.description)}<br>${escapeHtml(r.dms)}<br>${r.latitude.toFixed(8)}° N, ${r.longitude.toFixed(8)}° E</p>`:'')+
+    (p.layoutSurvey?'<p>'+escapeHtml(p.layoutSurvey.note)+'</p>':'<p>Ein Dachfenster oder Teilfeld-Anker ist nicht automatisch der Mittelpunkt aller Module.</p>')+'</div>';
 }
 function refreshPanelEditor(){
   $('panelsEdit').innerHTML=panelsDraft.map((p,i)=>`<div class="editrow ${i>=state.panels.length?'newrow':''}" data-row="${i}"><div class="editcells">
@@ -1065,7 +1088,7 @@ function refreshPanelEditor(){
     <label>DC-Leistung [kWp]<input data-i="${i}" data-p="kwp" type="number" inputmode="decimal" step="0.001" min="0.001" aria-label="kWp ${i+1}" value="${p.kwp}" required></label>
     <label>Azimut [°]<input data-i="${i}" data-p="az" type="number" inputmode="decimal" step="0.1" min="0" max="360" aria-label="Azimut ${i+1}" value="${p.az}" required></label>
     <label>Dachneigung [°]<input data-i="${i}" data-p="tilt" type="number" inputmode="decimal" step="0.1" min="0" max="90" aria-label="Neigung ${i+1}" value="${p.tilt}" required></label>
-    </div><div class="assignment"><label>Wechselrichter<select data-i="${i}" data-p="inverterId" aria-label="Wechselrichter für ${escapeHtml(p.name||'neues Feld')}">${inverterOptions(p.inverterId)}</select></label><button type="button" class="remove-action" data-remove-panel="${i}" ${panelsDraft.length===1?'disabled':''}>Modulfeld entfernen</button></div><details class="geometry" ${i>=state.panels.length?'open':''}><summary>Standort & Modulmaße ${i>=state.panels.length?'– neues Feld, erforderlich':'– bei Bedarf ändern'}</summary><div class="geometry-grid">${geometryFields(p.geo,i)}</div></details></div>`).join('');
+    </div><div class="assignment"><label>Wechselrichter<select data-i="${i}" data-p="inverterId" aria-label="Wechselrichter für ${escapeHtml(p.name||'neues Feld')}">${inverterOptions(p.inverterId)}</select></label><button type="button" class="remove-action" data-remove-panel="${i}" ${panelsDraft.length===1?'disabled':''}>Modulfeld entfernen</button></div>${confirmedPlantDetails(p)}<details class="geometry" ${i>=state.panels.length?'open':''}><summary>Standort & Modulmaße ${i>=state.panels.length?'– neues Feld, erforderlich':'– bei Bedarf ändern'}</summary><div class="geometry-grid">${geometryFields(p.geo,i)}</div></details></div>`).join('');
 }
 function draftValuesValid(){
   if(!panelsDraft.length||panelsDraft.length>24)return false;
@@ -1086,7 +1109,7 @@ function isGeometricallyChanged(){
 }
 function updateLocationHeading(){
   $('locationTitle').textContent=state.locationName;
-  document.title='Solarprognose '+state.locationName+' · V12.8.3 mit Bäumen, Gebäuden und Wechselrichtern';
+  document.title='Solarprognose '+state.locationName+' · V12.9.0 mit Bäumen, Gebäuden und Wechselrichtern';
 }
 function syncSettings(){
   updateLocationHeading();
@@ -1547,7 +1570,7 @@ $('panelsForm').addEventListener('submit',async e=>{
   if(!draftValuesValid()){toast('Bitte Namen, kWp, Azimut und Neigung aller Modulfelder korrekt ausfüllen.');return;}
   if(invertersDraft.length>WR.MAX_INVERTERS||invertersDraft.some(w=>!w.name.trim()||(w.maxAcKw!==null&&(!Number.isFinite(w.maxAcKw)||w.maxAcKw<=0)))||
      panelsDraft.some(p=>p.inverterId&&!invertersDraft.some(w=>w.id===p.inverterId))){toast('Bitte gültige Wechselrichternamen, Zuordnungen und positive AC-Leistungen in kW eingeben.');return;}
-  const newPanels=panelsDraft.map(p=>({id:p.id,name:p.name.trim(),kwp:+p.kwp,az:+p.az,tilt:+p.tilt,inverterId:p.inverterId||null}));
+  const newPanels=panelsDraft.map(({geo,...p})=>({...p,name:p.name.trim(),kwp:+p.kwp,az:+p.az,tilt:+p.tilt,inverterId:p.inverterId||null}));
   const newInverters=invertersDraft.map(w=>({...w,name:w.name.trim()}));
   const base=panelEditBase;if(!base)return;
   const draft=CENTRAL.toState(base.config);draft.panels=newPanels;draft.inverters=newInverters;
@@ -1635,9 +1658,9 @@ async function makeNearProfile(geometry,files){
     const p=geometry[index],center=xy[index],theta=p.azimuth*rad;
     const front={x:Math.sin(theta),y:Math.cos(theta)},across={x:Math.cos(theta),y:-Math.sin(theta)};
     const samples=[];
-    for(const trans of [-1/3,0,1/3])for(const along of [-1/3,0,1/3]){
-      const x=center.x+trans*p.width_m*across.x+along*p.depth_m*front.x;
-      const y=center.y+trans*p.width_m*across.y+along*p.depth_m*front.y;
+    const points=p.modulePositions?p.modulePositions.map(m=>utm32(m.latitude,m.longitude)):
+      [-1/3,0,1/3].flatMap(trans=>[-1/3,0,1/3].map(along=>({x:center.x+trans*p.width_m*across.x+along*p.depth_m*front.x,y:center.y+trans*p.width_m*across.y+along*p.depth_m*front.y})));
+    for(const {x,y} of points){
       const roof=sampleTerrain(tiles,x,y);
       if(roof===null)throw Error('DOM20 am Modulstandort nicht abgedeckt: '+p.name);
       const moduleHeight=roof+0.3;
@@ -1666,15 +1689,16 @@ async function makeNearProfile(geometry,files){
       }
       if(sampled<Math.PI*limit/.04*.90)throw Error('DOM20-Abdeckung bei '+p.name+' ist unvollständig. Weitere Nachbarkacheln auswählen.');
       samples.push(Array.from(maxima,v=>Math.round(Math.min(89,Math.max(0,v))*1000)/1000));
-      setWizardProgress('DOM20-Profil: '+(index+1)+'/'+geometry.length+' Modulfelder, '+samples.length+'/9 Positionen …');
+      setWizardProgress('DOM20-Profil: '+(index+1)+'/'+geometry.length+' Modulfelder, '+samples.length+'/'+points.length+' Positionen …');
       await delay(0);
     }
-    profiles.push({name:p.name,center:{latitude:p.latitude,longitude:p.longitude},samples});
+    profiles.push({name:p.name,center:{latitude:p.latitude,longitude:p.longitude},samples,
+      ...(p.modulePositions?{sampleWeights:p.modulePositions.map(m=>m.wp),samplePositions:p.modulePositions.map(m=>({id:m.id,latitude:m.latitude,longitude:m.longitude,wp:m.wp}))}:{})});
   }
   const config={panels:pendingPanels.map((p,i)=>({...p,geo:{...pendingGeometry[i]}})),inverters:pendingInverters.map(w=>({...w}))};
-  const output={version:1,kind:'dom20-nearshade',source:'Bayerische Vermessungsverwaltung · DOM20 (CC BY 4.0)',
+  const output={version:geometry.some(g=>g.modulePositions)?2:1,kind:'dom20-nearshade',source:'Bayerische Vermessungsverwaltung · DOM20 (CC BY 4.0)',
     location:{latitude:(pendingPlant||state).lat,longitude:(pendingPlant||state).lon,radius_m:150},panelProfiles:profiles,
-    config,meta:{generatedAt:new Date().toISOString(),gridStepM:.2,sourceGridM:.2,samplesPerPanel:9,method:'Maximale Oberflächenhöhe je Azimut; geometrische Verschattung, keine elektrischen Zusatzverluste',license:'CC BY 4.0',inputFiles:Array.from(files).map(f=>f.name)}};
+    config,meta:{generatedAt:new Date().toISOString(),gridStepM:.2,sourceGridM:.2,samplesPerPanel:profiles.map(p=>p.samples.length),method:'Maximale Oberflächenhöhe je Azimut; Modulmittelpunkte nach Wp gewichtet, sonst neun Stichproben; geometrische Verschattung, keine elektrischen Zusatzverluste',license:'CC BY 4.0',inputFiles:Array.from(files).map(f=>f.name)}};
   const str=JSON.stringify(config)+JSON.stringify(profiles.map(p=>p.samples.map(a=>Math.max(...a))));
   let hash=2166136261;for(let i=0;i<str.length;i++){hash^=str.charCodeAt(i);hash=Math.imul(hash,16777619)}
   output.id=(hash>>>0).toString(16).padStart(8,'0');

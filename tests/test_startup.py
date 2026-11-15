@@ -23,7 +23,7 @@ def weather_change(server):
             server.weather[group][field]=[None if v is None else v*.5 for v in values]
 
 def upgrade(browser,*,original_coordinates=False,changed_model=False):
-    server=Server();config=json.loads(server.files['anlagenkonfiguration.json'])
+    server=Server(legacy=True);config=json.loads(server.files['anlagenkonfiguration.json'])
     legacy=plant_state(config)
     if original_coordinates:legacy.update(lat=47.69784444,lon=11.88009722)
     if changed_model:legacy['inverters'][0]['maxAcKw']+=1
