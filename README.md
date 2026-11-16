@@ -2,6 +2,14 @@
 
 PV-Prognose mit Gelände- und DOM20-Nahverschattung. Website: https://solarbergler.github.io/solarprognose_1/
 
+## Haus rechts korrigiert in V12.9.2
+
+Nach Betreiberkorrektur und Vergleich mit dem bereitgestellten Luftbild lag das gesamte Feld Haus rechts zwei Modulreihen zu weit Richtung First. Alle 19 Module samt ihrem abgeleiteten Fensterbezug wurden gemeinsam Richtung Traufe verschoben: 2 × (0,992 m Modulbreite + 0,025 m angenommene Fuge) = 2,034 m auf dem 37° geneigten Dach, entsprechend rund 1,624 m in der Draufsicht. Die interne Belegung, Serien-/Modulnummern, 14 × 300 Wp + 5 × 415 Wp und WR1 bleiben erhalten. Die ursprüngliche GPS-Fensterangabe bleibt als Quelle in `layoutSurvey.registrationCorrection.sourceReferencePoint` gespeichert; die verschobenen Koordinaten sind abgeleitet und nicht neu vermessen.
+
+Konfigurationsrevision 5 bindet die neuen Modulkoordinaten und die daraus erneut erzeugten DOM20-Horizonte. Die übrigen Modulpositionen und das Geländeprofil bleiben unverändert. Der Layoutgenerator wendet dieselbe Korrektur auch auf eine bereits erzeugte Konfiguration an; erneutes Ausführen verschiebt das Feld nicht nochmals. Ein Regressionstest prüft die vollständige Verschiebung, die erhaltene GPS-Rohangabe, den freien Fensterbereich und die Wiederholbarkeit gegen den vorher veröffentlichten Stand.
+
+Das ist eine geometrische Korrektur nach Betreiberangabe, keine Ertragskalibrierung. Sie behebt nicht automatisch die separat untersuchte Nahverschattungsabweichung am Carport. Alte Originalprognosen bleiben unverändert.
+
 ## Richtungsfehler behoben in V12.9.1
 
 Die DOM20-Rasterachsen beziehen sich auf UTM-Gitternord, der Sonnenstand auf geografisch Nord. Der bisherige Profilgenerator vermischte beide Richtungen. Die Meridiankonvergenz beträgt am Standort rund 2,131°. Python- und Browsergenerator korrigieren sie jetzt vor der Azimut-Zuordnung. Die 0,5°-Bins sind auf die von der Prognose interpolierten Winkelstützstellen zentriert. Alle 88 Nahhorizonte wurden aus denselben unveränderten DOM20-Dateien neu erzeugt; Modulpositionen, Geländeprofil, Wirkungsgrad und elektrische Grenzen wurden dabei nicht angepasst. Konfigurationsrevision 4 bindet das korrigierte Profil und trennt es durch die Modellkennung von alten Originalprognosen.

@@ -1,4 +1,4 @@
-"""Bestätigte Bestückung und abgeleitete Modulmittelpunkte (15.11.2026).
+"""Bestätigte Bestückung und abgeleitete Modulmittelpunkte (16.11.2026).
 
 Kein Ertrags-Fitting: Maße aus Herstellerdatenblättern, Anordnung aus SolarEdge,
 GPS-Anker vom Betreiber. Fugen und Fensterpositionen im Belegungsraster sind
@@ -38,20 +38,62 @@ def place(panel,items,anchor,source):
         anchorRoofX_m=anchor[0],anchorRoofY_m=anchor[1],
         note='Modulmaße und Bestückung bestätigt; Einzelpositionen aus Belegungsraster und GPS-Anker abgeleitet, nicht vermessen. Fensterfreiräume und Fugenabstände sind Näherungen.')
 
+def place_house_right(panel):
+    """Fix the operator-confirmed two-row registration error at the window.
+
+    Translate the whole field registration, including the derived window
+    landmark. Keep the operator's original GPS observation as source data.
+    Rebuild from that source, rather than accumulating translations.
+    """
+    ibc=panel['moduleGroups'][0]['dimensionsMm'];ja_dims=panel['moduleGroups'][1]['dimensionsMm']
+    px=ibc['length']/1000+GAP;py=ibc['width']/1000+GAP
+    ja=3*px+ibc['length']/2000+GAP+ja_dims['length']/2000
+    items=[]
+    for row,col,num in [(0,1,1),(0,2,2),(0,3,3),(1,3,4),(2,3,19),(3,3,18),(4,0,14),(4,1,15),(4,2,16),(4,3,17),(5,0,13),(5,1,12),(5,2,11),(5,3,10)]:
+        items.append((f'1.1.{num}',col*px,row*py,0))
+    for row,num in [(0,6),(1,5)]:items.append((f'1.1.{num}',ja,row*py,1))
+    for row,num in [(2,7),(3,8),(4,9)]:items.append((f'1.1.{num}',ja+ja_dims['length']/1000+GAP,row*py,1))
+    previous=panel.get('layoutSurvey',{}).get('registrationCorrection',{})
+    source_ref=copy.deepcopy(previous.get('sourceReferencePoint',panel['referencePoint']))
+    shift=2*py*math.cos(math.radians(panel['tilt']));az=math.radians(panel['az'])
+    lat,lon=offset(source_ref['latitude'],source_ref['longitude'],shift*math.sin(az),shift*math.cos(az))
+    def dms(value,positive,negative):
+        absolute=abs(value);degrees=int(absolute);minutes=int((absolute-degrees)*60)
+        seconds=((absolute-degrees)*60-minutes)*60
+        return f'{degrees}°{minutes:02d}\'{seconds:05.2f}"{positive if value>=0 else negative}'
+    panel['referencePoint']=dict(latitude=lat,longitude=lon,kind='roof_landmark',
+        description=source_ref['description'],dms=dms(lat,'N','S')+' '+dms(lon,'E','W'),
+        confirmedOn='2026-11-16',derivedOn='2026-11-16',coordinateStatus='Aus Betreiberkorrektur des gesamten Feldes abgeleitet, nicht neu vermessen')
+    place(panel,items,(ja,2.5*py),'SolarEdge-Belegung Haus rechts; gesamte räumliche Feldregistrierung nach Betreiberkorrektur vom 16.11.2026 zwei Modulreihen Richtung Traufe verschoben')
+    panel['layoutSurvey']['registrationCorrection']={
+        'confirmedOn':'2026-11-16','kind':'operator-confirmed-roof-row-offset',
+        'downRoofRows':2,'rowPitchM':py,'downRoofShiftM':2*py,
+        'windowAnchorWithinLayoutPreserved':True,'sourceReferencePoint':source_ref,
+        'sourceCoordinatesPreservedAsObservation':True,'derivedWindowCoordinatesAdjusted':True,
+        'source':'Betreiberangabe und Vergleich mit dem bereitgestellten Luftbild; keine Anpassung an Erträge'}
+    panel['layoutSurvey']['note']+=' Haus rechts: ganze Feldregistrierung samt abgeleitetem Fensterpunkt zwei Reihen Richtung Traufe verschoben. Ursprüngliche Fenster-GPS-Angabe bleibt in registrationCorrection.sourceReferencePoint erhalten; neue Lage ist nicht vermessen.'
+
+def correct_existing_house_right(config):
+    panel=next(p for p in config['panels'] if p['name']=='Haus rechts')
+    before=copy.deepcopy(panel)
+    place_house_right(panel)
+    return panel!=before
+
 def main():
     path=ROOT/'anlagenkonfiguration.json';c=json.loads(path.read_text());by={p['name']:p for p in c['panels']}
-    if any(p['name']=='Garage Ost' for p in c['panels']):raise SystemExit('Layout bereits erzeugt; Ausgangskonfiguration verwenden.')
+    if any(p['name']=='Garage Ost' for p in c['panels']):
+        if correct_existing_house_right(c):
+            c['updatedAt']=datetime.now(timezone.utc).isoformat();c['revision']+=1
+            path.write_text(json.dumps(c,ensure_ascii=False,indent=2)+'\n')
+            print('Haus rechts: 19 Modulpositionen zwei Reihen Richtung Traufe korrigiert. DOM20-Nahprofil muss neu erzeugt werden.')
+        else:print('Haus rechts bereits korrigiert; keine weitere Verschiebung.')
+        return
     p=by['Haus links'];px=1.640+GAP;py=.992+GAP
     rows=[[9,10,13,14,23,24],[8,11,12,15,22],[7,None,None,16,21],[6,None,None,17,20],[None,None,None,None,19],[None,None,None,None,18]]
     items=[(f'4.1.{n}',col*px,row*py,0) for row,nums in enumerate(rows) for col,n in enumerate(nums) if n]
     for k in range(5):items.append((f'4.1.{k+1}',-.820+.519+k*(1.038+GAP),3*py+.496+GAP+2.094/2,1))
     place(p,items,(2*px,2.5*py),'SolarEdge-Belegung Haus links; Bezugspunkt rechtes der beiden Dachfenster neben dem Kamin')
-    p=by['Haus rechts'];ja=3*px+.820+GAP+2.015/2
-    items=[]
-    for row,col,num in [(0,1,1),(0,2,2),(0,3,3),(1,3,4),(2,3,19),(3,3,18),(4,0,14),(4,1,15),(4,2,16),(4,3,17),(5,0,13),(5,1,12),(5,2,11),(5,3,10)]:items.append((f'1.1.{num}',col*px,row*py,0))
-    for row,num in [(0,6),(1,5)]:items.append((f'1.1.{num}',ja,row*py,1))
-    for row,num in [(2,7),(3,8),(4,9)]:items.append((f'1.1.{num}',ja+2.015+GAP,row*py,1))
-    place(p,items,(ja,2.5*py),'SolarEdge-Belegung Haus rechts; Bezugspunkt oberes Dachfenster zwischen den fünf JA-Solar-Modulen')
+    place_house_right(by['Haus rechts'])
     p=by['Carport'];px=1.754+GAP;py=1.096+GAP
     # Nummerierung aus dem SolarEdge-Belegungsplan (3.1.1 bis 3.1.24).
     rows=[[4,5,8,9,12,13],[3,6,7,10,11,14],[2,1,18,17,16,15]]

@@ -1,0 +1,280 @@
+{
+  "id": "panel-wr-184dd470-e193-4036-a286-b621e04e321b",
+  "name": "Haus rechts",
+  "kwp": 6.275,
+  "az": 165,
+  "tilt": 37,
+  "inverterId": "wr-1",
+  "geo": {
+    "width_m": 10.715,
+    "depth_m": 4.85491,
+    "lower_edge_height_m": 3,
+    "upper_edge_height_m": 7,
+    "azimuth": 165,
+    "tilt_deg": 37,
+    "name": "Haus rechts",
+    "modulePositions": [
+      {
+        "id": "1.1.1",
+        "wp": 300,
+        "groupIndex": 0,
+        "width_m": 1.64,
+        "depth_m": 0.992,
+        "roofX_m": -5.1825,
+        "roofY_m": -2.5425,
+        "east_m": -5.531450633434876,
+        "north_m": 0.6200124243217805
+      },
+      {
+        "id": "1.1.2",
+        "wp": 300,
+        "groupIndex": 0,
+        "width_m": 1.64,
+        "depth_m": 0.992,
+        "roofX_m": -3.5175,
+        "roofY_m": -2.5425,
+        "east_m": -3.9231841325575503,
+        "north_m": 1.0509461341857902
+      },
+      {
+        "id": "1.1.3",
+        "wp": 300,
+        "groupIndex": 0,
+        "width_m": 1.64,
+        "depth_m": 0.992,
+        "roofX_m": -1.8525,
+        "roofY_m": -2.5425,
+        "east_m": -2.3149176318135583,
+        "north_m": 1.4818798448398127
+      },
+      {
+        "id": "1.1.4",
+        "wp": 300,
+        "groupIndex": 0,
+        "width_m": 1.64,
+        "depth_m": 0.992,
+        "roofX_m": -1.8525,
+        "roofY_m": -1.5255,
+        "east_m": -2.104701616432098,
+        "north_m": 0.6973429941632675
+      },
+      {
+        "id": "1.1.19",
+        "wp": 300,
+        "groupIndex": 0,
+        "width_m": 1.64,
+        "depth_m": 0.992,
+        "roofX_m": -1.8525,
+        "roofY_m": -0.5085,
+        "east_m": -1.894485600917304,
+        "north_m": -0.08719385572326499
+      },
+      {
+        "id": "1.1.18",
+        "wp": 300,
+        "groupIndex": 0,
+        "width_m": 1.64,
+        "depth_m": 0.992,
+        "roofX_m": -1.8525,
+        "roofY_m": 0.5085,
+        "east_m": -1.6842695855358434,
+        "north_m": -0.8717307063998104
+      },
+      {
+        "id": "1.1.14",
+        "wp": 300,
+        "groupIndex": 0,
+        "width_m": 1.64,
+        "depth_m": 0.992,
+        "roofX_m": -6.8475,
+        "roofY_m": 1.5255,
+        "east_m": -6.2988530723863585,
+        "north_m": -2.949068686668385
+      },
+      {
+        "id": "1.1.15",
+        "wp": 300,
+        "groupIndex": 0,
+        "width_m": 1.64,
+        "depth_m": 0.992,
+        "roofX_m": -5.1825,
+        "roofY_m": 1.5255,
+        "east_m": -4.690586571509034,
+        "north_m": -2.518134976804375
+      },
+      {
+        "id": "1.1.16",
+        "wp": 300,
+        "groupIndex": 0,
+        "width_m": 1.64,
+        "depth_m": 0.992,
+        "roofX_m": -3.5175,
+        "roofY_m": 1.5255,
+        "east_m": -3.082320070765041,
+        "north_m": -2.0872012661503523
+      },
+      {
+        "id": "1.1.17",
+        "wp": 300,
+        "groupIndex": 0,
+        "width_m": 1.64,
+        "depth_m": 0.992,
+        "roofX_m": -1.8525,
+        "roofY_m": 1.5255,
+        "east_m": -1.4740535700210493,
+        "north_m": -1.656267556286343
+      },
+      {
+        "id": "1.1.13",
+        "wp": 300,
+        "groupIndex": 0,
+        "width_m": 1.64,
+        "depth_m": 0.992,
+        "roofX_m": -6.8475,
+        "roofY_m": 2.5425,
+        "east_m": -6.088637056871564,
+        "north_m": -3.7336055373449306
+      },
+      {
+        "id": "1.1.12",
+        "wp": 300,
+        "groupIndex": 0,
+        "width_m": 1.64,
+        "depth_m": 0.992,
+        "roofX_m": -5.1825,
+        "roofY_m": 2.5425,
+        "east_m": -4.480370556127572,
+        "north_m": -3.3026718266909074
+      },
+      {
+        "id": "1.1.11",
+        "wp": 300,
+        "groupIndex": 0,
+        "width_m": 1.64,
+        "depth_m": 0.992,
+        "roofX_m": -3.5175,
+        "roofY_m": 2.5425,
+        "east_m": -2.8721040553835806,
+        "north_m": -2.871738116826898
+      },
+      {
+        "id": "1.1.10",
+        "wp": 300,
+        "groupIndex": 0,
+        "width_m": 1.64,
+        "depth_m": 0.992,
+        "roofX_m": -1.8525,
+        "roofY_m": 2.5425,
+        "east_m": -1.2638375545062552,
+        "north_m": -2.4408044069628883
+      },
+      {
+        "id": "1.1.6",
+        "wp": 415,
+        "groupIndex": 1,
+        "width_m": 2.015,
+        "depth_m": 0.996,
+        "roofX_m": 0,
+        "roofY_m": -2.5425,
+        "east_m": -0.5255400386536517,
+        "north_m": 1.9613421255063441
+      },
+      {
+        "id": "1.1.5",
+        "wp": 415,
+        "groupIndex": 1,
+        "width_m": 2.015,
+        "depth_m": 0.996,
+        "roofX_m": 0,
+        "roofY_m": -1.5255,
+        "east_m": -0.3153240231388576,
+        "north_m": 1.1768052756198117
+      },
+      {
+        "id": "1.1.7",
+        "wp": 415,
+        "groupIndex": 1,
+        "width_m": 2.015,
+        "depth_m": 0.996,
+        "roofX_m": 2.04,
+        "roofY_m": -0.5085,
+        "east_m": 1.8653806779517583,
+        "north_m": 0.9202592772023319
+      },
+      {
+        "id": "1.1.8",
+        "wp": 415,
+        "groupIndex": 1,
+        "width_m": 2.015,
+        "depth_m": 0.996,
+        "roofX_m": 2.04,
+        "roofY_m": 0.5085,
+        "east_m": 2.075596693333219,
+        "north_m": 0.1357224265257865
+      },
+      {
+        "id": "1.1.9",
+        "wp": 415,
+        "groupIndex": 1,
+        "width_m": 2.015,
+        "depth_m": 0.996,
+        "roofX_m": 2.04,
+        "roofY_m": 1.5255,
+        "east_m": 2.285812708848013,
+        "north_m": -0.648814423360746
+      }
+    ],
+    "east_m": -2.227255036206379,
+    "north_m": -0.7959432025349386
+  },
+  "moduleGroups": [
+    {
+      "count": 14,
+      "wp": 300,
+      "label": "Kleinere Module",
+      "manufacturer": "IBC SOLAR",
+      "model": "MonoSol 300 VL4",
+      "dimensionsMm": {
+        "length": 1640,
+        "width": 992,
+        "height": 40
+      },
+      "datasheetUrl": "https://www.solarconcept.at/uploads/hjjhuVOt/2088956_de-datenblatteuropajapan-ibcmonosol300vl4.pdf",
+      "datasheetDate": "2016-10-13",
+      "confirmedOn": "2026-11-15",
+      "mounting": "landscape"
+    },
+    {
+      "count": 5,
+      "wp": 415,
+      "label": "Fünf größere Module rechts oben",
+      "manufacturer": "JA Solar",
+      "model": "JAM72S10-415/MR",
+      "userModel": "JAM72S-10-415-MR-MC4",
+      "dimensionsMm": {
+        "length": 2015,
+        "width": 996
+      },
+      "frameHeightOptionsMm": [
+        35,
+        40
+      ],
+      "frameVariantStatus": "Rahmenvariante nicht bestätigt; Länge und Breite stimmen in beiden Herstellerdatenblättern überein",
+      "datasheetUrl": "https://www.jasolar.com/uploadfile/2022/0513/20220513050716243.pdf",
+      "additionalDatasheetUrls": [
+        "https://www.jasolar.com/uploadfile/2020/0619/20200619041943525.pdf"
+      ],
+      "datasheetAccess": "Herstellerdatenblätter im Suchindex; direkter PDF-Abruf am 15.11.2026 HTTP 403",
+      "confirmedOn": "2026-11-15",
+      "mounting": "landscape"
+    }
+  ],
+  "referencePoint": {
+    "kind": "synthetic_test_origin",
+    "description": "Synthetischer Fensterbezug; die Testausfuehrung setzt den Ursprung auf 0, 0."
+  },
+  "layoutSurvey": {
+    "status": "relative-regression-baseline"
+  },
+  "fixtureNote": "Historische relative Modulgeometrie als Regression; ausschliesslich lokale Ost-/Nordabstaende in Metern. Keine realen Standortkoordinaten. Die eigentliche Anlagenkonfiguration enthaelt die freigegebene korrigierte Position."
+}

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "revision": 4,
-  "updatedAt": "2026-11-15T18:19:42.493500+00:00",
+  "revision": 5,
+  "updatedAt": "2026-11-16T09:37:42.674456+00:00",
   "location": {
     "name": "Schliersee",
     "latitude": 47.697844,
@@ -1024,8 +1024,8 @@
       "tilt": 37,
       "inverterId": "wr-1",
       "geo": {
-        "latitude": 47.69780117456909,
-        "longitude": 11.880173104829145,
+        "latitude": 47.69778706221953,
+        "longitude": 11.880178706107708,
         "width_m": 10.715,
         "depth_m": 4.85491,
         "lower_edge_height_m": 3,
@@ -1036,8 +1036,8 @@
         "modulePositions": [
           {
             "id": "1.1.1",
-            "latitude": 47.697813909764854,
-            "longitude": 11.880129084173838,
+            "latitude": 47.69779979741533,
+            "longitude": 11.88013468546428,
             "wp": 300,
             "groupIndex": 0,
             "width_m": 1.64,
@@ -1047,8 +1047,8 @@
           },
           {
             "id": "1.1.2",
-            "latitude": 47.69781778561029,
-            "longitude": 11.88015051055227,
+            "latitude": 47.69780367326078,
+            "longitude": 11.880156111836929,
             "wp": 300,
             "groupIndex": 0,
             "width_m": 1.64,
@@ -1058,8 +1058,8 @@
           },
           {
             "id": "1.1.3",
-            "latitude": 47.697821661455734,
-            "longitude": 11.880171936930699,
+            "latitude": 47.69780754910622,
+            "longitude": 11.880177538209578,
             "wp": 300,
             "groupIndex": 0,
             "width_m": 1.64,
@@ -1069,8 +1069,8 @@
           },
           {
             "id": "1.1.4",
-            "latitude": 47.69781460528096,
-            "longitude": 11.880174737565977,
+            "latitude": 47.697800492931435,
+            "longitude": 11.8801803388441,
             "wp": 300,
             "groupIndex": 0,
             "width_m": 1.64,
@@ -1080,8 +1080,8 @@
           },
           {
             "id": "1.1.19",
-            "latitude": 47.697807549106194,
-            "longitude": 11.880177538201256,
+            "latitude": 47.69779343675665,
+            "longitude": 11.880183139478623,
             "wp": 300,
             "groupIndex": 0,
             "width_m": 1.64,
@@ -1091,8 +1091,8 @@
           },
           {
             "id": "1.1.18",
-            "latitude": 47.69780049293142,
-            "longitude": 11.880180338836533,
+            "latitude": 47.69778638058187,
+            "longitude": 11.880185940113146,
             "wp": 300,
             "groupIndex": 0,
             "width_m": 1.64,
@@ -1102,8 +1102,8 @@
           },
           {
             "id": "1.1.14",
-            "latitude": 47.69778180922034,
-            "longitude": 11.880118860336522,
+            "latitude": 47.697767696870734,
+            "longitude": 11.880124461629723,
             "wp": 300,
             "groupIndex": 0,
             "width_m": 1.64,
@@ -1113,8 +1113,8 @@
           },
           {
             "id": "1.1.15",
-            "latitude": 47.697785685065774,
-            "longitude": 11.880140286714953,
+            "latitude": 47.69777157271618,
+            "longitude": 11.880145888002373,
             "wp": 300,
             "groupIndex": 0,
             "width_m": 1.64,
@@ -1124,8 +1124,8 @@
           },
           {
             "id": "1.1.16",
-            "latitude": 47.69778956091122,
-            "longitude": 11.880161713093383,
+            "latitude": 47.69777544856163,
+            "longitude": 11.88016731437502,
             "wp": 300,
             "groupIndex": 0,
             "width_m": 1.64,
@@ -1135,8 +1135,8 @@
           },
           {
             "id": "1.1.17",
-            "latitude": 47.697793436756655,
-            "longitude": 11.880183139471812,
+            "latitude": 47.69777932440708,
+            "longitude": 11.880188740747668,
             "wp": 300,
             "groupIndex": 0,
             "width_m": 1.64,
@@ -1146,8 +1146,8 @@
           },
           {
             "id": "1.1.13",
-            "latitude": 47.697774753045564,
-            "longitude": 11.8801216609718,
+            "latitude": 47.69776064069595,
+            "longitude": 11.880127262264246,
             "wp": 300,
             "groupIndex": 0,
             "width_m": 1.64,
@@ -1157,8 +1157,8 @@
           },
           {
             "id": "1.1.12",
-            "latitude": 47.69777862889101,
-            "longitude": 11.88014308735023,
+            "latitude": 47.69776451654139,
+            "longitude": 11.880148688636895,
             "wp": 300,
             "groupIndex": 0,
             "width_m": 1.64,
@@ -1168,8 +1168,8 @@
           },
           {
             "id": "1.1.11",
-            "latitude": 47.697782504736445,
-            "longitude": 11.88016451372866,
+            "latitude": 47.69776839238684,
+            "longitude": 11.880170115009543,
             "wp": 300,
             "groupIndex": 0,
             "width_m": 1.64,
@@ -1179,8 +1179,8 @@
           },
           {
             "id": "1.1.10",
-            "latitude": 47.69778638058188,
-            "longitude": 11.880185940107092,
+            "latitude": 47.69777226823229,
+            "longitude": 11.88019154138219,
             "wp": 300,
             "groupIndex": 0,
             "width_m": 1.64,
@@ -1190,8 +1190,8 @@
           },
           {
             "id": "1.1.6",
-            "latitude": 47.69782597377025,
-            "longitude": 11.880195776189582,
+            "latitude": 47.69781186142075,
+            "longitude": 11.88020137746203,
             "wp": 415,
             "groupIndex": 1,
             "width_m": 2.015,
@@ -1201,8 +1201,8 @@
           },
           {
             "id": "1.1.5",
-            "latitude": 47.697818917595484,
-            "longitude": 11.880198576824862,
+            "latitude": 47.697804805245966,
+            "longitude": 11.880204178096552,
             "wp": 415,
             "groupIndex": 1,
             "width_m": 2.015,
@@ -1212,8 +1212,8 @@
           },
           {
             "id": "1.1.7",
-            "latitude": 47.69781661020431,
-            "longitude": 11.880227629599478,
+            "latitude": 47.697802497854795,
+            "longitude": 11.880233230863327,
             "wp": 415,
             "groupIndex": 1,
             "width_m": 2.015,
@@ -1223,8 +1223,8 @@
           },
           {
             "id": "1.1.8",
-            "latitude": 47.69780955402954,
-            "longitude": 11.880230430234755,
+            "latitude": 47.69779544168001,
+            "longitude": 11.880236031497851,
             "wp": 415,
             "groupIndex": 1,
             "width_m": 2.015,
@@ -1234,8 +1234,8 @@
           },
           {
             "id": "1.1.9",
-            "latitude": 47.697802497854774,
-            "longitude": 11.880233230870035,
+            "latitude": 47.69778838550522,
+            "longitude": 11.880238832132374,
             "wp": 415,
             "groupIndex": 1,
             "width_m": 2.015,
@@ -1288,20 +1288,41 @@
         }
       ],
       "referencePoint": {
-        "latitude": 47.69780833333333,
-        "longitude": 11.880202777777779,
+        "latitude": 47.69779422098379,
+        "longitude": 11.880208379048335,
         "kind": "roof_landmark",
         "description": "Mitte des oberen Dachfensters rechts zwischen den fünf 415-Wp-Modulen",
-        "dms": "47°41'52.11\"N 11°52'48.73\"E",
-        "confirmedOn": "2026-11-15"
+        "dms": "47°41'52.06\"N 11°52'48.75\"E",
+        "confirmedOn": "2026-11-16",
+        "derivedOn": "2026-11-16",
+        "coordinateStatus": "Aus Betreiberkorrektur des gesamten Feldes abgeleitet, nicht neu vermessen"
       },
       "layoutSurvey": {
         "status": "derived-approximate",
-        "source": "SolarEdge-Belegung Haus rechts; Bezugspunkt oberes Dachfenster zwischen den fünf JA-Solar-Modulen",
+        "source": "SolarEdge-Belegung Haus rechts; gesamte räumliche Feldregistrierung nach Betreiberkorrektur vom 16.11.2026 zwei Modulreihen Richtung Traufe verschoben",
         "gapAssumptionM": 0.025,
         "anchorRoofX_m": 6.8475,
         "anchorRoofY_m": 2.5424999999999995,
-        "note": "Modulmaße und Bestückung bestätigt; Einzelpositionen aus Belegungsraster und GPS-Anker abgeleitet, nicht vermessen. Fensterfreiräume und Fugenabstände sind Näherungen."
+        "note": "Modulmaße und Bestückung bestätigt; Einzelpositionen aus Belegungsraster und GPS-Anker abgeleitet, nicht vermessen. Fensterfreiräume und Fugenabstände sind Näherungen. Haus rechts: ganze Feldregistrierung samt abgeleitetem Fensterpunkt zwei Reihen Richtung Traufe verschoben. Ursprüngliche Fenster-GPS-Angabe bleibt in registrationCorrection.sourceReferencePoint erhalten; neue Lage ist nicht vermessen.",
+        "registrationCorrection": {
+          "confirmedOn": "2026-11-16",
+          "kind": "operator-confirmed-roof-row-offset",
+          "downRoofRows": 2,
+          "rowPitchM": 1.017,
+          "downRoofShiftM": 2.034,
+          "windowAnchorWithinLayoutPreserved": true,
+          "sourceReferencePoint": {
+            "latitude": 47.69780833333333,
+            "longitude": 11.880202777777779,
+            "kind": "roof_landmark",
+            "description": "Mitte des oberen Dachfensters rechts zwischen den fünf 415-Wp-Modulen",
+            "dms": "47°41'52.11\"N 11°52'48.73\"E",
+            "confirmedOn": "2026-11-15"
+          },
+          "sourceCoordinatesPreservedAsObservation": true,
+          "derivedWindowCoordinatesAdjusted": true,
+          "source": "Betreiberangabe und Vergleich mit dem bereitgestellten Luftbild; keine Anpassung an Erträge"
+        }
       }
     },
     {
@@ -1478,9 +1499,9 @@
     },
     "near": {
       "path": "nahverschattung.json",
-      "sha256": "305da55c1e0ff04fbedb1bcdd3145067927421f3cc0bd833506a0509eda7fd63",
-      "id": "827f316942d091f9"
+      "sha256": "9fe9fed10f03b3f3fefbf347bf21b3b21c911c773706f22bc72e718aa5bc0982",
+      "id": "837cb21119d74229"
     },
-    "geometryHash": "61c0e9b635095b8e5158ceaf688106363e316c2fd051d9829b703ab410467d98"
+    "geometryHash": "23dc1cf33db9899b78210ed21a390b2f47d2225b2f0ed2870618f8ab64559b74"
   }
 }
