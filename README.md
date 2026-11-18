@@ -2,6 +2,12 @@
 
 PV-Prognose mit Gelände- und DOM20-Nahverschattung. Website: https://solarbergler.github.io/solarprognose_1/
 
+## Ausrichtungsraster zum Hausdach korrigiert in V12.9.8
+
+Alle Modulgruppen der Anlage stehen rechtwinklig oder parallel zur Hausdachreferenz **165°**, also 75°, 165°, 255° oder 345°. Die Hütte vorne wurde von 254° auf den bestätigten Azimut **255°** korrigiert. Die fünf Einzelpositionen wurden um den unveränderten Mittelpunkt 2.1.19 in diesem Raster neu berechnet (äußere Module um ca. 3,7 cm versetzt). Die vier veränderten Modulhorizonte wurden anhand derselben Original-DOM20-Daten erneut berechnet; alle übrigen 84 Modulpositionen und Modulhorizonte wurden unverändert übernommen.
+
+Der Geometriehash und das Nahprofil sind neu versioniert. Die bisherigen Originalprognosen bleiben unverändert. Der Layoutgenerator und Regressionstests sind angepasst.
+
 ## Hütte vorne: Fünferreihe ohne seitliche Stufen in V12.9.7
 
 Die türkisfarbenen Module 2.1.17 bis 2.1.21 waren im SVG trotz korrekt hinterlegter geodätischer Modulmittelpunkte gegeneinander versetzt. Ursache: Im Transformationsschritt der Dachachsen in die Bildachsen hatten die beiden gemischten Sinus-Terme das falsche Vorzeichen. Bei 254° statt exakt 255° fielen dadurch kleine sichtbare Treppenversätze auf. Die Modulpunkte und die Modulpolygonachsen stimmen nun überein; die vier Übergänge bilden eine durchgehende gerade Flucht mit jeweils etwa 24,4 mm Fuge (25 mm vorgesehen; Rundungsabweichung durch die unterschiedlichen Projektionen).

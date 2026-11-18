@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "revision": 8,
-  "updatedAt": "2026-11-18T17:50:00+01:00",
+  "revision": 9,
+  "updatedAt": "2026-11-18T18:24:00+01:00",
   "location": {
     "name": "Schliersee",
     "latitude": 47.697844,
@@ -909,7 +909,7 @@
       "id": "panel-4",
       "name": "Hütte vorne",
       "kwp": 1.9,
-      "az": 254,
+      "az": 255,
       "tilt": 20,
       "inverterId": "wr-2",
       "geo": {
@@ -918,15 +918,15 @@
         "longitude": 11.880216666666668,
         "width_m": 5.245,
         "depth_m": 1.58996,
-        "azimuth": 254,
+        "azimuth": 255,
         "tilt_deg": 20,
         "lower_edge_height_m": 2.5,
         "upper_edge_height_m": 4,
         "modulePositions": [
           {
             "id": "2.1.17",
-            "latitude": 47.69802655836156,
-            "longitude": 11.880208925594832,
+            "latitude": 47.69802664679108,
+            "longitude": 11.880209397924684,
             "wp": 380,
             "groupIndex": 0,
             "width_m": 1.029,
@@ -936,8 +936,8 @@
           },
           {
             "id": "2.1.18",
-            "latitude": 47.69801744584745,
-            "longitude": 11.880212796130749,
+            "latitude": 47.698017490062206,
+            "longitude": 11.880213032295675,
             "wp": 380,
             "groupIndex": 0,
             "width_m": 1.029,
@@ -958,8 +958,8 @@
           },
           {
             "id": "2.1.20",
-            "latitude": 47.697999220819206,
-            "longitude": 11.880220537202586,
+            "latitude": 47.69799917660445,
+            "longitude": 11.88022030103766,
             "wp": 380,
             "groupIndex": 0,
             "width_m": 1.029,
@@ -969,8 +969,8 @@
           },
           {
             "id": "2.1.21",
-            "latitude": 47.69799010830509,
-            "longitude": 11.880224407738503,
+            "latitude": 47.697990019875576,
+            "longitude": 11.880223935408651,
             "wp": 380,
             "groupIndex": 0,
             "width_m": 1.029,
@@ -994,9 +994,11 @@
             "height": 30
           },
           "datasheetUrl": "https://www.jinkosolar.com/uploads/JKM360-380N-6TL3-(V)-F2.1-EN.pdf",
-          "confirmedOn": "2026-11-15",
+          "confirmedOn": "2026-11-18",
           "facing": "west",
-          "mounting": "portrait"
+          "mounting": "portrait",
+          "azimuthDeg": 255,
+          "azimuthApproximate": false
         }
       ],
       "referencePoint": {
@@ -1009,11 +1011,11 @@
       },
       "layoutSurvey": {
         "status": "derived-approximate",
-        "source": "SolarEdge-Belegung Hütte; GPS-Mitte des mittleren Moduls",
+        "source": "Bestätigte Ausrichtung 255°; Hausdach bei 165° als 90°-Referenz",
         "gapAssumptionM": 0.025,
         "anchorRoofX_m": 0,
         "anchorRoofY_m": 0,
-        "note": "Modulmaße und Bestückung bestätigt; Einzelpositionen aus Belegungsraster und GPS-Anker abgeleitet, nicht vermessen. Fensterfreiräume und Fugenabstände sind Näherungen."
+        "note": "Hütte vorne 255°, exakt 90° zur Referenz 165°. Fünf Module entlang gleicher Dachachse abgeleitet, mittlerer GPS-Bezugspunkt unverändert. Geometrie abgeleitet, nicht vermessen."
       }
     },
     {
@@ -1499,9 +1501,9 @@
     },
     "near": {
       "path": "nahverschattung.json",
-      "sha256": "076dcef8ad1822b1f3241014c72bc49749f49ec201524bca7abb82f5d43a9f01",
-      "id": "996b42a541c6dd3e"
+      "sha256": "6f5b48bd5ec50a416c5e421b2ad255c47317335526a92830f05bbf378da1d6b3",
+      "id": "11f200afa0d0c807"
     },
-    "geometryHash": "7943dee0b7d326449a62af901ed1112574d42d0ecc5de045789d177d6bcb65a3"
+    "geometryHash": "105e8c0f0af0fdf927b7928f282997c08f4936587a4ecb8ff90826d2e86f8e81"
   }
 }

@@ -101,7 +101,7 @@ def main():
     right=5*px+1.754/2
     for k in range(6):items.append((f'3.1.{19+k}',right-6*1.038-5*GAP+1.038/2+k*(1.038+GAP),2*py+1.096/2+GAP+2.094/2,1))
     place(p,items,(2.5*px,py),'SolarEdge-Belegung Carport; GPS-Mitte ausschließlich des oberen 3×6-Feldes')
-    p=by['Hütte vorne'];p['moduleGroups'][0]['mounting']='portrait'
+    p=by['Hütte vorne'];p['az']=255;p['geo']['azimuth']=255;p['moduleGroups'][0]['mounting']='portrait'
     # Fünf Module in einer Nord-Süd-Reihe, gemeinsam nach Westen.
     items=[(f'2.1.{17+k}',(k-2)*(1.029+GAP),0,0) for k in range(5)]
     place(p,items,(0,0),'SolarEdge-Belegung Hütte; GPS-Mitte des mittleren Moduls')

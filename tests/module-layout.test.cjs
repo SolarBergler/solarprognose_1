@@ -142,7 +142,23 @@ test('Fünf Hütte-vorne-Module bilden geometrisch eine lückenfreie Flucht mit 
    assert.ok(Math.abs(gapNear-.025)<.003,'Keine Treppenkante: vorderer Rand zwischen '+(17+i)+' und '+(18+i)+' ('+gapNear+' m)');
    assert.ok(Math.abs(gapFar-.025)<.003,'Keine Treppenkante: hinterer Rand zwischen '+(17+i)+' und '+(18+i)+' ('+gapFar+' m)');
  }
- assert.equal(b.config.panels.find(p=>p.name==='Hütte vorne').az,254);
+ assert.equal(b.config.panels.find(p=>p.name==='Hütte vorne').az,255);
 });
 
+test('Alle Module in der Hausdach-Referenz 165° oder Vielfachen von 90°',async()=>{
+ const bundleValue=await bundle();
+ assert.equal(bundleValue.config.panels.find(p=>p.name==='Hütte vorne').az,255);
+ assert.equal(bundleValue.config.panels.find(p=>p.name==='Haus links').az,165);
+ for(const p of bundleValue.config.panels){
+  assert.equal(((p.az-165)%90+90)%90,0,'Nicht parallele oder rechtwinklige Gruppe: '+p.name);
+  assert.equal(p.geo.azimuth,p.az);
+ }
+ const hut=bundleValue.config.panels.find(p=>p.name==='Hütte vorne');
+ const idx=bundleValue.config.panels.indexOf(hut),prof=bundleValue.near.panelProfiles[idx];
+ for(let i=0;i<5;i++){
+  assert.equal(hut.geo.modulePositions[i].latitude,prof.samplePositions[i].latitude);
+  assert.equal(hut.geo.modulePositions[i].longitude,prof.samplePositions[i].longitude);
+  assert.equal(prof.samples[i].length,720);
+ }
+});
 module.exports={runtime,bundle};
