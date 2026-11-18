@@ -19,6 +19,10 @@
       if(!Array.isArray(p.moduleGroups)||!p.moduleGroups.length||p.moduleGroups.length>20||p.moduleGroups.some(g=>
         !Number.isInteger(g.count)||g.count<1||g.count>10000||!finite(g.wp,1,100000)||typeof g.label!=='string'||!g.label.trim()||g.label.length>150))throw fail('Ungültige bestätigte Modulbestückung: '+p.name);
     }
+    if(p.moduleGroups?.some(g=>g.commissionedOn!==undefined&&g.commissionedOn!==null&&
+      (typeof g.commissionedOn!=='string'||!(/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(g.commissionedOn))||
+       !Number.isFinite(Date.parse(g.commissionedOn+'T00:00:00Z'))||new Date(g.commissionedOn+'T00:00:00Z').toISOString().slice(0,10)!==g.commissionedOn)))throw fail('Ungültiges Inbetriebnahmedatum: '+p.name);
+    if(p.moduleGroups?.some(g=>g.annualDegradationPct!==undefined&&!finite(g.annualDegradationPct,0,5)))throw fail('Ungültige Modul-Degradationsrate: '+p.name);
     const r=p.referencePoint;
     if(r!==undefined&&(!r||!finite(r.latitude,-90,90)||!finite(r.longitude,-180,180)||typeof r.description!=='string'||!r.description.trim()||r.description.length>300||!['subarray_center','module_center','roof_landmark','derived_pair_center'].includes(r.kind)||typeof r.dms!=='string'||r.dms.length>100||!/^\d{4}-\d{2}-\d{2}$/.test(r.confirmedOn)))throw fail('Ungültiger geografischer Bezugspunkt: '+p.name);
     const m=p.geo.modulePositions;
@@ -90,6 +94,9 @@
     // Anzeigenamen und Veröffentlichungszeit ändern das physikalische Modell nicht.
     const physical={geometry:geometry(c),losses:c.systemLossesPercent,albedo:c.albedo,profiles:[c.profiles.horizon.sha256,c.profiles.near.sha256],
       panels:c.panels.map(p=>[p.id,p.kwp,p.inverterId]),inverters:c.inverters.map(w=>[w.id,w.maxAcKw]).sort((a,b)=>a[0].localeCompare(b[0]))};
+    // Archive identity changes on activation or correction of a cohort's aging data.
+    const activeAging=c.panels.flatMap(p=>(p.moduleGroups||[]).flatMap((g,i)=>g.commissionedOn?[[p.id,i,g.commissionedOn,g.annualDegradationPct??1]]:[]));
+    if(activeAging.length)physical.moduleAging=activeAging;
     return {config:c,horizon:h,near:n,configText,horizonText,nearText,configHash:await sha256(configText),physicalHash:await sha256(canonical(physical)),online:true};
   }
   function storage(){try{return root.localStorage}catch{return null}}

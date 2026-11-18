@@ -2,6 +2,14 @@
 
 PV-Prognose mit Gelände- und DOM20-Nahverschattung. Website: https://solarbergler.github.io/solarprognose_1/
 
+## Altersabhängige Modulleistung – Modellvorbereitung V12.9.9
+
+Optional `moduleGroups[].commissionedOn` (ISO-Datum YYYY-MM-DD) und `annualDegradationPct` (0 bis 5) je Modulgeneration. Einzelmodule erhalten einen altersabhängigen STC-Leistungsfaktor: `(1-r/100)^max(0, (Prognosezeit-Inbetriebnahme)/365.2425 Tage)`. Unterschiedliche Modulgruppen im selben Feld werden mit ihren jeweiligen Wp gewichtet, auch beim DOM20-Nahprofil. Der Faktor wirkt vor AC-Clipping; keine pauschale Korrektur zusätzlich bei Systemverlusten eintragen.
+
+Bei bekanntem Datum und ohne explizite Rate gilt 1 % pro Jahr als **Szenario**, nicht als gemessene Anlagenrate. Fehlt das Inbetriebnahmedatum, beträgt der Faktor exakt 1, ohne geschätztes Baujahr. Derzeit sind für die sechs verschiedenen Modultypen keine Inbetriebnahmedaten belegt: Die Berechnung zeigt daher zunächst unveränderte Erträge und weist in der Website sichtbar auf die fehlenden Daten hin. Sobald Daten eingetragen werden, wechselt die physikalische Modellkennung, damit Originalarchive nicht vermischt werden. Konfigurationsrevision 9 und alle DOM20/GPS-Daten bleiben bis dahin unverändert.
+
+Die Rate ist von Wetter-/Verschattungsfehlern und den bestehenden 12 % pauschalen Systemverlusten getrennt. Sie erklärt keinen spezifischen mittäglichen Carport-Schatteneinbruch.
+
 ## Ausrichtungsraster zum Hausdach korrigiert in V12.9.8
 
 Alle Modulgruppen der Anlage stehen rechtwinklig oder parallel zur Hausdachreferenz **165°**, also 75°, 165°, 255° oder 345°. Die Hütte vorne wurde von 254° auf den bestätigten Azimut **255°** korrigiert. Die fünf Einzelpositionen wurden um den unveränderten Mittelpunkt 2.1.19 in diesem Raster neu berechnet (äußere Module um ca. 3,7 cm versetzt). Die vier veränderten Modulhorizonte wurden anhand derselben Original-DOM20-Daten erneut berechnet; alle übrigen 84 Modulpositionen und Modulhorizonte wurden unverändert übernommen.

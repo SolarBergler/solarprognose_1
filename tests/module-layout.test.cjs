@@ -161,4 +161,32 @@ test('Alle Module in der Hausdach-Referenz 165° oder Vielfachen von 90°',async
   assert.equal(prof.samples[i].length,720);
  }
 });
+
+test('Altersabschlag: ohne Jahresangabe neutral, mit 1 %/a korrekt; Modellhash trennt Altmodelle',async()=>{
+ const unaged=await bundle(),r=runtime(unaged,undefined,weatherFixture());
+ const instant=Date.parse('2026-11-18T00:00:00Z')/1000;
+ assert.equal(r.run('moduleAgingFactor(null,'+instant+')'),1);
+ assert.equal(r.run("moduleAgingFactor({annualDegradationPct:1},"+instant+")"),1);
+ const after10=r.run("moduleAgingFactor({commissionedOn:'2016-11-18',annualDegradationPct:1},"+instant+")");
+ assert.ok(Math.abs(after10-Math.pow(.99,10))<.00005);
+ assert.equal(r.run("moduleAgingFactor({commissionedOn:'2030-01-01',annualDegradationPct:1},"+instant+")"),1);
+ assert.equal(r.run("moduleAgingFactor({commissionedOn:'2016-11-18',annualDegradationPct:0},"+instant+")"),1);
+ const agedConfig=C.clone(config);
+ agedConfig.panels[0].moduleGroups.forEach(g=>{g.commissionedOn='2016-11-18';g.annualDegradationPct=1;});
+ const agedBundle=await bundle(agedConfig);
+ assert.notEqual(agedBundle.physicalHash,unaged.physicalHash);
+ const oldCalc=runtime(agedBundle,undefined,weatherFixture()).run('calculated');
+ const baseCalc=r.run('calculated');
+ assert.equal(oldCalc.length,baseCalc.length);
+ let checked=0;
+ for(let i=0;i<oldCalc.length;i++){
+   const a=baseCalc[i].byPanel[0].power,b=oldCalc[i].byPanel[0].power;
+   if(a>.01){checked++;assert.ok(b<=a+1e-8,'Alterung darf die Leistung nicht erhöhen');}
+ }
+ assert.ok(checked>20);
+ const bad=C.clone(config);
+ bad.panels[0].moduleGroups[0].commissionedOn='2016-02-30';
+ assert.throws(()=>C.validateConfig(bad),/Inbetriebnahmedatum/);
+});
+
 module.exports={runtime,bundle};
