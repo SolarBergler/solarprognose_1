@@ -2,6 +2,12 @@
 
 PV-Prognose mit Gelände- und DOM20-Nahverschattung. Website: https://solarbergler.github.io/solarprognose_1/
 
+## Garagen-Ost-/Westmodule getrennt in V12.9.3
+
+Zwei bislang exakt übereinander liegende Einzelmodule (Garage Ost / Garage West) sind jetzt auf gegenüberliegenden Dachseiten angeordnet: je 0,83 m östlich bzw. westlich der zuvor abgeleiteten gemeinsamen Paarmitte. Daraus ergeben sich 1,66 m Mittelpunktabstand. Das ist eine geometrisch aus Luftbild, SolarEdge-Belegung und Modulmaßen abgeleitete Näherung und keine Vermessung. Die SolarEdge-Positionsnummern 2.1.15 / 2.1.16 sind keinem der beiden Azimute willkürlich zugeordnet.
+
+Azimut Ost 90° / West 270°, Neigung 20°, Leistung 330 Wp je Modul, Anzahl 88 und WR2 bleiben unverändert. Die beiden getrennten DOM20-Nahhorizonte wurden aus denselben originalen Geodaten am jeweils neuen Mittelpunkt neu berechnet. Die übrigen 86 Modulhorizonte sind unverändert. Historische Originalprognosen bleiben erhalten; die neue Geometrie und das neue Nahprofil erhalten eigene Versionshashes.
+
 ## Haus rechts korrigiert in V12.9.2
 
 Nach Betreiberkorrektur und Vergleich mit dem bereitgestellten Luftbild lag das gesamte Feld Haus rechts zwei Modulreihen zu weit Richtung First. Alle 19 Module samt ihrem abgeleiteten Fensterbezug wurden gemeinsam Richtung Traufe verschoben: 2 × (0,992 m Modulbreite + 0,025 m angenommene Fuge) = 2,034 m auf dem 37° geneigten Dach, entsprechend rund 1,624 m in der Draufsicht. Die interne Belegung, Serien-/Modulnummern, 14 × 300 Wp + 5 × 415 Wp und WR1 bleiben erhalten. Die ursprüngliche GPS-Fensterangabe bleibt als Quelle in `layoutSurvey.registrationCorrection.sourceReferencePoint` gespeichert; die verschobenen Koordinaten sind abgeleitet und nicht neu vermessen.

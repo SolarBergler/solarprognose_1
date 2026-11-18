@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "revision": 5,
-  "updatedAt": "2026-11-16T09:37:42.674456+00:00",
+  "revision": 6,
+  "updatedAt": "2026-11-18T11:50:00+01:00",
   "location": {
     "name": "Schliersee",
     "latitude": 47.697844,
@@ -1335,7 +1335,7 @@
       "geo": {
         "name": "Garage Ost",
         "latitude": 47.69787921521374,
-        "longitude": 11.880165213294513,
+        "longitude": 11.880176271112475,
         "width_m": 1.028,
         "depth_m": 1.60218,
         "azimuth": 90,
@@ -1346,7 +1346,7 @@
           {
             "id": "panel-garage-east",
             "latitude": 47.69787921521374,
-            "longitude": 11.880165213294513,
+            "longitude": 11.880176271112475,
             "wp": 330,
             "groupIndex": 0,
             "width_m": 1.028,
@@ -1388,11 +1388,11 @@
       },
       "layoutSurvey": {
         "status": "derived-approximate",
-        "source": "Je ein Ost- und Westmodul mit ca. 20° vom Betreiber bestätigt; Paarposition aus SolarEdge-Schema geschätzt",
+        "source": "SolarEdge-Belegung und Luftbild vom 15.11.2026; beide Module gegenüberliegend am Ost-/West-Dach; abgeleitete Position, nicht vermessen",
         "gapAssumptionM": 0.025,
         "anchorRoofX_m": 0,
         "anchorRoofY_m": 0,
-        "note": "Ca. 20° Neigung bestätigt; Azimut 90°/270° aus Ost/West abgeleitet. Einzelzuordnung der Positionen 2.1.15/16 zu Ost/West unbekannt; gemeinsame geschätzte Paarmitte, keine vorgetäuschte Nummernzuordnung."
+        "note": "Je 0,83 m östlich bzw. westlich der früheren Paarmitte (1,66 m Abstand); aus Luftbild, SolarEdge-Belegung und Modulmaßen geometrisch abgeleitet, nicht vermessen. Zuordnung der SolarEdge-Nummern 2.1.15/16 zu Ost/West nicht gesichert."
       }
     },
     {
@@ -1405,7 +1405,7 @@
       "geo": {
         "name": "Garage West",
         "latitude": 47.69787921521374,
-        "longitude": 11.880165213294513,
+        "longitude": 11.88015415547655,
         "width_m": 1.028,
         "depth_m": 1.60218,
         "azimuth": 270,
@@ -1416,7 +1416,7 @@
           {
             "id": "panel-garage-west",
             "latitude": 47.69787921521374,
-            "longitude": 11.880165213294513,
+            "longitude": 11.88015415547655,
             "wp": 330,
             "groupIndex": 0,
             "width_m": 1.028,
@@ -1458,11 +1458,11 @@
       },
       "layoutSurvey": {
         "status": "derived-approximate",
-        "source": "Je ein Ost- und Westmodul mit ca. 20° vom Betreiber bestätigt; Paarposition aus SolarEdge-Schema geschätzt",
+        "source": "SolarEdge-Belegung und Luftbild vom 15.11.2026; beide Module gegenüberliegend am Ost-/West-Dach; abgeleitete Position, nicht vermessen",
         "gapAssumptionM": 0.025,
         "anchorRoofX_m": 0,
         "anchorRoofY_m": 0,
-        "note": "Ca. 20° Neigung bestätigt; Azimut 90°/270° aus Ost/West abgeleitet. Einzelzuordnung der Positionen 2.1.15/16 zu Ost/West unbekannt; gemeinsame geschätzte Paarmitte, keine vorgetäuschte Nummernzuordnung."
+        "note": "Je 0,83 m östlich bzw. westlich der früheren Paarmitte (1,66 m Abstand); aus Luftbild, SolarEdge-Belegung und Modulmaßen geometrisch abgeleitet, nicht vermessen. Zuordnung der SolarEdge-Nummern 2.1.15/16 zu Ost/West nicht gesichert."
       }
     }
   ],
@@ -1499,9 +1499,9 @@
     },
     "near": {
       "path": "nahverschattung.json",
-      "sha256": "9fe9fed10f03b3f3fefbf347bf21b3b21c911c773706f22bc72e718aa5bc0982",
-      "id": "837cb21119d74229"
+      "sha256": "e7d2e8ab6b96be9d59b55324d13c44a9102fb66f6cc83b0e6eefe2638c1932e5",
+      "id": "79464b12fe57bcb5"
     },
-    "geometryHash": "23dc1cf33db9899b78210ed21a390b2f47d2225b2f0ed2870618f8ab64559b74"
+    "geometryHash": "01f7c5e9d7ca168ab40c3ebafea37c6f10138a7673de50c0c412ebc96424c054"
   }
 }

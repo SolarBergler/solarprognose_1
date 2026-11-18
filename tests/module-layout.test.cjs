@@ -62,4 +62,30 @@ test('Volle Fünfminutenkurven, Belegungsdarstellung und unveränderte Originalp
  const oldModel=r.run('archiveModelId()');r.run(`centralBundle={...centralBundle,physicalHash:'changed-layout-test'};saveForecastSnapshots(${a+7200000});`);
  assert.equal(JSON.stringify(r.run(`forecastArchive.previousModels[${JSON.stringify(oldModel)}]['2026-11-06'].original`)),original);
 });
+test('Garage Ost und West sind getrennt und DOM20-Nahprofile geometrisch zugeordnet',async()=>{
+ const b=await bundle();
+ const e=b.config.panels.find(p=>p.id==='panel-garage-east');
+ const w=b.config.panels.find(p=>p.id==='panel-garage-west');
+ assert.equal(e.az,90);assert.equal(w.az,270);
+ assert.equal(e.tilt,20);assert.equal(w.tilt,20);
+ assert.equal(e.kwp,.33);assert.equal(w.kwp,.33);
+ assert.equal(e.inverterId,'wr-2');assert.equal(w.inverterId,'wr-2');
+ assert.equal(e.geo.latitude,w.geo.latitude);
+ const phi=e.geo.latitude*Math.PI/180;
+ const deltaEast=(e.geo.longitude-w.geo.longitude)*Math.PI/180*
+     (6378137/Math.sqrt(1-.00669437999014*Math.sin(phi)**2))*Math.cos(phi);
+ assert.ok(Math.abs(deltaEast-1.66)<0.00001,'Mittelpunktabstand 1,66 m');
+ for(const p of [e,w]){
+   assert.equal(p.geo.modulePositions.length,1);
+   const m=p.geo.modulePositions[0];
+   assert.equal(m.latitude,p.geo.latitude);assert.equal(m.longitude,p.geo.longitude);
+   const prof=b.near.panelProfiles[b.config.panels.indexOf(p)];
+   assert.equal(prof.center.longitude,p.geo.longitude);
+   assert.equal(prof.center.latitude,p.geo.latitude);
+   assert.equal(prof.samplePositions[0].longitude,p.geo.longitude);
+   assert.equal(prof.samplePositions[0].latitude,p.geo.latitude);
+   assert.equal(prof.samples[0].length,720);
+ }
+ assert.notDeepEqual(b.near.panelProfiles.at(-2).samples,b.near.panelProfiles.at(-1).samples);
+});
 module.exports={runtime,bundle};
