@@ -2,6 +2,14 @@
 
 PV-Prognose mit Gelände- und DOM20-Nahverschattung. Website: https://solarbergler.github.io/solarprognose_1/
 
+## Modulbelegung bündig und mit Nordpfeil in V12.9.6
+
+Die orangefarbene Haus-links- und die blaue Haus-rechts-Gruppe überlappten in der SVG-Zeichnung um etwa 14,8 cm (X) und waren um etwa 4,5 cm in Y versetzt. Die Zeichnung richtet das blaue Feld anhand der Nachbarmodule 4.1.24 / 1.1.1 mit 25 mm Fuge in X und gleicher Reihenhöhe in Y aus. Alle 19 Module von Haus rechts sowie das zugehörige Bezugskreuz werden nur innerhalb der SVG-Darstellung um dieselbe kleine Differenz verschoben.
+
+**Diese Anpassung ist ausschließlich grafisch.** Die physikalischen Modulmittelpunkte, DOM20-Nahprofile, Konfigurationsrevision 8, Ertragsberechnung und Archive sind unverändert.
+
+Ein mit N beschrifteter Pfeil zeigt geografisch Nord an (15° rechts von der Bildoberkante bei 345° Ansichtsausrichtung). Der veraltete Text zur Garagenbelegung wurde aktualisiert.
+
 ## Garage Ost/West am Dachfirst korrigiert in V12.9.5
 
 Der Fehler war eine Vertauschung der Modullängs- und -querachse sowie der Mittelpunktausrichtung. Die Module 2.1.15 West (255°) und 2.1.16 Ost (75°) liegen jetzt jeweils auf der richtigen Dachseite, beide mit 1,705 m langer Kante parallel zum First (345°). Die 1,028 m kurze Kante liegt quer zum First. Mittelpunktabstand ca. 0,991 m in der Draufsicht (bei ca. 20° Dachneigung und angenommener Fuge von 0,025 m); Positionen aus Luftbild und Modulmaßen abgeleitet, nicht vermessen.

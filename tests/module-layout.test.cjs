@@ -94,4 +94,31 @@ test('Garage Ost und West sind getrennt und DOM20-Nahprofile geometrisch zugeord
  }
  assert.notDeepEqual(b.near.panelProfiles.at(-2).samples,b.near.panelProfiles.at(-1).samples);
 });
+
+test('Modulbelegung: Hausfelder bündig, 25 mm Fuge, Nordpfeil, keine Modelldatenänderung',async()=>{
+ const b=await bundle(),before=JSON.stringify(b.config);
+ const r=runtime(b,undefined,weatherFixture());
+ r.run('renderPlantLayout()');
+ const drawing=r.nodes.get('plantLayout').innerHTML;
+ assert.equal(JSON.stringify(b.config),before);
+ assert.equal((drawing.match(/<polygon /g)||[]).length,88);
+ assert.ok(drawing.includes('id="module-north-arrow"'));
+ assert.ok(drawing.includes('>N</text>'));
+ const polygons=[...drawing.matchAll(/<polygon points="([^"]+)"[^>]*><title>[^<]* · ([^ ]+) · [^<]*<\/title><\/polygon>/g)];
+ assert.equal(polygons.length,88);
+ const box=id=>{
+   const entry=polygons.find(p=>p[2]===id);assert.ok(entry,'Modul fehlt: '+id);
+   const pts=entry[1].split(' ').map(v=>v.split(',').map(Number));
+   return {minX:Math.min(...pts.map(p=>p[0])),maxX:Math.max(...pts.map(p=>p[0])),minY:Math.min(...pts.map(p=>p[1]))};
+ };
+ const a=box('4.1.24'),bTop=box('1.1.1'),d=box('4.1.18'),e=box('1.1.13');
+ assert.ok(Math.abs(bTop.minX-a.maxX-.025)<1e-8,'obere Fuge');
+ assert.ok(Math.abs(bTop.minY-a.minY)<1e-8,'obere Reihe');
+ assert.ok(Math.abs(e.minX-d.maxX-.025)<.005,'untere Fuge');
+ assert.ok(Math.abs(e.minY-d.minY)<.005,'untere Reihe');
+ const arrow=drawing.match(/id="module-north-arrow"[^>]*><title>Geografisch Nord<\/title><path d="M([\d.-]+) ([\d.-]+) L([\d.-]+) ([\d.-]+)"/);
+ assert.ok(arrow,'Nordpfeil fehlt');
+ const dx=+arrow[3]-arrow[1],dy=+arrow[4]-arrow[2];
+ assert.ok(Math.abs(Math.atan2(dx,-dy)*180/Math.PI-15)<.0001,'Nordpfeilrichtung');
+});
 module.exports={runtime,bundle};
