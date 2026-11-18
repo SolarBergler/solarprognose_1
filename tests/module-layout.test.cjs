@@ -27,7 +27,7 @@ test('Bestätigte 88 Module, WR-Zuordnung, Wp-Gewichte und GPS-Anker bleiben kon
  const dc=Object.fromEntries(b.config.inverters.map(w=>[w.id,b.config.panels.filter(p=>p.inverterId===w.id).reduce((s,p)=>s+p.kwp,0)]));
  for(const [id,kwp] of Object.entries({'wr-1':6.275,'wr-2':7.18,'wr-3':9.9,'wr-4':7.95}))assert.ok(Math.abs(dc[id]-kwp)<1e-9);
  for(const p of b.config.panels){assert.equal(p.geo.modulePositions.length,p.moduleGroups.reduce((s,g)=>s+g.count,0));assert.ok(p.moduleGroups.every(g=>g.model&&g.dimensionsMm.length&&g.dimensionsMm.width));}
- const garage=b.config.panels.filter(p=>/^Garage (Ost|West)$/.test(p.name));assert.equal(garage.length,2);assert.deepEqual(garage.map(p=>[p.kwp,p.tilt,p.az]),[[.33,20,90],[.33,20,270]]);
+ const garage=b.config.panels.filter(p=>/^Garage (Ost|West)$/.test(p.name));assert.equal(garage.length,2);assert.deepEqual(garage.map(p=>[p.kwp,p.tilt,p.az]),[[.33,20,75],[.33,20,255]]);
  const changed=C.clone(b.near);changed.panelProfiles[0].sampleWeights[0]=450;
  assert.throws(()=>C.verifyPanelProfile(config.panels[0],changed.panelProfiles[0]),/Gewichte/);
  changed.panelProfiles[0].sampleWeights[0]=300;changed.panelProfiles[0].samplePositions[0].latitude+=.00001;
@@ -66,7 +66,9 @@ test('Garage Ost und West sind getrennt und DOM20-Nahprofile geometrisch zugeord
  const b=await bundle();
  const e=b.config.panels.find(p=>p.id==='panel-garage-east');
  const w=b.config.panels.find(p=>p.id==='panel-garage-west');
- assert.equal(e.az,90);assert.equal(w.az,270);
+ assert.equal(e.az,75);assert.equal(w.az,255);
+ assert.equal(e.geo.azimuth,75);assert.equal(w.geo.azimuth,255);
+ assert.equal(e.geo.modulePositions[0].id,'2.1.16');assert.equal(w.geo.modulePositions[0].id,'2.1.15');
  assert.equal(e.tilt,20);assert.equal(w.tilt,20);
  assert.equal(e.kwp,.33);assert.equal(w.kwp,.33);
  assert.equal(e.inverterId,'wr-2');assert.equal(w.inverterId,'wr-2');

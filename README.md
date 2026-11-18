@@ -2,6 +2,12 @@
 
 PV-Prognose mit Gelände- und DOM20-Nahverschattung. Website: https://solarbergler.github.io/solarprognose_1/
 
+## Garagen-Azimut und SolarEdge-Modulnummern bestätigt in V12.9.4
+
+Betreiberbestätigung vom 18.11.2026 anhand der vollständigen SolarEdge-Belegungsbilder (Süd ist im Bild unten): linkes Modul 2.1.15 ist nach Westen mit Azimut **255°**, rechtes Modul 2.1.16 nach Osten mit Azimut **75°** ausgerichtet. Beiden Modulen wurden die bestätigten Nummern zugeordnet. Die Dachneigung bleibt ca. 20°. Die korrigierten, getrennten Mittelpunktpositionen aus V12.9.3 sind abgeleitete Näherungen; keine weitere Verschiebung wird aus den Fotos vorgetäuscht.
+
+Haus links und Carport: Die übermittelten vollständigen SolarEdge-Modulübersichten stimmen mit dem bestehenden Belegungsraster überein (Haus links: 24 Module; Carport: 18 Quer- plus 6 Hochkantmodule). Deren Nummern und Koordinaten wurden nicht verändert. Hütte 5 Module und Garage Hauptfeld 14 Module bleiben ebenfalls unverändert. Die DOM20-Nahhorizonte aller 88 Positionen bleiben gleich, da keine Mittelpunktkoordinaten geändert wurden; die Azimutänderung wirkt in der Einstrahlungsberechnung und die neue Geometrie erhält einen neuen Modellhash.
+
 ## Garagen-Ost-/Westmodule getrennt in V12.9.3
 
 Zwei bislang exakt übereinander liegende Einzelmodule (Garage Ost / Garage West) sind jetzt auf gegenüberliegenden Dachseiten angeordnet: je 0,83 m östlich bzw. westlich der zuvor abgeleiteten gemeinsamen Paarmitte. Daraus ergeben sich 1,66 m Mittelpunktabstand. Das ist eine geometrisch aus Luftbild, SolarEdge-Belegung und Modulmaßen abgeleitete Näherung und keine Vermessung. Die SolarEdge-Positionsnummern 2.1.15 / 2.1.16 sind keinem der beiden Azimute willkürlich zugeordnet.
