@@ -121,4 +121,28 @@ test('Modulbelegung: Hausfelder bündig, 25 mm Fuge, Nordpfeil, keine Modelldate
  const dx=+arrow[3]-arrow[1],dy=+arrow[4]-arrow[2];
  assert.ok(Math.abs(Math.atan2(dx,-dy)*180/Math.PI-15)<.0001,'Nordpfeilrichtung');
 });
+
+test('Fünf Hütte-vorne-Module bilden geometrisch eine lückenfreie Flucht mit 25 mm Fugen',async()=>{
+ const b=await bundle(),original=JSON.stringify(b.config);
+ const r=runtime(b,undefined,weatherFixture());
+ r.run('renderPlantLayout()');
+ const svg=r.nodes.get('plantLayout').innerHTML;
+ assert.equal(JSON.stringify(b.config),original,'Modul-GPS-Daten dürfen sich nicht ändern');
+ assert.equal((svg.match(/<polygon /g)||[]).length,88);
+ assert.ok(svg.includes('id="module-north-arrow"'),'Kompass darf nicht verschwinden');
+ const matches=[...svg.matchAll(/<polygon points="([^"]+)"[^>]*><title>Hütte vorne · (2\.1\.(?:17|18|19|20|21)) · 380 Wp<\/title><\/polygon>/g)];
+ assert.equal(matches.length,5,'Alle fünf Hütteneinzelmodule müssen sichtbar sein');
+ const polys=matches.sort((a,b)=>Number(a[2].split('.')[2])-Number(b[2].split('.')[2]))
+     .map(match=>match[1].split(' ').map(coords=>coords.split(',').map(Number)));
+ const distance=(a,b)=>Math.hypot(a[0]-b[0],a[1]-b[1]);
+ for(let i=0;i<4;i++){
+   // Rendered order: next module follows the roofX direction from [1,2] to [0,3].
+   const gapNear=distance(polys[i][1],polys[i+1][0]);
+   const gapFar=distance(polys[i][2],polys[i+1][3]);
+   assert.ok(Math.abs(gapNear-.025)<.003,'Keine Treppenkante: vorderer Rand zwischen '+(17+i)+' und '+(18+i)+' ('+gapNear+' m)');
+   assert.ok(Math.abs(gapFar-.025)<.003,'Keine Treppenkante: hinterer Rand zwischen '+(17+i)+' und '+(18+i)+' ('+gapFar+' m)');
+ }
+ assert.equal(b.config.panels.find(p=>p.name==='Hütte vorne').az,254);
+});
+
 module.exports={runtime,bundle};

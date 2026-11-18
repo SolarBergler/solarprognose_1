@@ -2,6 +2,12 @@
 
 PV-Prognose mit Gelände- und DOM20-Nahverschattung. Website: https://solarbergler.github.io/solarprognose_1/
 
+## Hütte vorne: Fünferreihe ohne seitliche Stufen in V12.9.7
+
+Die türkisfarbenen Module 2.1.17 bis 2.1.21 waren im SVG trotz korrekt hinterlegter geodätischer Modulmittelpunkte gegeneinander versetzt. Ursache: Im Transformationsschritt der Dachachsen in die Bildachsen hatten die beiden gemischten Sinus-Terme das falsche Vorzeichen. Bei 254° statt exakt 255° fielen dadurch kleine sichtbare Treppenversätze auf. Die Modulpunkte und die Modulpolygonachsen stimmen nun überein; die vier Übergänge bilden eine durchgehende gerade Flucht mit jeweils etwa 24,4 mm Fuge (25 mm vorgesehen; Rundungsabweichung durch die unterschiedlichen Projektionen).
+
+Nur die SVG-Darstellung wurde korrigiert. Azimut Hütte 254°, alle 88 Modulkoordinaten, DOM20-Profile, die physikalische Konfigurationsrevision 8 sowie alle Prognosen und Archive bleiben unverändert. Bestehende Hausfeld-Ausrichtung und der geografische Nordpfeil bleiben erhalten.
+
 ## Modulbelegung bündig und mit Nordpfeil in V12.9.6
 
 Die orangefarbene Haus-links- und die blaue Haus-rechts-Gruppe überlappten in der SVG-Zeichnung um etwa 14,8 cm (X) und waren um etwa 4,5 cm in Y versetzt. Die Zeichnung richtet das blaue Feld anhand der Nachbarmodule 4.1.24 / 1.1.1 mit 25 mm Fuge in X und gleicher Reihenhöhe in Y aus. Alle 19 Module von Haus rechts sowie das zugehörige Bezugskreuz werden nur innerhalb der SVG-Darstellung um dieselbe kleine Differenz verschoben.
