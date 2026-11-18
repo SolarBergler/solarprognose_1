@@ -111,17 +111,32 @@ def main():
     items=[(f'2.1.{n}',col*px,row*py,0 if col>=2 else 1) for row,nums in enumerate(rows) for col,n in enumerate(nums) if n]
     place(p,items,(3.5*px,py),'SolarEdge-Belegung Garage; GPS-Mitte des 3×4-Hauptblocks; zwei Zusatzmodule links')
     extra=[]
-    for facing,az in [('east',90),('west',270)]:
-        q=copy.deepcopy(full);q['id']='panel-garage-'+facing;q['name']='Garage '+('Ost' if facing=='east' else 'West');q['kwp']=.33;q['az']=az;q['tilt']=20
+    dx=.0-3.5*px
+    dy=(5.0*py-py)*math.cos(math.radians(30))
+    a=math.radians(165)
+    pairlat,pairlon=offset(full['referencePoint']['latitude'],full['referencePoint']['longitude'],
+                           -dx*math.cos(a)+dy*math.sin(a),dx*math.sin(a)+dy*math.cos(a))
+    half_step=(1.028*math.cos(math.radians(20))+GAP)/2
+    for facing,az,ident in [('east',75,'2.1.16'),('west',255,'2.1.15')]:
+        q=copy.deepcopy(full)
+        q['id']='panel-garage-'+facing
+        q['name']='Garage '+('Ost' if facing=='east' else 'West')
+        q['kwp']=.33
+        q['az']=az
+        q['tilt']=20
         q['moduleGroups']=[copy.deepcopy(next(g for g in full['moduleGroups'] if g.get('facing')==facing))]
-        q['moduleGroups'][0].update(tiltDeg=20,tiltApproximate=True,azimuthDeg=az,azimuthApproximate=True)
-        # Kein unbelegtes Zuordnen der Optimierernummern 2.1.15/16 zu Ost/West:
-        # beide Orientierungen verwenden vorläufig die Mitte des separaten Paares.
-        dx=.0-3.5*px;dy=(5.0*py-py)*math.cos(math.radians(30));a=math.radians(165)
-        lat,lon=offset(full['referencePoint']['latitude'],full['referencePoint']['longitude'],-dx*math.cos(a)+dy*math.sin(a),dx*math.sin(a)+dy*math.cos(a))
-        q['referencePoint']=dict(latitude=lat,longitude=lon,kind='derived_pair_center',description='Abgeleitete Mitte des separaten Ost-/West-Paares unterhalb der Garage',dms='Aus bestätigtem Garage-Anker abgeleitet',confirmedOn='2026-11-15')
-        place(q,[(q['id'],0,0,0)],(0,0),'Je ein Ost- und Westmodul mit ca. 20° vom Betreiber bestätigt; Paarposition aus SolarEdge-Schema geschätzt')
-        q['layoutSurvey']['note']='Ca. 20° Neigung bestätigt; Azimut 90°/270° aus Ost/West abgeleitet. Einzelzuordnung der Positionen 2.1.15/16 zu Ost/West unbekannt; gemeinsame geschätzte Paarmitte, keine vorgetäuschte Nummernzuordnung.'
+        q['moduleGroups'][0].update(tiltDeg=20,tiltApproximate=True,azimuthDeg=az,azimuthApproximate=False)
+        lat,lon=offset(pairlat,pairlon,half_step*math.sin(math.radians(az)),half_step*math.cos(math.radians(az)))
+        q['referencePoint']=dict(latitude=lat,longitude=lon,kind='module_center',description='Abgeleiteter Mittelpunkt '+ident,
+                                 dms='Aus Garage-Anker abgeleitet',confirmedOn='2026-11-18')
+        place(q,[(ident,0,0,0)],(0,0),'SolarEdge Garage: '+ident+' auf der Dachseite '+str(az)+'°')
+        q['geo']['modulePositions'][0].update(width_m=1.705,depth_m=1.028)
+        q['geo']['width_m']=1.705
+        q['geo']['depth_m']=1.028*math.cos(math.radians(20))
+        q['referencePoint']=dict(latitude=pairlat,longitude=pairlon,kind='derived_pair_center',
+            description='Abgeleitete Mitte des separaten Ost-/West-Paares unterhalb der Garage',
+            dms='Aus Garage-Anker abgeleitet',confirmedOn='2026-11-18')
+        q['layoutSurvey']['note']='Lange 1,705-m-Kante parallel zum First; Mittelpunkte ca. 0,991 m auseinander. Nicht vermessen.'
         extra.append(q)
     c['panels'].extend(extra);c['updatedAt']=datetime.now(timezone.utc).isoformat();c['revision']=3
     assert sum(len(p['geo']['modulePositions']) for p in c['panels'])==88

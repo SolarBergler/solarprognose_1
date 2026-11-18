@@ -2,6 +2,12 @@
 
 PV-Prognose mit Gelände- und DOM20-Nahverschattung. Website: https://solarbergler.github.io/solarprognose_1/
 
+## Garage Ost/West am Dachfirst korrigiert in V12.9.5
+
+Der Fehler war eine Vertauschung der Modullängs- und -querachse sowie der Mittelpunktausrichtung. Die Module 2.1.15 West (255°) und 2.1.16 Ost (75°) liegen jetzt jeweils auf der richtigen Dachseite, beide mit 1,705 m langer Kante parallel zum First (345°). Die 1,028 m kurze Kante liegt quer zum First. Mittelpunktabstand ca. 0,991 m in der Draufsicht (bei ca. 20° Dachneigung und angenommener Fuge von 0,025 m); Positionen aus Luftbild und Modulmaßen abgeleitet, nicht vermessen.
+
+Die Nahverschattung der zwei Modulmittelpunkte wurde aus den Original-DOM20-Kacheln neu berechnet; die anderen 86 Profile und alle übrigen Felder wurden nicht verändert. Die historischen Originalprognosen bleiben unverändert.
+
 ## Garagen-Azimut und SolarEdge-Modulnummern bestätigt in V12.9.4
 
 Betreiberbestätigung vom 18.11.2026 anhand der vollständigen SolarEdge-Belegungsbilder (Süd ist im Bild unten): linkes Modul 2.1.15 ist nach Westen mit Azimut **255°**, rechtes Modul 2.1.16 nach Osten mit Azimut **75°** ausgerichtet. Beiden Modulen wurden die bestätigten Nummern zugeordnet. Die Dachneigung bleibt ca. 20°. Die korrigierten, getrennten Mittelpunktpositionen aus V12.9.3 sind abgeleitete Näherungen; keine weitere Verschiebung wird aus den Fotos vorgetäuscht.

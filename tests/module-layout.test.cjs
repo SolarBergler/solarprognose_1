@@ -72,11 +72,15 @@ test('Garage Ost und West sind getrennt und DOM20-Nahprofile geometrisch zugeord
  assert.equal(e.tilt,20);assert.equal(w.tilt,20);
  assert.equal(e.kwp,.33);assert.equal(w.kwp,.33);
  assert.equal(e.inverterId,'wr-2');assert.equal(w.inverterId,'wr-2');
- assert.equal(e.geo.latitude,w.geo.latitude);
  const phi=e.geo.latitude*Math.PI/180;
  const deltaEast=(e.geo.longitude-w.geo.longitude)*Math.PI/180*
      (6378137/Math.sqrt(1-.00669437999014*Math.sin(phi)**2))*Math.cos(phi);
- assert.ok(Math.abs(deltaEast-1.66)<0.00001,'Mittelpunktabstand 1,66 m');
+ const deltaNorth=(e.geo.latitude-w.geo.latitude)*Math.PI/180*(6378137*(1-.00669437999014)/Math.pow(1-.00669437999014*Math.sin(phi)**2,1.5));
+ const centerDist=Math.hypot(deltaEast,deltaNorth),centerAz=Math.atan2(deltaEast,deltaNorth)*180/Math.PI;
+ assert.ok(Math.abs(centerDist-(1.028*Math.cos(20*Math.PI/180)+.025))<.00001,'0,991 m Mittelpunkte');
+ assert.ok(Math.abs(centerAz-75)<.005,'Abstand quer zum First');
+ for(const p of [e,w]){assert.equal(p.geo.modulePositions[0].width_m,1.705);assert.equal(p.geo.modulePositions[0].depth_m,1.028);}
+
  for(const p of [e,w]){
    assert.equal(p.geo.modulePositions.length,1);
    const m=p.geo.modulePositions[0];

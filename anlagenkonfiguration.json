@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "revision": 7,
-  "updatedAt": "2026-11-18T16:36:00+01:00",
+  "revision": 8,
+  "updatedAt": "2026-11-18T17:50:00+01:00",
   "location": {
     "name": "Schliersee",
     "latitude": 47.697844,
@@ -1334,10 +1334,10 @@
       "inverterId": "wr-2",
       "geo": {
         "name": "Garage Ost",
-        "latitude": 47.69787921521374,
-        "longitude": 11.880176271112475,
-        "width_m": 1.028,
-        "depth_m": 1.60218,
+        "latitude": 47.69788036866069,
+        "longitude": 11.880171589767729,
+        "width_m": 1.705,
+        "depth_m": 0.9660040141679139,
         "azimuth": 75,
         "tilt_deg": 20,
         "lower_edge_height_m": 3,
@@ -1345,12 +1345,12 @@
         "modulePositions": [
           {
             "id": "2.1.16",
-            "latitude": 47.69787921521374,
-            "longitude": 11.880176271112475,
+            "latitude": 47.69788036866069,
+            "longitude": 11.880171589767729,
             "wp": 330,
             "groupIndex": 0,
-            "width_m": 1.028,
-            "depth_m": 1.705,
+            "width_m": 1.705,
+            "depth_m": 1.028,
             "roofX_m": 0,
             "roofY_m": 0
           }
@@ -1388,11 +1388,11 @@
       },
       "layoutSurvey": {
         "status": "derived-approximate",
-        "source": "Betreiberbestätigung und SolarEdge-Belegungsbild vom 18.11.2026; getrennte Moduldachseiten und Azimut 75°/255°",
+        "source": "SolarEdge-Belegung und Betreiberfotos 18.11.2026; parallel zum First positioniert",
         "gapAssumptionM": 0.025,
         "anchorRoofX_m": 0,
         "anchorRoofY_m": 0,
-        "note": "SolarEdge-Modul 2.1.16: Garage Ost, Azimut 75° vom Betreiber bestätigt. Mittelpunktposition aus Luftbild und vorher geschätzter Paarmitte abgeleitet, nicht vermessen; Neigung ca. 20°. Das Gegenmodul liegt auf der gegenüberliegenden Dachseite."
+        "note": "SolarEdge 2.1.16, Azimut 75°, ca. 20° Neigung; 1,705 m parallel zum First, 1,028 m vom First zur Traufe. Mittelpunkt rund 0,496 m von geschätzter Paarmitte versetzt. Nicht vermessen."
       }
     },
     {
@@ -1404,10 +1404,10 @@
       "inverterId": "wr-2",
       "geo": {
         "name": "Garage West",
-        "latitude": 47.69787921521374,
-        "longitude": 11.88015415547655,
-        "width_m": 1.028,
-        "depth_m": 1.60218,
+        "latitude": 47.69787806176679,
+        "longitude": 11.880158836821296,
+        "width_m": 1.705,
+        "depth_m": 0.9660040141679139,
         "azimuth": 255,
         "tilt_deg": 20,
         "lower_edge_height_m": 3,
@@ -1415,12 +1415,12 @@
         "modulePositions": [
           {
             "id": "2.1.15",
-            "latitude": 47.69787921521374,
-            "longitude": 11.88015415547655,
+            "latitude": 47.69787806176679,
+            "longitude": 11.880158836821296,
             "wp": 330,
             "groupIndex": 0,
-            "width_m": 1.028,
-            "depth_m": 1.705,
+            "width_m": 1.705,
+            "depth_m": 1.028,
             "roofX_m": 0,
             "roofY_m": 0
           }
@@ -1458,11 +1458,11 @@
       },
       "layoutSurvey": {
         "status": "derived-approximate",
-        "source": "Betreiberbestätigung und SolarEdge-Belegungsbild vom 18.11.2026; getrennte Moduldachseiten und Azimut 75°/255°",
+        "source": "SolarEdge-Belegung und Betreiberfotos 18.11.2026; parallel zum First positioniert",
         "gapAssumptionM": 0.025,
         "anchorRoofX_m": 0,
         "anchorRoofY_m": 0,
-        "note": "SolarEdge-Modul 2.1.15: Garage West, Azimut 255° vom Betreiber bestätigt. Mittelpunktposition aus Luftbild und vorher geschätzter Paarmitte abgeleitet, nicht vermessen; Neigung ca. 20°. Das Gegenmodul liegt auf der gegenüberliegenden Dachseite."
+        "note": "SolarEdge 2.1.15, Azimut 255°, ca. 20° Neigung; 1,705 m parallel zum First, 1,028 m vom First zur Traufe. Mittelpunkt rund 0,496 m von geschätzter Paarmitte versetzt. Nicht vermessen."
       }
     }
   ],
@@ -1499,9 +1499,9 @@
     },
     "near": {
       "path": "nahverschattung.json",
-      "sha256": "d69c197eda37d8efb2b551491c0d71a0b7ea592b71e7b9fbee0af2b66a135d06",
-      "id": "1e93ea7d28f8a0a2"
+      "sha256": "076dcef8ad1822b1f3241014c72bc49749f49ec201524bca7abb82f5d43a9f01",
+      "id": "996b42a541c6dd3e"
     },
-    "geometryHash": "e74112e8a3f356eecd82b464de49106ffecd09c18b274edc0384c850e3065a10"
+    "geometryHash": "7943dee0b7d326449a62af901ed1112574d42d0ecc5de045789d177d6bcb65a3"
   }
 }
