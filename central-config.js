@@ -23,6 +23,10 @@
       (typeof g.commissionedOn!=='string'||!(/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(g.commissionedOn))||
        !Number.isFinite(Date.parse(g.commissionedOn+'T00:00:00Z'))||new Date(g.commissionedOn+'T00:00:00Z').toISOString().slice(0,10)!==g.commissionedOn)))throw fail('Ungültiges Inbetriebnahmedatum: '+p.name);
     if(p.moduleGroups?.some(g=>g.annualDegradationPct!==undefined&&!finite(g.annualDegradationPct,0,5)))throw fail('Ungültige Modul-Degradationsrate: '+p.name);
+    if(!p.moduleGroups?.length){const validDay=d=>typeof d==='string'&&/^\\d{4}-\\d{2}-01$/.test(d)&&Number.isFinite(Date.parse(d+'T00:00:00Z'))&&new Date(d+'T00:00:00Z').toISOString().slice(0,10)===d;
+      if(p.commissionedOn!==undefined&&!validDay(p.commissionedOn))throw fail('Ungültiger Inbetriebnahmemonat: '+p.name);
+      if(p.annualDegradationPct!==undefined&&!finite(p.annualDegradationPct,0,5))throw fail('Ungültige Degradationsrate: '+p.name);
+    }
     const r=p.referencePoint;
     if(r!==undefined&&(!r||!finite(r.latitude,-90,90)||!finite(r.longitude,-180,180)||typeof r.description!=='string'||!r.description.trim()||r.description.length>300||!['subarray_center','module_center','roof_landmark','derived_pair_center'].includes(r.kind)||typeof r.dms!=='string'||r.dms.length>100||!/^\d{4}-\d{2}-\d{2}$/.test(r.confirmedOn)))throw fail('Ungültiger geografischer Bezugspunkt: '+p.name);
     const m=p.geo.modulePositions;
@@ -95,7 +99,7 @@
     const physical={geometry:geometry(c),losses:c.systemLossesPercent,albedo:c.albedo,profiles:[c.profiles.horizon.sha256,c.profiles.near.sha256],
       panels:c.panels.map(p=>[p.id,p.kwp,p.inverterId]),inverters:c.inverters.map(w=>[w.id,w.maxAcKw]).sort((a,b)=>a[0].localeCompare(b[0]))};
     // Archive identity changes on activation or correction of a cohort's aging data.
-    const activeAging=c.panels.flatMap(p=>(p.moduleGroups||[]).flatMap((g,i)=>g.commissionedOn?[[p.id,i,g.commissionedOn,g.annualDegradationPct??1]]:[]));
+    const activeAging=c.panels.flatMap(p=>p.moduleGroups?.length?p.moduleGroups.flatMap((g,i)=>g.commissionedOn?[[p.id,i,g.commissionedOn,g.annualDegradationPct??1]]:[]):(p.commissionedOn?[[p.id,-1,p.commissionedOn,p.annualDegradationPct??1]]:[]));
     if(activeAging.length)physical.moduleAging=activeAging;
     return {config:c,horizon:h,near:n,configText,horizonText,nearText,configHash:await sha256(configText),physicalHash:await sha256(canonical(physical)),online:true};
   }
@@ -151,7 +155,7 @@
     c.location={...clone(base.location),name:state.locationName,latitude:state.lat,longitude:state.lon,roofHeightM:state.roofHeight};
     c.systemLossesPercent=state.losses;c.albedo=state.albedo;
     c.panels=state.panels.map((p,i)=>({id:p.id,name:p.name,kwp:p.kwp,az:p.az,tilt:p.tilt,inverterId:p.inverterId||null,geo:clone(state.panelGeometry[i]),
-      ...(p.moduleGroups?{moduleGroups:clone(p.moduleGroups)}:{}),...(p.referencePoint?{referencePoint:clone(p.referencePoint)}:{}),...(p.layoutSurvey?{layoutSurvey:clone(p.layoutSurvey)}:{})}));
+      ...(p.moduleGroups?{moduleGroups:clone(p.moduleGroups)}:{}),...(p.commissionedOn?{commissionedOn:p.commissionedOn,commissionedOnPrecision:p.commissionedOnPrecision||'month',annualDegradationPct:p.annualDegradationPct??1}:{}),...(p.referencePoint?{referencePoint:clone(p.referencePoint)}:{}),...(p.layoutSurvey?{layoutSurvey:clone(p.layoutSurvey)}:{})}));
     c.inverters=state.inverters.map(w=>({id:w.id,name:w.name,maxAcKw:w.maxAcKw,...(w.deviceId?{deviceId:w.deviceId}:{})}));
     c.profiles.geometryHash=await sha256(canonical(geometry(c)));
     if(horizonText)c.profiles.horizon.sha256=await sha256(horizonText);

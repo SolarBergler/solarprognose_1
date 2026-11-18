@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "revision": 9,
-  "updatedAt": "2026-11-18T18:24:00+01:00",
+  "revision": 10,
+  "updatedAt": "2026-11-18T18:45:00+01:00",
   "location": {
     "name": "Schliersee",
     "latitude": 47.697844,
@@ -311,7 +311,10 @@
           "datasheetUrl": "https://www.solarconcept.at/uploads/hjjhuVOt/2088956_de-datenblatteuropajapan-ibcmonosol300vl4.pdf",
           "datasheetDate": "2016-10-13",
           "confirmedOn": "2026-11-15",
-          "mounting": "landscape"
+          "mounting": "landscape",
+          "commissionedOn": "2016-10-01",
+          "commissionedOnPrecision": "month",
+          "annualDegradationPct": 1
         },
         {
           "count": 5,
@@ -326,7 +329,10 @@
           },
           "datasheetUrl": "https://static.longi.com/20220421_LON_Gi_Data_Sheet_LR_4_72_HIH_440_460_M_EPC_Version_V15_Low_Res_ES_afb1631a7f.pdf",
           "confirmedOn": "2026-11-15",
-          "mounting": "portrait"
+          "mounting": "portrait",
+          "commissionedOn": "2024-04-01",
+          "commissionedOnPrecision": "month",
+          "annualDegradationPct": 1
         }
       ],
       "referencePoint": {
@@ -535,7 +541,10 @@
             "height": 35
           },
           "datasheetUrl": "https://winaico.com/wp-content/uploads/2021/08/d315_Datasheet_WSP-MX_EU_0620_mailing.pdf",
-          "confirmedOn": "2026-11-15"
+          "confirmedOn": "2026-11-15",
+          "commissionedOn": "2019-01-01",
+          "commissionedOnPrecision": "month",
+          "annualDegradationPct": 1
         },
         {
           "count": 2,
@@ -551,7 +560,10 @@
             "height": 35
           },
           "datasheetUrl": "https://winaico.com/wp-content/uploads/2021/08/d315_Datasheet_WSP-MX_EU_0620_mailing.pdf",
-          "confirmedOn": "2026-11-15"
+          "confirmedOn": "2026-11-15",
+          "commissionedOn": "2019-01-01",
+          "commissionedOnPrecision": "month",
+          "annualDegradationPct": 1
         }
       ],
       "referencePoint": {
@@ -870,7 +882,10 @@
           "datasheetUrl": "https://static.trinasolar.com/sites/default/files/EU_Datasheet_VertexS_DE09.08_C.pdf",
           "datasheetAccess": "Herstellerdatenblatt im Suchindex; direkter PDF-Abruf am 15.11.2026 nicht verfügbar",
           "confirmedOn": "2026-11-15",
-          "mounting": "landscape"
+          "mounting": "landscape",
+          "commissionedOn": "2020-07-01",
+          "commissionedOnPrecision": "month",
+          "annualDegradationPct": 1
         },
         {
           "count": 6,
@@ -885,7 +900,10 @@
           },
           "datasheetUrl": "https://static.longi.com/20220421_LON_Gi_Data_Sheet_LR_4_72_HIH_440_460_M_EPC_Version_V15_Low_Res_ES_afb1631a7f.pdf",
           "confirmedOn": "2026-11-15",
-          "mounting": "portrait"
+          "mounting": "portrait",
+          "commissionedOn": "2022-04-01",
+          "commissionedOnPrecision": "month",
+          "annualDegradationPct": 1
         }
       ],
       "referencePoint": {
@@ -998,7 +1016,10 @@
           "facing": "west",
           "mounting": "portrait",
           "azimuthDeg": 255,
-          "azimuthApproximate": false
+          "azimuthApproximate": false,
+          "commissionedOn": "2023-10-01",
+          "commissionedOnPrecision": "month",
+          "annualDegradationPct": 1
         }
       ],
       "referencePoint": {
@@ -1262,7 +1283,10 @@
           "datasheetUrl": "https://www.solarconcept.at/uploads/hjjhuVOt/2088956_de-datenblatteuropajapan-ibcmonosol300vl4.pdf",
           "datasheetDate": "2016-10-13",
           "confirmedOn": "2026-11-15",
-          "mounting": "landscape"
+          "mounting": "landscape",
+          "commissionedOn": "2016-10-01",
+          "commissionedOnPrecision": "month",
+          "annualDegradationPct": 1
         },
         {
           "count": 5,
@@ -1286,7 +1310,10 @@
           ],
           "datasheetAccess": "Herstellerdatenblätter im Suchindex; direkter PDF-Abruf am 15.11.2026 HTTP 403",
           "confirmedOn": "2026-11-15",
-          "mounting": "landscape"
+          "mounting": "landscape",
+          "commissionedOn": "2021-05-01",
+          "commissionedOnPrecision": "month",
+          "annualDegradationPct": 1
         }
       ],
       "referencePoint": {
@@ -1377,7 +1404,10 @@
           "confirmedOn": "2026-11-18",
           "tiltApproximate": true,
           "azimuthDeg": 75,
-          "azimuthApproximate": false
+          "azimuthApproximate": false,
+          "commissionedOn": "2019-01-01",
+          "commissionedOnPrecision": "month",
+          "annualDegradationPct": 1
         }
       ],
       "referencePoint": {
@@ -1447,7 +1477,10 @@
           "confirmedOn": "2026-11-18",
           "tiltApproximate": true,
           "azimuthDeg": 255,
-          "azimuthApproximate": false
+          "azimuthApproximate": false,
+          "commissionedOn": "2019-01-01",
+          "commissionedOnPrecision": "month",
+          "annualDegradationPct": 1
         }
       ],
       "referencePoint": {

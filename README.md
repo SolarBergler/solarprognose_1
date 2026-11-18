@@ -2,6 +2,14 @@
 
 PV-Prognose mit Gelände- und DOM20-Nahverschattung. Website: https://solarbergler.github.io/solarprognose_1/
 
+## Modulalter und Eingabefeld in „Modulfelder bearbeiten“ (V12.9.10)
+
+Die vom Betreiber angegebenen Inbetriebnahmemonate sind für alle **88 Module** in 11 Modulgruppen hinterlegt: IBC 300 (33 Stück, 10/2016), Winaico 330 (16, 01/2019), Trina 400 Carport (18, 07/2020), JA Solar 415 Haus rechts (5, 05/2021), LONGi 450 Carport (6, 04/2022), Jinko 380 Hütte (5, 10/2023), LONGi 450 Haus links (5, 04/2024).
+
+Im Dialog zur Bearbeitung bzw. Neuerstellung von Modulfeldern gibt es jetzt ein Feld **„Inbetriebnahme (Monat / Jahr)“**. Bei mehreren Modulgruppen innerhalb eines Modulfeldes erhält jede Gruppe einen eigenen Monatseingang. Bei neuen Modulfeldern ohne Einzelmodulbestückung ist der Monat Pflicht und der altersabhängige Verlust wirkt auf die gesamte Feldleistung. Bei bereits vorhandenen Gruppen ist er bearbeitbar; die Basisdaten bleiben unverändert, wenn das Datum geleert wird. Intern wird der erste Tag des angegebenen Monats als Berechnungsstichtag verwendet; die Genauigkeit ist als „Monat“ dokumentiert.
+
+Die zunächst eingetragene Degradation von 1 % pro Jahr ist eine **vorläufige Modellannahme**, keine gemessene Materialalterung. Die Leistung wird zeitabhängig je Gruppe vor Wechselrichterbegrenzung reduziert. Unterschiedliche LONGi-Jahrgänge bleiben getrennt. Alte Originalprognosen sind unverändert. Verschattungsgeometrie, DOM20, GPS und nominale DC-Leistung von 31,305 kWp bleiben unverändert. Die aktiven Altersannahmen sind im neuen physikalischen Modellhash enthalten.
+
 ## Altersabhängige Modulleistung – Modellvorbereitung V12.9.9
 
 Optional `moduleGroups[].commissionedOn` (ISO-Datum YYYY-MM-DD) und `annualDegradationPct` (0 bis 5) je Modulgeneration. Einzelmodule erhalten einen altersabhängigen STC-Leistungsfaktor: `(1-r/100)^max(0, (Prognosezeit-Inbetriebnahme)/365.2425 Tage)`. Unterschiedliche Modulgruppen im selben Feld werden mit ihren jeweiligen Wp gewichtet, auch beim DOM20-Nahprofil. Der Faktor wirkt vor AC-Clipping; keine pauschale Korrektur zusätzlich bei Systemverlusten eintragen.

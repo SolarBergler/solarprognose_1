@@ -37,6 +37,7 @@ test('Bestätigte 88 Module, WR-Zuordnung, Wp-Gewichte und GPS-Anker bleiben kon
 
 test('300/450-Wp-Gewichtung ergibt bei genau einem freien Modul 60 Prozent, nicht 50 Prozent',async()=>{
  const c=C.clone(config);c.panels=[c.panels[0]];const p=c.panels[0];p.kwp=.75;c.albedo=0;
+ for(const g of p.moduleGroups){delete g.commissionedOn;delete g.commissionedOnPrecision;delete g.annualDegradationPct;}
  p.geo.modulePositions=[p.geo.modulePositions[0],p.geo.modulePositions.at(-1)];
  const n=JSON.parse(near);n.panelProfiles=[n.panelProfiles[0]];const pr=n.panelProfiles[0];pr.samples=[Array(720).fill(89),Array(720).fill(0)];
  pr.sampleWeights=[300,450];pr.samplePositions=[pr.samplePositions[0],pr.samplePositions.at(-1)];
@@ -162,31 +163,45 @@ test('Alle Module in der Hausdach-Referenz 165° oder Vielfachen von 90°',async
  }
 });
 
-test('Altersabschlag: ohne Jahresangabe neutral, mit 1 %/a korrekt; Modellhash trennt Altmodelle',async()=>{
- const unaged=await bundle(),r=runtime(unaged,undefined,weatherFixture());
- const instant=Date.parse('2026-11-18T00:00:00Z')/1000;
- assert.equal(r.run('moduleAgingFactor(null,'+instant+')'),1);
- assert.equal(r.run("moduleAgingFactor({annualDegradationPct:1},"+instant+")"),1);
- const after10=r.run("moduleAgingFactor({commissionedOn:'2016-11-18',annualDegradationPct:1},"+instant+")");
- assert.ok(Math.abs(after10-Math.pow(.99,10))<.00005);
- assert.equal(r.run("moduleAgingFactor({commissionedOn:'2030-01-01',annualDegradationPct:1},"+instant+")"),1);
- assert.equal(r.run("moduleAgingFactor({commissionedOn:'2016-11-18',annualDegradationPct:0},"+instant+")"),1);
- const agedConfig=C.clone(config);
- agedConfig.panels[0].moduleGroups.forEach(g=>{g.commissionedOn='2016-11-18';g.annualDegradationPct=1;});
- const agedBundle=await bundle(agedConfig);
- assert.notEqual(agedBundle.physicalHash,unaged.physicalHash);
- const oldCalc=runtime(agedBundle,undefined,weatherFixture()).run('calculated');
- const baseCalc=r.run('calculated');
- assert.equal(oldCalc.length,baseCalc.length);
- let checked=0;
- for(let i=0;i<oldCalc.length;i++){
-   const a=baseCalc[i].byPanel[0].power,b=oldCalc[i].byPanel[0].power;
-   if(a>.01){checked++;assert.ok(b<=a+1e-8,'Alterung darf die Leistung nicht erhöhen');}
+test('Aktive Altersdegradation: sieben Jahrgänge und Monat/Jahr-Eingabe für bestehende und neue Felder',async()=>{
+ const b=await bundle(),c=b.config,r=runtime(b,undefined,weatherFixture());
+ const expected={'Haus links':['2016-10-01','2024-04-01'],'Garage':['2019-01-01','2019-01-01'],'Carport':['2020-07-01','2022-04-01'],'Hütte vorne':['2023-10-01'],'Haus rechts':['2016-10-01','2021-05-01'],'Garage Ost':['2019-01-01'],'Garage West':['2019-01-01']};
+ let total=0,power=0;
+ for(const panel of c.panels){
+  assert.deepEqual(panel.moduleGroups.map(g=>g.commissionedOn),expected[panel.name]);
+  for(const group of panel.moduleGroups){assert.equal(group.commissionedOnPrecision,'month');assert.equal(group.annualDegradationPct,1);}
+  for(const module of panel.geo.modulePositions){assert.equal(module.wp,panel.moduleGroups[module.groupIndex].wp);power+=module.wp;total++;}
  }
- assert.ok(checked>20);
- const bad=C.clone(config);
- bad.panels[0].moduleGroups[0].commissionedOn='2016-02-30';
- assert.throws(()=>C.validateConfig(bad),/Inbetriebnahmedatum/);
+ assert.equal(total,88);assert.equal(power,31305);
+ const now=Date.parse('2026-11-18T00:00:00Z')/1000;
+ const factors=r.run('moduleAgingFactors('+now+')');
+ const agedPower=c.panels.reduce((s,p,i)=>s+p.geo.modulePositions.reduce((v,m,j)=>v+m.wp*factors[i].samples[j],0),0);
+ assert.ok(agedPower>29000&&agedPower<29300,'Altersbereinigte DC-Leistung '+agedPower);
+ const left=c.panels.findIndex(p=>p.name==='Haus links'),carport=c.panels.findIndex(p=>p.name==='Carport');
+ const longiLeft=c.panels[left].geo.modulePositions.findIndex(m=>m.groupIndex===1);
+ const longiCarport=c.panels[carport].geo.modulePositions.findIndex(m=>m.groupIndex===1);
+ assert.ok(factors[left].samples[longiLeft]>factors[carport].samples[longiCarport]);
+ const previous=C.clone(c);
+ for(const p of previous.panels)for(const g of p.moduleGroups){delete g.commissionedOn;delete g.commissionedOnPrecision;delete g.annualDegradationPct;}
+ const unaged=await bundle(previous);assert.notEqual(b.physicalHash,unaged.physicalHash);
+ const oldRows=runtime(unaged,undefined,weatherFixture()).run('calculated'),newRows=r.run('calculated');
+ assert.equal(oldRows.length,newRows.length);
+ for(let i=0;i<newRows.length;i++)assert.ok(newRows[i].power<=oldRows[i].power+1e-8);
+ r.run('panelsDraft=state.panels.map((p,i)=>({...p,moduleGroups:JSON.parse(JSON.stringify(p.moduleGroups)),geo:panelGeometry[i]}));refreshPanelEditor()');
+ let editor=r.nodes.get('panelsEdit').innerHTML;
+ assert.ok(editor.includes('type="month"'));
+ assert.ok(editor.includes('value="2016-10"'));
+ assert.ok(editor.includes('value="2024-04"'));
+ assert.ok(editor.includes('value="2022-04"'));
+ assert.equal(r.run("monthToCommissionedOn('2024-04')"),'2024-04-01');
+ assert.equal(r.run("monthToCommissionedOn('2024-14')"),null);
+ const newField={id:'test-new-field',name:'Test',kwp:1,az:165,tilt:20,inverterId:null,geo:{latitude:0,longitude:0,width_m:1,depth_m:1,lower_edge_height_m:1,upper_edge_height_m:2},commissionedOn:'2025-03-01',commissionedOnPrecision:'month',annualDegradationPct:1};
+ const newConfig=C.clone(c);newConfig.panels.push(newField);
+ assert.equal(C.validateConfig(newConfig),newConfig);
+ const noDate=C.clone(newConfig);noDate.panels.at(-1).commissionedOn='2025-02-30';
+ assert.throws(()=>C.validateConfig(noDate),/Inbetriebnahmemonat/);
+ const draft=await C.draftConfig(C.toState(newConfig),newConfig);
+ assert.equal(draft.panels.at(-1).commissionedOn,'2025-03-01');
 });
 
 module.exports={runtime,bundle};
