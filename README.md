@@ -1,5 +1,23 @@
 # Solarprognose
 
+## Wetter-Originaldaten künftig mit jeder 06-/18-Uhr-Prognose einfrieren
+
+Neue Prognosearchive enthalten zusätzlich `forecastWeatherSnapshot` mit
+den **tatsächlich im Browser für die Rechnung verwendeten** Stunden- und
+gegebenenfalls 15-Minuten-Wetterfeldern (DNI, DHI, GHI, Temperatur usw.).
+Gespeichert werden der damalige Wetteranbieter, die Ausgabekennung,
+Prognosetag, -slot, Modellhash und zentrale Konfigurationskennung.
+
+Dies ermöglicht später faire Gegenrechnungen neuer PV-Verschattungsmodelle
+mit identischen *damals vorhergesagten* Wetterdaten. Bereits existierende
+historische `06.json`-/`18.json`-Dateien werden nicht nachträglich mit
+heutigen Wetterdaten aufgefüllt oder überschrieben. Bei fehlendem oder
+ungültigem Wetterinput steht stattdessen ein expliziter
+`forecastWeatherSnapshotStatus` im neuen Archiv; die bewährte
+Prognosearchivierung wird dadurch nicht blockiert. Vor allem historische
+18-Uhr-Snapshots können bereits eingefrorene Morgen-/Nachmittagsleistungen
+enthalten; allein der 18-Uhr-Wetterstand rekonstruiert diese nicht.
+
 ## SolarEdge-AC-Tageswerte automatisch validieren
 
 Der vorhandene AC-Prüfer benötigt keine Modul- oder Optimierer-Telemetrie.
