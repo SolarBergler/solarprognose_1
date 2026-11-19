@@ -13,6 +13,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
+from weather_snapshot import build_snapshot
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / 'prognosen'
@@ -173,6 +174,7 @@ def main():
             progressiveLastUpdate:record.updatedAt,
             browserArchive:archive,
             sourceWeatherData:app.getWeatherData?.() || null,
+            forecastWeatherInput:app.getForecastWeatherSnapshot?.() || app.getWeatherData?.() || null,
           };
         }''')
         browser.close()
@@ -207,6 +209,7 @@ def main():
     # Cache als frischer Wetterstand gespeichert werden. Die bestehende
     # Archivdatei (06/18 Uhr) und die fortgeschriebenen Kurven bleiben unverändert.
     source_weather = result.pop('sourceWeatherData', None)
+    forecast_weather_input = result.pop('forecastWeatherInput', None)
     meteo_provider=(result.get('weatherDiagnostics') or {}).get('source', 'unknown')
     if meteo_provider not in ('open-meteo','dwd'):
         raise RuntimeError(f'Kein frischer unabhängiger Wetterstand verfügbar: {meteo_provider}')
@@ -223,6 +226,22 @@ def main():
         print('GitHub-Wetterstand aktualisiert (Safari-Fallback).')
     else:
         print('WARNUNG: Kein sicher live erfasster Wetterstand verfügbar; GitHub-Wettercache bleibt unverändert.')
+
+    # Persist the exact forecast-vintage radiation inputs with the ORIGINAL 06/18
+    # archive, not a moving weather cache. This is future-only: never backfill
+    # historical archives with a later weather forecast.
+    if forecast_weather_input is not None:
+        try:
+            result['forecastWeatherSnapshot'] = build_snapshot(
+                forecast_weather_input, result.get('weatherDiagnostics'), day, slot,
+                result['modelHash'], central['configurationHash'])
+        except ValueError as exc:
+            # New observability may not break the established daily AC archive.
+            result['forecastWeatherSnapshotStatus'] = 'invalid_input'
+            print('WARNUNG: Wetter-Momentaufnahme ungültig:', exc)
+    else:
+        result['forecastWeatherSnapshotStatus'] = 'unavailable'
+        print('WARNUNG: Wetter-Eingangsdaten für diesen Archivlauf nicht vollständig verfügbar.')
 
     browser_archive = result.pop('browserArchive')
     for record in browser_archive.get('days', {}).values():
