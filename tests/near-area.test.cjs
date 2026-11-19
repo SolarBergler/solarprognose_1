@@ -64,3 +64,23 @@ test('Index references the area library before the main inline application',()=>
   assert.ok(html.includes('AREA.diffuse('));
   assert.ok(html.indexOf('src="./near-area.js')<html.indexOf('const AREA=window.SolarNearArea'));
 });
+test('Cryptographic profile binding rejects changed nine-point horizons',async()=>{
+  const conf=JSON.parse(fs.readFileSync(path.join(__dirname,'../anlagenkonfiguration.json'),'utf8'));
+  const near=JSON.parse(fs.readFileSync(path.join(__dirname,'../nahverschattung.json'),'utf8'));
+  const horizonText=fs.readFileSync(path.join(__dirname,'../horizontprofil.json'),'utf8');
+  near.panelProfiles[0].areaSamples=Array.from(
+    {length:near.panelProfiles[0].samples.length},()=>null);
+  near.panelProfiles[0].areaSamples[0]=Array.from({length:9},()=>flat(12));
+  near.id='nine-point-regression';
+  const nearText=C.serialize(near);
+  conf.profiles.near.id=near.id;
+  conf.profiles.near.sha256=await C.sha256(nearText);
+  const good=await C.verifyBundle(C.serialize(conf),horizonText,nearText);
+  assert.equal(good.near.panelProfiles[0].areaSamples[0].length,9);
+  const tampered=JSON.parse(nearText);
+  tampered.panelProfiles[0].areaSamples[0][0][0]=15;
+  await assert.rejects(
+    ()=>C.verifyBundle(C.serialize(conf),horizonText,C.serialize(tampered)),
+    err=>err.code==='PROFILE_MISMATCH'
+  );
+});
