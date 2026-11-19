@@ -56,6 +56,17 @@ class AcOnlyEvaluation(unittest.TestCase):
         self.assertEqual(len(groups),2)
         self.assertTrue(all(g['status']=='zu_wenige_tage' for g in groups))
 
+    def test_release_versions_separated_despite_identical_physics(self):
+        self.snapshot('2026-11-09', 10, model='same', physical='same')
+        p=self.snapshot('2026-11-10', 20, model='same', physical='same')
+        data=json.loads(p.read_text());data['modelVersion']='V2';p.write_text(json.dumps(data))
+        actuals=self.actuals([('2026-11-09',9,''),('2026-11-10',19,'')])
+        rows,groups=evaluate(self.repo,actuals,min_days=2)
+        self.assertEqual(len(rows),2)
+        self.assertEqual(len(groups),2)
+        self.assertEqual({g['version'] for g in groups},{'V1','V2'})
+        self.assertTrue(all(g['status']=='zu_wenige_tage' for g in groups))
+
     def test_reject_late_snapshot(self):
         path = self.snapshot('2026-11-09', 10)
         j = json.loads(path.read_text());j['recordedAt']='2026-11-09T12:00:00+01:00';path.write_text(json.dumps(j))
