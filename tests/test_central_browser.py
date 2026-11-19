@@ -105,7 +105,7 @@ def run_archive_regression():
     html=html.replace('<script src="./near-area.js?v=12.9.11"></script>','<script>'+(ROOT/'near-area.js').read_text()+'</script>')
     # localhost ist ein Secure Context und bietet die echte WebCrypto-Prüfung auch ohne Internet.
     with tempfile.TemporaryDirectory() as tmp:
-        root=Path(tmp);(root/'scripts').mkdir();shutil.copy(ROOT/'scripts/archiviere_prognose.py',root/'scripts/archiviere_prognose.py')
+        root=Path(tmp);(root/'scripts').mkdir();shutil.copy(ROOT/'scripts/archiviere_prognose.py',root/'scripts/archiviere_prognose.py');shutil.copy(ROOT/'scripts/weather_snapshot.py',root/'scripts/weather_snapshot.py')
         shutil.copy(ROOT/'anlagenkonfiguration.json',root/'anlagenkonfiguration.json')
         shutil.copytree(ROOT/'prognosen',root/'prognosen')
         protected={p:p.read_bytes() for p in (root/'prognosen').rglob('*.json') if p.name not in ['letzter_wetterstand.json','browser_prognosezustand_v12_8.json']}
@@ -139,6 +139,10 @@ sys.exit(m.main())
             assert d['modelVersion']=='V12.9.0'
             assert d['centralConfiguration']['configurationHash']==expected
             assert d['centralConfiguration']['online']
+            assert d['forecastWeatherSnapshot']['configurationHash']==expected
+            assert d['forecastWeatherSnapshot']['modelHash']==d['modelHash']
+            assert d['forecastWeatherSnapshot']['weather']['hourly']['time']
+            assert d['forecastWeatherSnapshot']['source'] in ('open-meteo','dwd')
             assert d['centralConfiguration']['configuration']==resources['anlagenkonfiguration.json']
             assert (root/'prognosen/browser_prognosezustand_v12_8.json').is_file()
             # Ein neuer GitHub-Stand mit noch alter Pages-Datei darf keinen Snapshot erzeugen.
