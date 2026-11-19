@@ -1813,6 +1813,8 @@ window.SolarApp={solarPosition,interpolateHorizon,diffuseFactor,calculate,groupD
   profileKey,archiveModelId,archiveRecord,readForecastArchive,getArchive:()=>forecastArchive,saveForecastSnapshots,renderHistoryInfo,
   setTestWeather:w=>{weather=w;calculate()},getWeatherData:()=>!weatherIsCached&&weatherProvider==='open-meteo'?weather:null,
   getWeatherDiagnostics:()=>({source:weatherProvider,issuedAt:weatherSourceIssuedAt,notLive:weatherIsCached,reason:weatherFetchError}),
+  // Exact forecast weather as used by calculate(), including DWD if active; never stale cache.
+  getForecastWeatherSnapshot:()=>!weatherIsCached&&weather?weather:null,
   importProfile,loadPublishedHorizon,restoreOriginalFromCache:loadCachedOriginal,
   getNearData:()=>nearData,loadNearProfile,validateNearData,nearVisibleFraction,
   setTestNearData:d=>{nearData=validateNearData(d);nearStatusText="DOM20-Testprofil";initNearFactors();calculate()}};
