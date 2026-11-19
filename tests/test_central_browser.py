@@ -111,6 +111,7 @@ def run_archive_regression():
         protected={p:p.read_bytes() for p in (root/'prognosen').rglob('*.json') if p.name not in ['letzter_wetterstand.json','browser_prognosezustand_v12_8.json']}
         (root/'fixture.html').write_text(html)
         runner='''import importlib.util,datetime,sys,os
+sys.path.insert(0,os.path.dirname(sys.argv[1]))
 spec=importlib.util.spec_from_file_location('archive',sys.argv[1]);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
 class Clock(datetime.datetime):
     @classmethod
