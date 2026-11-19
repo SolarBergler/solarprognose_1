@@ -1,5 +1,29 @@
 # Solarprognose
 
+## Optionales Neun-Punkte-Flächenmodell (experimentelle Schnittstelle)
+
+Die reguläre PV-Prognose braucht **keine Modul-/Optimierer-Telemetrie**. Die
+geometrische Nahverschattung kann optional je Modul aus neun unabhängigen
+Sichtlinien der Modulfläche berechnet werden. Die AC-Validierung erfolgt
+getrennt über `scripts/validiere_ac.py`.
+
+Dafür darf ein `panelProfiles[]`-Eintrag in `nahverschattung.json` zusätzlich
+`areaSamples` enthalten: ein Array in derselben Reihenfolge wie `samples`,
+für jedes Modul entweder `null` (bewährter Mittelpunkt-Fallback) oder exakt
+**neun** Horizontarrays mit jeweils **720** Winkeln in 0,5°-Abständen
+(geografischer Azimut, Grad über Horizont). Die Fläche wird bei der direkten
+Einstrahlung zu neun gleichen Teilflächen aufgelöst; die diffuse
+Himmelslichtkomponente wird ebenfalls flächengewichtet ermittelt.
+
+Diese Erweiterung ist rückwärtskompatibel: Solange `areaSamples` in den
+zentral veröffentlichten Profilen fehlt, bleiben die bisherigen Mittelpunkt-
+Berechnungen unverändert. Neue 88-Modul-Flächendaten dürfen nur zusammen mit
+der dazu passenden Geometrie und den vorgeschriebenen SHA-256-Profilbindungen
+veröffentlicht werden. Die vorliegenden 792 LiDAR-Testprofile sind **noch
+nicht** als produktiver Datensatz aktiviert, da die AC-Gesamtvalidierung der
+neuen Geometrie noch aussteht. Es erfolgt **keine** Anpassung von Dachneigungen
+oder Systemverlusten an Einzelmodulleistungen.
+
 PV-Prognose mit Gelände- und DOM20-Nahverschattung. Website: https://solarbergler.github.io/solarprognose_1/
 
 ## Modulalter und Eingabefeld in „Modulfelder bearbeiten“ (V12.9.10)

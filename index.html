@@ -230,6 +230,7 @@ window.addEventListener('unhandledrejection',event=>{
 </script>
 <script src="./inverters.js?v=12.7"></script>
 <script src="./central-config.js?v=12.9.0"></script>
+<script src="./near-area.js?v=12.9.11"></script>
 <script>
 'use strict';
 const $=id=>document.getElementById(id);
@@ -250,6 +251,7 @@ let panelsDraft=[],invertersDraft=[];let pendingPanels=null;let pendingGeometry=
 if(Math.abs(state.lat-47.7)<1e-7&&Math.abs(state.lon-11.88)<1e-7){state.lat=defaults.lat;state.lon=defaults.lon;}
 if(typeof state.locationName!=='string'||!state.locationName.trim())state.locationName=defaults.locationName;
 // V7: Der Horizont ist im Diagramm ausschließlich lesbar; kein Touch-Event darf ihn ändern.
+const AREA=window.SolarNearArea;
 let nearData=null,nearShadeFactors=[],nearWeights=[],nearStatusText='Noch kein geprüfter DOM20-Nahbereich';
 let weather=null,horizon=null,profileSource='',selectedDay='',calculated=[],errorWeather='',errorHorizon='',working=false;
 let weatherIsCached=false,weatherCachedAt=null,weatherCachedSource='';
@@ -522,9 +524,10 @@ function nearAngle(sample,az){
 }
 function nearVisibleFraction(panelIndex,az,alt){
   if(!nearData)return null;
-  const samples=nearData.panelProfiles[panelIndex].samples;
+  const profile=nearData.panelProfiles[panelIndex];
   const mountain=interpolateHorizon(az);
-  return samples.reduce((open,sample,k)=>open+(alt>=Math.max(mountain,nearAngle(sample,az))?nearWeights[panelIndex][k]:0),0);
+  return profile.samples.reduce((open,sample,k)=>open+
+    AREA.visibleFraction(profile,k,az,alt,mountain,nearAngle)*nearWeights[panelIndex][k],0);
 }
 function nearDiffuseFactor(panel,sample){
   const tilt=panel.tilt*rad,azi=panel.az*rad;
@@ -541,7 +544,7 @@ function nearDiffuseFactor(panel,sample){
 }
 function initNearFactors(){
   nearWeights=nearData?nearData.panelProfiles.map(p=>{const w=p.sampleWeights||p.samples.map(()=>1),sum=w.reduce((a,b)=>a+b,0);return w.map(v=>v/sum);}):[];
-  nearShadeFactors=nearData&&horizon?state.panels.map((p,j)=>nearData.panelProfiles[j].samples.map(sample=>nearDiffuseFactor(p,sample))):[];
+  nearShadeFactors=nearData&&horizon?state.panels.map((p,j)=>nearData.panelProfiles[j].samples.map((sample,k)=>AREA.diffuse(nearData.panelProfiles[j],k,p,nearDiffuseFactor))):[];
 }
 function validateNearData(doc,expectedPanels=state.panels,expectedGeometry=panelGeometry){
   if(![1,2].includes(doc?.version)||doc?.kind!=='dom20-nearshade'||!doc?.location||!Array.isArray(doc.panelProfiles)||doc.panelProfiles.length!==expectedPanels.length)throw Error('Nahprofil gehört nicht zu dieser Anlagenkonfiguration.');
@@ -549,6 +552,7 @@ function validateNearData(doc,expectedPanels=state.panels,expectedGeometry=panel
   if(!/DOM20/i.test(doc.source||''))throw Error('DOM20-Datenquelle fehlt.');
   for(let i=0;i<expectedPanels.length;i++){
     const p=doc.panelProfiles[i],expected=expectedPanels[i];
+    AREA.validate(p,p.samples?.length||0);
     if(!p?.center||!Number.isFinite(+p.center.latitude)||!Number.isFinite(+p.center.longitude))throw Error('Dachkoordinaten fehlen: '+expected.name);
     const geom=expectedGeometry[i];
     if(geom&&geom.latitude!=null&&(Math.abs(p.center.latitude-geom.latitude)>.000001||Math.abs(p.center.longitude-geom.longitude)>.000001)){
@@ -568,7 +572,7 @@ function renderNearModel(){
     return;
   }
   $('nearSummary').innerHTML='<strong>DOM20-Nahverschattung aktiv.</strong> '+
-    nearData.panelProfiles.map((p,i)=>escapeHtml(state.panels[i].name)+': '+p.samples.length+(panelGeometry[i].modulePositions?' Modulmittelpunkte':' Stichproben')).join(' · ')+
+    nearData.panelProfiles.map((p,i)=>escapeHtml(state.panels[i].name)+': '+p.samples.length+(p.areaSamples?' Module (teilweise 9 Flächenpunkte)':' Modulmittelpunkte')).join(' · ')+
     '. Direkte Strahlung und diffuses Himmelslicht werden je Position berechnet, bei Einzelmodulen nach Wp gewichtet. Abgeleitete Positionen sind Näherungen.'+
     (()=>{const all=centralBundle.config.panels.flatMap(p=>p.moduleGroups||[]),active=all.filter(g=>!!g.commissionedOn);return '<br><strong>Modulalterung:</strong> '+(active.length?active.length+' von '+all.length+' Modulgruppen aktiv.':'Noch nicht aktiv: Inbetriebnahme-Daten fehlen; kein Alter geraten.');})();
 }
@@ -675,8 +679,8 @@ function calculate(){
           if(nearReady){
             const samples=nearData.panelProfiles[j].samples;
             const powerPerSample=samples.reduce((total,sample,k)=>{
-              const visible=openSun&&sun.alt>=Math.max(interpolateHorizon(sun.az),nearAngle(sample,sun.az));
-              const gtNear=dni*incidence*(visible?1:0)+(openSun?dhi:0)*nearShadeFactors[j][k]+reflected;
+              const fraction=openSun?AREA.visibleFraction(nearData.panelProfiles[j],k,sun.az,sun.alt,interpolateHorizon(sun.az),nearAngle):0;
+              const gtNear=dni*incidence*fraction+(openSun?dhi:0)*nearShadeFactors[j][k]+reflected;
               return total+modelPower(gtNear,aging[j].samples[k])*nearWeights[j][k];
             },0);
             minuteShaded[j]=powerPerSample;

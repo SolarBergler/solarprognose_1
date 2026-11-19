@@ -102,6 +102,7 @@ def run_archive_regression():
     })();</script><!-- BEFORE_APP -->'''%(json.dumps(raw),json.dumps(weather))
     html=html.replace('<script src="./inverters.js?v=12.7"></script>',prefix+'<script>'+(ROOT/'inverters.js').read_text()+'</script>')
     html=html.replace('<script src="./central-config.js?v=12.9.0"></script>','<script>'+(ROOT/'central-config.js').read_text()+'</script>')
+    html=html.replace('<script src="./near-area.js?v=12.9.11"></script>','<script>'+(ROOT/'near-area.js').read_text()+'</script>')
     # localhost ist ein Secure Context und bietet die echte WebCrypto-Prüfung auch ohne Internet.
     with tempfile.TemporaryDirectory() as tmp:
         root=Path(tmp);(root/'scripts').mkdir();shutil.copy(ROOT/'scripts/archiviere_prognose.py',root/'scripts/archiviere_prognose.py')

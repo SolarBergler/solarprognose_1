@@ -46,6 +46,14 @@
     if(modules&&(!Array.isArray(profile.sampleWeights)||profile.sampleWeights.length!==expected||!Array.isArray(profile.samplePositions)||profile.samplePositions.length!==expected||modules.some((m,i)=>{
       const s=profile.samplePositions[i];return !s||s.id!==m.id||s.latitude!==m.latitude||s.longitude!==m.longitude||s.wp!==m.wp||profile.sampleWeights[i]!==m.wp;
     })))throw fail('DOM20-Modulpositionen oder Wp-Gewichte stimmen nicht überein: '+panel.name);
+    // Optional per-module surface detail. Existing V12 center profiles remain valid.
+    if(profile.areaSamples!==undefined){
+      const a=profile.areaSamples;
+      if(!Array.isArray(a)||a.length!==expected||a.some(modulePatches=>
+        modulePatches!==null&&(!Array.isArray(modulePatches)||modulePatches.length!==9||
+          modulePatches.some(patch=>!Array.isArray(patch)||patch.length!==720||
+            patch.some(v=>!finite(v,0,89.999999))))))throw fail('Ungültige DOM20-Neun-Punkte-Flächenprofile: '+panel.name);
+    }
     return profile;
   }
   function validateConfig(c){
