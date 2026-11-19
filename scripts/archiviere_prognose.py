@@ -231,9 +231,14 @@ def main():
     # archive, not a moving weather cache. This is future-only: never backfill
     # historical archives with a later weather forecast.
     if forecast_weather_input is not None:
-        result['forecastWeatherSnapshot'] = build_snapshot(
-            forecast_weather_input, result.get('weatherDiagnostics'), day, slot,
-            result['modelHash'], central['configurationHash'])
+        try:
+            result['forecastWeatherSnapshot'] = build_snapshot(
+                forecast_weather_input, result.get('weatherDiagnostics'), day, slot,
+                result['modelHash'], central['configurationHash'])
+        except ValueError as exc:
+            # New observability may not break the established daily AC archive.
+            result['forecastWeatherSnapshotStatus'] = 'invalid_input'
+            print('WARNUNG: Wetter-Momentaufnahme ungültig:', exc)
     else:
         result['forecastWeatherSnapshotStatus'] = 'unavailable'
         print('WARNUNG: Wetter-Eingangsdaten für diesen Archivlauf nicht vollständig verfügbar.')
