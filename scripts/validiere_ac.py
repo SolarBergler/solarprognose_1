@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Prueft archivierte PV-Prognosen gegen AC-Tagesertraege, ohne Optimiererdaten.
 
-Eingabe: CSV mit date,ac_kwh (optional wr1_kwh .. wr4_kwh),
+Eingabe: CSV mit date,ac_kwh (optional wr1_kwh .. wr4_kwh), oder\n          JSON-Archiv mit SolarEdge-dailyEnergy,
           unveraenderte Archivdateien prognosen/YYYY-MM-DD/06.json (oder 18.json).
-Gruppiert nach Modell-/Physik-Hash. Kein Rueckgriff auf nachtraegliches Wetter.
+Gruppiert nach Programmversion, Modell- und Physik-Hash. Kein Rueckgriff auf nachtraegliches Wetter.
 """
 import argparse
 import csv
@@ -14,7 +14,7 @@ from datetime import date, datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-LOCAL = ZoneInfo('Europe/Berlin')
+from solaredge_ac import load_kiosk_ac\n\nLOCAL = ZoneInfo('Europe/Berlin')
 
 def nonnegative(value, context):
     try:
@@ -27,6 +27,8 @@ def nonnegative(value, context):
 
 
 def observations(path):
+    if path.suffix.lower() == '.json':
+        return load_kiosk_ac(path)
     with path.open(encoding='utf-8-sig', newline='') as fp:
         sample = fp.read(2048); fp.seek(0)
         try:
@@ -118,6 +120,9 @@ def evaluate(archive_dir, actuals, slot='06', min_days=5, include_provisional=Fa
         observed = actuals[r['date']]
         r['actual_ac_kwh'] = observed['ac_kwh']
         r['actual_status'] = observed['status']
+        if 'source_status' in observed:
+            r['actual_source_status'] = observed['source_status']
+            r['actual_observed_at_utc'] = observed.get('observed_at_utc')
         for i in range(1, 5):
             key = f'wr{i}_kwh'
             if key in observed:
@@ -126,11 +131,11 @@ def evaluate(archive_dir, actuals, slot='06', min_days=5, include_provisional=Fa
         rows.append(r)
     groups = defaultdict(list)
     for r in rows:
-        groups[(r['model_hash'], r['physical_hash'], r['near_id'])].append(r)
+        groups[(r['model_hash'], r['physical_hash'], r['near_id'], r['version'])].append(r)
     summary = []
-    for (model, physical, near), samples in sorted(groups.items()):
+    for (model, physical, near, version), samples in sorted(groups.items()):
         entry = {'model_hash': model, 'physical_hash': physical, 'near_id': near,
-                 'version': samples[0]['version'], 'slot': slot,
+                 'version': version, 'slot': slot,
                  'first_day': samples[0]['date'], 'last_day': samples[-1]['date'],
                  'status': 'auswertbar' if len(samples) >= min_days else 'zu_wenige_tage',
                  'ac': score(samples)}
@@ -146,7 +151,7 @@ def evaluate(archive_dir, actuals, slot='06', min_days=5, include_provisional=Fa
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument('--actual', type=Path, required=True, help='CSV: date,ac_kwh[,wr1_kwh,...]')
+    p.add_argument('--actual', type=Path, required=True, help='CSV: date,ac_kwh[,wr1_kwh,...] ODER SolarEdge-Kiosk-Archiv (.json)')
     p.add_argument('--archive', type=Path, default=Path(__file__).resolve().parents[1]/'prognosen')
     p.add_argument('--slot', choices=['06', '18'], default='06')
     p.add_argument('--min-days', type=int, default=5)

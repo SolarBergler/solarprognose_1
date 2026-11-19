@@ -1,5 +1,31 @@
 # Solarprognose
 
+## SolarEdge-AC-Tageswerte automatisch validieren
+
+Der vorhandene AC-Prüfer benötigt keine Modul- oder Optimierer-Telemetrie.
+Er akzeptiert jetzt entweder eine CSV mit `date,ac_kwh` oder unmittelbar das
+gespeicherte SolarEdge-Kiosk-JSON-Archiv mit `dailyEnergy`:
+
+```bash
+python scripts/validiere_ac.py \
+  --actual /pfad/zum/PV_SolarEdge_Kiosk_Ertraege.json \
+  --archive prognosen \
+  --slot 06 \
+  --output ac_validierung.json
+```
+
+`historical_reported_value` wird als historisch *gemeldet*, **nicht**
+als abschließend zertifiziert, eingestuft. `evening_reported_value_not_final`
+und `intraday_provisional` sind vorläufig und werden standardmäßig
+ausgeschlossen. Unbekannte Stati, doppelte Tage, negative Werte und
+unvereinbare Wh-/kWh-Angaben führen zu einem Fehler.
+
+Die Auswertung trennt neben physikalischem Modellhash und Nahprofil-ID
+auch die konkrete Programmversion, damit unterschiedliche Releases
+nicht zu einer einzigen Zeitreihe verschmelzen. Historische
+Originalprognosen werden nicht überschrieben. Es wird kein nachträglich
+beobachtetes Wetter als damalige Vorhersage ausgegeben.
+
 ## Optionales Neun-Punkte-Flächenmodell (experimentelle Schnittstelle)
 
 Die reguläre PV-Prognose braucht **keine Modul-/Optimierer-Telemetrie**. Die
