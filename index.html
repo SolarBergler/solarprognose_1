@@ -843,7 +843,10 @@ function localDayStart(day){
 // V7: Nur Anzeige und Abtasten. Der SVG-Plot besitzt keinerlei schreibende Events.
 function renderHorizon(){
   const w=900,h=265,l=39,r=16,t=17,b=43,ww=w-l-r,hh=h-t-b;
-  const lim=clamp(Math.ceil(Math.max(45,...(horizon||[]).map(v=>v.height+8))/10)*10,50,90);
+  // Always leave room for the June solstice's midday altitude (about 66° at Schliersee).
+  // Without this, the existing 50° chart ceiling clips the upper reference curve.
+  const solsticePeak=90-Math.abs(state.lat-23.44);
+  const lim=clamp(Math.ceil(Math.max(45,solsticePeak+3,...(horizon||[]).map(v=>v.height+8))/10)*10,50,90);
   const x=a=>l+a/360*ww,y=he=>t+hh-clamp(he,0,lim)/lim*hh;
   const horizonStroke='#a4d8a6';
   // The highest/lowest annual solar trajectories occur at the solstices.
