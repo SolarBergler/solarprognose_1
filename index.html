@@ -137,7 +137,7 @@
         <div class="horizon-top"><h2>Gelände-Horizontprofil</h2><span class="badge" id="horizonBadge">Nicht geladen</span></div>
         <p class="horizon-meta" id="horizonSource">Prüfe, ob ein gespeichertes Geländeprofil vorhanden ist …</p>
         <div class="horizon-wrap"><div id="horizonPlot"></div><div class="horizon-tooltip" id="hoverInfo">Süd: —°</div></div>
-        <p class="foot">Die grüne Fläche zeigt den Berghorizont, die gestrichelte Kurve den Sonnenlauf. <strong>Berühre die Grafik, um Winkel und Horizonthöhe abzulesen.</strong> Das verändert keine Messwerte. Das Diagramm ist dauerhaft schreibgeschützt.</p>
+        <p class="foot">Die grüne Fläche zeigt den Berghorizont. Zwei feine durchgezogene Linien in Horizontfarbe markieren die höchste und tiefste Sonnenbahn des Jahres (Sommer- und Wintersonnenwende); die gelb gestrichelte Linie zeigt den gewählten Tag. <strong>Berühre die Grafik, um Winkel und Horizonthöhe abzulesen.</strong> Das verändert keine Messwerte. Das Diagramm ist dauerhaft schreibgeschützt.</p>
         <div class="setting-actions"><button id="restorePublishedHorizon" class="btn secondary" type="button">Originalprofil aus GitHub wiederherstellen</button></div>
         <p class="hint">Dauerhafter Schreibschutz: Abtasten verändert niemals das Geländeprofil. Frühere versehentliche Fingerkorrekturen werden in dieser Version ignoriert; das GitHub-Original ist maßgeblich.</p>
         <div class="warning hidden" id="horizonWarning">Das Geländeprofil ist nicht verfügbar: Die vollständige V12-Prognose kann daher derzeit nicht berechnet oder archiviert werden. Bitte die gespeicherten Standort-/Dachhöhenwerte über „Originalprofil aus GitHub wiederherstellen“ prüfen. Ein erneuter Terrain-Abruf ist normalerweise nicht erforderlich.</div>
@@ -843,8 +843,35 @@ function localDayStart(day){
 // V7: Nur Anzeige und Abtasten. Der SVG-Plot besitzt keinerlei schreibende Events.
 function renderHorizon(){
   const w=900,h=265,l=39,r=16,t=17,b=43,ww=w-l-r,hh=h-t-b;
-  const lim=clamp(Math.ceil(Math.max(45,...(horizon||[]).map(v=>v.height+8))/10)*10,50,90);
+  // Always leave room for the June solstice's midday altitude (about 66° at Schliersee).
+  // Without this, the existing 50° chart ceiling clips the upper reference curve.
+  const solsticePeak=90-Math.abs(state.lat-23.44);
+  const lim=clamp(Math.ceil(Math.max(45,solsticePeak+3,...(horizon||[]).map(v=>v.height+8))/10)*10,50,90);
   const x=a=>l+a/360*ww,y=he=>t+hh-clamp(he,0,lim)/lim*hh;
+  const horizonStroke='#a4d8a6';
+  // The highest/lowest annual solar trajectories occur at the solstices.
+  // Pick the day of the declination extremum; in some years it is not June/December 21.
+  const solsticeDay=(year,month,highest)=>{
+    const phi=state.lat*rad;
+    let chosen='',extremum=highest?-Infinity:Infinity;
+    for(let d=19;d<=23;d++){
+      const day=`${year}-${String(month).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+      const sun=solarPosition(Date.parse(day+'T12:00:00Z')/1000);
+      const alt=sun.alt*rad,az=sun.az*rad;
+      const declination=Math.asin(clamp(Math.sin(phi)*Math.sin(alt)+Math.cos(phi)*Math.cos(alt)*Math.cos(az),-1,1));
+      if(highest?declination>extremum:declination<extremum){extremum=declination;chosen=day;}
+    }
+    return chosen;
+  };
+  const sunPathForDay=day=>{
+    const start=localDayStart(day),finish=localDayStart(dayAfter(day)),pts=[];
+    for(let ts=start;ts<=finish;ts+=5*60){
+      const sun=solarPosition(ts);
+      if(sun.alt>0)pts.push([x(sun.az),y(sun.alt)]);
+    }
+    pts.sort((a,b)=>a[0]-b[0]);
+    return pts.length?'M '+pts.map(p=>p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' L '):'';
+  };
   const horizonPath=()=>{
     const coords=Array.from({length:721},(_,i)=>[x(i/2),y(interpolateHorizon(i/2))]);
     return 'M '+x(0)+' '+y(0)+' L '+coords.map(p=>p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' L ')+' L '+x(360)+' '+y(0)+' Z';
@@ -852,12 +879,15 @@ function renderHorizon(){
   let svg=`<svg id="horizonSvg" class="chart" viewBox="0 0 ${w} ${h}" style="touch-action:pan-y;cursor:crosshair" aria-label="Nur-Leseansicht des Gelände-Horizonts">`;
   for(let a=0;a<=360;a+=45){svg+=`<line class="chart-grid" x1="${x(a)}" y1="${t}" x2="${x(a)}" y2="${t+hh}"/><text class="axistext" x="${x(a)}" y="${h-18}" text-anchor="middle">${a===0?'N':a===90?'O':a===180?'S':a===270?'W':a===360?'N':a+'°'}</text>`;}
   for(let a=0;a<=lim;a+=10){svg+=`<line class="chart-grid" x1="${l}" y1="${y(a)}" x2="${w-r}" y2="${y(a)}"/><text class="axistext" x="${l-7}" y="${y(a)+4}" text-anchor="end">${a}°</text>`;}
-  if(horizon)svg+=`<path id="horizonArea" d="${horizonPath()}" fill="#557b68" fill-opacity=".42" stroke="#a4d8a6" stroke-width="2" />`;
+  if(horizon)svg+=`<path id="horizonArea" d="${horizonPath()}" fill="#557b68" fill-opacity=".42" stroke="${horizonStroke}" stroke-width="2" />`;
+  const year=selectedDay?Number(selectedDay.slice(0,4)):new Date().getFullYear();
+  for(const [season,day] of [['summer',solsticeDay(year,6,true)],['winter',solsticeDay(year,12,false)]]){
+    const path=sunPathForDay(day);
+    if(path)svg+=`<path class="sun-extreme-reference" data-season="${season}" d="${path}" fill="none" stroke="${horizonStroke}" stroke-width="1" vector-effect="non-scaling-stroke" pointer-events="none"/>`;
+  }
   if(selectedDay){
-    const start=localDayStart(selectedDay),finish=localDayStart(dayAfter(selectedDay));
-    let sunPts=[];
-    for(let ts=start;ts<=finish;ts+=5*60){const s=solarPosition(ts);if(s.alt>0)sunPts.push([x(s.az),y(s.alt)]);}
-    if(sunPts.length){sunPts.sort((a,b)=>a[0]-b[0]);svg+=`<path d="M ${sunPts.map(p=>p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' L ')}" fill="none" stroke="#f3bf72" stroke-width="2.8" stroke-dasharray="8 5"/>`;}
+    const path=sunPathForDay(selectedDay);
+    if(path)svg+=`<path d="${path}" fill="none" stroke="#f3bf72" stroke-width="2.8" stroke-dasharray="8 5"/>`;
   }
   svg+=`<rect id="horizonOverlay" x="${l}" y="${t}" width="${ww}" height="${hh}" fill="transparent"/>`;
   $('horizonPlot').innerHTML=svg+'</svg>';
