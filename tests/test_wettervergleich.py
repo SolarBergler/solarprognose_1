@@ -41,6 +41,20 @@ class WeatherComparisonTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'diffuse_radiation'):
             archive.weather_for_day(data, self.day, True)
 
+    def test_morning_mosmix_without_first_night_hours_is_usable(self):
+        data = self.weather(100)
+        for key, values in data['hourly'].items():
+            data['hourly'][key] = values[4:]
+        weather = archive.weather_for_day(data, self.day, False)
+        hourly = weather['hourly']
+        self.assertEqual(len(hourly['time']), 24)
+        self.assertEqual(hourly['shortwave_radiation'][:5], [0, 0, 0, 0, 100])
+        self.assertEqual(hourly['temperature_2m'][:5], [None, None, None, None, 10])
+        for key, values in data['hourly'].items():
+            data['hourly'][key] = values[7:]
+        with self.assertRaisesRegex(ValueError, 'stündliche Abdeckung'):
+            archive.weather_for_day(data, self.day, False)
+
     def test_one_file_contains_independent_curves_and_retains_original(self):
         def source(value):
             return {'issuedAtUtc': '2026-11-22T12:00:00+00:00', 'weather': self.weather(value)}

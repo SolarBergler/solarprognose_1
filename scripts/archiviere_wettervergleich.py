@@ -13,6 +13,8 @@ from urllib.parse import urlencode
 from urllib.request import urlopen
 from zoneinfo import ZoneInfo
 
+from dwd_mosmix import sun_altitude
+
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / 'prognosen'
 LOCAL = ZoneInfo('Europe/Berlin')
@@ -128,8 +130,18 @@ def weather_for_day(weather, day, four_parts):
         index = {timestamp: i for i, timestamp in enumerate(times)}
         wanted = list(range(start + seconds, end + 1, seconds))
         out = {'time': wanted}
+        missing = [t for t in wanted if t not in index]
+        if key == 'hourly' and any(
+            t >= times[0] or any(
+                sun_altitude(minute) >= math.radians(-2)
+                for minute in range(t - seconds, t + 1, 60)
+            ) for t in missing
+        ):
+            raise ValueError('Keine vollständige stündliche Abdeckung außerhalb der Nacht vor Abruf')
         for name in fields:
-            selected = [series[name][index[t]] if t in index else None for t in wanted]
+            selected = [series[name][index[t]] if t in index else
+                        0 if key == 'hourly' and name in FIELDS[:3] else None
+                        for t in wanted]
             for i, value in enumerate(selected):
                 if value is None and key == 'minutely_15':
                     continue
@@ -142,8 +154,6 @@ def weather_for_day(weather, day, four_parts):
                 if name in FIELDS[:3] and value < 0:
                     raise ValueError(f'Negative Strahlung in {name}')
             out[name] = selected
-        if key == 'hourly' and any(t not in index for t in wanted):
-            raise ValueError('Keine vollständige stündliche Abdeckung')
         normalized[key] = out
     return normalized
 
@@ -177,6 +187,10 @@ def run_comparison(slot, now, output=None):
             if source['issuedAtUtc'] and parse_timestamp(source['issuedAtUtc']) > now:
                 raise ValueError('Der Modelllauf liegt in der Zukunft')
             exact_weather = weather_for_day(source['weather'], target_day, model != 'mosmix')
+            original_hours = set(source['weather']['hourly']['time'])
+            source['nightHourEndsWithoutSourceUtc'] = [
+                t for t in exact_weather['hourly']['time'] if t not in original_hours
+            ]
             source['weather'] = exact_weather
             source['indicators'] = forecast_indicators(exact_weather)
             return model, {'name': MODELS[model], 'status': 'ok', **source}
