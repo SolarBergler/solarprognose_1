@@ -1,5 +1,17 @@
 # Solarprognose
 
+## Stündliche Restprognose für heute (V12.9.12)
+
+Neben Produktionsbeginn und -ende zeigt **„Noch zu erwarten heute“** die verbleibende Energie ab der aktuellen Uhrzeit. Sie wird aus der neuesten berechneten Kurve gebildet: vergangene Abschnitte zählen nicht mit, vom laufenden Fünfminuten-Intervall nur der noch verbleibende Teil. Ein vollständiger Tag mit null weiterer Prognose wird als 0,0 kWh angezeigt; fehlende oder lückenhafte Zukunftsdaten als nicht verfügbar.
+
+Bei geöffneter, sichtbarer Seite wird das Wetter zur nächsten vollen Stunde erneut geladen. Ein überfälliger Abruf wird beim Zurückkehren in den Tab nachgeholt; Fokus- und Sichtbarkeitsereignisse starten keinen doppelten Abruf. Die Restmenge selbst läuft jede Minute mit. Die Anzeige nennt den Wetterabruf bzw. die DWD-Ausgabe und kennzeichnet Cache-/Fehlerstände. Ein geschlossener Browser aktualisiert sich nicht im Hintergrund.
+
+Die ursprünglichen Vergleichskurven und bereits begonnenen Prognoseintervalle behalten ihre bisherige Archivierungslogik. Die Restanzeige verwendet bewusst die neue Rohberechnung anstelle der aus alten und neuen Intervallen zusammengesetzten Tageskurve. Berechnung, Anlagenwerte, Profile und 06-/18-Uhr-Archivläufe werden dadurch nicht verändert.
+
+Ein vorhandener Fehler in der Monat/Jahr-Eingabe der Modul-Inbetriebnahme ist ebenfalls behoben: gültige Monate werden wieder angezeigt und akzeptiert. Bestehende Inbetriebnahmedaten und Alterungsberechnung bleiben gleich.
+
+Zusätzliche Prüfungen: `node --test tests/remaining-forecast.test.cjs` und `python tests/test_remaining_forecast.py`. Wie die vorhandenen Browsertests verwendet letzterer einen fest angehefteten Wetterstand aus Git; alternativ kann `PV_TEST_WEATHER_FIXTURE` auf dieselbe JSON-Fixture zeigen. Er prüft in Chromium stündliche Aktualisierung, Rückkehr zum Tab, erhaltene Originale, Cache-Kennzeichnung und die schmale Darstellung.
+
 ## Wetter-Originaldaten künftig mit jeder 06-/18-Uhr-Prognose einfrieren
 
 Neue Prognosearchive enthalten zusätzlich `forecastWeatherSnapshot` mit

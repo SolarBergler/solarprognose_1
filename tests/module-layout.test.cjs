@@ -11,7 +11,7 @@ function runtime(bundle,html=read('index.html'),weather){
  document:{getElementById:element,addEventListener(){},querySelector(){return element('query')},hidden:false},
  localStorage:{getItem:k=>store.get(k)||null,setItem:(k,v)=>store.set(k,String(v)),removeItem:k=>store.delete(k)},addEventListener(){},
  inputs:{bundle,weather},nodes};context.window=context;context.globalThis=context;vm.createContext(context);
- vm.runInContext(read('inverters.js'),context);context.SolarCentral=C;
+ for(const name of ['inverters.js','near-area.js','remaining-forecast.js'])vm.runInContext(read(name),context);context.SolarCentral=C;
  let source=html.match(/<script>\s*'use strict';([\s\S]*)<\/script>\s*<\/body>/)[1];
  source=source.replace('syncSettings();startCentralApplication();','');
  vm.runInContext("'use strict';"+source,context);
@@ -20,6 +20,30 @@ function runtime(bundle,html=read('index.html'),weather){
 }
 async function bundle(c=config,n=near,h=far){return C.verifyBundle(C.serialize(c),h,n)}
 function weatherFixture(){const text=process.env.PV_TEST_WEATHER_FIXTURE?fs.readFileSync(process.env.PV_TEST_WEATHER_FIXTURE,'utf8'):execFileSync('git',['show','e94f948943a1d7593bcec1e7d777cec29b853763:prognosen/letzter_wetterstand.json'],{cwd:root,encoding:'utf8'});return JSON.parse(text).weather;}
+
+test('Restprognose nutzt neue Zukunftswerte, während ursprüngliche Morgenkurve erhalten bleibt',async()=>{
+ const r=runtime(await bundle(),undefined,weatherFixture());
+ const morning=Date.parse('2026-11-06T06:00:00+01:00'),now=Date.parse('2026-11-06T12:02:30+01:00');
+ r.run(`saveForecastSnapshots(${morning})`);
+ const original=JSON.stringify(r.run('forecastArchive.days["2026-11-06"].original'));
+ const first=r.run(`getRemainingForecast(${now})`);assert.equal(first.available,true);assert.ok(first.kWh>0);
+ r.run(`for(const group of ['hourly','minutely_15'])for(const key of ['direct_normal_irradiance','shortwave_radiation','diffuse_radiation'])if(weather[group]?.[key])weather[group][key]=weather[group][key].map(v=>v===null?null:v*.5);calculate();saveForecastSnapshots(${now});renderRemainingForecast(${now});`);
+ const after=r.run(`getRemainingForecast(${now})`);assert.ok(after.kWh<first.kWh*.55);assert.ok(after.kWh>first.kWh*.45);
+ assert.equal(JSON.stringify(r.run('forecastArchive.days["2026-11-06"].original')),original);
+ assert.ok(r.nodes.get('remainingEnergy').textContent.endsWith(' kWh'));
+ r.run(`weatherIsCached=true;renderRemainingForecast(${now});`);
+ assert.equal(r.nodes.get('remainingToday').dataset.stale,'true');assert.ok(r.nodes.get('remainingNote').textContent.includes('nicht live'));
+});
+
+test('Nachgeholter Stundenabruf beim Sichtbarwerden läuft einmal; Hintergrund und laufende Abrufe werden übersprungen',async()=>{
+ const r=runtime(await bundle(),undefined,weatherFixture());
+ r.ctx.Date=class extends Date{static now(){return Date.parse('2026-11-06T12:05:00+01:00')}};
+ r.run(`weatherLastAttemptAt=Date.parse('2026-11-06T11:40:00+01:00');var refreshCalls=0;refreshCentralForecast=async()=>{refreshCalls++};document.hidden=true;`);
+ assert.equal(await r.run('refreshForecastIfDue()'),false);assert.equal(r.run('refreshCalls'),0);
+ r.run('document.hidden=false;working=true');assert.equal(await r.run('refreshForecastIfDue()'),false);
+ r.run('working=false');assert.equal(await r.run('refreshForecastIfDue()'),true);
+ assert.equal(await r.run('refreshForecastIfDue()'),false);assert.equal(r.run('refreshCalls'),1);
+});
 
 test('Bestätigte 88 Module, WR-Zuordnung, Wp-Gewichte und GPS-Anker bleiben konsistent',async()=>{
  const b=await bundle();assert.equal(b.config.panels.flatMap(p=>p.geo.modulePositions).length,88);

@@ -23,7 +23,7 @@
       (typeof g.commissionedOn!=='string'||!(/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(g.commissionedOn))||
        !Number.isFinite(Date.parse(g.commissionedOn+'T00:00:00Z'))||new Date(g.commissionedOn+'T00:00:00Z').toISOString().slice(0,10)!==g.commissionedOn)))throw fail('Ungültiges Inbetriebnahmedatum: '+p.name);
     if(p.moduleGroups?.some(g=>g.annualDegradationPct!==undefined&&!finite(g.annualDegradationPct,0,5)))throw fail('Ungültige Modul-Degradationsrate: '+p.name);
-    if(!p.moduleGroups?.length){const validDay=d=>typeof d==='string'&&/^\\d{4}-\\d{2}-01$/.test(d)&&Number.isFinite(Date.parse(d+'T00:00:00Z'))&&new Date(d+'T00:00:00Z').toISOString().slice(0,10)===d;
+    if(!p.moduleGroups?.length){const validDay=d=>typeof d==='string'&&/^\d{4}-\d{2}-01$/.test(d)&&Number.isFinite(Date.parse(d+'T00:00:00Z'))&&new Date(d+'T00:00:00Z').toISOString().slice(0,10)===d;
       if(p.commissionedOn!==undefined&&!validDay(p.commissionedOn))throw fail('Ungültiger Inbetriebnahmemonat: '+p.name);
       if(p.annualDegradationPct!==undefined&&!finite(p.annualDegradationPct,0,5))throw fail('Ungültige Degradationsrate: '+p.name);
     }
