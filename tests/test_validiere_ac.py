@@ -73,6 +73,14 @@ class AcOnlyEvaluation(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'keine gueltige'):
             archive_record(path,'06')
 
+    def test_legacy_snapshot_remains_separate_without_inventing_a_hash(self):
+        legacy=self.snapshot('2026-11-09',10,model='same')
+        data=json.loads(legacy.read_text());del data['centralConfiguration'];legacy.write_text(json.dumps(data))
+        self.snapshot('2026-11-10',20,model='same')
+        rows,groups=evaluate(self.repo,self.actuals([('2026-11-09',9,''),('2026-11-10',19,'')]))
+        self.assertEqual([r['physical_hash'] for r in rows],[None,'p'])
+        self.assertEqual(len(groups),2)
+
     def test_bad_observations_are_rejected(self):
         with self.assertRaises(ValueError):
             self.actuals([('2026-11-09',10,''),('2026-11-09',11,'')])

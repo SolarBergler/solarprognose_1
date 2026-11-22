@@ -1,5 +1,30 @@
 # Solarprognose
 
+## Modulwirkungsgrad bei geringer Einstrahlung (V12.9.13)
+
+Anlage Schliersee, Konfigurationsrevision 11. Der Rechenkern berücksichtigt
+jetzt, dass der Wirkungsgrad der Siliziummodule von Einstrahlung und
+Zelltemperatur abhängt. Das Modell verwendet die veröffentlichte
+[PVGIS-Kennlinie für kristallines Silizium](https://joint-research-centre.ec.europa.eu/photovoltaic-geographical-information-system-pvgis/general-information/data-sources-calculation-methods_en).
+Die Kennlinie wird zwischen 100 und 1100 W/m² ausgewertet. Jenseits dieser
+Grenzen gilt jeweils der Wirkungsgrad am Rand, während die berechnete
+Leistung der tatsächlichen Einstrahlung folgt. Das vermeidet eine freie
+Extrapolation, insbesondere in der Dämmerung. Die Kennlinie ist eine
+Technologiereferenz für die Anlage, keine gemessene Modulkennlinie vor Ort.
+
+Der Vergleich über 17 Novembertage verwendet denselben archivierten
+Morgen-Wetterstand und dieselben Schattenprofile für beide Rechenvarianten.
+Der mittlere absolute Fehler sinkt von 9,06 auf 7,84 kWh pro Tag. Die fünf
+zusätzlichen Tage vom 3. bis 8. November verbessern sich von 16,03 auf
+13,60 kWh pro Tag. Bei zu niedrig prognostizierter Einstrahlung kann auch
+die neue Ertragsprognose weiter unter dem Istwert liegen. Der Testumfang
+deckt Novemberbedingungen ab.
+
+Die Kennlinie gehört zur physikalischen Modellkennung. Beim Wechsel bleiben
+früher gespeicherte Prognosen unter ihrer ursprünglichen Kennung erhalten.
+Konfigurationen ohne die Kennliniendefinition bleiben mit der bisherigen
+Berechnung reproduzierbar.
+
 ## Stündliche Restprognose für heute (V12.9.12)
 
 Neben Produktionsbeginn und -ende zeigt **„Noch zu erwarten heute“** die verbleibende Energie ab der aktuellen Uhrzeit. Sie wird aus der neuesten berechneten Kurve gebildet: vergangene Abschnitte zählen nicht mit, vom laufenden Fünfminuten-Intervall nur der noch verbleibende Teil. Ein vollständiger Tag mit null weiterer Prognose wird als 0,0 kWh angezeigt; fehlende oder lückenhafte Zukunftsdaten als nicht verfügbar.

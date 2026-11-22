@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Prueft archivierte PV-Prognosen gegen AC-Tagesertraege, ohne Optimiererdaten.
 
-Eingabe: CSV mit date,ac_kwh (optional wr1_kwh .. wr4_kwh), oder\n          JSON-Archiv mit SolarEdge-dailyEnergy,
+Eingabe: CSV mit date,ac_kwh (optional wr1_kwh .. wr4_kwh), oder
+          JSON-Archiv mit SolarEdge-dailyEnergy,
           unveraenderte Archivdateien prognosen/YYYY-MM-DD/06.json (oder 18.json).
 Gruppiert nach Programmversion, Modell- und Physik-Hash. Kein Rueckgriff auf nachtraegliches Wetter.
 """
@@ -14,7 +15,9 @@ from datetime import date, datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-from solaredge_ac import load_kiosk_ac\n\nLOCAL = ZoneInfo('Europe/Berlin')
+from solaredge_ac import load_kiosk_ac
+
+LOCAL = ZoneInfo('Europe/Berlin')
 
 def nonnegative(value, context):
     try:
@@ -71,9 +74,12 @@ def archive_record(path, slot):
     if local.date().isoformat() != day or not expected <= local.hour < expected + 2:
         raise ValueError(f'{path}: keine gueltige {slot}-Uhr-Prognose')
     model = doc.get('modelHash')
-    physical = doc.get('centralConfiguration', {}).get('physicalHash')
-    if not isinstance(model, str) or not model or not isinstance(physical, str) or not physical:
-        raise ValueError(f'{path}: Modell- oder Physikkennung fehlt')
+    central = doc.get('centralConfiguration')
+    physical = central.get('physicalHash') if isinstance(central, dict) else None
+    if not isinstance(model, str) or not model:
+        raise ValueError(f'{path}: Modellkennung fehlt')
+    if central is not None and (not isinstance(physical, str) or not physical):
+        raise ValueError(f'{path}: Physikkennung der zentralen Konfiguration fehlt')
     if doc.get('weatherDiagnostics', {}).get('notLive'):
         raise ValueError(f'{path}: nicht-live Wetterstatus, kein gueltiges Prognose-Sample')
     result = {'date': day, 'slot': slot, 'model_hash': model,
@@ -133,7 +139,7 @@ def evaluate(archive_dir, actuals, slot='06', min_days=5, include_provisional=Fa
     for r in rows:
         groups[(r['model_hash'], r['physical_hash'], r['near_id'], r['version'])].append(r)
     summary = []
-    for (model, physical, near, version), samples in sorted(groups.items()):
+    for (model, physical, near, version), samples in sorted(groups.items(), key=lambda group: tuple(field or "" for field in group[0])):
         entry = {'model_hash': model, 'physical_hash': physical, 'near_id': near,
                  'version': version, 'slot': slot,
                  'first_day': samples[0]['date'], 'last_day': samples[-1]['date'],

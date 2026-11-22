@@ -2,6 +2,7 @@
 (function(root){
   'use strict';
   const FILE='anlagenkonfiguration.json',CACHE_KEY='solar-central-bundle-v1';
+  const MODULE_POWER_MODEL='pvgis-csi-bounded';
   const REPOSITORY='SolarBergler/solarprognose_1',API='https://api.github.com/repos/'+REPOSITORY;
   const GEO=['latitude','longitude','width_m','depth_m','lower_edge_height_m','upper_edge_height_m'];
   const clone=value=>JSON.parse(JSON.stringify(value));
@@ -57,9 +58,10 @@
     return profile;
   }
   function validateConfig(c){
-    const allowed=['schemaVersion','revision','updatedAt','location','systemLossesPercent','albedo','panels','inverters','profiles'];
+    const allowed=['schemaVersion','revision','updatedAt','location','systemLossesPercent','albedo','modulePowerModel','panels','inverters','profiles'];
     if(!c||Object.keys(c).some(k=>!allowed.includes(k)))throw fail('Unbekannte Felder in der zentralen Konfiguration.');
     if(c?.schemaVersion!==1||!Number.isInteger(c.revision)||c.revision<1||!Number.isFinite(Date.parse(c.updatedAt)))throw fail('Ungültige zentrale Konfigurationsversion.');
+    if(c.modulePowerModel!==undefined&&c.modulePowerModel!==MODULE_POWER_MODEL)throw fail('Unbekanntes Modul-Leistungsmodell.');
     const l=c.location;
     if(!l||typeof l.name!=='string'||!l.name.trim()||l.name.length>50||!finite(l.latitude,-90,90)||!finite(l.longitude,-180,180)||!finite(l.roofHeightM,0,100)||
        !finite(c.systemLossesPercent,0,50)||!finite(c.albedo,0,1))throw fail('Standort oder Berechnungsparameter sind ungültig.');
@@ -106,6 +108,7 @@
     // Anzeigenamen und Veröffentlichungszeit ändern das physikalische Modell nicht.
     const physical={geometry:geometry(c),losses:c.systemLossesPercent,albedo:c.albedo,profiles:[c.profiles.horizon.sha256,c.profiles.near.sha256],
       panels:c.panels.map(p=>[p.id,p.kwp,p.inverterId]),inverters:c.inverters.map(w=>[w.id,w.maxAcKw]).sort((a,b)=>a[0].localeCompare(b[0]))};
+    if(c.modulePowerModel)physical.modulePowerModel=c.modulePowerModel;
     // Archive identity changes on activation or correction of a cohort's aging data.
     const activeAging=c.panels.flatMap(p=>p.moduleGroups?.length?p.moduleGroups.flatMap((g,i)=>g.commissionedOn?[[p.id,i,g.commissionedOn,g.annualDegradationPct??1]]:[]):(p.commissionedOn?[[p.id,-1,p.commissionedOn,p.annualDegradationPct??1]]:[]));
     if(activeAging.length)physical.moduleAging=activeAging;

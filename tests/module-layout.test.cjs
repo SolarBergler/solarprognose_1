@@ -21,6 +21,28 @@ function runtime(bundle,html=read('index.html'),weather){
 async function bundle(c=config,n=near,h=far){return C.verifyBundle(C.serialize(c),h,n)}
 function weatherFixture(){const text=process.env.PV_TEST_WEATHER_FIXTURE?fs.readFileSync(process.env.PV_TEST_WEATHER_FIXTURE,'utf8'):execFileSync('git',['show','e94f948943a1d7593bcec1e7d777cec29b853763:prognosen/letzter_wetterstand.json'],{cwd:root,encoding:'utf8'});return JSON.parse(text).weather;}
 
+test('Schwachlichtkennlinie nutzt tatsächliche Einstrahlung und hält ältere Prognosen separat',async()=>{
+ const oldConfig=C.clone(config);delete oldConfig.modulePowerModel;
+ const oldBundle=await bundle(oldConfig),newBundle=await bundle();
+ assert.notEqual(newBundle.physicalHash,oldBundle.physicalHash);
+ assert.equal((await C.draftConfig(C.toState(config),config)).modulePowerModel,config.modulePowerModel);
+ const invalid=C.clone(config);invalid.modulePowerModel='unknown';
+ await assert.rejects(bundle(invalid),/Unbekanntes Modul-Leistungsmodell/);
+ const r=runtime(oldBundle,undefined,weatherFixture());
+ assert.equal(r.run('cSiRelativeEfficiency(1000,25)'),1);
+ assert.equal(r.run('cSiRelativeEfficiency(25,25)'),r.run('cSiRelativeEfficiency(100,25)'));
+ assert.ok(r.run('cSiRelativeEfficiency(100,25)')<r.run('cSiRelativeEfficiency(500,25)'));
+ const at=Date.parse('2026-11-06T06:00:00+01:00'),day='2026-11-06';
+ r.run(`saveForecastSnapshots(${at})`);
+ const before=r.run(`JSON.stringify(forecastArchive.days['${day}'])`);
+ r.ctx.newBundle=newBundle;
+ r.run(`centralBundle=newBundle;calculate();saveForecastSnapshots(${at+3600000})`);
+ assert.equal(r.run(`JSON.stringify(forecastArchive.previousModels['v12.8-${oldBundle.physicalHash}']['${day}'])`),before);
+ assert.notDeepEqual(JSON.parse(r.run(`JSON.stringify(forecastArchive.days['${day}'].current)`)),JSON.parse(before).current);
+ const night=r.run(`calculated.filter(row=>row.day==='${day}'&&row.sunlightMinutes===0)`);
+ assert.ok(night.length>0&&night.every(row=>row.power===0));
+});
+
 test('Restprognose nutzt neue Zukunftswerte, während ursprüngliche Morgenkurve erhalten bleibt',async()=>{
  const r=runtime(await bundle(),undefined,weatherFixture());
  const morning=Date.parse('2026-11-06T06:00:00+01:00'),now=Date.parse('2026-11-06T12:02:30+01:00');

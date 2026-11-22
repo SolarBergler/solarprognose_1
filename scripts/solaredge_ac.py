@@ -10,6 +10,8 @@ from pathlib import Path
 
 STATES = {
     'historical_reported_value': 'reported',
+    'historical_reported_value_not_final': 'reported',
+    'historical_reported_rechecked_not_declared_final': 'reported',
     'final': 'final',
     'final_reported_value': 'final',
     'evening_reported_value_not_final': 'provisional',

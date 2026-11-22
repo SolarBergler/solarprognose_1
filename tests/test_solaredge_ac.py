@@ -46,6 +46,15 @@ class SolarEdgeAC(unittest.TestCase):
     def test_duplicate_day_rejected(self):
         d=archive();d['dailyEnergy'].append(dict(d['dailyEnergy'][0]));self.save(d)
         with self.assertRaisesRegex(ValueError,'Duplicate'):load_kiosk_ac(self.file)
+    def test_historical_rechecks_are_reported_but_never_final(self):
+        data=archive()
+        data['dailyEnergy'][0]['status']='historical_reported_value_not_final'
+        data['dailyEnergy'][1]['status']='historical_reported_rechecked_not_declared_final'
+        self.save(data)
+        rows=load_kiosk_ac(self.file)
+        self.assertEqual(rows['2026-11-09']['status'],'reported')
+        self.assertEqual(rows['2026-11-14']['status'],'reported')
+        self.assertEqual(rows['2026-11-14']['source_status'],'historical_reported_rechecked_not_declared_final')
     def test_wh_kwh_disagreement_rejected(self):
         d=archive();d['dailyEnergy'][0]['energyWh']=1337;self.save(d)
         with self.assertRaisesRegex(ValueError,'Inconsistent'):load_kiosk_ac(self.file)
