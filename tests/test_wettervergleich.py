@@ -81,13 +81,25 @@ class WeatherComparisonTests(unittest.TestCase):
             self.assertEqual(energies, sorted(set(energies)))
             self.assertEqual(ordered[0]['weatherResolution'], {'quarters': 0, 'hours': 24})
             self.assertEqual(ordered[1]['weatherResolution'], {'quarters': 96, 'hours': 0})
+            # The second day has three forecasts. It cannot enter the common ranking.
+            partial = root / '2026-11-23' / path.name
+            doc.update(targetDay='2026-11-24', captureDay='2026-11-23', capturedAtUtc='2026-11-23T17:02:00+00:00')
+            doc['models']['best-match']['status'] = 'unavailable'
+            archive.save_json(partial, doc)
             data = comparison.summarize({'dailyEnergy': [
-                {'day': self.day.isoformat(), 'energyKWh': 0, 'status': 'reported'}
+                {'day': self.day.isoformat(), 'energyKWh': energies[2], 'status': 'reported'},
+                {'day': '2026-11-24', 'energyKWh': 0, 'status': 'reported'}
             ]}, root)
-            self.assertEqual(data['06']['actualDays'], 1)
-            self.assertIsNone(data['06']['commonThreeModels']['mosmix'])
-            self.assertEqual(data['18']['commonWithReference']['all']['mosmix']['days'], 1)
-            self.assertAlmostEqual(data['18']['commonWithReference']['all'][comparison.RULE]['MAE'], energies[0])
+            self.assertEqual(data['06']['actualDays'], 2)
+            self.assertIsNone(data['06']['scores']['all']['mosmix'])
+            self.assertEqual(data['18']['commonDays'], [self.day.isoformat()])
+            scores = data['18']['scores']['all']
+            self.assertEqual(len(scores), 15)
+            self.assertEqual(scores['mosmix']['days'], 1)
+            self.assertEqual(scores['best-match']['MAE'], 0)
+            self.assertAlmostEqual(scores['mean:mosmix+best-match']['MAE'], (energies[2] - energies[0]) / 2)
+            self.assertEqual(data['18']['dailyValues'][0]['nearestSingleModels'], ['best-match'])
+            self.assertEqual(data['18']['dailyValues'][1]['nearestSingleModels'], ['mosmix'])
 
 
 if __name__ == '__main__':

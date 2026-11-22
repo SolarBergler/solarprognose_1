@@ -8,7 +8,7 @@
   const root = 'https://raw.githubusercontent.com/SolarBergler/solarprognose_1/main/prognosen/';
   const models = {
     mosmix: 'DWD MOSMIX-L', icon: 'DWD ICON-D2 Native', ifs: 'ECMWF IFS HRES',
-    'best-match': 'Open-Meteo (Referenz)',
+    'best-match': 'Open-Meteo Best Match',
   };
   const format = new Intl.NumberFormat('de-DE', { maximumFractionDigits: 2, minimumFractionDigits: 2 });
   const berlin = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Berlin', dateStyle: 'short' });

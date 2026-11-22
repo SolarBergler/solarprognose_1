@@ -2,8 +2,8 @@
 
 ## Wettermodellvergleich vom 23.11. bis 13.12.2026 (V12.9.14)
 
-Der vorhandene Archivlauf berechnet DWD MOSMIX-L, DWD ICON-D2 Native und
-ECMWF IFS HRES für dieselbe Anlage, parallel zur Open-Meteo-Referenz.
+Der vorhandene Archivlauf berechnet DWD MOSMIX-L, DWD ICON-D2 Native,
+ECMWF IFS HRES und Open-Meteo Best Match für dieselbe Anlage.
 Das Archiv enthält die Prognose des Vorabends (18 Uhr für den Folgetag)
 und die am Zieltag um 06 Uhr erfasste Prognose. Beide Läufe speichern
 getrennte 5-Minuten-Leistungskurven, Tageserträge, Strahlung, Wetterkennzahlen,
@@ -17,10 +17,11 @@ Wettermodell“. Die Dateien liegen unter
 `prognosen/YYYY-MM-DD/wettervergleich-{06,18}.json`, wobei das Verzeichnis
 den Erfassungstag bezeichnet. Für die Auswertung vergleicht
 `python scripts/vergleiche_wettermodelle.py <SolarEdge-Ertragsdatei>`
-MAE, RMSE und mittleren Vorzeichenfehler je Vorhersagezeitpunkt über
-gemeinsame Tage. Es wertet auch das gleich gewichtete Mittel und die
-vorab definierte MOSMIX-Regel (mindestens 80 % Bewölkung und höchstens 15 %
-geschätzter horizontaler Direktstrahlungsanteil) aus.
+MAE, RMSE und mittleren Vorzeichenfehler gegen den SolarEdge-Istwert.
+Die vier Einzelmodelle und ihre gleich gewichteten Zweier-, Dreier- und
+Vierermischungen werden je Vorhersagezeitpunkt an denselben Tagen ausgewertet.
+Die im Skript gebildeten Wettergruppen beruhen auf den Medianen der vier
+prognostizierten Bewölkungs- und Direktstrahlungswerte.
 
 ## Modulwirkungsgrad bei geringer Einstrahlung (V12.9.13)
 

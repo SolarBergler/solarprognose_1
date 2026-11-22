@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Capture simultaneous PV forecasts with three explicitly identified weather inputs."""
+"""Capture simultaneous PV forecasts from four weather candidates."""
 import argparse
 import json
 import math
@@ -21,7 +21,7 @@ LOCAL = ZoneInfo('Europe/Berlin')
 FIRST_DAY = date(2026, 11, 23)
 LAST_DAY = date(2026, 12, 13)
 MODELS = {'mosmix': 'DWD MOSMIX-L', 'icon': 'DWD ICON-D2 Native', 'ifs': 'ECMWF IFS HRES',
-          'best-match': 'Open-Meteo (Referenz)'}
+          'best-match': 'Open-Meteo Best Match'}
 API_MODELS = {'icon': 'dwd_icon_d2_native', 'ifs': 'ecmwf_ifs'}
 FIELDS = ('shortwave_radiation', 'diffuse_radiation', 'direct_normal_irradiance', 'temperature_2m')
 HOURLY_FIELDS = (*FIELDS, 'cloud_cover')

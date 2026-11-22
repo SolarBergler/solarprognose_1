@@ -4,14 +4,18 @@ import argparse
 import json
 import math
 from datetime import timedelta
+from itertools import combinations
 from pathlib import Path
-from statistics import mean
+from statistics import mean, median
 
-from archiviere_wettervergleich import DATA, FIRST_DAY, LAST_DAY, MODELS, forecast_window, parse_timestamp
+from archiviere_wettervergleich import DATA, FIRST_DAY, LAST_DAY, LOCAL, MODELS, forecast_window, parse_timestamp
 
 IDS = tuple(MODELS)
-MIX = 'mean-of-three'
-RULE = 'mosmix-if-overcast'
+MIXES = {
+    'mean:' + '+'.join(models): models
+    for count in range(2, len(IDS) + 1)
+    for models in combinations(IDS, count)
+}
 
 
 def score(rows, key):
@@ -20,8 +24,14 @@ def score(rows, key):
             'RMSE': math.sqrt(mean(e * e for e in errors)), 'bias': mean(errors)} if errors else None
 
 
-def overcast(indicators):
-    return indicators['meanCloudCoverPct'] >= 80 and indicators['horizontalBeamShare'] <= .15
+def predicted_regime(indicators):
+    clouds = median(indicators[key]['meanCloudCoverPct'] for key in IDS)
+    beam = median(indicators[key]['horizontalBeamShare'] for key in IDS)
+    if clouds >= 80 and beam <= .15:
+        return 'overcastForecast'
+    if beam >= .35:
+        return 'substantialDirectForecast'
+    return 'otherForecast'
 
 
 def read_archive(day, slot, archive):
@@ -30,7 +40,6 @@ def read_archive(day, slot, archive):
     if not path.exists():
         return None
     obj = json.loads(path.read_bytes())
-    from archiviere_wettervergleich import LOCAL
     observed = parse_timestamp(obj['capturedAtUtc']).astimezone(LOCAL)
     if (obj['schema'] != 1 or obj['targetDay'] != day.isoformat() or obj['slot'] != slot
             or forecast_window(slot, observed) != (capture, day)):
@@ -49,38 +58,46 @@ def summarize(ledger, archive=DATA):
             actual = actuals.get(day.isoformat(), {})
             row = {'day': day.isoformat(), 'actualKWh': actual.get('energyKWh'),
                    'actualStatus': actual.get('status'), 'capturedAtUtc': None,
-                   'physicalHash': None, 'forecasts': {}, 'indicators': {}}
+                   'physicalHash': None, 'forecasts': {}, 'indicators': {},
+                   'absoluteErrors': {}, 'nearestSingleModels': [], 'predictedRegime': None}
             if record:
                 row['capturedAtUtc'], row['physicalHash'] = record['capturedAtUtc'], record['physicalHash']
                 for key, model in record['models'].items():
-                    if model['status'] == 'ok':
+                    if key in MODELS and model['status'] == 'ok':
                         row['forecasts'][key] = model['powerKWh']
                         row['indicators'][key] = model['indicators']
             days.append(row)
         matched = [d for d in days if d['actualKWh'] is not None]
         common = [d for d in matched if all(key in d['forecasts'] for key in IDS)]
-        primary_keys = ('mosmix', 'icon', 'ifs')
-        primary = [d for d in matched if all(key in d['forecasts'] for key in primary_keys)]
-        for row in primary:
-            forecasts = row['forecasts']
-            forecasts[MIX] = mean(forecasts[key] for key in primary_keys)
-            if 'best-match' in forecasts:
-                forecasts[RULE] = forecasts['mosmix' if overcast(row['indicators']['mosmix']) else 'best-match']
+        for row in common:
+            row['predictedRegime'] = predicted_regime(row['indicators'])
+            row['forecasts'].update({
+                key: mean(row['forecasts'][model] for model in models)
+                for key, models in MIXES.items()
+            })
+        for row in matched:
+            actual_kwh = row['actualKWh']
+            errors = {key: abs(value - actual_kwh) for key, value in row['forecasts'].items()}
+            available_models = [key for key in IDS if key in errors]
+            if available_models:
+                smallest = min(errors[key] for key in available_models)
+                row['nearestSingleModels'] = [
+                    key for key in available_models if math.isclose(errors[key], smallest, abs_tol=1e-9)
+                ]
+            row['absoluteErrors'] = errors
         regimes = {
-            'overcastForecast': [d for d in common if overcast(d['indicators']['mosmix'])],
-            'substantialDirectForecast': [d for d in common if d['indicators']['mosmix']['horizontalBeamShare'] >= .35],
-            'otherForecast': [d for d in common if not overcast(d['indicators']['mosmix'])
-                              and d['indicators']['mosmix']['horizontalBeamShare'] < .35],
+            name: [d for d in common if d['predictedRegime'] == name]
+            for name in ('overcastForecast', 'substantialDirectForecast', 'otherForecast')
         }
         groups = {'all': common, **regimes,
                   'firstTwoWeeks': [d for d in common if d['day'] < (FIRST_DAY + timedelta(days=14)).isoformat()],
                   'lastWeek': [d for d in common if d['day'] >= (FIRST_DAY + timedelta(days=14)).isoformat()]}
-        keys = (*IDS, MIX, RULE)
+        keys = (*IDS, *MIXES)
         output[slot] = {
             'targetDays': len(days), 'actualDays': len(matched),
             'availablePerModel': {key: sum(key in d['forecasts'] for d in days) for key in IDS},
-            'commonThreeModels': {key: score(primary, key) for key in (*primary_keys, MIX)},
-            'commonWithReference': {name: {key: score(rows, key) for key in keys} for name, rows in groups.items()},
+            'commonDays': [d['day'] for d in common],
+            'scores': {name: {key: score(rows, key) for key in keys} for name, rows in groups.items()},
             'dailyValues': days,
         }
     return output
