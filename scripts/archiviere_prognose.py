@@ -14,6 +14,7 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
 from weather_snapshot import build_snapshot
+from archiviere_wettervergleich import run_comparison
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / 'prognosen'
@@ -47,6 +48,10 @@ def main():
         if not (target <= now.hour < target + 2):
             raise RuntimeError(f'Abruf zu spaet fuer {slot}: {now.isoformat()}; kein irrefuehrender Snapshot.')
         output = DATA / day / f'{slot}.json'
+        try:
+            run_comparison(slot, now)
+        except Exception as exc:
+            print(f'::warning title=PV-Wettervergleich:: {exc}', file=sys.stderr)
     else:
         slot = 'test'
         output = DATA / day / f'test-{now.strftime("%H%M%S")}.json'
