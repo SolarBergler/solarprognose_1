@@ -30,6 +30,16 @@
     return { record, url };
   }
 
+  function snowLabel(item) {
+    const snow = item.record?.snowForecast;
+    if (!snow) return item.state ?? 'Noch nicht erfasst';
+    if (snow.status !== 'ok') return 'Schneeprognose fehlt';
+    if (!snow.expectedSnowOnModules) return 'Kein Schneesignal';
+    const windows = snow.nearZeroWindows.map(({ startUtc, endUtc }) =>
+      clock.format(new Date(startUtc * 1000)) + '–' + clock.format(new Date(endUtc * 1000)));
+    return 'Schnee erwartet, Ertrag nahe null · ' + windows.join(', ') + ' Uhr';
+  }
+
   async function render() {
     const request = ++generation;
     const target = day.value;
@@ -59,6 +69,17 @@
       }
       table.append(tr);
     }
+    const snowRow = document.createElement('tr');
+    const snowHeading = document.createElement('th');
+    snowHeading.scope = 'row';
+    snowHeading.textContent = 'Schnee auf Modulen';
+    snowRow.append(snowHeading);
+    for (const item of slots) {
+      const cell = document.createElement('td');
+      cell.textContent = snowLabel(item);
+      snowRow.append(cell);
+    }
+    table.append(snowRow);
     status.textContent = '';
     slots.forEach(({ record, url }, index) => {
       if (!record) return;

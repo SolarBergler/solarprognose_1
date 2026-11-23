@@ -14,6 +14,7 @@ from urllib.request import urlopen
 from zoneinfo import ZoneInfo
 
 from dwd_mosmix import sun_altitude
+from schneeprognose import RULE_ID, estimate_snow
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / 'prognosen'
@@ -180,6 +181,12 @@ def run_comparison(slot, now, output=None):
         return path
     config = read_json(ROOT / 'anlagenkonfiguration.json')
 
+    def load_snow():
+        yesterday = capture_day - timedelta(days=1)
+        prior_path = DATA / yesterday.isoformat() / path.name
+        prior = read_json(prior_path).get('snowForecast') if output is None and prior_path.exists() else None
+        return estimate_snow(target_day, slot, config['location'], prior)
+
     def load(model):
         try:
             source = (read_mosmix(config['location'], now) if model == 'mosmix'
@@ -198,8 +205,14 @@ def run_comparison(slot, now, output=None):
             print(f'::warning title={MODELS[model]}:: {exc}')
             return model, {'name': MODELS[model], 'status': 'unavailable', 'reason': str(exc)}
 
-    with ThreadPoolExecutor(max_workers=4) as pool:
+    with ThreadPoolExecutor(max_workers=5) as pool:
+        snow_job = pool.submit(load_snow)
         forecasts = dict(pool.map(load, MODELS))
+        try:
+            snow = snow_job.result()
+        except Exception as exc:
+            print(f'::warning title=PV-Schneeprognose:: {exc}')
+            snow = {'status': 'unavailable', 'rule': RULE_ID, 'reason': str(exc)}
     inputs = {model: data['weather'] for model, data in forecasts.items() if data['status'] == 'ok'}
     process = subprocess.run(
         ['node', str(ROOT / 'scripts' / 'wettermodell_rechenkern.cjs')],
@@ -223,7 +236,7 @@ def run_comparison(slot, now, output=None):
     save_json(path, {
         'schema': 1, 'captureDay': capture_day.isoformat(), 'targetDay': target_day.isoformat(),
         'slot': slot, 'capturedAtUtc': now.astimezone(timezone.utc).isoformat(),
-        'timezone': str(LOCAL), **calculation, 'models': forecasts,
+        'timezone': str(LOCAL), **calculation, 'models': forecasts, 'snowForecast': snow,
     })
     print(f'VERGLEICH GESPEICHERT: {path}')
     return path

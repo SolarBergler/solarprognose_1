@@ -47,8 +47,30 @@ def read_archive(day, slot, archive):
     return obj
 
 
+def snow_check(days):
+    outcomes = {
+        'hit': [], 'miss': [], 'falseAlarm': [], 'correctNoSnow': [],
+        'warningWithoutObservation': [], 'unknownObservation': [], 'unavailableForecast': [],
+    }
+    for row in days:
+        forecast, observed = row['snowForecast'], row['snowObserved']
+        if forecast is None:
+            result = 'unavailableForecast'
+        elif observed is None:
+            result = 'warningWithoutObservation' if forecast else 'unknownObservation'
+        elif observed:
+            result = 'hit' if forecast else 'miss'
+        else:
+            result = 'falseAlarm' if forecast else 'correctNoSnow'
+        outcomes[result].append(row['day'])
+    return outcomes
+
+
 def summarize(ledger, archive=DATA):
     actuals = {row['day']: row for row in ledger['dailyEnergy']}
+    conditions = ledger.get('plantObservations', [])
+    snow_days = {row['day'] for row in conditions if row.get('condition') == 'snow_on_modules'}
+    clear_days = {row['day'] for row in conditions if row.get('condition') == 'no_snow_on_modules'}
     output = {}
     for slot in ('06', '18'):
         days = []
@@ -56,19 +78,25 @@ def summarize(ledger, archive=DATA):
             day = FIRST_DAY + timedelta(days=offset)
             record = read_archive(day, slot, archive)
             actual = actuals.get(day.isoformat(), {})
+            date_key = day.isoformat()
             row = {'day': day.isoformat(), 'actualKWh': actual.get('energyKWh'),
                    'actualStatus': actual.get('status'), 'capturedAtUtc': None,
                    'physicalHash': None, 'forecasts': {}, 'indicators': {},
-                   'absoluteErrors': {}, 'nearestSingleModels': [], 'predictedRegime': None}
+                   'absoluteErrors': {}, 'nearestSingleModels': [], 'predictedRegime': None,
+                   'snowObserved': True if date_key in snow_days else False if date_key in clear_days else None,
+                   'snowForecast': None}
             if record:
                 row['capturedAtUtc'], row['physicalHash'] = record['capturedAtUtc'], record['physicalHash']
+                snow = record.get('snowForecast') or {}
+                if snow.get('status') == 'ok':
+                    row['snowForecast'] = snow['expectedSnowOnModules']
                 for key, model in record['models'].items():
                     if key in MODELS and model['status'] == 'ok':
                         row['forecasts'][key] = model['powerKWh']
                         row['indicators'][key] = model['indicators']
             days.append(row)
         matched = [d for d in days if d['actualKWh'] is not None]
-        common = [d for d in matched if all(key in d['forecasts'] for key in IDS)]
+        common = [d for d in matched if d['snowObserved'] is not True and all(key in d['forecasts'] for key in IDS)]
         for row in common:
             row['predictedRegime'] = predicted_regime(row['indicators'])
             row['forecasts'].update({
@@ -79,7 +107,7 @@ def summarize(ledger, archive=DATA):
             actual_kwh = row['actualKWh']
             errors = {key: abs(value - actual_kwh) for key, value in row['forecasts'].items()}
             available_models = [key for key in IDS if key in errors]
-            if available_models:
+            if available_models and row['snowObserved'] is not True:
                 smallest = min(errors[key] for key in available_models)
                 row['nearestSingleModels'] = [
                     key for key in available_models if math.isclose(errors[key], smallest, abs_tol=1e-9)
@@ -98,6 +126,7 @@ def summarize(ledger, archive=DATA):
             'availablePerModel': {key: sum(key in d['forecasts'] for d in days) for key in IDS},
             'commonDays': [d['day'] for d in common],
             'scores': {name: {key: score(rows, key) for key in keys} for name, rows in groups.items()},
+            'snowCheck': snow_check(days),
             'dailyValues': days,
         }
     return output

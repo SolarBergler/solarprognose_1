@@ -23,6 +23,23 @@ Vierermischungen werden je Vorhersagezeitpunkt an denselben Tagen ausgewertet.
 Die im Skript gebildeten Wettergruppen beruhen auf den Medianen der vier
 prognostizierten Bewölkungs- und Direktstrahlungswerte.
 
+### Schnee auf den Modulen
+
+Im Archiv und in der Tabelle steht eine zusätzliche Schneeprognose. Sie
+merkt sich den Niederschlag vom Vorabend für den Morgenlauf und führt die
+geschätzte Bedeckung vom Vortag fort. Ab 1 cm prognostiziertem Neuschnee bei
+höchstens 1 °C nimmt sie Schneebedeckung an.
+Die Annahme endet nach zwei Stunden mit mindestens 3 °C oder mit mindestens
+250 W/m² Globalstrahlung bei mindestens 0 °C, jeweils ohne neuen Schnee.
+Betroffene Tageslichtstunden sind als Zeiten mit Ertrag nahe null markiert.
+Die Schwellwerte sind Startannahmen für den Vergleich mit Nutzerbeobachtungen.
+
+Die vier PV-Kurven rechnen weiterhin mit ihrer jeweiligen Wetterquelle.
+Tage mit gemeldetem Schnee bleiben mit Erträgen im Tagesprotokoll. Die
+Rangliste der Wetterquellen verwendet die übrigen Tage. Schneeprognosen werden
+je Abrufzeit anhand der bestätigten Modulzustände geprüft. Ein Tag ohne
+Nutzermeldung hat zunächst keinen bestätigten Modulzustand.
+
 ## Modulwirkungsgrad bei geringer Einstrahlung (V12.9.13)
 
 Anlage Schliersee, Konfigurationsrevision 11. Der Rechenkern berücksichtigt
