@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "revision": 12,
-  "updatedAt": "2026-11-24T17:33:36.781Z",
+  "revision": 13,
+  "updatedAt": "2026-11-25T21:08:16.039Z",
   "location": {
     "name": "Schliersee",
     "latitude": 47.697844,
@@ -9,7 +9,6 @@
     "roofHeightM": 5,
     "layoutUpAzimuth": 345
   },
-  "systemLossesPercent": 12,
   "albedo": 0,
   "modulePowerModel": "pvgis-csi-bounded",
   "panels": [

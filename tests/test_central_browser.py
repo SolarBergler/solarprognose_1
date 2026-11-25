@@ -5,6 +5,7 @@ import hashlib
 import http.server
 import json
 import os
+import re
 import shutil
 import subprocess
 import tempfile
@@ -15,7 +16,7 @@ from browser_fixtures import ROOT,CHROMIUM,TOKEN,Server,open_page,ready,enter_ke
 
 def plant_state(c):
     return {'locationName':c['location']['name'],'lat':c['location']['latitude'],'lon':c['location']['longitude'],'roofHeight':c['location']['roofHeightM'],
-            'losses':c['systemLossesPercent'],'albedo':c['albedo'],'panels':[{k:v for k,v in p.items() if k!='geo'} for p in c['panels']],
+            'losses':c.get('systemLossesPercent',0),'albedo':c['albedo'],'panels':[{k:v for k,v in p.items() if k!='geo'} for p in c['panels']],
             'panelGeometry':[p['geo'] for p in c['panels']],'inverters':c['inverters']}
 
 def run_regressions():
@@ -27,7 +28,7 @@ def run_regressions():
         legacy_config=json.loads(server.files['anlagenkonfiguration.json'])
         # Dieselben veröffentlichten Parameter wie vor der Umstellung: numerisch identische Physik.
         baseline=subprocess.check_output(['git','show','e94f948943a1d7593bcec1e7d777cec29b853763:index.html'],cwd=ROOT,text=True)
-        old_context,old,errors=open_page(b,server,legacy=plant_state(legacy_config),html=baseline)
+        old_context,old,errors=open_page(b,server,legacy={**plant_state(legacy_config),'losses':0},html=baseline)
         old.wait_for_function('SolarApp?.getCalculated().length>1900')
         old_rows=old.evaluate('SolarApp.getCalculated().map(r=>[r.ts,r.power,r.base])')
         assert not errors,errors;old_context.close()
@@ -43,6 +44,8 @@ def run_regressions():
         for page in [pa,pz]:
             assert page.evaluate('SolarApp.getCentralConfiguration().configurationHash')==expected_hash
             assert page.evaluate('SolarApp.getState().panels.length')==len(config['panels'])
+            assert page.locator('#losses').count()==0
+            assert page.locator('#albedo').input_value()==str(config['albedo'])
         assert pa.evaluate('JSON.stringify(SolarApp.getState())')==pz.evaluate('JSON.stringify(SolarApp.getState())')
         new_rows=pa.evaluate('SolarApp.getCalculated().map(r=>[r.ts,r.power,r.base])')
         assert len(new_rows)==len(old_rows)
@@ -69,13 +72,13 @@ def run_regressions():
         for origin in tampered['origins']:
             for item in origin['localStorage']:
                 if item['name']=='solar-central-bundle-v1':
-                    raw=json.loads(item['value']);changed=json.loads(raw['configText']);changed['systemLossesPercent']=49
+                    raw=json.loads(item['value']);changed=json.loads(raw['configText']);changed['albedo']=.49
                     raw['configText']=json.dumps(changed);item['value']=json.dumps(raw)
         c,broken,errors=open_page(b,server,storage=tampered)
         broken.wait_for_function('document.getElementById("startupNotice").classList.contains("warning")')
         assert not broken.evaluate('SolarApp.getCentralConfiguration().ready');c.close()
         print('OK: gleiche Parameter auf unabhängigen Browsern, alte lokale Einstellungen ignoriert, Offline-Cache und Sperre ohne gültiges Paket.')
-        print('OK: Leistungsberechnung numerisch unverändert gegenüber V12.7.2 bei identischen veröffentlichten Parametern.')
+        print('OK: Leistungsberechnung numerisch unverändert gegenüber V12.7.2 bei identischen Parametern ohne pauschalen Abschlag.')
         for kind,provider in [(True,'dwd'),('cached','cached')]:
             fallback_server=Server();fallback_server.weather_fail=kind
             c,page,errors=open_page(b,fallback_server)
@@ -101,7 +104,9 @@ def run_archive_regression():
       return {ok:doc!==undefined,status:doc===undefined?404:200,json:async()=>JSON.parse(doc),text:async()=>doc};};
     })();</script><!-- BEFORE_APP -->'''%(json.dumps(raw),json.dumps(weather))
     html=html.replace('<script src="./inverters.js?v=12.7"></script>',prefix+'<script>'+(ROOT/'inverters.js').read_text()+'</script>')
-    html=html.replace('<script src="./central-config.js?v=12.9.0"></script>','<script>'+(ROOT/'central-config.js').read_text()+'</script>')
+    html, replacements=re.subn(r'<script src="\./central-config\.js\?v=[\d.]+"></script>',
+        lambda match:'<script>'+(ROOT/'central-config.js').read_text()+'</script>',html)
+    assert replacements==1
     html=html.replace('<script src="./near-area.js?v=12.9.11"></script>','<script>'+(ROOT/'near-area.js').read_text()+'</script>')
     # localhost ist ein Secure Context und bietet die echte WebCrypto-Prüfung auch ohne Internet.
     with tempfile.TemporaryDirectory() as tmp:
@@ -137,7 +142,8 @@ sys.exit(m.main())
             assert all(p.read_bytes()==data for p,data in protected.items())
             new=next(p for p in (root/'prognosen').glob('*/*.json') if p not in protected)
             d=json.loads(new.read_text());expected=hashlib.sha256(raw['anlagenkonfiguration.json'].encode()).hexdigest()
-            assert d['modelVersion']=='V12.9.0'
+            assert d['modelVersion']==re.search(r'<title>[^<]*(V[\d.]+)</title>',html)[1]
+            assert 'systemLossesPercent' not in d
             assert d['centralConfiguration']['configurationHash']==expected
             assert d['centralConfiguration']['online']
             assert d['forecastWeatherSnapshot']['configurationHash']==expected

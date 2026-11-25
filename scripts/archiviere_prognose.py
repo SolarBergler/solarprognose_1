@@ -168,7 +168,6 @@ def main():
             panelNames:state.panels.map(p=>p.name),
             inverterConfiguration:app.getInverterConfiguration(),
             centralConfiguration:app.getCentralConfiguration(),
-            systemLossesPercent:state.losses,
             clippingKWh:day.clipping,
             withoutHorizonClippingKWh:day.baseClipping,
             powerKWh:day.power,

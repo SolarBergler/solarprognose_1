@@ -35,7 +35,7 @@ test('Zentrale physikalische und elektrische Werte bleiben beim Bearbeiten volls
   const b=await bundle(),far=JSON.parse(initial.horizonText);
   const copy=await C.draftConfig(C.toState(b.config),b.config);
   assert.deepEqual(copy.panels,b.config.panels);assert.deepEqual(copy.inverters,b.config.inverters);
-  assert.equal(copy.systemLossesPercent,b.config.systemLossesPercent);assert.equal(copy.albedo,b.config.albedo);
+  assert.ok(!Object.hasOwn(copy,'systemLossesPercent'));assert.equal(copy.albedo,b.config.albedo);
   assert.equal(b.config.location.latitude,far.location.latitude);assert.equal(b.config.location.roofHeightM,far.location.roofHeight);
   assert.equal(b.configHash,await C.sha256(initial.configText));
 });
@@ -51,6 +51,19 @@ test('Cache enthält nur geprüfte zentrale Pakete; manipulierte Kopien werden a
   const raw=JSON.parse(store.getItem(C.CACHE_KEY));raw.nearText+=' ';store.setItem(C.CACHE_KEY,JSON.stringify(raw));
   assert.equal(await C.readCache(store),null);
   await assert.rejects(()=>C.loadBundle({store,fetchImpl:async()=>{throw Error('offline')}}));
+});
+test('Frühere Offline-Pakete bleiben lesbar, ohne den Abschlag wieder zu aktivieren',async()=>{
+  const b=await bundle(),store=memory();
+  const legacy=await C.verifyBundle(C.serialize({...b.config,systemLossesPercent:12}),b.horizonText,b.nearText);
+  assert.notEqual(legacy.legacyPhysicalHash,b.physicalHash);
+  assert.equal(legacy.physicalHash,b.physicalHash);
+  C.cacheBundle({...legacy,physicalHash:legacy.legacyPhysicalHash},store);
+  const offline=await C.readCache(store);
+  assert.equal(offline.configHash,legacy.configHash);
+  assert.equal(offline.physicalHash,b.physicalHash);
+  assert.ok(!Object.hasOwn(C.toState(offline.config),'losses'));
+  const draft=await C.draftConfig(C.toState(offline.config),offline.config);
+  assert.ok(!Object.hasOwn(draft,'systemLossesPercent'));
 });
 test('Lokale Einstellungsdateien werden vom zentralen Loader nicht gelesen',async()=>{
   const store=memory();store.setItem('schliersee-settings-v1',JSON.stringify({lat:0,losses:50}));

@@ -26,7 +26,7 @@ async function main() {
       const setup = bundle.config;
       centralBundle = bundle;
       state = {lat:setup.location.latitude,lon:setup.location.longitude,panels:setup.panels,
-        inverters:setup.inverters,losses:setup.systemLossesPercent,albedo:setup.albedo,roofHeight:setup.location.roofHeightM};
+        inverters:setup.inverters,albedo:setup.albedo,roofHeight:setup.location.roofHeightM};
       horizon = bundle.horizon.points;
       nearData = bundle.near;
       initNearFactors();

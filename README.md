@@ -142,8 +142,7 @@ Berechnungen unverändert. Neue 88-Modul-Flächendaten dürfen nur zusammen mit
 der dazu passenden Geometrie und den vorgeschriebenen SHA-256-Profilbindungen
 veröffentlicht werden. Die vorliegenden 792 LiDAR-Testprofile sind **noch
 nicht** als produktiver Datensatz aktiviert, da die AC-Gesamtvalidierung der
-neuen Geometrie noch aussteht. Es erfolgt **keine** Anpassung von Dachneigungen
-oder Systemverlusten an Einzelmodulleistungen.
+neuen Geometrie noch aussteht. Dachneigungen werden dabei aus der Geometrie übernommen.
 
 PV-Prognose mit Gelände- und DOM20-Nahverschattung. Website: https://solarbergler.github.io/solarprognose_1/
 
@@ -157,11 +156,9 @@ Die zunächst eingetragene Degradation von 1 % pro Jahr ist eine **vorläufige M
 
 ## Altersabhängige Modulleistung – Modellvorbereitung V12.9.9
 
-Optional `moduleGroups[].commissionedOn` (ISO-Datum YYYY-MM-DD) und `annualDegradationPct` (0 bis 5) je Modulgeneration. Einzelmodule erhalten einen altersabhängigen STC-Leistungsfaktor: `(1-r/100)^max(0, (Prognosezeit-Inbetriebnahme)/365.2425 Tage)`. Unterschiedliche Modulgruppen im selben Feld werden mit ihren jeweiligen Wp gewichtet, auch beim DOM20-Nahprofil. Der Faktor wirkt vor AC-Clipping; keine pauschale Korrektur zusätzlich bei Systemverlusten eintragen.
+Optional `moduleGroups[].commissionedOn` (ISO-Datum YYYY-MM-DD) und `annualDegradationPct` (0 bis 5) je Modulgeneration. Einzelmodule erhalten einen altersabhängigen STC-Leistungsfaktor: `(1-r/100)^max(0, (Prognosezeit-Inbetriebnahme)/365.2425 Tage)`. Unterschiedliche Modulgruppen im selben Feld werden mit ihren jeweiligen Wp gewichtet, auch beim DOM20-Nahprofil. Der Faktor wirkt vor AC-Clipping.
 
 Bei bekanntem Datum und ohne explizite Rate gilt 1 % pro Jahr als **Szenario**, nicht als gemessene Anlagenrate. Fehlt das Inbetriebnahmedatum, beträgt der Faktor exakt 1, ohne geschätztes Baujahr. Derzeit sind für die sechs verschiedenen Modultypen keine Inbetriebnahmedaten belegt: Die Berechnung zeigt daher zunächst unveränderte Erträge und weist in der Website sichtbar auf die fehlenden Daten hin. Sobald Daten eingetragen werden, wechselt die physikalische Modellkennung, damit Originalarchive nicht vermischt werden. Konfigurationsrevision 9 und alle DOM20/GPS-Daten bleiben bis dahin unverändert.
-
-Die Rate ist von Wetter-/Verschattungsfehlern und den bestehenden 12 % pauschalen Systemverlusten getrennt. Sie erklärt keinen spezifischen mittäglichen Carport-Schatteneinbruch.
 
 ## Ausrichtungsraster zum Hausdach korrigiert in V12.9.8
 
@@ -223,13 +220,13 @@ Die bestätigte Bestückung umfasst 88 Module und 31,305 kWp: Haus rechts/WR1 6,
 
 Die Modulpositionen sind aus Belegungsraster, Modulmaßen und GPS-Ankern **abgeleitete Näherungen, keine Vermessung**. Die Dachfenster dienen als Bezugspunkte; sie werden nicht pauschal als Feldmittelpunkte übernommen. Die Lage des Fensterankers innerhalb des Rasters und 25 mm Fugenabstand sind Arbeitsannahmen. Die Optimiererpositionen 2.1.15/16 sind noch keiner Ost-/Westrichtung sicher zugeordnet. Diese beiden Orientierungen verwenden daher vorläufig die gemeinsame, aus dem Schema geschätzte Paarmitte. Azimut 90°/270° ist aus der Himmelsrichtung abgeleitet, nicht separat vermessen. Die Website zeigt diese Grenzen in der Belegungsansicht und bei den Anlagenangaben.
 
-Das DOM20-Nahprofil Version 2 enthält einen Horizont je Modulmittelpunkt und gewichtet die resultierenden Leistungen nach den jeweiligen Wp. Andere elektrische Annahmen, Wirkungsgrad, Systemverluste, Albedo und WR-Grenzen bleiben erhalten. Es gibt keinen neuen Ertrags- oder Diffusfaktor. Die vorhandene 0,5°-Winkelauflösung, 150 m Radius und 3 m Ausschlusskreis bleiben bestehen. DOM20-Quellen und ihre SHA-256-Hashes sind im Profil dokumentiert. Quellenlizenz: © Bayerische Vermessungsverwaltung, CC BY 4.0; Profile sind daraus abgeleitete Daten. Das Gelände-Horizontprofil bleibt unverändert.
+Das DOM20-Nahprofil Version 2 enthält einen Horizont je Modulmittelpunkt und gewichtet die resultierenden Leistungen nach den jeweiligen Wp. Andere elektrische Annahmen, Wirkungsgrad, Albedo und WR-Grenzen bleiben erhalten. Es gibt keinen neuen Ertrags- oder Diffusfaktor. Die vorhandene 0,5°-Winkelauflösung, 150 m Radius und 3 m Ausschlusskreis bleiben bestehen. DOM20-Quellen und ihre SHA-256-Hashes sind im Profil dokumentiert. Quellenlizenz: © Bayerische Vermessungsverwaltung, CC BY 4.0; Profile sind daraus abgeleitete Daten. Das Gelände-Horizontprofil bleibt unverändert.
 
 Alte Version-1-Profile mit neun Stichproben werden weiterhin unterstützt. Alte Originalprognosen werden weder geändert noch nachberechnet. Das neue physikalische Modell erhält durch Geometrie- und Profilbindung eine eigene Modellkennung. `scripts/erstelle_modullayout.py` dokumentiert die geometrische Ableitung aus der vorbereiteten Bestückung; `scripts/baue_modulnahprofil.py` erzeugt und prüft das Nahprofil aus den originalen DOM20-TIFFs (numpy/Pillow und Node erforderlich). Felder ohne Einzelbelegung verwenden im vorhandenen Profilgenerator weiterhin neun Stichproben. Die aus Einzelmodulen abgeleiteten Rechteckmaße und Zentren sind im Editor schreibgeschützt; die Einzelpositionen dürfen nicht durch eine freie Rechteckänderung unbemerkt veralten.
 
 ## Zentrale Anlagenkonfiguration ab V12.8
 
-`anlagenkonfiguration.json` ist die verbindliche Quelle für Standort, Höhe, Systemverluste, Albedo, Modulfelder einschließlich Geometrie, Wechselrichter, Zuordnungen und maximale AC-Wirkleistung in kW. Die erste zentrale Veröffentlichung übernimmt die vorhandenen fünf Modulfelder mit zusammen 31,305 kWp und vier Wechselrichtern unverändert. Schema-Version und Konfigurationsrevision sind unabhängig von der Website-Version.
+`anlagenkonfiguration.json` ist die verbindliche Quelle für Standort, Höhe, Albedo, Modulfelder einschließlich Geometrie, Wechselrichter, Zuordnungen und maximale AC-Wirkleistung in kW. Die erste zentrale Veröffentlichung übernimmt die vorhandenen fünf Modulfelder mit zusammen 31,305 kWp und vier Wechselrichtern unverändert. Schema-Version und Konfigurationsrevision sind unabhängig von der Website-Version.
 
 Die Website lädt die Datei beim Start und bei der Wetteraktualisierung von GitHub Pages. Frühere lokale Anlageneinstellungen werden ignoriert. Mac, iPhone und die GitHub-Actions-Archivierung verwenden damit dieselben veröffentlichten Anlagenparameter. Unterschiedliche Wetterabrufzeiten können weiterhin unterschiedliche Prognosen ergeben.
 

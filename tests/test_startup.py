@@ -22,9 +22,10 @@ def weather_change(server):
             values=server.weather.get(group,{}).get(field,[])
             server.weather[group][field]=[None if v is None else v*.5 for v in values]
 
-def upgrade(browser,*,original_coordinates=False,changed_model=False):
+def upgrade(browser,*,original_coordinates=False,changed_model=False,previous_loss=False):
     server=Server(legacy=True);config=json.loads(server.files['anlagenkonfiguration.json'])
     legacy=plant_state(config)
+    if not previous_loss:legacy['losses']=0
     if original_coordinates:legacy.update(lat=47.69784444,lon=11.88009722)
     if changed_model:legacy['inverters'][0]['maxAcKw']+=1
     old_html=subprocess.check_output(['git','show','e94f948943a1d7593bcec1e7d777cec29b853763:index.html'],cwd=ROOT,text=True)
@@ -34,11 +35,14 @@ def upgrade(browser,*,original_coordinates=False,changed_model=False):
     storage=c.storage_state();assert not errors,errors;c.close()
     weather_change(server)
     # V12.8.1 erzeugte bereits neue, deckungsgleiche Referenzen: genau der gemeldete Fall.
-    broken_html=subprocess.check_output(['git','show','36e0008619a54f61515a14dc894e118dffdc43bc:index.html'],cwd=ROOT,text=True)
+    revision='36e0008619a54f61515a14dc894e118dffdc43bc'
+    broken_html=subprocess.check_output(['git','show',revision+':index.html'],cwd=ROOT,text=True)
+    old_central=subprocess.check_output(['git','show',revision+':central-config.js'],cwd=ROOT,text=True)
+    broken_html=broken_html.replace('<script src="./central-config.js?v=12.8.1"></script>','<script>'+old_central+'</script>')
     c,broken,errors=open_page(browser,server,storage=storage,html=broken_html,at=at(10));ready(broken)
     broken.wait_for_function('SolarApp.getArchive().days["2026-11-06"]?.original?.values.length>200')
-    generated=broken.evaluate('SolarApp.getArchive().days["2026-11-06"].original')
-    assert generated['values']!=source['original']['values']
+    generated=broken.evaluate('SolarApp.getArchive().days["2026-11-06"]')
+    assert generated['original']['values']!=source['original']['values']
     # Ein serialisierter RAM-Lookup darf den nächsten Browserstart nicht blockieren.
     broken.evaluate('''key=>{const a=JSON.parse(localStorage.getItem(key));for(const r of Object.values(a.days)){r._lookup={};r._lookupVersion=r.updatedAt;}localStorage.setItem(key,JSON.stringify(a));}''',KEY)
     storage=c.storage_state();assert not errors,errors;c.close()
@@ -47,8 +51,9 @@ def upgrade(browser,*,original_coordinates=False,changed_model=False):
     assert page.evaluate('localStorage.getItem('+json.dumps(OLD_KEY)+')')==before
     copies=page.evaluate('SolarApp.getArchive().previousModels')
     assert any(DAY in days and days[DAY]['original']==source['original'] for name,days in copies.items() if name.startswith('legacy:'))
-    if changed_model:
-        assert after['original']['values']==generated['values']
+    assert copies[generated['model']][DAY]['original']==generated['original']
+    if changed_model or previous_loss:
+        assert after['original']['values']!=source['original']['values']
         assert 'sourceArchiveKey' not in after['original']
         assert 'getrennt erhalten' in page.locator('#historyMigration').inner_text()
     else:
@@ -56,14 +61,13 @@ def upgrade(browser,*,original_coordinates=False,changed_model=False):
         assert after['original']['at']==source['original']['at']
         assert after['original']['sourceModel']==source['model']
         assert after['original']['values']!=[[r[0],r[1]] for r in after['current']]
-        assert generated in after['referenceHistory']
         assert 'V12.7.2' in page.locator('#historyInfo').inner_text()
         if original_coordinates:assert after['original']['compatibility']=='published-location-precision-v12.8'
         # Wiederholtes Laden bleibt idempotent und ersetzt das Original weiterhin nicht.
         data=c.storage_state();c.close();c,page,errors=open_page(browser,server,storage=data,at=at(25));seven(page)
         again=page.evaluate('SolarApp.getArchive().days["2026-11-06"]')
         assert again['original']==after['original']
-        assert again['referenceHistory']==after['referenceHistory']
+        assert again.get('referenceHistory')==after.get('referenceHistory')
     assert not errors,errors;c.close()
 
 def run():
@@ -74,8 +78,8 @@ def run():
         assert page.evaluate('localStorage.getItem("schliersee-settings-v1")') is None
         assert not errors,errors;c.close()
         print('OK: normaler Browser, frischer Speicher, sieben Prognosen ohne vorbereitete Daten.')
-        upgrade(b);upgrade(b,original_coordinates=True);upgrade(b,changed_model=True)
-        print('OK: echter Versionswechsel V12.7.2 → V12.8.1 → Korrektur: alte Originale, Zeitstempel und vorherige Kurven erhalten; abweichende WR-Modelle getrennt.')
+        upgrade(b);upgrade(b,original_coordinates=True);upgrade(b,changed_model=True);upgrade(b,previous_loss=True)
+        print('OK: Versionswechsel V12.7.2 → V12.8.1 → aktueller Stand: alte Kurven erhalten, vorheriger Abschlag und abweichende WR-Modelle getrennt.')
         for fault in ['central-config.js','anlagenkonfiguration.json','horizontprofil.json','nahverschattung.json']:
             server=Server();normal=server.route;count=[0]
             def route(r):

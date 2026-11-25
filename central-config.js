@@ -58,13 +58,14 @@
     return profile;
   }
   function validateConfig(c){
+    // Das alte Feld ist ausschließlich beim Lesen früherer Veröffentlichungen zulässig.
     const allowed=['schemaVersion','revision','updatedAt','location','systemLossesPercent','albedo','modulePowerModel','panels','inverters','profiles'];
     if(!c||Object.keys(c).some(k=>!allowed.includes(k)))throw fail('Unbekannte Felder in der zentralen Konfiguration.');
     if(c?.schemaVersion!==1||!Number.isInteger(c.revision)||c.revision<1||!Number.isFinite(Date.parse(c.updatedAt)))throw fail('Ungültige zentrale Konfigurationsversion.');
     if(c.modulePowerModel!==undefined&&c.modulePowerModel!==MODULE_POWER_MODEL)throw fail('Unbekanntes Modul-Leistungsmodell.');
     const l=c.location;
     if(!l||typeof l.name!=='string'||!l.name.trim()||l.name.length>50||!finite(l.latitude,-90,90)||!finite(l.longitude,-180,180)||!finite(l.roofHeightM,0,100)||
-       !finite(c.systemLossesPercent,0,50)||!finite(c.albedo,0,1))throw fail('Standort oder Berechnungsparameter sind ungültig.');
+       (c.systemLossesPercent!==undefined&&!finite(c.systemLossesPercent,0,50))||!finite(c.albedo,0,1))throw fail('Standort oder Berechnungsparameter sind ungültig.');
     if(l.layoutUpAzimuth!==undefined&&!finite(l.layoutUpAzimuth,0,360))throw fail('Ungültige Bildausrichtung.');
     if(!Array.isArray(c.panels)||!c.panels.length||c.panels.length>24||!Array.isArray(c.inverters)||c.inverters.length>32)throw fail('Ungültige Anzahl von Modulfeldern oder Wechselrichtern.');
     const unique=list=>list.every(x=>typeof x.id==='string'&&x.id&&x.id.length<=100)&&new Set(list.map(x=>x.id)).size===list.length;
@@ -106,13 +107,15 @@
       verifyPanelProfile(p,profile);
     });
     // Anzeigenamen und Veröffentlichungszeit ändern das physikalische Modell nicht.
-    const physical={geometry:geometry(c),losses:c.systemLossesPercent,albedo:c.albedo,profiles:[c.profiles.horizon.sha256,c.profiles.near.sha256],
+    const physical={geometry:geometry(c),albedo:c.albedo,profiles:[c.profiles.horizon.sha256,c.profiles.near.sha256],
       panels:c.panels.map(p=>[p.id,p.kwp,p.inverterId]),inverters:c.inverters.map(w=>[w.id,w.maxAcKw]).sort((a,b)=>a[0].localeCompare(b[0]))};
     if(c.modulePowerModel)physical.modulePowerModel=c.modulePowerModel;
     // Archive identity changes on activation or correction of a cohort's aging data.
     const activeAging=c.panels.flatMap(p=>p.moduleGroups?.length?p.moduleGroups.flatMap((g,i)=>g.commissionedOn?[[p.id,i,g.commissionedOn,g.annualDegradationPct??1]]:[]):(p.commissionedOn?[[p.id,-1,p.commissionedOn,p.annualDegradationPct??1]]:[]));
     if(activeAging.length)physical.moduleAging=activeAging;
-    return {config:c,horizon:h,near:n,configText,horizonText,nearText,configHash:await sha256(configText),physicalHash:await sha256(canonical(physical)),online:true};
+    const bundle={config:c,horizon:h,near:n,configText,horizonText,nearText,configHash:await sha256(configText),physicalHash:await sha256(canonical(physical)),online:true};
+    if(c.systemLossesPercent!==undefined)bundle.legacyPhysicalHash=await sha256(canonical({...physical,losses:c.systemLossesPercent}));
+    return bundle;
   }
   function storage(){try{return root.localStorage}catch{return null}}
   async function readCache(store=storage()){
@@ -120,7 +123,8 @@
       const raw=JSON.parse(store?.getItem(CACHE_KEY)||'null');
       if(!raw)return null;
       const b=await verifyBundle(raw.configText,raw.horizonText,raw.nearText);
-      if(b.configHash!==raw.configHash||b.physicalHash!==raw.physicalHash)return null;
+      if(b.configHash!==raw.configHash)return null;
+      if(b.physicalHash!==raw.physicalHash&&(!b.legacyPhysicalHash||b.legacyPhysicalHash!==raw.physicalHash))return null;
       return {...b,online:false,cachedAt:raw.fetchedAt};
     }catch{return null}
   }
@@ -157,14 +161,15 @@
     }
   }
   function toState(c){
-    return {locationName:c.location.name,lat:c.location.latitude,lon:c.location.longitude,roofHeight:c.location.roofHeightM,losses:c.systemLossesPercent,albedo:c.albedo,
+    return {locationName:c.location.name,lat:c.location.latitude,lon:c.location.longitude,roofHeight:c.location.roofHeightM,albedo:c.albedo,
       panels:c.panels.map(({geo,...p})=>clone(p)),inverters:clone(c.inverters),panelGeometry:c.panels.map(p=>clone(p.geo))};
   }
   async function draftConfig(state,base,{horizonText,nearText}={}){
     const c=clone(base);
     c.revision=base.revision+1;c.updatedAt=new Date().toISOString();
     c.location={...clone(base.location),name:state.locationName,latitude:state.lat,longitude:state.lon,roofHeightM:state.roofHeight};
-    c.systemLossesPercent=state.losses;c.albedo=state.albedo;
+    delete c.systemLossesPercent;
+    c.albedo=state.albedo;
     c.panels=state.panels.map((p,i)=>({id:p.id,name:p.name,kwp:p.kwp,az:p.az,tilt:p.tilt,inverterId:p.inverterId||null,geo:clone(state.panelGeometry[i]),
       ...(p.moduleGroups?{moduleGroups:clone(p.moduleGroups)}:{}),...(p.commissionedOn?{commissionedOn:p.commissionedOn,commissionedOnPrecision:p.commissionedOnPrecision||'month',annualDegradationPct:p.annualDegradationPct??1}:{}),...(p.referencePoint?{referencePoint:clone(p.referencePoint)}:{}),...(p.layoutSurvey?{layoutSurvey:clone(p.layoutSurvey)}:{})}));
     c.inverters=state.inverters.map(w=>({id:w.id,name:w.name,maxAcKw:w.maxAcKw,...(w.deviceId?{deviceId:w.deviceId}:{})}));
@@ -197,7 +202,8 @@
       const currentText=await file(FILE,baseSha);
       if(await sha256(currentText)!==expectedHash)throw fail('Ein anderes Gerät hat die zentrale Konfiguration geändert. Bitte den neuen Stand laden. Dein Entwurf wurde nicht veröffentlicht.','CONFLICT');
       const current=validateConfig(JSON.parse(currentText));
-      const c=clone(candidate);c.revision=current.revision+1;c.updatedAt=new Date().toISOString();validateConfig(c);
+      const c=clone(candidate);delete c.systemLossesPercent;
+      c.revision=current.revision+1;c.updatedAt=new Date().toISOString();validateConfig(c);
       if(c.profiles.geometryHash!==current.profiles.geometryHash&&(!horizonText||!nearText))throw fail('Geometrische Änderungen benötigen beide neu berechneten Profile.');
       const [h,n,base]=await Promise.all([horizonText||file('horizontprofil.json',baseSha),nearText||file('nahverschattung.json',baseSha),request('/git/commits/'+baseSha)]);
       const configText=serialize(c),bundle=await verifyBundle(configText,h,n);
